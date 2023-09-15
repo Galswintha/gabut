@@ -4,7 +4,8 @@
     "rules": [
       {
         "domain_suffix": [
-          "google.com"
+          "support.zoom.us",
+          "cdn.appsflyer.com"
         ],
         "server": "direct-dns",
         "disable_cache": false
@@ -14,13 +15,13 @@
       {
         "address": "1.1.1.1:53",
         "address_resolver": "direct-dns",
-        "strategy": "auto",
+        "strategy": "prefer_ipv4",
         "tag": "remote-dns"
       },
       {
         "address": "local",
         "detour": "direct",
-        "strategy": "auto",
+        "strategy": "prefer_ipv4",
         "tag": "direct-dns"
       },
       {
@@ -93,7 +94,7 @@
     },
     {
       "type": "urltest",
-      "tag": "Auto",
+      "tag": "Best Latency",
       "outbounds": [
         "vless-ws-tls",
         "vpnstunnel%2021",
