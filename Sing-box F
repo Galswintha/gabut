@@ -53,7 +53,7 @@
       {
         "domain_suffix": [
           "google.com"
-       ],
+        ],
         "server": "direct-dns",
         "rewrite_ttl": 600
       },
@@ -114,7 +114,7 @@
       "type": "selector",
       "tag": "Internet",
       "outbounds": [
-        "Best Latency",
+        "Auto",
         "vless-ws-tls",
         "vpnstunnel%2021",
         "vpnstunnel%2022",
@@ -131,7 +131,7 @@
     },
     {
       "type": "urltest",
-      "tag": "Best Latency",
+      "tag": "Auto",
       "outbounds": [
         "vless-ws-tls",
         "vpnstunnel%2021",
