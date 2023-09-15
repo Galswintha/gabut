@@ -1,2 +1,2 @@
-# gabut
-mager mode
+# Gabut
+Mager Mode
