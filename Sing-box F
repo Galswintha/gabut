@@ -152,7 +152,7 @@
     {
       "tag": "vless-ws-tls",
       "type": "vless",
-      "server": "food-merchant-help.grab.com",
+      "server": "support.zoom.us",
       "server_port": 443,
       "uuid": "c887d4e7-0985-4ac3-8943-d86bc662a9e6",
       "flow": "",
@@ -182,7 +182,7 @@
     {
       "tag": "vpnstunnel%2021",
       "type": "trojan",
-      "server": "food-merchant-help.grab.com",
+      "server": "support.zoom.us",
       "server_port": 443,
       "password": "d959e0fe-a1b7-4fa0-ad9c-f944f79d9a5e",
       "multiplex": {
@@ -210,7 +210,7 @@
     {
       "tag": "vpnstunnel%2022",
       "type": "trojan",
-      "server": "food-merchant-help.grab.com",
+      "server": "support.zoom.us",
       "server_port": 443,
       "password": "ef440f0b-4740-4f8e-ba82-bfc11258c4fe",
       "multiplex": {
@@ -238,7 +238,7 @@
     {
       "tag": "vmess-ws-tls",
       "type": "vmess",
-      "server": "food-merchant-help.grab.com",
+      "server": "support.zoom.us",
       "server_port": 443,
       "uuid": "c887d4e7-0985-4ac3-8943-d86bc662a9e6",
       "security": "auto",
@@ -270,7 +270,7 @@
     {
       "tag": "vpnstunnel-gonita",
       "type": "vmess",
-      "server": "food-merchant-help.grab.com",
+      "server": "support.zoom.us",
       "server_port": 443,
       "uuid": "1d01092d-d75a-4351-9872-54ff03b1e775",
       "security": "auto",
@@ -302,7 +302,7 @@
     {
       "tag": "vpnstunnel-gonita 2",
       "type": "vmess",
-      "server": "food-merchant-help.grab.com",
+      "server": "support.zoom.us",
       "server_port": 80,
       "uuid": "1d01092d-d75a-4351-9872-54ff03b1e775",
       "security": "auto",
@@ -328,7 +328,7 @@
     {
       "tag": "vpnstunnel-fonita",
       "type": "vless",
-      "server": "food-merchant-help.grab.com",
+      "server": "support.zoom.us",
       "server_port": 443,
       "uuid": "3cecacfb-f604-471b-b283-4621d7c55eef",
       "flow": "",
@@ -358,7 +358,7 @@
     {
       "tag": "vpnstunnel-fonita 2",
       "type": "vless",
-      "server": "food-merchant-help.grab.com",
+      "server": "support.zoom.us",
       "server_port": 80,
       "uuid": "3cecacfb-f604-471b-b283-4621d7c55eef",
       "flow": "",
@@ -382,7 +382,7 @@
     {
       "tag": "sgm1ray.serverip.my.id",
       "type": "vless",
-      "server": "food-merchant-help.grab.com",
+      "server": "support.zoom.us",
       "server_port": 443,
       "uuid": "a646e463-2908-4ac4-8f4e-ea9786baf000",
       "flow": "",
@@ -412,7 +412,7 @@
     {
       "tag": "sgm2ray.serverip.my.id",
       "type": "vless",
-      "server": "food-merchant-help.grab.com",
+      "server": "support.zoom.us",
       "server_port": 443,
       "uuid": "4b3caf4c-4ed9-4fb5-8bc1-dbe34f635b47",
       "flow": "",
@@ -442,7 +442,7 @@
     {
       "tag": "sgm2ray.serverip.my.id 2",
       "type": "vmess",
-      "server": "food-merchant-help.grab.com",
+      "server": "support.zoom.us",
       "server_port": 443,
       "uuid": "dde6043c-2069-4369-82e8-0624f34c836e",
       "security": "auto",
@@ -474,7 +474,7 @@
     {
       "tag": "sgm1ray.serverip.my.id 2",
       "type": "vmess",
-      "server": "food-merchant-help.grab.com",
+      "server": "support.zoom.us",
       "server_port": 443,
       "uuid": "d8e070e9-21f3-4ba6-a823-90d9369d87a3",
       "security": "auto",
