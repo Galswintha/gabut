@@ -1,5 +1,311 @@
-trojan://u2624117252@food-merchant-help.grab.com:2087/?sni=si1.09vpn.com&type=ws&host=si1.09vpn.com&path=%2Ftrojango&encryption=none#u2624117252
-trojan://u7981862480@food-merchant-help.grab.com:2087/?sni=si4co.09vpn.com&type=ws&host=si4co.09vpn.com&path=%2Ftrojango&encryption=none#u7981862480
-trojan://u8586667769@food-merchant-help.grab.com:2087/?sni=si5ultara.09vpn.com&type=ws&host=si5ultara.09vpn.com&path=%2Ftrojango&encryption=none#u8586667769
-trojan://u6173242747@food-merchant-help.grab.com:2087/?sni=si2.09vpn.com&type=ws&host=si2.09vpn.com&path=%2Ftrojango&encryption=none#u6173242747
-trojan://u2860339971@food-merchant-help.grab.com:2087/?sni=si3.09vpn.com&type=ws&host=si3.09vpn.com&path=%2Ftrojango&encryption=none#u2860339971
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
+tproxy-port: 7895
+ipv6: false
+mode: rule
+log-level: silent
+allow-lan: true
+external-controller: 0.0.0.0:9090
+secret: ""
+bind-address: "*"
+unified-delay: true
+profile:
+  store-selected: true
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: redir-host
+  listen: 0.0.0.0:7874
+  nameserver:
+    - 8.8.8.8
+    - 1.0.0.1
+    - https://dns.google/dns-query
+  fallback:
+    - 1.1.1.1
+    - 8.8.4.4
+    - https://cloudflare-dns.com/dns-query
+    - 112.215.203.254
+  default-nameserver:
+    - 8.8.8.8
+    - 1.1.1.1
+    - 112.215.203.254
+proxies:
+  - name: jala.iptunnels.com
+    server: support.zoom.us
+    port: 443
+    type: trojan
+    password: 1158313448a0b33d
+    skip-cert-verify: true
+    sni: jala.iptunnels.com
+    network: ws
+    ws-opts:
+      path: /buy-trojan-ws-pm-telegram-at-synricha
+      headers:
+        Host: jala.iptunnels.com
+    udp: true
+  - name: jala.iptunnels.com 2
+    server: support.zoom.us
+    port: 443
+    type: trojan
+    password: 93e3b42d69e95c4a
+    skip-cert-verify: true
+    sni: jala.iptunnels.com
+    network: ws
+    ws-opts:
+      path: /buy-trojan-ws-pm-telegram-at-synricha
+      headers:
+        Host: jala.iptunnels.com
+    udp: true
+  - name: cpanel.iptunnels.com
+    server: support.zoom.us
+    port: 443
+    type: trojan
+    password: 3aa2cf9b35ddde6b
+    skip-cert-verify: true
+    sni: cpanel.iptunnels.com
+    network: ws
+    ws-opts:
+      path: /buy-trojan-ws-pm-telegram-at-synricha
+      headers:
+        Host: cpanel.iptunnels.com
+    udp: true
+  - name: jala.iptunnels.com 3
+    server: support.zoom.us
+    port: 443
+    type: vless
+    uuid: 2a81ae2a-7303-4f9e-9a9c-083765fa2239
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    servername: jala.iptunnels.com
+    network: ws
+    ws-opts:
+      path: /buy-vless-ws-pm-telegram-at-synricha
+      headers:
+        Host: jala.iptunnels.com
+    udp: true
+  - name: cpanel.iptunnels.com 2
+    server: support.zoom.us
+    port: 443
+    type: vless
+    uuid: c172140d-b9bf-4773-820f-443f46b44d8f
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    servername: cpanel.iptunnels.com
+    network: ws
+    ws-opts:
+      path: /buy-vless-ws-pm-telegram-at-synricha
+      headers:
+        Host: cpanel.iptunnels.com
+    udp: true
+  - name: jala.iptunnels.com 4
+    server: support.zoom.us
+    port: 443
+    type: vmess
+    uuid: 4a8093c4-4089-4665-91e3-26083be3f52a
+    alterId: 0
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    servername: jala.iptunnels.com
+    network: ws
+    ws-opts:
+      path: /buy-vmess-ws-pm-telegram-at-synricha
+      headers:
+        Host: jala.iptunnels.com
+    udp: true
+  - name: jala.iptunnels.com 5
+    server: support.zoom.us
+    port: 443
+    type: vmess
+    uuid: 5bceaa13-d9fd-48ed-949b-b775eb6286ac
+    alterId: 0
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    servername: jala.iptunnels.com
+    network: ws
+    ws-opts:
+      path: /buy-vmess-ws-pm-telegram-at-synricha
+      headers:
+        Host: jala.iptunnels.com
+    udp: true
+  - name: cpanel.iptunnels.com 3
+    server: support.zoom.us
+    port: 443
+    type: vmess
+    uuid: 4e0ebc96-3ec6-463d-a760-12dd457f2f51
+    alterId: 0
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    servername: cpanel.iptunnels.com
+    network: ws
+    ws-opts:
+      path: /buy-vmess-ws-pm-telegram-at-synricha
+      headers:
+        Host: cpanel.iptunnels.com
+    udp: true
+  - name: jala.iptunnels.com // grpc
+    server: support.zoom.us
+    port: 443
+    type: vless
+    uuid: cedce24c-2a90-474a-8b55-dc7bbcb4ac6f
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    servername: jala.iptunnels.com
+    network: grpc
+    grpc-opts:
+      grpc-service-name: buy-vless-grpc-pm-telegram-at-synricha
+    udp: true
+  - name: jala.iptunnels.com // grpc 2
+    server: support.zoom.us
+    port: 443
+    type: vmess
+    uuid: 37358efa-c68c-4a36-b764-bbcb7a99c86a
+    alterId: 0
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    servername: jala.iptunnels.com
+    network: grpc
+    grpc-opts:
+      grpc-service-name: buy-vmess-grpc-pm-telegram-at-synricha
+    udp: true
+  - name: jala.iptunnels.com // grpc 3
+    server: support.zoom.us
+    port: 443
+    type: trojan
+    password: a1e47b0f61631b84
+    skip-cert-verify: true
+    sni: jala.iptunnels.com
+    network: grpc
+    grpc-opts:
+      grpc-service-name: buy-trojan-grpc-pm-telegram-at-synricha
+    udp: true
+  - name: cpanel.iptunnels.com // trojan ws
+    server: support.zoom.us
+    port: 443
+    type: trojan
+    password: 3aa2cf9b35ddde6b
+    skip-cert-verify: true
+    sni: cpanel.iptunnels.com
+    network: ws
+    ws-opts:
+      path: /buy-trojan-ws-pm-telegram-at-synricha
+      headers:
+        Host: cpanel.iptunnels.com
+    udp: true
+  - name: jala.iptunnels.com // trojan ws
+    server: support.zoom.us
+    port: 443
+    type: trojan
+    password: 1158313448a0b33d
+    skip-cert-verify: true
+    sni: jala.iptunnels.com
+    network: ws
+    ws-opts:
+      path: /buy-trojan-ws-pm-telegram-at-synricha
+      headers:
+        Host: jala.iptunnels.com
+    udp: true
+  - name: jala.iptunnels.com // trojan ws 2
+    server: support.zoom.us
+    port: 443
+    type: trojan
+    password: 93e3b42d69e95c4a
+    skip-cert-verify: true
+    sni: jala.iptunnels.com
+    network: ws
+    ws-opts:
+      path: /buy-trojan-ws-pm-telegram-at-synricha
+      headers:
+        Host: jala.iptunnels.com
+    udp: true
+proxy-groups:
+  - name: FASTSSH-SSHKIT-HOWDY
+    type: select
+    proxies:
+      - jala.iptunnels.com
+      - jala.iptunnels.com 2
+      - cpanel.iptunnels.com
+      - jala.iptunnels.com 3
+      - cpanel.iptunnels.com 2
+      - jala.iptunnels.com 4
+      - jala.iptunnels.com 5
+      - cpanel.iptunnels.com 3
+      - jala.iptunnels.com // grpc
+      - jala.iptunnels.com // grpc 2
+      - jala.iptunnels.com // grpc 3
+      - cpanel.iptunnels.com // trojan ws
+      - jala.iptunnels.com // trojan ws
+      - jala.iptunnels.com // trojan ws 2
+      - LOAD-BALANCE
+      - BEST-PING
+      - FALLBACK
+      - DIRECT
+  - name: LOAD-BALANCE
+    type: load-balance
+    strategy: consistent-hashing
+    url: http://hi.bonds.id/ping
+    interval: 300
+    proxies:
+      - jala.iptunnels.com
+      - jala.iptunnels.com 2
+      - cpanel.iptunnels.com
+      - jala.iptunnels.com 3
+      - cpanel.iptunnels.com 2
+      - jala.iptunnels.com 4
+      - jala.iptunnels.com 5
+      - cpanel.iptunnels.com 3
+      - jala.iptunnels.com // grpc
+      - jala.iptunnels.com // grpc 2
+      - jala.iptunnels.com // grpc 3
+      - cpanel.iptunnels.com // trojan ws
+      - jala.iptunnels.com // trojan ws
+      - jala.iptunnels.com // trojan ws 2
+  - name: BEST-PING
+    type: url-test
+    url: http://hi.bonds.id/ping
+    interval: 300
+    tolerance: 50
+    proxies:
+      - jala.iptunnels.com
+      - jala.iptunnels.com 2
+      - cpanel.iptunnels.com
+      - jala.iptunnels.com 3
+      - cpanel.iptunnels.com 2
+      - jala.iptunnels.com 4
+      - jala.iptunnels.com 5
+      - cpanel.iptunnels.com 3
+      - jala.iptunnels.com // grpc
+      - jala.iptunnels.com // grpc 2
+      - jala.iptunnels.com // grpc 3
+      - cpanel.iptunnels.com // trojan ws
+      - jala.iptunnels.com // trojan ws
+      - jala.iptunnels.com // trojan ws 2
+  - name: FALLBACK
+    type: fallback
+    url: http://hi.bonds.id/ping
+    interval: 300
+    proxies:
+      - jala.iptunnels.com
+      - jala.iptunnels.com 2
+      - cpanel.iptunnels.com
+      - jala.iptunnels.com 3
+      - cpanel.iptunnels.com 2
+      - jala.iptunnels.com 4
+      - jala.iptunnels.com 5
+      - cpanel.iptunnels.com 3
+      - jala.iptunnels.com // grpc
+      - jala.iptunnels.com // grpc 2
+      - jala.iptunnels.com // grpc 3
+      - cpanel.iptunnels.com // trojan ws
+      - jala.iptunnels.com // trojan ws
+      - jala.iptunnels.com // trojan ws 2
+rules:
+  - MATCH,FASTSSH-SSHKIT-HOWDY
