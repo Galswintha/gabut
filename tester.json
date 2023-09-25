@@ -1,0 +1,1244 @@
+{
+  "log": {
+    "disabled": false,
+    "level": "error",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "anhedonia",
+        "address": "1.1.1.1",
+        "strategy": "prefer_ipv4",
+        "detour": "anhedonia"
+      },
+      {
+        "tag": "direct",
+        "address": "local",
+        "strategy": "prefer_ipv4",
+        "detour": "direct"
+      },
+      {
+        "tag": "block",
+        "address": "rcode://success"
+      }
+    ],
+    "rules": [
+      {
+        "network": "udp",
+        "port": 443,
+        "server": "block",
+        "rewrite_ttl": 20
+      },
+      {
+        "outbound": "anhedonia",
+        "server": "anhedonia",
+        "rewrite_ttl": 20
+      },
+      {
+        "outbound": "direct",
+        "server": "direct",
+        "rewrite_ttl": 20
+      },
+      {
+        "outbound": "any",
+        "server": "direct",
+        "rewrite_ttl": 20
+      }
+    ],
+    "reverse_mapping": true,
+    "strategy": "prefer_ipv4",
+    "independent_cache": false,
+    "disable_cache": false
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "interface_name": "tun0",
+      "inet4_address": "172.19.0.1/30",
+      "mtu": 1358,
+      "auto_route": true,
+      "strict_route": true,
+      "stack": "gvisor",
+      "endpoint_independent_nat": true,
+      "sniff": true
+    },
+    {
+      "listen": "0.0.0.0",
+      "listen_port": 2087,
+      "sniff": true,
+      "tag": "mixed-in",
+      "type": "mixed"
+    }
+  ],
+  "outbounds": [
+  {
+      "type": "urltest",
+      "tag": "anhedonia",
+      "outbounds": [
+        "iptunnels 🇸🇬🇸🇬🇸🇬 vmess sg1",
+        "iptunnels 🇸🇬🇸🇬🇸🇬 vmess sg2",
+        "iptunnels 🇸🇬🇸🇬🇸🇬 vmess sg3",
+        "iptunnels 🇸🇬🇸🇬🇸🇬 vless sg1",
+        "iptunnels 🇸🇬🇸🇬🇸🇬 vless sg2",
+        "iptunnels 🇸🇬🇸🇬🇸🇬 trojan sg1",
+        "iptunnels 🇸🇬🇸🇬🇸🇬 trojan sg2",
+        "iptunnels 🇸🇬🇸🇬🇸🇬 trojan sg3",
+        "sshs8 🇸🇬🇸🇬🇸🇬 vmess sg1",
+        "sshs8 🇸🇬🇸🇬🇸🇬 vmess sg2",
+        "sshs8 🇸🇬🇸🇬🇸🇬 vmess sg3",
+        "sshs8 🇸🇬🇸🇬🇸🇬 vmess sg4",
+        "sshs8 🇸🇬🇸🇬🇸🇬 vmess sg5",
+        "sshs8 🇸🇬🇸🇬🇸🇬 vless sg1",
+        "sshs8 🇸🇬🇸🇬🇸🇬 vless sg2",
+        "sshs8 🇸🇬🇸🇬🇸🇬 vless sg3",
+        "sshs8 🇸🇬🇸🇬🇸🇬 vless sg4",
+        "sshs8 🇸🇬🇸🇬🇸🇬 vless sg5",
+        "sshs8 🇸🇬🇸🇬🇸🇬 trojan sg1",
+        "sshs8 🇸🇬🇸🇬🇸🇬 trojan sg2",
+        "sshs8 🇸🇬🇸🇬🇸🇬 trojan sg3",
+        "sshs8 🇸🇬🇸🇬🇸🇬 trojan sg4",
+        "sshs8 🇸🇬🇸🇬🇸🇬 trojan sg5",
+        "iptunnels 🇯🇵🇯🇵🇯🇵 vmess sg1",
+        "iptunnels 🇯🇵🇯🇵🇯🇵 vmess sg2",
+        "iptunnels 🇯🇵🇯🇵🇯🇵 vmess sg3",
+        "iptunnels 🇯🇵🇯🇵🇯🇵 vless sg1",
+        "iptunnels 🇯🇵🇯🇵🇯🇵 vless sg2",
+        "iptunnels 🇯🇵🇯🇵🇯🇵 trojan sg1",
+        "iptunnels 🇯🇵🇯🇵🇯🇵 trojan sg2",
+        "iptunnels 🇯🇵🇯🇵🇯🇵 trojan sg3",
+        "sshs8 🇯🇵🇯🇵🇯🇵 vmess sg1",
+        "sshs8 🇯🇵🇯🇵🇯🇵 vmess sg2",
+        "sshs8 🇯🇵🇯🇵🇯🇵 vmess sg3",
+        "sshs8 🇯🇵🇯🇵🇯🇵 vmess sg4",
+        "sshs8 🇯🇵🇯🇵🇯🇵 vmess sg5",
+        "sshs8 🇯🇵🇯🇵🇯🇵 vless sg1",
+        "sshs8 🇯🇵🇯🇵🇯🇵 vless sg2",
+        "sshs8 🇯🇵🇯🇵🇯🇵 vless sg3",
+        "sshs8 🇯🇵🇯🇵🇯🇵 vless sg4",
+        "sshs8 🇯🇵🇯🇵🇯🇵 vless sg5"
+      ],
+      "url": "https://detectportal.firefox.com/success.txt",
+      "interval": "60s",
+      "tolerance": 13,
+      "interrupt_exist_connections": false
+    },
+    {
+      "type": "vmess",
+      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 vmess sg1", 
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 80,
+      "uuid": "a93bd89f-d1e8-4aa8-b310-792bdd7da575",
+      "security": "auto",
+      "global_padding": true,
+      "authenticated_length": true,
+      "tls": {
+        "enabled": false,
+        "server_name": "cpanel.iptunnels.com",
+        "insecure": true
+      },
+      "multiplex": {
+        "enabled": true,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/buy-vmess-ws-pm-telegram-at-synricha",
+        "headers": {
+          "Host": "cpanel.iptunnels.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 vmess sg2", 
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 80,
+      "uuid": "5ebdd645-fef0-4d89-aed3-07bffd14d76d",
+      "security": "auto",
+      "global_padding": true,
+      "authenticated_length": true,
+      "tls": {
+        "enabled": false,
+        "server_name": "jala.iptunnels.com",
+        "insecure": true
+      },
+      "multiplex": {
+        "enabled": true,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/buy-vmess-ws-pm-telegram-at-synricha",
+        "headers": {
+          "Host": "jala.iptunnels.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 vmess sg3", 
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 80,
+      "uuid": "4a8093c4-4089-4665-91e3-26083be3f52a",
+      "security": "auto",
+      "global_padding": true,
+      "authenticated_length": true,
+      "tls": {
+        "enabled": false,
+        "server_name": "jala.iptunnels.com",
+        "insecure": true
+      },
+      "multiplex": {
+        "enabled": true,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/buy-vmess-ws-pm-telegram-at-synricha",
+        "headers": {
+          "Host": "jala.iptunnels.com"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 vless sg1", 
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 80,
+      "uuid": "e13c93df-b196-4833-822e-348d84035f79",
+      "tls": {
+        "enabled": false,
+        "server_name": "cpanel.iptunnels.com",
+        "insecure": true
+      }, 
+      "multiplex": {
+        "enabled": true,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/buy-vless-ws-pm-telegram-at-synricha",
+        "headers": {
+          "Host": "cpanel.iptunnels.com"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 vless sg2", 
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 80,
+      "uuid": "ef9c3aa0-27aa-4a3d-8420-63f7c9322b54",
+      "tls": {
+        "enabled": false,
+        "server_name": "jala.iptunnels.com",
+        "insecure": true
+      }, 
+      "multiplex": {
+        "enabled": true,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/buy-vless-ws-pm-telegram-at-synricha",
+        "headers": {
+          "Host": "jala.iptunnels.com"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "trojan",
+      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 trojan sg1", 
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 80,
+      "password": "4bb67872674f6383",
+      "tls": {
+        "enabled": false,
+        "server_name": "cpanel.iptunnels.com",
+        "insecure": true 
+      },
+      "multiplex": {
+        "enabled": true,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/buy-trojan-ws-pm-telegram-at-synricha",
+        "headers": {
+          "Host": "cpanel.iptunnels.com"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 trojan sg2", 
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 80,
+      "password": "93e3b42d69e95c4a",
+      "tls": {
+        "enabled": false,
+        "server_name": "jala.iptunnels.com",
+        "insecure": true 
+      },
+      "multiplex": {
+        "enabled": true,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/buy-trojan-ws-pm-telegram-at-synricha",
+        "headers": {
+          "Host": "jala.iptunnels.com"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 trojan sg3", 
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 80,
+      "password": "1158313448a0b33d",
+      "tls": {
+        "enabled": false,
+        "server_name": "jala.iptunnels.com",
+        "insecure": true 
+      },
+      "multiplex": {
+        "enabled": true,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/buy-trojan-ws-pm-telegram-at-synricha",
+        "headers": {
+          "Host": "jala.iptunnels.com"
+        }
+      }
+    }, 
+    {
+      "type": "vmess",
+      "tag": "sshs8 🇸🇬🇸🇬🇸🇬 vmess sg1",
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 80,
+      "uuid": "075bdf73-aed4-4a18-b31f-4480875c4bbf",
+      "security": "auto",
+      "global_padding": true,
+      "authenticated_length": true,
+      "tls": {
+        "enabled": false,
+        "server_name": "si1.09vpn.com",
+        "insecure": true
+      },
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vmess/",
+        "headers": {
+          "Host": "si1.09vpn.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "sshs8 🇸🇬🇸🇬🇸🇬 vmess sg2",
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 80,
+      "uuid": "a29c3507-6a4c-469e-8b55-b4f66e25f63b",
+      "security": "auto",
+      "global_padding": true,
+      "authenticated_length": true,
+      "tls": {
+        "enabled": false,
+        "server_name": "si2.09vpn.com",
+        "insecure": true
+      },
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vmess/",
+        "headers": {
+          "Host": "si3.09vpn.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "sshs8 🇸🇬🇸🇬🇸🇬 vmess sg3",
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 80,
+      "uuid": "6093ffe2-466c-4052-8921-858c61457366",
+      "security": "auto",
+      "global_padding": true,
+      "authenticated_length": true,
+      "tls": {
+        "enabled": false,
+        "server_name": "si3.09vpn.com",
+        "insecure": true
+      },
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vmess/",
+        "headers": {
+          "Host": "si3.09vpn.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "sshs8 🇸🇬🇸🇬🇸🇬 vmess sg4",
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 80,
+      "uuid": "e50b49f9-aa2e-4c74-bcba-23ce81255e0f",
+      "security": "auto",
+      "global_padding": true,
+      "authenticated_length": true,
+      "tls": {
+        "enabled": false,
+        "server_name": "si4co.09vpn.com",
+        "insecure": true
+      },
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vmess/",
+        "headers": {
+          "Host": "si4co.09vpn.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "sshs8 🇸🇬🇸🇬🇸🇬 vmess sg5",
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 80,
+      "uuid": "3a16a5f0-c8b9-4db2-8884-6de089f25feb",
+      "security": "auto",
+      "global_padding": true,
+      "authenticated_length": true,
+      "tls": {
+        "enabled": false,
+        "server_name": "si5ultara.09vpn.com",
+        "insecure": true
+      },
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vmess/",
+        "headers": {
+          "Host": "si5ultara.09vpn.com"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "sshs8 🇸🇬🇸🇬🇸🇬 vless sg1",
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 80,
+      "uuid": "378558d8-96dd-48a1-9f20-20b57349b8ba",
+      "tls": {
+        "enabled": false,
+        "server_name": "si1.09vpn.com",
+        "insecure": true
+      }, 
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vless/",
+        "headers": {
+          "Host": "si1.09vpn.com"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "sshs8 🇸🇬🇸🇬🇸🇬 vless sg2",
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 80,
+      "uuid": "0eaca9a6-eeaf-4523-b5f9-c51200fce5da",
+      "tls": {
+        "enabled": false,
+        "server_name": "si2.09vpn.com",
+        "insecure": true
+      }, 
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vless/",
+        "headers": {
+          "Host": "si2.09vpn.com"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "sshs8 🇸🇬🇸🇬🇸🇬 vless sg3",
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 80,
+      "uuid": "dd3763d2-2b53-4e2f-b03e-812d0a158974",
+      "tls": {
+        "enabled": false,
+        "server_name": "si3.09vpn.com",
+        "insecure": true
+      }, 
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vless/",
+        "headers": {
+          "Host": "si3.09vpn.com"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "sshs8 🇸🇬🇸🇬🇸🇬 vless sg4",
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 80,
+      "uuid": "c9648f29-6c22-4671-aab6-2d63a98e97da",
+      "tls": {
+        "enabled": false,
+        "server_name": "si4co.09vpn.com",
+        "insecure": true
+      }, 
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vless/",
+        "headers": {
+          "Host": "si4co.09vpn.com"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "sshs8 🇸🇬🇸🇬🇸🇬 vless sg5",
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 80,
+      "uuid": "b3becbfc-2bb3-4d0d-b8a3-97357fcbe116",
+      "tls": {
+        "enabled": false,
+        "server_name": "si5ultara.09vpn.com",
+        "insecure": true
+      }, 
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vless/",
+        "headers": {
+          "Host": "si5ultara.09vpn.com"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "trojan",
+      "tag": "sshs8 🇸🇬🇸🇬🇸🇬 trojan sg1",
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 2087,
+      "password": "u7663985106",
+      "tls": {
+        "enabled": true,
+        "server_name": "si1.09vpn.com",
+        "insecure": true
+      },
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/trojango",
+        "headers": {
+          "Host": "si1.09vpn.com"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "sshs8 🇸🇬🇸🇬🇸🇬 trojan sg2",
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 2087,
+      "password": "u9442066710",
+      "tls": {
+        "enabled": true,
+        "server_name": "si2.09vpn.com",
+        "insecure": true
+      },
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/trojango",
+        "headers": {
+          "Host": "si2.09vpn.com"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "sshs8 🇸🇬🇸🇬🇸🇬 trojan sg3",
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 2087,
+      "password": "u6354566510",
+      "tls": {
+        "enabled": true,
+        "server_name": "si3.09vpn.com",
+        "insecure": true
+      },
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/trojango",
+        "headers": {
+          "Host": "si3.09vpn.com"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "sshs8 🇸🇬🇸🇬🇸🇬 trojan sg4",
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 2087,
+      "password": "u8725713313",
+      "tls": {
+        "enabled": true,
+        "server_name": "si4co.09vpn.com",
+        "insecure": true
+      },
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/trojango",
+        "headers": {
+          "Host": "si4co.09vpn.com"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "sshs8 🇸🇬🇸🇬🇸🇬 trojan sg5",
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 2087,
+      "password": "u1346758723",
+      "tls": {
+        "enabled": true,
+        "server_name": "si5ultara.09vpn.com",
+        "insecure": true
+      },
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/trojango",
+        "headers": {
+          "Host": "si5ultara.09vpn.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 vmess sg1", 
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 443,
+      "uuid": "a93bd89f-d1e8-4aa8-b310-792bdd7da575",
+      "security": "auto",
+      "global_padding": true,
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "cpanel.iptunnels.com",
+        "insecure": true
+      },
+      "multiplex": {
+        "enabled": true,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/buy-vmess-ws-pm-telegram-at-synricha",
+        "headers": {
+          "Host": "cpanel.iptunnels.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 vmess sg2", 
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 443,
+      "uuid": "5ebdd645-fef0-4d89-aed3-07bffd14d76d",
+      "security": "auto",
+      "global_padding": true,
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "jala.iptunnels.com",
+        "insecure": true
+      },
+      "multiplex": {
+        "enabled": true,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/buy-vmess-ws-pm-telegram-at-synricha",
+        "headers": {
+          "Host": "jala.iptunnels.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 vmess sg3", 
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 443,
+      "uuid": "4a8093c4-4089-4665-91e3-26083be3f52a",
+      "security": "auto",
+      "global_padding": true,
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "jala.iptunnels.com",
+        "insecure": true
+      },
+      "multiplex": {
+        "enabled": true,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/buy-vmess-ws-pm-telegram-at-synricha",
+        "headers": {
+          "Host": "jala.iptunnels.com"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 vless sg1", 
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 443,
+      "uuid": "e13c93df-b196-4833-822e-348d84035f79",
+      "tls": {
+        "enabled": true,
+        "server_name": "cpanel.iptunnels.com",
+        "insecure": true
+      }, 
+      "multiplex": {
+        "enabled": true,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/buy-vless-ws-pm-telegram-at-synricha",
+        "headers": {
+          "Host": "cpanel.iptunnels.com"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 vless sg2", 
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 443,
+      "uuid": "ef9c3aa0-27aa-4a3d-8420-63f7c9322b54",
+      "tls": {
+        "enabled": true,
+        "server_name": "jala.iptunnels.com",
+        "insecure": true
+      }, 
+      "multiplex": {
+        "enabled": true,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/buy-vless-ws-pm-telegram-at-synricha",
+        "headers": {
+          "Host": "jala.iptunnels.com"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "trojan",
+      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 trojan sg1", 
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 443,
+      "password": "4bb67872674f6383",
+      "tls": {
+        "enabled": true,
+        "server_name": "cpanel.iptunnels.com",
+        "insecure": true 
+      },
+      "multiplex": {
+        "enabled": true,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/buy-trojan-ws-pm-telegram-at-synricha",
+        "headers": {
+          "Host": "cpanel.iptunnels.com"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 trojan sg2", 
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 443,
+      "password": "93e3b42d69e95c4a",
+      "tls": {
+        "enabled": true,
+        "server_name": "jala.iptunnels.com",
+        "insecure": true 
+      },
+      "multiplex": {
+        "enabled": true,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/buy-trojan-ws-pm-telegram-at-synricha",
+        "headers": {
+          "Host": "jala.iptunnels.com"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 trojan sg3", 
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 443,
+      "password": "1158313448a0b33d",
+      "tls": {
+        "enabled": true,
+        "server_name": "jala.iptunnels.com",
+        "insecure": true 
+      },
+      "multiplex": {
+        "enabled": true,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/buy-trojan-ws-pm-telegram-at-synricha",
+        "headers": {
+          "Host": "jala.iptunnels.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "sshs8 🇯🇵🇯🇵🇯🇵 vmess sg1",
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 8443,
+      "uuid": "075bdf73-aed4-4a18-b31f-4480875c4bbf",
+      "security": "auto",
+      "global_padding": true,
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "si1.09vpn.com",
+        "insecure": true
+      },
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vmess/",
+        "headers": {
+          "Host": "si1.09vpn.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "sshs8 🇯🇵🇯🇵🇯🇵 vmess sg2",
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 8443,
+      "uuid": "a29c3507-6a4c-469e-8b55-b4f66e25f63b",
+      "security": "auto",
+      "global_padding": true,
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "si2.09vpn.com",
+        "insecure": true
+      },
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vmess/",
+        "headers": {
+          "Host": "si3.09vpn.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "sshs8 🇯🇵🇯🇵🇯🇵 vmess sg3",
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 8443,
+      "uuid": "6093ffe2-466c-4052-8921-858c61457366",
+      "security": "auto",
+      "global_padding": true,
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "si3.09vpn.com",
+        "insecure": true
+      },
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vmess/",
+        "headers": {
+          "Host": "si3.09vpn.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "sshs8 🇯🇵🇯🇵🇯🇵 vmess sg4",
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 8443,
+      "uuid": "e50b49f9-aa2e-4c74-bcba-23ce81255e0f",
+      "security": "auto",
+      "global_padding": true,
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "si4co.09vpn.com",
+        "insecure": true
+      },
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vmess/",
+        "headers": {
+          "Host": "si4co.09vpn.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "sshs8 🇯🇵🇯🇵🇯🇵 vmess sg5",
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 8443,
+      "uuid": "3a16a5f0-c8b9-4db2-8884-6de089f25feb",
+      "security": "auto",
+      "global_padding": true,
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "si5ultara.09vpn.com",
+        "insecure": true
+      },
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vmess/",
+        "headers": {
+          "Host": "si5ultara.09vpn.com"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "sshs8 🇯🇵🇯🇵🇯🇵 vless sg1",
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 8443,
+      "uuid": "378558d8-96dd-48a1-9f20-20b57349b8ba",
+      "tls": {
+        "enabled": true,
+        "server_name": "si1.09vpn.com",
+        "insecure": true
+      }, 
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vless/",
+        "headers": {
+          "Host": "si1.09vpn.com"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "sshs8 🇯🇵🇯🇵🇯🇵 vless sg2",
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 8443,
+      "uuid": "0eaca9a6-eeaf-4523-b5f9-c51200fce5da",
+      "tls": {
+        "enabled": true,
+        "server_name": "si2.09vpn.com",
+        "insecure": true
+      }, 
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vless/",
+        "headers": {
+          "Host": "si2.09vpn.com"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "sshs8 🇯🇵🇯🇵🇯🇵 vless sg3",
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 8443,
+      "uuid": "dd3763d2-2b53-4e2f-b03e-812d0a158974",
+      "tls": {
+        "enabled": true,
+        "server_name": "si3.09vpn.com",
+        "insecure": true
+      }, 
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vless/",
+        "headers": {
+          "Host": "si3.09vpn.com"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "sshs8 🇯🇵🇯🇵🇯🇵 vless sg4",
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 8443,
+      "uuid": "c9648f29-6c22-4671-aab6-2d63a98e97da",
+      "tls": {
+        "enabled": true,
+        "server_name": "si4co.09vpn.com",
+        "insecure": true
+      }, 
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vless/",
+        "headers": {
+          "Host": "si4co.09vpn.com"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "sshs8 🇯🇵🇯🇵🇯🇵 vless sg5",
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 8443,
+      "uuid": "b3becbfc-2bb3-4d0d-b8a3-97357fcbe116",
+      "tls": {
+        "enabled": true,
+        "server_name": "si5ultara.09vpn.com",
+        "insecure": true
+      }, 
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vless/",
+        "headers": {
+          "Host": "si5ultara.09vpn.com"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    },
+    {
+      "type": "dns",
+      "tag": "dns-out"
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "port": 53,
+        "outbound": "dns-out"
+      },
+      {
+        "network": "udp",
+        "port": 443,
+        "outbound": "block"
+      }
+    ],
+    "final": "anhedonia",
+    "auto_detect_interface": true,
+    "override_android_vpn": true
+    }
+  }
+}
