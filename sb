@@ -77,22 +77,25 @@
       "type": "urltest",
       "tag": "anhedonia",
       "outbounds": [
-        "iptunnels 🇸🇬🇸🇬🇸🇬 vmess sg1",
-        "iptunnels 🇸🇬🇸🇬🇸🇬 vmess sg2",
-        "iptunnels 🇸🇬🇸🇬🇸🇬 vmess sg3",
-        "iptunnels 🇸🇬🇸🇬🇸🇬 vless sg1",
-        "iptunnels 🇸🇬🇸🇬🇸🇬 vless sg2",
-        "iptunnels 🇸🇬🇸🇬🇸🇬 trojan sg1",
-        "iptunnels 🇸🇬🇸🇬🇸🇬 trojan sg2",
-        "iptunnels 🇸🇬🇸🇬🇸🇬 trojan sg3",
-        "iptunnels 🇯🇵🇯🇵🇯🇵 vmess sg1",
-        "iptunnels 🇯🇵🇯🇵🇯🇵 vmess sg2",
-        "iptunnels 🇯🇵🇯🇵🇯🇵 vmess sg3",
-        "iptunnels 🇯🇵🇯🇵🇯🇵 vless sg1",
-        "iptunnels 🇯🇵🇯🇵🇯🇵 vless sg2",
-        "iptunnels 🇯🇵🇯🇵🇯🇵 trojan sg1",
-        "iptunnels 🇯🇵🇯🇵🇯🇵 trojan sg2",
-        "iptunnels 🇯🇵🇯🇵🇯🇵 trojan sg3"
+        "iptunnels 🇸🇬🇸🇬🇸🇬 vmess 1",
+        "iptunnels 🇸🇬🇸🇬🇸🇬 vmess 2",
+        "iptunnels 🇸🇬🇸🇬🇸🇬 vmess 3",
+        "iptunnels 🇸🇬🇸🇬🇸🇬 vless 1",
+        "iptunnels 🇸🇬🇸🇬🇸🇬 vless 2",
+        "iptunnels 🇸🇬🇸🇬🇸🇬 trojan 1",
+        "iptunnels 🇸🇬🇸🇬🇸🇬 trojan 2",
+        "iptunnels 🇸🇬🇸🇬🇸🇬 trojan 3",
+        "iptunnels 🇯🇵🇯🇵🇯🇵 vmess 1",
+        "iptunnels 🇯🇵🇯🇵🇯🇵 vmess 2",
+        "iptunnels 🇯🇵🇯🇵🇯🇵 vmess 3",
+        "iptunnels 🇯🇵🇯🇵🇯🇵 vless 1",
+        "iptunnels 🇯🇵🇯🇵🇯🇵 vless 2",
+        "iptunnels 🇯🇵🇯🇵🇯🇵 trojan 1",
+        "iptunnels 🇯🇵🇯🇵🇯🇵 trojan 2",
+        "iptunnels 🇯🇵🇯🇵🇯🇵 trojan 3",
+        "iptunnels 🇰🇷🇰🇷🇰🇷 vmess 4",
+        "iptunnels 🇰🇷🇰🇷🇰🇷 vless 3",
+        "iptunnels 🇰🇷🇰🇷🇰🇷 trojan 4"
       ],
       "url": "https://detectportal.firefox.com/success.txt",
       "interval": "60s",
@@ -101,7 +104,7 @@
     },
     {
       "type": "vmess",
-      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 vmess sg1", 
+      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 vmess 1", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 80,
@@ -129,7 +132,7 @@
     },
     {
       "type": "vmess",
-      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 vmess sg2", 
+      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 vmess 2", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 80,
@@ -157,7 +160,7 @@
     },
     {
       "type": "vmess",
-      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 vmess sg3", 
+      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 vmess 3", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 80,
@@ -185,7 +188,7 @@
     },
     {
       "type": "vless",
-      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 vless sg1", 
+      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 vless 1", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 80,
@@ -211,11 +214,11 @@
     },
     {
       "type": "vless",
-      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 vless sg2", 
+      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 vless 2", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 80,
-      "uuid": "ef9c3aa0-27aa-4a3d-8420-63f7c9322b54",
+      "uuid": "57a4386a-07f7-414b-94c2-d30e119a205e",
       "tls": {
         "enabled": false,
         "server_name": "jala.iptunnels.com",
@@ -237,11 +240,11 @@
     },
     {
       "type": "trojan",
-      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 trojan sg1", 
+      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 trojan 1", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 80,
-      "password": "b430cfbb23722510",
+      "password": "35892ebc7255c9e4",
       "tls": {
         "enabled": false,
         "server_name": "cpanel.iptunnels.com",
@@ -262,7 +265,7 @@
     },
     {
       "type": "trojan",
-      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 trojan sg2", 
+      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 trojan 2", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 80,
@@ -287,7 +290,7 @@
     },
     {
       "type": "trojan",
-      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 trojan sg3", 
+      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 trojan 3", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 80,
@@ -312,7 +315,7 @@
     }, 
     {
       "type": "vmess",
-      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 vmess sg1", 
+      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 vmess 1", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 443,
@@ -340,7 +343,7 @@
     },
     {
       "type": "vmess",
-      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 vmess sg2", 
+      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 vmess 2", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 443,
@@ -368,7 +371,7 @@
     },
     {
       "type": "vmess",
-      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 vmess sg3", 
+      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 vmess 3", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 443,
@@ -396,7 +399,7 @@
     },
     {
       "type": "vless",
-      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 vless sg1", 
+      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 vless 1", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 443,
@@ -422,11 +425,11 @@
     },
     {
       "type": "vless",
-      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 vless sg2", 
+      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 vless 2", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 443,
-      "uuid": "ef9c3aa0-27aa-4a3d-8420-63f7c9322b54",
+      "uuid": "57a4386a-07f7-414b-94c2-d30e119a205e",
       "tls": {
         "enabled": true,
         "server_name": "jala.iptunnels.com",
@@ -448,11 +451,11 @@
     },
     {
       "type": "trojan",
-      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 trojan sg1", 
+      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 trojan 1", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 443,
-      "password": "b430cfbb23722510",
+      "password": "35892ebc7255c9e4",
       "tls": {
         "enabled": true,
         "server_name": "cpanel.iptunnels.com",
@@ -473,7 +476,7 @@
     },
     {
       "type": "trojan",
-      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 trojan sg2", 
+      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 trojan 2", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 443,
@@ -498,7 +501,7 @@
     },
     {
       "type": "trojan",
-      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 trojan sg3", 
+      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 trojan 3", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 443,
@@ -521,6 +524,100 @@
         }
       }
     },
+    {
+      "type": "vmess",
+      "tag": "iptunnels 🇰🇷🇰🇷🇰🇷 vmess 4", 
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 443,
+      "uuid": "46994693-9600-45fb-8afc-23ea6f3b574f",
+      "security": "auto",
+      "alter_id": 0,
+      "global_padding": false,
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "jala.iptunnels.com",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": ""
+        }
+      },
+      "packet_encoding": "",
+      "transport": {
+        "type": "grpc",
+        "service_name": "buy-vmess-grpc-pm-telegram-at-synricha",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s",
+        "permit_without_stream": false
+      },
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+       }
+     },
+     {
+      "type": "vless",
+      "tag": "iptunnels 🇰🇷🇰🇷🇰🇷 vless 3", 
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 443,
+      "uuid": "70112780-3267-4706-a019-8c8ff88e04d3",
+      "flow": "",
+      "tls": {
+        "enabled": true,
+        "server_name": "jala.iptunnels.com",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": ""
+        }
+      },
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "packet_encoding": "xudp",
+      "transport": {
+        "type": "grpc",
+        "service_name": "buy-vless-grpc-pm-telegram-at-synricha",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s",
+        "permit_without_stream": false
+       }
+     },
+     {
+      "type": "trojan",
+      "tag": "iptunnels 🇰🇷🇰🇷🇰🇷 trojan 4", 
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 443,
+      "password": "024b81f04e2b0d5f",
+      "tls": {
+        "enabled": true,
+        "server_name": "jala.iptunnels.com",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": ""
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "service_name": "buy-trojan-grpc-pm-telegram-at-synricha",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s",
+        "permit_without_stream": false
+      },
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+       }
+     },
     {
       "type": "direct",
       "tag": "direct"
