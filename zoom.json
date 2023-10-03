@@ -74,25 +74,38 @@
   ],
   "outbounds": [
   {
+      "tag": "anhedonia", 
+      "type": "selector", 
+      "outbounds": [ 
+      "mixed proxies",
+      "ws networks non-tls", 
+      "ws networks tls", 
+      "grpc networks"
+      ] 
+    }, 
+    { 
       "type": "urltest",
-      "tag": "anhedonia",
+      "tag": "mixed proxies",
       "outbounds": [
-        "iptunnels 🇸🇬🇸🇬🇸🇬 vmess sg1",
-        "iptunnels 🇸🇬🇸🇬🇸🇬 vmess sg2",
-        "iptunnels 🇸🇬🇸🇬🇸🇬 vmess sg3",
-        "iptunnels 🇸🇬🇸🇬🇸🇬 vless sg1",
-        "iptunnels 🇸🇬🇸🇬🇸🇬 vless sg2",
-        "iptunnels 🇸🇬🇸🇬🇸🇬 trojan sg1",
-        "iptunnels 🇸🇬🇸🇬🇸🇬 trojan sg2",
-        "iptunnels 🇸🇬🇸🇬🇸🇬 trojan sg3",
-        "iptunnels 🇯🇵🇯🇵🇯🇵 vmess sg1",
-        "iptunnels 🇯🇵🇯🇵🇯🇵 vmess sg2",
-        "iptunnels 🇯🇵🇯🇵🇯🇵 vmess sg3",
-        "iptunnels 🇯🇵🇯🇵🇯🇵 vless sg1",
-        "iptunnels 🇯🇵🇯🇵🇯🇵 vless sg2",
-        "iptunnels 🇯🇵🇯🇵🇯🇵 trojan sg1",
-        "iptunnels 🇯🇵🇯🇵🇯🇵 trojan sg2",
-        "iptunnels 🇯🇵🇯🇵🇯🇵 trojan sg3"
+        "outbounds 🇸🇬🇸🇬🇸🇬 vmess 1",
+        "outbounds 🇸🇬🇸🇬🇸🇬 vmess 2",
+        "outbounds 🇸🇬🇸🇬🇸🇬 vmess 3",
+        "outbounds 🇸🇬🇸🇬🇸🇬 vless 1",
+        "outbounds 🇸🇬🇸🇬🇸🇬 vless 2",
+        "outbounds 🇸🇬🇸🇬🇸🇬 trojan 1",
+        "outbounds 🇸🇬🇸🇬🇸🇬 trojan 2",
+        "outbounds 🇸🇬🇸🇬🇸🇬 trojan 3",
+        "outbounds 🇯🇵🇯🇵🇯🇵 vmess 1",
+        "outbounds 🇯🇵🇯🇵🇯🇵 vmess 2",
+        "outbounds 🇯🇵🇯🇵🇯🇵 vmess 3",
+        "outbounds 🇯🇵🇯🇵🇯🇵 vless 1",
+        "outbounds 🇯🇵🇯🇵🇯🇵 vless 2",
+        "outbounds 🇯🇵🇯🇵🇯🇵 trojan 1",
+        "outbounds 🇯🇵🇯🇵🇯🇵 trojan 2",
+        "outbounds 🇯🇵🇯🇵🇯🇵 trojan 3",
+        "outbounds 🇰🇷🇰🇷🇰🇷 vmess 4",
+        "outbounds 🇰🇷🇰🇷🇰🇷 vless 3",
+        "outbounds 🇰🇷🇰🇷🇰🇷 trojan 4"
       ],
       "url": "https://detectportal.firefox.com/success.txt",
       "interval": "60s",
@@ -100,12 +113,61 @@
       "interrupt_exist_connections": false
     },
     {
+       "tag": "ws networks non-tls", 
+       "type": "urltest", 
+       "outbounds": [ 
+        "outbounds 🇸🇬🇸🇬🇸🇬 vmess 1",
+        "outbounds 🇸🇬🇸🇬🇸🇬 vmess 2",
+        "outbounds 🇸🇬🇸🇬🇸🇬 vmess 3",
+        "outbounds 🇸🇬🇸🇬🇸🇬 vless 1",
+        "outbounds 🇸🇬🇸🇬🇸🇬 vless 2",
+        "outbounds 🇸🇬🇸🇬🇸🇬 trojan 1",
+        "outbounds 🇸🇬🇸🇬🇸🇬 trojan 2",
+        "outbounds 🇸🇬🇸🇬🇸🇬 trojan 3"
+      ], 
+      "url": "https://detectportal.firefox.com/success.txt",
+      "interval": "60s",
+      "tolerance": 13,
+      "interrupt_exist_connections": false
+     }, 
+   { 
+        "tag": "ws networks tls", 
+        "type": "urltest", 
+        "outbounds": [ 
+        "outbounds 🇯🇵🇯🇵🇯🇵 vmess 1",
+        "outbounds 🇯🇵🇯🇵🇯🇵 vmess 2",
+        "outbounds 🇯🇵🇯🇵🇯🇵 vmess 3",
+        "outbounds 🇯🇵🇯🇵🇯🇵 vless 1",
+        "outbounds 🇯🇵🇯🇵🇯🇵 vless 2",
+        "outbounds 🇯🇵🇯🇵🇯🇵 trojan 1",
+        "outbounds 🇯🇵🇯🇵🇯🇵 trojan 2",
+        "outbounds 🇯🇵🇯🇵🇯🇵 trojan 3"
+      ], 
+     "url": "https://detectportal.firefox.com/success.txt",
+      "interval": "60s",
+      "tolerance": 13,
+      "interrupt_exist_connections": false
+    }, 
+     { 
+        "tag": "grpc networks", 
+        "type": "urltest", 
+        "outbounds": [ 
+        "outbounds 🇰🇷🇰🇷🇰🇷 vmess 4",
+        "outbounds 🇰🇷🇰🇷🇰🇷 vless 3",
+        "outbounds 🇰🇷🇰🇷🇰🇷 trojan 4"
+    ], 
+      "url": "https://detectportal.firefox.com/success.txt",
+      "interval": "60s",
+      "tolerance": 13,
+      "interrupt_exist_connections": false
+      },
+    {
       "type": "vmess",
-      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 vmess sg1", 
+      "tag": "outbounds 🇸🇬🇸🇬🇸🇬 vmess 1", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 80,
-      "uuid": "a0d37139-9b06-4bed-8b6e-3eef9e751863",
+      "uuid": "cb60094f-64ea-45e8-9651-02edbd707204", // vmess1
       "security": "auto",
       "global_padding": true,
       "authenticated_length": true,
@@ -129,11 +191,11 @@
     },
     {
       "type": "vmess",
-      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 vmess sg2", 
+      "tag": "outbounds 🇸🇬🇸🇬🇸🇬 vmess 2", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 80,
-      "uuid": "5ebdd645-fef0-4d89-aed3-07bffd14d76d",
+      "uuid": "c0d0b5f8-c95b-4c75-b280-c9efe0497df9", // vmess2
       "security": "auto",
       "global_padding": true,
       "authenticated_length": true,
@@ -157,11 +219,11 @@
     },
     {
       "type": "vmess",
-      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 vmess sg3", 
+      "tag": "outbounds 🇸🇬🇸🇬🇸🇬 vmess 3", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 80,
-      "uuid": "bb4e32ec-8844-4a46-be4e-2e9f05a1fc76",
+      "uuid": "bb4e32ec-8844-4a46-be4e-2e9f05a1fc76", // vmess3
       "security": "auto",
       "global_padding": true,
       "authenticated_length": true,
@@ -185,11 +247,11 @@
     },
     {
       "type": "vless",
-      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 vless sg1", 
+      "tag": "outbounds 🇸🇬🇸🇬🇸🇬 vless 1", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 80,
-      "uuid": "c097b445-95aa-4801-a3f8-806fb13d3bcc",
+      "uuid": "c4c2e2b1-5f1b-4546-9ace-6bb0132fd6ef", // vless1
       "tls": {
         "enabled": false,
         "server_name": "cpanel.iptunnels.com",
@@ -211,11 +273,11 @@
     },
     {
       "type": "vless",
-      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 vless sg2", 
+      "tag": "outbounds 🇸🇬🇸🇬🇸🇬 vless 2", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 80,
-      "uuid": "ef9c3aa0-27aa-4a3d-8420-63f7c9322b54",
+      "uuid": "57a4386a-07f7-414b-94c2-d30e119a205e", // vless2
       "tls": {
         "enabled": false,
         "server_name": "jala.iptunnels.com",
@@ -237,11 +299,11 @@
     },
     {
       "type": "trojan",
-      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 trojan sg1", 
+      "tag": "outbounds 🇸🇬🇸🇬🇸🇬 trojan 1", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 80,
-      "password": "b430cfbb23722510",
+      "password": "35892ebc7255c9e4", // trojan1
       "tls": {
         "enabled": false,
         "server_name": "cpanel.iptunnels.com",
@@ -262,11 +324,11 @@
     },
     {
       "type": "trojan",
-      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 trojan sg2", 
+      "tag": "outbounds 🇸🇬🇸🇬🇸🇬 trojan 2", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 80,
-      "password": "78b501eae2c49923",
+      "password": "78b501eae2c49923", // trojan2
       "tls": {
         "enabled": false,
         "server_name": "jala.iptunnels.com",
@@ -287,11 +349,11 @@
     },
     {
       "type": "trojan",
-      "tag": "iptunnels 🇸🇬🇸🇬🇸🇬 trojan sg3", 
+      "tag": "outbounds 🇸🇬🇸🇬🇸🇬 trojan 3", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 80,
-      "password": "1158313448a0b33d",
+      "password": "43cf7ea8296cc118", // trojan3
       "tls": {
         "enabled": false,
         "server_name": "jala.iptunnels.com",
@@ -312,11 +374,11 @@
     }, 
     {
       "type": "vmess",
-      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 vmess sg1", 
+      "tag": "outbounds 🇯🇵🇯🇵🇯🇵 vmess 1", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 443,
-      "uuid": "a0d37139-9b06-4bed-8b6e-3eef9e751863",
+      "uuid": "cb60094f-64ea-45e8-9651-02edbd707204", // vmess1
       "security": "auto",
       "global_padding": true,
       "authenticated_length": true,
@@ -340,11 +402,11 @@
     },
     {
       "type": "vmess",
-      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 vmess sg2", 
+      "tag": "outbounds 🇯🇵🇯🇵🇯🇵 vmess 2", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 443,
-      "uuid": "5ebdd645-fef0-4d89-aed3-07bffd14d76d",
+      "uuid": "c0d0b5f8-c95b-4c75-b280-c9efe0497df9", // vmess2
       "security": "auto",
       "global_padding": true,
       "authenticated_length": true,
@@ -368,11 +430,11 @@
     },
     {
       "type": "vmess",
-      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 vmess sg3", 
+      "tag": "outbounds 🇯🇵🇯🇵🇯🇵 vmess 3", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 443,
-      "uuid": "bb4e32ec-8844-4a46-be4e-2e9f05a1fc76",
+      "uuid": "bb4e32ec-8844-4a46-be4e-2e9f05a1fc76", // vmess3
       "security": "auto",
       "global_padding": true,
       "authenticated_length": true,
@@ -396,11 +458,11 @@
     },
     {
       "type": "vless",
-      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 vless sg1", 
+      "tag": "outbounds 🇯🇵🇯🇵🇯🇵 vless 1", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 443,
-      "uuid": "c097b445-95aa-4801-a3f8-806fb13d3bcc",
+      "uuid": "c4c2e2b1-5f1b-4546-9ace-6bb0132fd6ef", // vless1
       "tls": {
         "enabled": true,
         "server_name": "cpanel.iptunnels.com",
@@ -422,11 +484,11 @@
     },
     {
       "type": "vless",
-      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 vless sg2", 
+      "tag": "outbounds 🇯🇵🇯🇵🇯🇵 vless 2", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 443,
-      "uuid": "ef9c3aa0-27aa-4a3d-8420-63f7c9322b54",
+      "uuid": "57a4386a-07f7-414b-94c2-d30e119a205e", //vless2
       "tls": {
         "enabled": true,
         "server_name": "jala.iptunnels.com",
@@ -448,11 +510,11 @@
     },
     {
       "type": "trojan",
-      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 trojan sg1", 
+      "tag": "outbounds 🇯🇵🇯🇵🇯🇵 trojan 1", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 443,
-      "password": "b430cfbb23722510",
+      "password": "35892ebc7255c9e4", // trojan1
       "tls": {
         "enabled": true,
         "server_name": "cpanel.iptunnels.com",
@@ -473,11 +535,11 @@
     },
     {
       "type": "trojan",
-      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 trojan sg2", 
+      "tag": "outbounds 🇯🇵🇯🇵🇯🇵 trojan 2", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 443,
-      "password": "78b501eae2c49923",
+      "password": "78b501eae2c49923", // trojan2
       "tls": {
         "enabled": true,
         "server_name": "jala.iptunnels.com",
@@ -498,11 +560,11 @@
     },
     {
       "type": "trojan",
-      "tag": "iptunnels 🇯🇵🇯🇵🇯🇵 trojan sg3", 
+      "tag": "outbounds 🇯🇵🇯🇵🇯🇵 trojan 3", 
       "domain_strategy": "prefer_ipv4",
       "server": "support.zoom.us",
       "server_port": 443,
-      "password": "1158313448a0b33d",
+      "password": "43cf7ea8296cc118", // trojan3
       "tls": {
         "enabled": true,
         "server_name": "jala.iptunnels.com",
@@ -521,6 +583,100 @@
         }
       }
     },
+    {
+      "type": "vmess",
+      "tag": "outbounds 🇰🇷🇰🇷🇰🇷 vmess 4", 
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 443,
+      "uuid": "46994693-9600-45fb-8afc-23ea6f3b574f", // vmess4
+      "security": "auto",
+      "alter_id": 0,
+      "global_padding": false,
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "jala.iptunnels.com",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": ""
+        }
+      },
+      "packet_encoding": "",
+      "transport": {
+        "type": "grpc",
+        "service_name": "buy-vmess-grpc-pm-telegram-at-synricha",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s",
+        "permit_without_stream": false
+      },
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+       }
+     },
+     {
+      "type": "vless",
+      "tag": "outbounds 🇰🇷🇰🇷🇰🇷 vless 3", 
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 443,
+      "uuid": "6d850320-7643-4d3c-a497-cc456c87b814", // vless3
+      "flow": "",
+      "tls": {
+        "enabled": true,
+        "server_name": "jala.iptunnels.com",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": ""
+        }
+      },
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "packet_encoding": "xudp",
+      "transport": {
+        "type": "grpc",
+        "service_name": "buy-vless-grpc-pm-telegram-at-synricha",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s",
+        "permit_without_stream": false
+       }
+     },
+     {
+      "type": "trojan",
+      "tag": "outbounds 🇰🇷🇰🇷🇰🇷 trojan 4", 
+      "domain_strategy": "prefer_ipv4",
+      "server": "support.zoom.us",
+      "server_port": 443,
+      "password": "024b81f04e2b0d5f", // trojan4
+      "tls": {
+        "enabled": true,
+        "server_name": "jala.iptunnels.com",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": ""
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "service_name": "buy-trojan-grpc-pm-telegram-at-synricha",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s",
+        "permit_without_stream": false
+      },
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+       }
+     },
     {
       "type": "direct",
       "tag": "direct"
