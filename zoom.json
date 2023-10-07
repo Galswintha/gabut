@@ -8,7 +8,7 @@
     "servers": [
       {
         "tag": "anhedonia",
-        "address": "1.1.1.1",
+        "address": "8.8.8.8",
         "strategy": "prefer_ipv4",
         "detour": "anhedonia"
       },
@@ -60,7 +60,7 @@
       "mtu": 1358,
       "auto_route": true,
       "strict_route": true,
-      "stack": "gvisor",
+      "stack": "mixed",
       "endpoint_independent_nat": true,
       "sniff": true
     },
