@@ -61,9 +61,9 @@
   "mtu": 1313,
   "auto_route": true,
   "strict_route": true,
-  "stack": "gvisor",
+  "stack": "mixed",
   "endpoint_independent_nat": true,
-  "sniff": true //tag
+  "sniff": true
   }
   ], 
   "outbounds": [
@@ -71,7 +71,7 @@
   "tag": "anhedonia", 
   "type": "selector", 
   "outbounds": [ 
-  "URL-TEST",
+  "url test",
   "outbounds 🇸🇬🇸🇬🇸🇬 vmess 1",
   "outbounds 🇸🇬🇸🇬🇸🇬 vmess 2",
   "outbounds 🇸🇬🇸🇬🇸🇬 vmess 3",
@@ -94,7 +94,7 @@
   ] 
   },
   { 
-  "tag": "URL-TEST", 
+  "tag": "url test", 
   "type": "urltest", 
   "outbounds": [
   "outbounds 🇸🇬🇸🇬🇸🇬 vmess 1",
@@ -117,9 +117,10 @@
   "outbounds 🇰🇷🇰🇷🇰🇷 vless 3",
   "outbounds 🇰🇷🇰🇷🇰🇷 trojan 4"
   ], 
-  "url": "https:\/\/www.gstatic.com\/generate_204", 
-  "interval": "5m", 
-  "tolerance": 50 
+  "url": "https://www.gstatic.com\/generate_204", 
+  "interval": "60", 
+  "tolerance": 50,
+  "interrupt_exist_connections": false
   },
   { 
   "type": "vmess",
@@ -637,7 +638,7 @@
   "max_streams": 32
   }
   },
-          { 
+  { 
   "type": "direct",
   "tag": "direct"
   },
