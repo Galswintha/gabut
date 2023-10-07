@@ -167,7 +167,7 @@
   "domain_strategy": "prefer_ipv4",
   "server": "support.zoom.us",
   "server_port": 80,
-  "uuid": "cb60094f-64ea-45e8-9651-02edbd707204", // vmess1
+  "uuid": "047b3e33-c9c5-4d10-8795-7113a5123dd6",
   "security": "auto",
   "global_padding": true,
   "authenticated_length": true,
@@ -195,7 +195,7 @@
   "domain_strategy": "prefer_ipv4",
   "server": "support.zoom.us",
   "server_port": 80,
-  "uuid": "c0d0b5f8-c95b-4c75-b280-c9efe0497df9", // vmess2
+  "uuid": "78d18cbf-bcf1-4965-873d-b099b97cf1b3",
   "security": "auto",
   "global_padding": true,
   "authenticated_length": true,
@@ -223,7 +223,7 @@
   "domain_strategy": "prefer_ipv4",
   "server": "support.zoom.us",
   "server_port": 80,
-  "uuid": "bb4e32ec-8844-4a46-be4e-2e9f05a1fc76", // vmess3
+  "uuid": "8db4f1b7-09a5-4afb-8063-56024123067f",
   "security": "auto",
   "global_padding": true,
   "authenticated_length": true,
@@ -251,7 +251,7 @@
   "domain_strategy": "prefer_ipv4",
   "server": "support.zoom.us",
   "server_port": 80,
-  "uuid": "c4c2e2b1-5f1b-4546-9ace-6bb0132fd6ef", // vless1
+  "uuid": "96406a12-e153-4827-b353-fee6b98996b6",
   "tls": {
   "enabled": false,
   "server_name": "cpanel.iptunnels.com",
@@ -277,7 +277,7 @@
   "domain_strategy": "prefer_ipv4",
   "server": "support.zoom.us",
   "server_port": 80,
-  "uuid": "57a4386a-07f7-414b-94c2-d30e119a205e", // vless2
+  "uuid": "16af3f64-bc34-4bce-a49a-ab30571fc66f",
   "tls": {
   "enabled": false,
   "server_name": "jala.iptunnels.com",
@@ -303,7 +303,7 @@
   "domain_strategy": "prefer_ipv4",
   "server": "support.zoom.us",
   "server_port": 80,
-  "password": "35892ebc7255c9e4", // trojan1
+  "password": "68fbc8ed0d796353",
   "tls": {
   "enabled": false,
   "server_name": "cpanel.iptunnels.com",
@@ -328,7 +328,7 @@
   "domain_strategy": "prefer_ipv4",
   "server": "support.zoom.us",
   "server_port": 80,
-  "password": "78b501eae2c49923", // trojan2
+  "password": "f852680606efac90",
   "tls": {
   "enabled": false,
   "server_name": "jala.iptunnels.com",
@@ -353,7 +353,7 @@
   "domain_strategy": "prefer_ipv4",
   "server": "support.zoom.us",
   "server_port": 80,
-  "password": "43cf7ea8296cc118", // trojan3
+  "password": "43cf7ea8296cc118",
   "tls": {
   "enabled": false,
   "server_name": "jala.iptunnels.com",
@@ -378,7 +378,7 @@
   "domain_strategy": "prefer_ipv4",
   "server": "support.zoom.us",
   "server_port": 443,
-  "uuid": "cb60094f-64ea-45e8-9651-02edbd707204", // vmess1
+  "uuid": "047b3e33-c9c5-4d10-8795-7113a5123dd6",
   "security": "auto",
   "global_padding": true,
   "authenticated_length": true,
@@ -406,7 +406,7 @@
   "domain_strategy": "prefer_ipv4",
   "server": "support.zoom.us",
   "server_port": 443,
-  "uuid": "c0d0b5f8-c95b-4c75-b280-c9efe0497df9", // vmess2
+  "uuid": "78d18cbf-bcf1-4965-873d-b099b97cf1b3",
   "security": "auto",
   "global_padding": true,
   "authenticated_length": true,
@@ -434,7 +434,7 @@
   "domain_strategy": "prefer_ipv4",
   "server": "support.zoom.us",
   "server_port": 443,
-  "uuid": "bb4e32ec-8844-4a46-be4e-2e9f05a1fc76", // vmess3
+  "uuid": "8db4f1b7-09a5-4afb-8063-56024123067f",
   "security": "auto",
   "global_padding": true,
   "authenticated_length": true,
@@ -462,7 +462,7 @@
   "domain_strategy": "prefer_ipv4",
   "server": "support.zoom.us",
   "server_port": 443,
-  "uuid": "c4c2e2b1-5f1b-4546-9ace-6bb0132fd6ef", // vless1
+  "uuid": "96406a12-e153-4827-b353-fee6b98996b6",
   "tls": {
   "enabled": true,
   "server_name": "cpanel.iptunnels.com",
@@ -488,7 +488,7 @@
   "domain_strategy": "prefer_ipv4",
   "server": "support.zoom.us",
   "server_port": 443,
-  "uuid": "57a4386a-07f7-414b-94c2-d30e119a205e", //vless2
+  "uuid": "16af3f64-bc34-4bce-a49a-ab30571fc66f",
   "tls": {
   "enabled": true,
   "server_name": "jala.iptunnels.com",
@@ -514,7 +514,7 @@
   "domain_strategy": "prefer_ipv4",
   "server": "support.zoom.us",
   "server_port": 443,
-  "password": "35892ebc7255c9e4", // trojan1
+  "password": "68fbc8ed0d796353",
   "tls": {
   "enabled": true,
   "server_name": "cpanel.iptunnels.com",
@@ -539,7 +539,7 @@
   "domain_strategy": "prefer_ipv4",
   "server": "support.zoom.us",
   "server_port": 443,
-  "password": "78b501eae2c49923", // trojan2
+  "password": "f852680606efac90",
   "tls": {
   "enabled": true,
   "server_name": "jala.iptunnels.com",
@@ -564,7 +564,7 @@
   "domain_strategy": "prefer_ipv4",
   "server": "support.zoom.us",
   "server_port": 443,
-  "password": "43cf7ea8296cc118", // trojan3
+  "password": "43cf7ea8296cc118",
   "tls": {
   "enabled": true,
   "server_name": "jala.iptunnels.com",
@@ -589,7 +589,7 @@
   "domain_strategy": "prefer_ipv4",
   "server": "support.zoom.us",
   "server_port": 443,
-  "uuid": "46994693-9600-45fb-8afc-23ea6f3b574f", // vmess4
+  "uuid": "46994693-9600-45fb-8afc-23ea6f3b574f",
   "security": "auto",
   "alter_id": 0,
   "global_padding": false,
@@ -623,7 +623,7 @@
   "domain_strategy": "prefer_ipv4",
   "server": "support.zoom.us",
   "server_port": 443,
-  "uuid": "6d850320-7643-4d3c-a497-cc456c87b814", // vless3
+  "uuid": "6d850320-7643-4d3c-a497-cc456c87b814",
   "flow": "",
   "tls": {
   "enabled": true,
@@ -654,7 +654,7 @@
   "domain_strategy": "prefer_ipv4",
   "server": "support.zoom.us",
   "server_port": 443,
-  "password": "024b81f04e2b0d5f", // trojan4
+  "password": "024b81f04e2b0d5f",
   "tls": {
   "enabled": true,
   "server_name": "jala.iptunnels.com",
