@@ -60,7 +60,7 @@
   "mtu": 1358,
   "auto_route": true,
   "strict_route": true,
-  "stack": "gvisor",
+  "stack": "mixed",
   "endpoint_independent_nat": true,
   "sniff": true
   },
@@ -108,9 +108,7 @@
   "outbounds 🇰🇷🇰🇷🇰🇷 trojan 4"
   ],
   "url": "https://detectportal.firefox.com/success.txt",
-  "interval": "60s",
-  "tolerance": 13,
-  "interrupt_exist_connections": false
+  "interval": "60s"
   },
   {
   "tag": "ws network non-tls", 
@@ -126,9 +124,7 @@
   "outbounds 🇸🇬🇸🇬🇸🇬 trojan 3"
   ], 
   "url": "https://detectportal.firefox.com/success.txt",
-  "interval": "60s",
-  "tolerance": 13,
-  "interrupt_exist_connections": false
+  "interval": "60s"
   }, 
   { 
   "tag": "ws network tls", 
@@ -144,9 +140,7 @@
   "outbounds 🇯🇵🇯🇵🇯🇵 trojan 3"
   ], 
   "url": "https://detectportal.firefox.com/success.txt",
-  "interval": "60s",
-  "tolerance": 13,
-  "interrupt_exist_connections": false
+  "interval": "60s"
   }, 
   { 
   "tag": "grpc network", 
@@ -157,9 +151,7 @@
   "outbounds 🇰🇷🇰🇷🇰🇷 trojan 4"
   ], 
   "url": "https://detectportal.firefox.com/success.txt",
-  "interval": "60s",
-  "tolerance": 13,
-  "interrupt_exist_connections": false
+  "interval": "60s"
   },
   {
   "type": "vmess",
