@@ -1,145 +1,846 @@
-vless://96406a12-e153-4827-b353-fee6b98996b6@cdn.appsflyer.com:443/?type=ws&encryption=none&host=jala.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com
-vless://16af3f64-bc34-4bce-a49a-ab30571fc66f@cdn.appsflyer.com:443/?type=ws&encryption=none&host=cpanel.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha&security=tls&sni=cpanel.iptunnels.com&allowInsecure=1#cpanel.iptunnels.com
-vless://6d850320-7643-4d3c-a497-cc456c87b814@cdn.appsflyer.com:443/?type=grpc&encryption=none&serviceName=buy-vless-grpc-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20grpc
-trojan-go://68fbc8ed0d796353@cdn.appsflyer.com:443/?sni=cpanel.iptunnels.com&type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#cpanel.iptunnels.com
-trojan-go://f852680606efac90@cdn.appsflyer.com:443/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan-go://43cf7ea8296cc118@cdn.appsflyer.com:443/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan://68fbc8ed0d796353@cdn.appsflyer.com:443/?type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&security=tls&sni=cpanel.iptunnels.com&allowInsecure=1#cpanel.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://f852680606efac90@cdn.appsflyer.com:443/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://43cf7ea8296cc118@cdn.appsflyer.com:443/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://024b81f04e2b0d5f@cdn.appsflyer.com:443/?type=grpc&serviceName=buy-trojan-grpc-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20grpc
-vless://96406a12-e153-4827-b353-fee6b98996b6@cdn.appsflyer.com:80/?type=ws&encryption=none&host=jala.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha#jala.iptunnels.com
-vless://16af3f64-bc34-4bce-a49a-ab30571fc66f@cdn.appsflyer.com:80/?type=ws&encryption=none&host=cpanel.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha#cpanel.iptunnels.com
-trojan-go://68fbc8ed0d796353@cdn.appsflyer.com:80/?sni=cpanel.iptunnels.com&type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#cpanel.iptunnels.com
-trojan-go://f852680606efac90@cdn.appsflyer.com:80/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan-go://43cf7ea8296cc118@cdn.appsflyer.com:80/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan://68fbc8ed0d796353@cdn.appsflyer.com:80/?type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha#cpanel.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://f852680606efac90@cdn.appsflyer.com:80/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://43cf7ea8296cc118@cdn.appsflyer.com:80/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-vless://96406a12-e153-4827-b353-fee6b98996b6@support.zoom.us:443/?type=ws&encryption=none&host=jala.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com
-vless://16af3f64-bc34-4bce-a49a-ab30571fc66f@support.zoom.us:443/?type=ws&encryption=none&host=cpanel.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha&security=tls&sni=cpanel.iptunnels.com&allowInsecure=1#cpanel.iptunnels.com
-vless://6d850320-7643-4d3c-a497-cc456c87b814@support.zoom.us:443/?type=grpc&encryption=none&serviceName=buy-vless-grpc-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20grpc
-trojan-go://68fbc8ed0d796353@support.zoom.us:443/?sni=cpanel.iptunnels.com&type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#cpanel.iptunnels.com
-trojan-go://f852680606efac90@support.zoom.us:443/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan-go://43cf7ea8296cc118@support.zoom.us:443/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan://68fbc8ed0d796353@support.zoom.us:443/?type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&security=tls&sni=cpanel.iptunnels.com&allowInsecure=1#cpanel.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://f852680606efac90@support.zoom.us:443/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://43cf7ea8296cc118@support.zoom.us:443/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://024b81f04e2b0d5f@support.zoom.us:443/?type=grpc&serviceName=buy-trojan-grpc-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20grpc
-vless://96406a12-e153-4827-b353-fee6b98996b6@support.zoom.us:80/?type=ws&encryption=none&host=jala.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha#jala.iptunnels.com
-vless://16af3f64-bc34-4bce-a49a-ab30571fc66f@support.zoom.us:80/?type=ws&encryption=none&host=cpanel.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha#cpanel.iptunnels.com
-trojan-go://68fbc8ed0d796353@support.zoom.us:80/?sni=cpanel.iptunnels.com&type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#cpanel.iptunnels.com
-trojan-go://f852680606efac90@support.zoom.us:80/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan-go://43cf7ea8296cc118@support.zoom.us:80/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan://68fbc8ed0d796353@support.zoom.us:80/?type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha#cpanel.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://f852680606efac90@support.zoom.us:80/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://43cf7ea8296cc118@support.zoom.us:80/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-vless://96406a12-e153-4827-b353-fee6b98996b6@sogood.linefriends.com:443/?type=ws&encryption=none&host=jala.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com
-vless://16af3f64-bc34-4bce-a49a-ab30571fc66f@sogood.linefriends.com:443/?type=ws&encryption=none&host=cpanel.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha&security=tls&sni=cpanel.iptunnels.com&allowInsecure=1#cpanel.iptunnels.com
-vless://6d850320-7643-4d3c-a497-cc456c87b814@sogood.linefriends.com:443/?type=grpc&encryption=none&serviceName=buy-vless-grpc-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20grpc
-trojan-go://68fbc8ed0d796353@sogood.linefriends.com:443/?sni=cpanel.iptunnels.com&type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#cpanel.iptunnels.com
-trojan-go://f852680606efac90@sogood.linefriends.com:443/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan-go://43cf7ea8296cc118@sogood.linefriends.com:443/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan://68fbc8ed0d796353@sogood.linefriends.com:443/?type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&security=tls&sni=cpanel.iptunnels.com&allowInsecure=1#cpanel.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://f852680606efac90@sogood.linefriends.com:443/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://43cf7ea8296cc118@sogood.linefriends.com:443/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://024b81f04e2b0d5f@sogood.linefriends.com:443/?type=grpc&serviceName=buy-trojan-grpc-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20grpc
-vless://96406a12-e153-4827-b353-fee6b98996b6@sogood.linefriends.com:80/?type=ws&encryption=none&host=jala.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha#jala.iptunnels.com
-vless://16af3f64-bc34-4bce-a49a-ab30571fc66f@sogood.linefriends.com:80/?type=ws&encryption=none&host=cpanel.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha#cpanel.iptunnels.com
-trojan-go://68fbc8ed0d796353@sogood.linefriends.com:80/?sni=cpanel.iptunnels.com&type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#cpanel.iptunnels.com
-trojan-go://f852680606efac90@sogood.linefriends.com:80/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan-go://43cf7ea8296cc118@sogood.linefriends.com:80/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan://68fbc8ed0d796353@sogood.linefriends.com:80/?type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha#cpanel.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://f852680606efac90@sogood.linefriends.com:80/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://43cf7ea8296cc118@sogood.linefriends.com:80/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-vless://96406a12-e153-4827-b353-fee6b98996b6@food-merchant-help.grab.com:443/?type=ws&encryption=none&host=jala.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com
-vless://16af3f64-bc34-4bce-a49a-ab30571fc66f@food-merchant-help.grab.com:443/?type=ws&encryption=none&host=cpanel.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha&security=tls&sni=cpanel.iptunnels.com&allowInsecure=1#cpanel.iptunnels.com
-vless://6d850320-7643-4d3c-a497-cc456c87b814@food-merchant-help.grab.com:443/?type=grpc&encryption=none&serviceName=buy-vless-grpc-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20grpc
-trojan-go://68fbc8ed0d796353@food-merchant-help.grab.com:443/?sni=cpanel.iptunnels.com&type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#cpanel.iptunnels.com
-trojan-go://f852680606efac90@food-merchant-help.grab.com:443/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan-go://43cf7ea8296cc118@food-merchant-help.grab.com:443/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan://68fbc8ed0d796353@food-merchant-help.grab.com:443/?type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&security=tls&sni=cpanel.iptunnels.com&allowInsecure=1#cpanel.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://f852680606efac90@food-merchant-help.grab.com:443/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://43cf7ea8296cc118@food-merchant-help.grab.com:443/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://024b81f04e2b0d5f@food-merchant-help.grab.com:443/?type=grpc&serviceName=buy-trojan-grpc-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20grpc
-vless://96406a12-e153-4827-b353-fee6b98996b6@food-merchant-help.grab.com:80/?type=ws&encryption=none&host=jala.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha#jala.iptunnels.com
-vless://16af3f64-bc34-4bce-a49a-ab30571fc66f@food-merchant-help.grab.com:80/?type=ws&encryption=none&host=cpanel.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha#cpanel.iptunnels.com
-trojan-go://68fbc8ed0d796353@food-merchant-help.grab.com:80/?sni=cpanel.iptunnels.com&type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#cpanel.iptunnels.com
-trojan-go://f852680606efac90@food-merchant-help.grab.com:80/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan-go://43cf7ea8296cc118@food-merchant-help.grab.com:80/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan://68fbc8ed0d796353@food-merchant-help.grab.com:80/?type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha#cpanel.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://f852680606efac90@food-merchant-help.grab.com:80/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://43cf7ea8296cc118@food-merchant-help.grab.com:80/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-vless://96406a12-e153-4827-b353-fee6b98996b6@ovo.id:443/?type=ws&encryption=none&host=jala.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com
-vless://16af3f64-bc34-4bce-a49a-ab30571fc66f@ovo.id:443/?type=ws&encryption=none&host=cpanel.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha&security=tls&sni=cpanel.iptunnels.com&allowInsecure=1#cpanel.iptunnels.com
-vless://6d850320-7643-4d3c-a497-cc456c87b814@ovo.id:443/?type=grpc&encryption=none&serviceName=buy-vless-grpc-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20grpc
-trojan-go://68fbc8ed0d796353@ovo.id:443/?sni=cpanel.iptunnels.com&type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#cpanel.iptunnels.com
-trojan-go://f852680606efac90@ovo.id:443/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan-go://43cf7ea8296cc118@ovo.id:443/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan://68fbc8ed0d796353@ovo.id:443/?type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&security=tls&sni=cpanel.iptunnels.com&allowInsecure=1#cpanel.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://f852680606efac90@ovo.id:443/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://43cf7ea8296cc118@ovo.id:443/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://024b81f04e2b0d5f@ovo.id:443/?type=grpc&serviceName=buy-trojan-grpc-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20grpc
-vless://96406a12-e153-4827-b353-fee6b98996b6@ovo.id:80/?type=ws&encryption=none&host=jala.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha#jala.iptunnels.com
-vless://16af3f64-bc34-4bce-a49a-ab30571fc66f@ovo.id:80/?type=ws&encryption=none&host=cpanel.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha#cpanel.iptunnels.com
-trojan-go://68fbc8ed0d796353@ovo.id:80/?sni=cpanel.iptunnels.com&type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#cpanel.iptunnels.com
-trojan-go://f852680606efac90@ovo.id:80/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan-go://43cf7ea8296cc118@ovo.id:80/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan://68fbc8ed0d796353@ovo.id:80/?type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha#cpanel.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://f852680606efac90@ovo.id:80/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://43cf7ea8296cc118@ovo.id:80/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-vless://96406a12-e153-4827-b353-fee6b98996b6@games.axis.co.id:443/?type=ws&encryption=none&host=jala.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com
-vless://16af3f64-bc34-4bce-a49a-ab30571fc66f@games.axis.co.id:443/?type=ws&encryption=none&host=cpanel.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha&security=tls&sni=cpanel.iptunnels.com&allowInsecure=1#cpanel.iptunnels.com
-vless://6d850320-7643-4d3c-a497-cc456c87b814@games.axis.co.id:443/?type=grpc&encryption=none&serviceName=buy-vless-grpc-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20grpc
-trojan-go://68fbc8ed0d796353@games.axis.co.id:443/?sni=cpanel.iptunnels.com&type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#cpanel.iptunnels.com
-trojan-go://f852680606efac90@games.axis.co.id:443/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan-go://43cf7ea8296cc118@games.axis.co.id:443/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan://68fbc8ed0d796353@games.axis.co.id:443/?type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&security=tls&sni=cpanel.iptunnels.com&allowInsecure=1#cpanel.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://f852680606efac90@games.axis.co.id:443/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://43cf7ea8296cc118@games.axis.co.id:443/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://024b81f04e2b0d5f@games.axis.co.id:443/?type=grpc&serviceName=buy-trojan-grpc-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20grpc
-vless://96406a12-e153-4827-b353-fee6b98996b6@games.axis.co.id:80/?type=ws&encryption=none&host=jala.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha#jala.iptunnels.com
-vless://16af3f64-bc34-4bce-a49a-ab30571fc66f@games.axis.co.id:80/?type=ws&encryption=none&host=cpanel.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha#cpanel.iptunnels.com
-trojan-go://68fbc8ed0d796353@games.axis.co.id:80/?sni=cpanel.iptunnels.com&type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#cpanel.iptunnels.com
-trojan-go://f852680606efac90@games.axis.co.id:80/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan-go://43cf7ea8296cc118@games.axis.co.id:80/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan://68fbc8ed0d796353@games.axis.co.id:80/?type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha#cpanel.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://f852680606efac90@games.axis.co.id:80/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://43cf7ea8296cc118@games.axis.co.id:80/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-vless://96406a12-e153-4827-b353-fee6b98996b6@www.xl.co.id:443/?type=ws&encryption=none&host=jala.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com
-vless://16af3f64-bc34-4bce-a49a-ab30571fc66f@www.xl.co.id:443/?type=ws&encryption=none&host=cpanel.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha&security=tls&sni=cpanel.iptunnels.com&allowInsecure=1#cpanel.iptunnels.com
-vless://6d850320-7643-4d3c-a497-cc456c87b814@www.xl.co.id:443/?type=grpc&encryption=none&serviceName=buy-vless-grpc-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20grpc
-trojan-go://68fbc8ed0d796353@www.xl.co.id:443/?sni=cpanel.iptunnels.com&type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#cpanel.iptunnels.com
-trojan-go://f852680606efac90@www.xl.co.id:443/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan-go://43cf7ea8296cc118@www.xl.co.id:443/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan://68fbc8ed0d796353@www.xl.co.id:443/?type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&security=tls&sni=cpanel.iptunnels.com&allowInsecure=1#cpanel.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://f852680606efac90@www.xl.co.id:443/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://43cf7ea8296cc118@www.xl.co.id:443/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://024b81f04e2b0d5f@www.xl.co.id:443/?type=grpc&serviceName=buy-trojan-grpc-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20grpc
-vless://96406a12-e153-4827-b353-fee6b98996b6@www.xl.co.id:80/?type=ws&encryption=none&host=jala.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha#jala.iptunnels.com
-vless://16af3f64-bc34-4bce-a49a-ab30571fc66f@www.xl.co.id:80/?type=ws&encryption=none&host=cpanel.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha#cpanel.iptunnels.com
-trojan-go://68fbc8ed0d796353@www.xl.co.id:80/?sni=cpanel.iptunnels.com&type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#cpanel.iptunnels.com
-trojan-go://f852680606efac90@www.xl.co.id:80/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan-go://43cf7ea8296cc118@www.xl.co.id:80/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan://68fbc8ed0d796353@www.xl.co.id:80/?type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha#cpanel.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://f852680606efac90@www.xl.co.id:80/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://43cf7ea8296cc118@www.xl.co.id:80/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-vless://96406a12-e153-4827-b353-fee6b98996b6@chat.xl.co.id:443/?type=ws&encryption=none&host=jala.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com
-vless://16af3f64-bc34-4bce-a49a-ab30571fc66f@chat.xl.co.id:443/?type=ws&encryption=none&host=cpanel.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha&security=tls&sni=cpanel.iptunnels.com&allowInsecure=1#cpanel.iptunnels.com
-vless://6d850320-7643-4d3c-a497-cc456c87b814@chat.xl.co.id:443/?type=grpc&encryption=none&serviceName=buy-vless-grpc-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20grpc
-trojan-go://68fbc8ed0d796353@chat.xl.co.id:443/?sni=cpanel.iptunnels.com&type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#cpanel.iptunnels.com
-trojan-go://f852680606efac90@chat.xl.co.id:443/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan-go://43cf7ea8296cc118@chat.xl.co.id:443/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan://68fbc8ed0d796353@chat.xl.co.id:443/?type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&security=tls&sni=cpanel.iptunnels.com&allowInsecure=1#cpanel.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://f852680606efac90@chat.xl.co.id:443/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://43cf7ea8296cc118@chat.xl.co.id:443/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://024b81f04e2b0d5f@chat.xl.co.id:443/?type=grpc&serviceName=buy-trojan-grpc-pm-telegram-at-synricha&security=tls&sni=jala.iptunnels.com&allowInsecure=1#jala.iptunnels.com%20%2F%2F%20grpc
-vless://96406a12-e153-4827-b353-fee6b98996b6@chat.xl.co.id:80/?type=ws&encryption=none&host=jala.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha#jala.iptunnels.com
-vless://16af3f64-bc34-4bce-a49a-ab30571fc66f@chat.xl.co.id:80/?type=ws&encryption=none&host=cpanel.iptunnels.com&path=%2Fbuy-vless-ws-pm-telegram-at-synricha#cpanel.iptunnels.com
-trojan-go://68fbc8ed0d796353@chat.xl.co.id:80/?sni=cpanel.iptunnels.com&type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#cpanel.iptunnels.com
-trojan-go://f852680606efac90@chat.xl.co.id:80/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan-go://43cf7ea8296cc118@chat.xl.co.id:80/?sni=jala.iptunnels.com&type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&encryption=none#jala.iptunnels.com
-trojan://68fbc8ed0d796353@chat.xl.co.id:80/?type=ws&host=cpanel.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha#cpanel.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://f852680606efac90@chat.xl.co.id:80/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-trojan://43cf7ea8296cc118@chat.xl.co.id:80/?type=ws&host=jala.iptunnels.com&path=%2Fbuy-trojan-ws-pm-telegram-at-synricha#jala.iptunnels.com%20%2F%2F%20trojan%20ws
-
+  { 
+  "log": { 
+  "disabled": false, 
+  "level": "fatal", 
+  "timestamp": true 
+  },
+  "dns": { 
+  "servers": [ 
+  { 
+  "tag": "anhedonia",
+  "address": "1.1.1.1",
+  "strategy": "prefer_ipv4",
+  "detour": "anhedonia"
+  },
+  {
+  "tag": "direct",
+  "address": "local",
+  "strategy": "prefer_ipv4",
+  "detour": "direct"
+  },
+  {
+  "tag": "block",
+  "address": "rcode://success"
+  }
+  ], 
+  "rules": [
+  {
+  "outbound": "anhedonia",
+  "server": "anhedonia",
+  "rewrite_ttl": 666
+  },
+  { 
+  "outbound": "direct",
+  "server": "direct",
+  "rewrite_ttl": 666
+  },
+  {
+  "outbound": "any",
+  "server": "direct",
+  "rewrite_ttl": 666
+  }
+  ], 
+  "reverse_mapping": true,
+  "strategy": "prefer_ipv4",
+  "independent_cache": false,
+  "disable_cache": false
+  }, 
+  "inbounds": [
+  { 
+  "listen": "0.0.0.0",
+  "listen_port": 2087,
+  "sniff": true,
+  "tag": "mixed-in",
+  "type": "mixed"
+  },
+  { 
+  "type": "tun",
+  "tag": "tun-in",
+  "interface_name": "tun0",
+  "inet4_address": "172.19.0.1/30",
+  "mtu": 9000,
+  "auto_route": true,
+  "strict_route": true,
+  "stack": "mixed",
+  "endpoint_independent_nat": true,
+  "sniff": true
+  }
+  ], 
+  "outbounds": [
+  {
+  "type": "selector",
+  "tag": "anhedonia",
+  "outbounds": [
+  "networks",
+  "websocket",
+  "grpc",
+  "protocols",
+  "vmess",
+  "vless",
+  "trojan"
+  ] 
+  },
+  {
+  "type": "urltest",
+  "tag": "networks",
+  "outbounds": [
+  "outbounds 🇸🇬🇸🇬🇸🇬 vmess 1",
+  "outbounds 🇸🇬🇸🇬🇸🇬 vmess 2",
+  "outbounds 🇸🇬🇸🇬🇸🇬 vmess 3",
+  "outbounds 🇸🇬🇸🇬🇸🇬 vless 1",
+  "outbounds 🇸🇬🇸🇬🇸🇬 vless 2",
+  "outbounds 🇸🇬🇸🇬🇸🇬 trojan 1",
+  "outbounds 🇸🇬🇸🇬🇸🇬 trojan 2",
+  "outbounds 🇸🇬🇸🇬🇸🇬 trojan 3",
+  "outbounds 🇯🇵🇯🇵🇯🇵 vmess 1",
+  "outbounds 🇯🇵🇯🇵🇯🇵 vmess 2",
+  "outbounds 🇯🇵🇯🇵🇯🇵 vmess 3",
+  "outbounds 🇯🇵🇯🇵🇯🇵 vless 1",
+  "outbounds 🇯🇵🇯🇵🇯🇵 vless 2",
+  "outbounds 🇯🇵🇯🇵🇯🇵 trojan 1",
+  "outbounds 🇯🇵🇯🇵🇯🇵 trojan 2",
+  "outbounds 🇯🇵🇯🇵🇯🇵 trojan 3",
+  "outbounds 🇰🇷🇰🇷🇰🇷 vmess 4",
+  "outbounds 🇰🇷🇰🇷🇰🇷 vless 3",
+  "outbounds 🇰🇷🇰🇷🇰🇷 trojan 4"
+  ], 
+  "url": "https://www.gstatic.com/generate_204", 
+  "interval": "66s", 
+  "tolerance": 33,
+  "interrupt_exist_connections": false
+  },
+  {
+  "type": "urltest",
+  "tag": "websocket",
+  "outbounds": [
+  "outbounds 🇸🇬🇸🇬🇸🇬 vmess 1",
+  "outbounds 🇸🇬🇸🇬🇸🇬 vmess 2",
+  "outbounds 🇸🇬🇸🇬🇸🇬 vmess 3",
+  "outbounds 🇸🇬🇸🇬🇸🇬 vless 1",
+  "outbounds 🇸🇬🇸🇬🇸🇬 vless 2",
+  "outbounds 🇸🇬🇸🇬🇸🇬 trojan 1",
+  "outbounds 🇸🇬🇸🇬🇸🇬 trojan 2",
+  "outbounds 🇸🇬🇸🇬🇸🇬 trojan 3",
+  "outbounds 🇯🇵🇯🇵🇯🇵 vmess 1",
+  "outbounds 🇯🇵🇯🇵🇯🇵 vmess 2",
+  "outbounds 🇯🇵🇯🇵🇯🇵 vmess 3",
+  "outbounds 🇯🇵🇯🇵🇯🇵 vless 1",
+  "outbounds 🇯🇵🇯🇵🇯🇵 vless 2",
+  "outbounds 🇯🇵🇯🇵🇯🇵 trojan 1",
+  "outbounds 🇯🇵🇯🇵🇯🇵 trojan 2",
+  "outbounds 🇯🇵🇯🇵🇯🇵 trojan 3"
+  ], 
+  "url": "https://www.gstatic.com/generate_204", 
+  "interval": "60s", 
+  "tolerance": 33,
+  "interrupt_exist_connections": false
+  },
+  {
+  "type": "urltest",
+  "tag": "grpc",
+  "outbounds": [
+  "outbounds 🇰🇷🇰🇷🇰🇷 vmess 4",
+  "outbounds 🇰🇷🇰🇷🇰🇷 vless 3",
+  "outbounds 🇰🇷🇰🇷🇰🇷 trojan 4"
+  ], 
+  "url": "https://www.gstatic.com/generate_204", 
+  "interval": "60s", 
+  "tolerance": 33,
+  "interrupt_exist_connections": false
+  },
+  {
+  "type": "urltest",
+  "tag": "protocols",
+  "outbounds": [
+  "outbounds 🇸🇬🇸🇬🇸🇬 vmess 1",
+  "outbounds 🇸🇬🇸🇬🇸🇬 vmess 2",
+  "outbounds 🇸🇬🇸🇬🇸🇬 vmess 3",
+  "outbounds 🇸🇬🇸🇬🇸🇬 vless 1",
+  "outbounds 🇸🇬🇸🇬🇸🇬 vless 2",
+  "outbounds 🇸🇬🇸🇬🇸🇬 trojan 1",
+  "outbounds 🇸🇬🇸🇬🇸🇬 trojan 2",
+  "outbounds 🇸🇬🇸🇬🇸🇬 trojan 3",
+  "outbounds 🇯🇵🇯🇵🇯🇵 vmess 1",
+  "outbounds 🇯🇵🇯🇵🇯🇵 vmess 2",
+  "outbounds 🇯🇵🇯🇵🇯🇵 vmess 3",
+  "outbounds 🇯🇵🇯🇵🇯🇵 vless 1",
+  "outbounds 🇯🇵🇯🇵🇯🇵 vless 2",
+  "outbounds 🇯🇵🇯🇵🇯🇵 trojan 1",
+  "outbounds 🇯🇵🇯🇵🇯🇵 trojan 2",
+  "outbounds 🇯🇵🇯🇵🇯🇵 trojan 3",
+  "outbounds 🇰🇷🇰🇷🇰🇷 vmess 4",
+  "outbounds 🇰🇷🇰🇷🇰🇷 vless 3",
+  "outbounds 🇰🇷🇰🇷🇰🇷 trojan 4"
+  ], 
+  "url": "https://www.gstatic.com/generate_204", 
+  "interval": "60s", 
+  "tolerance": 33,
+  "interrupt_exist_connections": false
+  },
+  {
+  "type": "urltest",
+  "tag": "vmess",
+  "outbounds": [
+  "outbounds 🇸🇬🇸🇬🇸🇬 vmess 1",
+  "outbounds 🇸🇬🇸🇬🇸🇬 vmess 2",
+  "outbounds 🇸🇬🇸🇬🇸🇬 vmess 3",
+  "outbounds 🇯🇵🇯🇵🇯🇵 vmess 1",
+  "outbounds 🇯🇵🇯🇵🇯🇵 vmess 2",
+  "outbounds 🇯🇵🇯🇵🇯🇵 vmess 3",
+  "outbounds 🇰🇷🇰🇷🇰🇷 vmess 4"
+  ], 
+  "url": "https://www.gstatic.com/generate_204", 
+  "interval": "60s", 
+  "tolerance": 33,
+  "interrupt_exist_connections": false
+  },
+  {
+  "type": "urltest",
+  "tag": "vless",
+  "outbounds": [
+  "outbounds 🇸🇬🇸🇬🇸🇬 vless 1",
+  "outbounds 🇸🇬🇸🇬🇸🇬 vless 2",
+  "outbounds 🇯🇵🇯🇵🇯🇵 vless 1",
+  "outbounds 🇯🇵🇯🇵🇯🇵 vless 2",
+  "outbounds 🇰🇷🇰🇷🇰🇷 vless 3"
+  ], 
+  "url": "https://www.gstatic.com/generate_204", 
+  "interval": "60s", 
+  "tolerance": 33,
+  "interrupt_exist_connections": false
+  },
+  {
+  "type": "urltest",
+  "tag": "trojan",
+  "outbounds": [
+  "outbounds 🇸🇬🇸🇬🇸🇬 trojan 1",
+  "outbounds 🇸🇬🇸🇬🇸🇬 trojan 2",
+  "outbounds 🇸🇬🇸🇬🇸🇬 trojan 3",
+  "outbounds 🇯🇵🇯🇵🇯🇵 trojan 1",
+  "outbounds 🇯🇵🇯🇵🇯🇵 trojan 2",
+  "outbounds 🇯🇵🇯🇵🇯🇵 trojan 3",
+  "outbounds 🇰🇷🇰🇷🇰🇷 trojan 4"
+  ], 
+  "url": "https://www.gstatic.com/generate_204", 
+  "interval": "60s", 
+  "tolerance": 33,
+  "interrupt_exist_connections": false
+  },
+  { 
+  "type": "vmess",
+  "tag": "outbounds 🇸🇬🇸🇬🇸🇬 vmess 1", 
+  "domain_strategy": "prefer_ipv4",
+  "detour": "direct",
+  "tcp_fast_open": true,
+  "tcp_multi_path": true,
+  "udp_fragment": true,
+  "server": "cdn.appsflyer.com",
+  "server_port": 80,
+  "uuid": "047b3e33-c9c5-4d10-8795-7113a5123dd6",
+  "security": "auto",
+  "global_padding": true,
+  "authenticated_length": true,
+  "tls": {
+  "enabled": false,
+  "server_name": "cpanel.iptunnels.com",
+  "insecure": true
+  },
+  "multiplex": {
+  "enabled": true,
+  "protocol": "smux",
+  "max_streams": 32
+  },
+  "transport": {
+  "type": "ws",
+  "path": "/buy-vmess-ws-pm-telegram-at-synricha",
+  "headers": {
+  "Host": "cpanel.iptunnels.com"
+  }
+  }
+  },
+  {
+  "type": "vmess",
+  "tag": "outbounds 🇸🇬🇸🇬🇸🇬 vmess 2", 
+  "domain_strategy": "prefer_ipv4",
+  "detour": "direct",
+  "tcp_fast_open": true,
+  "tcp_multi_path": true,
+  "udp_fragment": true,
+  "server": "cdn.appsflyer.com",
+  "server_port": 80,
+  "uuid": "78d18cbf-bcf1-4965-873d-b099b97cf1b3",
+  "security": "auto",
+  "global_padding": true,
+  "authenticated_length": true,
+  "tls": {
+  "enabled": false,
+  "server_name": "jala.iptunnels.com",
+  "insecure": true
+  },
+  "multiplex": {
+  "enabled": true,
+  "protocol": "smux",
+  "max_streams": 32
+  },
+  "transport": {
+  "type": "ws",
+  "path": "/buy-vmess-ws-pm-telegram-at-synricha",
+  "headers": {
+  "Host": "jala.iptunnels.com"
+  }
+  }
+  },
+  {
+  "type": "vmess",
+  "tag": "outbounds 🇸🇬🇸🇬🇸🇬 vmess 3", 
+  "domain_strategy": "prefer_ipv4",
+  "detour": "direct",
+  "tcp_fast_open": true,
+  "tcp_multi_path": true,
+  "udp_fragment": true,
+  "server": "cdn.appsflyer.com",
+  "server_port": 80,
+  "uuid": "8db4f1b7-09a5-4afb-8063-56024123067f",
+  "security": "auto",
+  "global_padding": true,
+  "authenticated_length": true,
+  "tls": {
+  "enabled": false,
+  "server_name": "jala.iptunnels.com",
+  "insecure": true
+  },
+  "multiplex": {
+  "enabled": true,
+  "protocol": "smux",
+  "max_streams": 32
+  },
+  "transport": {
+  "type": "ws",
+  "path": "/buy-vmess-ws-pm-telegram-at-synricha",
+  "headers": {
+  "Host": "jala.iptunnels.com"
+  }
+  }
+  },
+  {
+  "type": "vless",
+  "tag": "outbounds 🇸🇬🇸🇬🇸🇬 vless 1", 
+  "domain_strategy": "prefer_ipv4",
+  "detour": "direct",
+  "tcp_fast_open": true,
+  "tcp_multi_path": true,
+  "udp_fragment": true,
+  "server": "cdn.appsflyer.com",
+  "server_port": 80,
+  "uuid": "96406a12-e153-4827-b353-fee6b98996b6",
+  "tls": {
+  "enabled": false,
+  "server_name": "cpanel.iptunnels.com",
+  "insecure": true
+  }, 
+  "multiplex": {
+  "enabled": true,
+  "protocol": "smux",
+  "max_streams": 32
+  },
+  "transport": {
+  "type": "ws",
+  "path": "/buy-vless-ws-pm-telegram-at-synricha",
+  "headers": {
+  "Host": "cpanel.iptunnels.com"
+  }
+  },
+  "packet_encoding": "xudp"
+  },
+  {
+  "type": "vless",
+  "tag": "outbounds 🇸🇬🇸🇬🇸🇬 vless 2", 
+  "domain_strategy": "prefer_ipv4",
+  "detour": "direct",
+  "tcp_fast_open": true,
+  "tcp_multi_path": true,
+  "udp_fragment": true,
+  "server": "cdn.appsflyer.com",
+  "server_port": 80,
+  "uuid": "16af3f64-bc34-4bce-a49a-ab30571fc66f",
+  "tls": {
+  "enabled": false,
+  "server_name": "jala.iptunnels.com",
+  "insecure": true
+  }, 
+  "multiplex": {
+  "enabled": true,
+  "protocol": "smux",
+  "max_streams": 32
+  },
+  "transport": {
+  "type": "ws",
+  "path": "/buy-vless-ws-pm-telegram-at-synricha",
+  "headers": {
+  "Host": "jala.iptunnels.com"
+  }
+  },
+  "packet_encoding": "xudp"
+  },
+  {
+  "type": "trojan",
+  "tag": "outbounds 🇸🇬🇸🇬🇸🇬 trojan 1", 
+  "domain_strategy": "prefer_ipv4",
+  "detour": "direct",
+  "tcp_fast_open": true,
+  "tcp_multi_path": true,
+  "udp_fragment": true,
+  "server": "cdn.appsflyer.com",
+  "server_port": 80,
+  "password": "68fbc8ed0d796353",
+  "tls": {
+  "enabled": false,
+  "server_name": "cpanel.iptunnels.com",
+  "insecure": true 
+  },
+  "multiplex": {
+  "enabled": true,
+  "protocol": "smux",
+  "max_streams": 32
+  },
+  "transport": {
+  "type": "ws",
+  "path": "/buy-trojan-ws-pm-telegram-at-synricha",
+  "headers": {
+  "Host": "cpanel.iptunnels.com"
+  }
+  }
+  },
+  {
+  "type": "trojan",
+  "tag": "outbounds 🇸🇬🇸🇬🇸🇬 trojan 2", 
+  "domain_strategy": "prefer_ipv4",
+  "detour": "direct",
+  "tcp_fast_open": true,
+  "tcp_multi_path": true,
+  "udp_fragment": true,
+  "server": "cdn.appsflyer.com",
+  "server_port": 80,
+  "password": "f852680606efac90",
+  "tls": {
+  "enabled": false,
+  "server_name": "jala.iptunnels.com",
+  "insecure": true 
+  },
+  "multiplex": {
+  "enabled": true,
+  "protocol": "smux",
+  "max_streams": 32
+  },
+  "transport": {
+  "type": "ws",
+  "path": "/buy-trojan-ws-pm-telegram-at-synricha",
+  "headers": {
+  "Host": "jala.iptunnels.com"
+  }
+  }
+  },
+  {
+  "type": "trojan",
+  "tag": "outbounds 🇸🇬🇸🇬🇸🇬 trojan 3", 
+  "domain_strategy": "prefer_ipv4",
+  "detour": "direct",
+  "tcp_fast_open": true,
+  "tcp_multi_path": true,
+  "udp_fragment": true,
+  "server": "cdn.appsflyer.com",
+  "server_port": 80,
+  "password": "43cf7ea8296cc118",
+  "tls": {
+  "enabled": false,
+  "server_name": "jala.iptunnels.com",
+  "insecure": true 
+  },
+  "multiplex": {
+  "enabled": true,
+  "protocol": "smux",
+  "max_streams": 32
+  },
+  "transport": {
+  "type": "ws",
+  "path": "/buy-trojan-ws-pm-telegram-at-synricha",
+  "headers": {
+  "Host": "jala.iptunnels.com"
+  }
+  }
+  }, 
+  {
+  "type": "vmess",
+  "tag": "outbounds 🇯🇵🇯🇵🇯🇵 vmess 1", 
+  "domain_strategy": "prefer_ipv4",
+  "detour": "direct",
+  "tcp_fast_open": true,
+  "tcp_multi_path": true,
+  "udp_fragment": true,
+  "server": "cdn.appsflyer.com",
+  "server_port": 443,
+  "uuid": "047b3e33-c9c5-4d10-8795-7113a5123dd6",
+  "security": "auto",
+  "global_padding": true,
+  "authenticated_length": true,
+  "tls": {
+  "enabled": true,
+  "server_name": "cpanel.iptunnels.com",
+  "insecure": true
+  },
+  "multiplex": {
+  "enabled": true,
+  "protocol": "smux",
+  "max_streams": 32
+  },
+  "transport": {
+  "type": "ws",
+  "path": "/buy-vmess-ws-pm-telegram-at-synricha",
+  "headers": {
+  "Host": "cpanel.iptunnels.com"
+  }
+  }
+  },
+  {
+  "type": "vmess",
+  "tag": "outbounds 🇯🇵🇯🇵🇯🇵 vmess 2", 
+  "domain_strategy": "prefer_ipv4",
+  "detour": "direct",
+  "tcp_fast_open": true,
+  "tcp_multi_path": true,
+  "udp_fragment": true,
+  "server": "cdn.appsflyer.com",
+  "server_port": 443,
+  "uuid": "78d18cbf-bcf1-4965-873d-b099b97cf1b3",
+  "security": "auto",
+  "global_padding": true,
+  "authenticated_length": true,
+  "tls": {
+  "enabled": true,
+  "server_name": "jala.iptunnels.com",
+  "insecure": true
+  },
+  "multiplex": {
+  "enabled": true,
+  "protocol": "smux",
+  "max_streams": 32
+  },
+  "transport": {
+  "type": "ws",
+  "path": "/buy-vmess-ws-pm-telegram-at-synricha",
+  "headers": {
+  "Host": "jala.iptunnels.com"
+  }
+  }
+  },
+  {
+  "type": "vmess",
+  "tag": "outbounds 🇯🇵🇯🇵🇯🇵 vmess 3", 
+  "domain_strategy": "prefer_ipv4",
+  "detour": "direct",
+  "tcp_fast_open": true,
+  "tcp_multi_path": true,
+  "udp_fragment": true,
+  "server": "cdn.appsflyer.com",
+  "server_port": 443,
+  "uuid": "8db4f1b7-09a5-4afb-8063-56024123067f",
+  "security": "auto",
+  "global_padding": true,
+  "authenticated_length": true,
+  "tls": {
+  "enabled": true,
+  "server_name": "jala.iptunnels.com",
+  "insecure": true
+  },
+  "multiplex": {
+  "enabled": true,
+  "protocol": "smux",
+  "max_streams": 32
+  },
+  "transport": {
+  "type": "ws",
+  "path": "/buy-vmess-ws-pm-telegram-at-synricha",
+  "headers": {
+  "Host": "jala.iptunnels.com"
+  }
+  }
+  },
+  {
+  "type": "vless",
+  "tag": "outbounds 🇯🇵🇯🇵🇯🇵 vless 1", 
+  "domain_strategy": "prefer_ipv4",
+  "detour": "direct",
+  "tcp_fast_open": true,
+  "tcp_multi_path": true,
+  "udp_fragment": true,
+  "server": "cdn.appsflyer.com",
+  "server_port": 443,
+  "uuid": "96406a12-e153-4827-b353-fee6b98996b6",
+  "tls": {
+  "enabled": true,
+  "server_name": "cpanel.iptunnels.com",
+  "insecure": true
+  }, 
+  "multiplex": {
+  "enabled": true,
+  "protocol": "smux",
+  "max_streams": 32
+  },
+  "transport": {
+  "type": "ws",
+  "path": "/buy-vless-ws-pm-telegram-at-synricha",
+  "headers": {
+  "Host": "cpanel.iptunnels.com"
+  }
+  },
+  "packet_encoding": "xudp"
+  },
+  {
+  "type": "vless",
+  "tag": "outbounds 🇯🇵🇯🇵🇯🇵 vless 2", 
+  "domain_strategy": "prefer_ipv4",
+  "detour": "direct",
+  "tcp_fast_open": true,
+  "tcp_multi_path": true,
+  "udp_fragment": true,
+  "server": "cdn.appsflyer.com",
+  "server_port": 443,
+  "uuid": "16af3f64-bc34-4bce-a49a-ab30571fc66f",
+  "tls": {
+  "enabled": true,
+  "server_name": "jala.iptunnels.com",
+  "insecure": true
+  }, 
+  "multiplex": {
+  "enabled": true,
+  "protocol": "smux",
+  "max_streams": 32
+  },
+  "transport": {
+  "type": "ws",
+  "path": "/buy-vless-ws-pm-telegram-at-synricha",
+  "headers": {
+  "Host": "jala.iptunnels.com"
+  }
+  },
+  "packet_encoding": "xudp"
+  },
+  {
+  "type": "trojan",
+  "tag": "outbounds 🇯🇵🇯🇵🇯🇵 trojan 1", 
+  "domain_strategy": "prefer_ipv4",
+  "detour": "direct",
+  "tcp_fast_open": true,
+  "tcp_multi_path": true,
+  "udp_fragment": true,
+  "server": "cdn.appsflyer.com",
+  "server_port": 443,
+  "password": "68fbc8ed0d796353",
+  "tls": {
+  "enabled": true,
+  "server_name": "cpanel.iptunnels.com",
+  "insecure": true 
+  },
+  "multiplex": {
+  "enabled": true,
+  "protocol": "smux",
+  "max_streams": 32
+  },
+  "transport": {
+  "type": "ws",
+  "path": "/buy-trojan-ws-pm-telegram-at-synricha",
+  "headers": {
+  "Host": "cpanel.iptunnels.com"
+  }
+  }
+  },
+  {
+  "type": "trojan",
+  "tag": "outbounds 🇯🇵🇯🇵🇯🇵 trojan 2", 
+  "domain_strategy": "prefer_ipv4",
+  "detour": "direct",
+  "tcp_fast_open": true,
+  "tcp_multi_path": true,
+  "udp_fragment": true,
+  "server": "cdn.appsflyer.com",
+  "server_port": 443,
+  "password": "f852680606efac90",
+  "tls": {
+  "enabled": true,
+  "server_name": "jala.iptunnels.com",
+  "insecure": true 
+  },
+  "multiplex": {
+  "enabled": true,
+  "protocol": "smux",
+  "max_streams": 32
+  },
+  "transport": {
+  "type": "ws",
+  "path": "/buy-trojan-ws-pm-telegram-at-synricha",
+  "headers": {
+  "Host": "jala.iptunnels.com"
+  }
+  }
+  },
+  {
+  "type": "trojan",
+  "tag": "outbounds 🇯🇵🇯🇵🇯🇵 trojan 3", 
+  "domain_strategy": "prefer_ipv4",
+  "detour": "direct",
+  "tcp_fast_open": true,
+  "tcp_multi_path": true,
+  "udp_fragment": true,
+  "server": "cdn.appsflyer.com",
+  "server_port": 443,
+  "password": "43cf7ea8296cc118",
+  "tls": {
+  "enabled": true,
+  "server_name": "jala.iptunnels.com",
+  "insecure": true 
+  },
+  "multiplex": {
+  "enabled": true,
+  "protocol": "smux",
+  "max_streams": 32
+  },
+  "transport": {
+  "type": "ws",
+  "path": "/buy-trojan-ws-pm-telegram-at-synricha",
+  "headers": {
+  "Host": "jala.iptunnels.com"
+  }
+  }
+  },
+  {
+  "type": "vmess",
+  "tag": "outbounds 🇰🇷🇰🇷🇰🇷 vmess 4", 
+  "domain_strategy": "prefer_ipv4",
+  "detour": "direct",
+  "tcp_fast_open": true,
+  "tcp_multi_path": true,
+  "udp_fragment": true, 
+  "server": "cdn.appsflyer.com",
+  "server_port": 443,
+  "uuid": "46994693-9600-45fb-8afc-23ea6f3b574f",
+  "security": "auto",
+  "alter_id": 0,
+  "global_padding": false,
+  "authenticated_length": true,
+  "tls": {
+  "enabled": true,
+  "server_name": "jala.iptunnels.com",
+  "insecure": true,
+  "utls": {
+  "enabled": true,
+  "fingerprint": ""
+  }
+  },
+  "packet_encoding": "",
+  "transport": {
+  "type": "grpc",
+  "service_name": "buy-vmess-grpc-pm-telegram-at-synricha",
+  "idle_timeout": "60s",
+  "ping_timeout": "60s",
+  "permit_without_stream": false
+  },
+  "multiplex": {
+  "enabled": false,
+  "protocol": "smux",
+  "max_streams": 32
+  }
+  },
+  {
+  "type": "vless",
+  "tag": "outbounds 🇰🇷🇰🇷🇰🇷 vless 3", 
+  "domain_strategy": "prefer_ipv4",
+  "detour": "direct",
+  "tcp_fast_open": true,
+  "tcp_multi_path": true,
+  "udp_fragment": true,
+  "server": "cdn.appsflyer.com",
+  "server_port": 443,
+  "uuid": "6d850320-7643-4d3c-a497-cc456c87b814",
+  "flow": "",
+  "tls": {
+  "enabled": true,
+  "server_name": "jala.iptunnels.com",
+  "insecure": true,
+  "utls": {
+  "enabled": true,
+  "fingerprint": ""
+  }
+  },
+  "multiplex": {
+  "enabled": false,
+  "protocol": "smux",
+  "max_streams": 32
+  },
+  "packet_encoding": "xudp",
+  "transport": {
+  "type": "grpc",
+  "service_name": "buy-vless-grpc-pm-telegram-at-synricha",
+  "idle_timeout": "60s",
+  "ping_timeout": "60s",
+  "permit_without_stream": false
+  }
+  },
+  {
+  "type": "trojan",
+  "tag": "outbounds 🇰🇷🇰🇷🇰🇷 trojan 4", 
+  "domain_strategy": "prefer_ipv4",
+  "detour": "direct",
+  "tcp_fast_open": true,
+  "tcp_multi_path": true,
+  "udp_fragment": true,
+  "server": "cdn.appsflyer.com",
+  "server_port": 443,
+  "password": "024b81f04e2b0d5f",
+  "tls": {
+  "enabled": true,
+  "server_name": "jala.iptunnels.com",
+  "insecure": true,
+  "utls": {
+  "enabled": true,
+  "fingerprint": ""
+  }
+  },
+  "transport": {
+  "type": "grpc",
+  "service_name": "buy-trojan-grpc-pm-telegram-at-synricha",
+  "idle_timeout": "60s",
+  "ping_timeout": "60s",
+  "permit_without_stream": false
+  },
+  "multiplex": {
+  "enabled": false,
+  "protocol": "smux",
+  "max_streams": 32
+  }
+  },
+  { 
+  "type": "direct",
+  "tag": "direct"
+  },
+  {
+  "type": "dns",
+  "tag": "dns-out"
+  }
+  ],
+  "route": {
+  "rules": [
+  {
+  "port": 53,
+  "outbound": "dns-out"
+  },
+  {
+  "network": "udp",
+  "port": 443,
+  "outbound": "dns-out"
+  }
+  ],
+  "final": "anhedonia",
+  "auto_detect_interface": true,
+  "override_android_vpn": true
+  }
+  }
