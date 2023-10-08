@@ -104,7 +104,7 @@
   "outbounds 🇰🇷🇰🇷🇰🇷 vless 3",
   "outbounds 🇰🇷🇰🇷🇰🇷 trojan 4"
   ], 
-  "url": "https://www.gstatic.com/generate_204", 
+  "url": "https://www.gstatic.com\/generate_204", 
   "interval": "66s", 
   "tolerance": 33,
   "interrupt_exist_connections": false
@@ -130,7 +130,7 @@
   "outbounds 🇯🇵🇯🇵🇯🇵 trojan 2",
   "outbounds 🇯🇵🇯🇵🇯🇵 trojan 3"
   ], 
-  "url": "https://www.gstatic.com/generate_204", 
+  "url": "https://www.gstatic.com\/generate_204", 
   "interval": "60s", 
   "tolerance": 33,
   "interrupt_exist_connections": false
@@ -143,7 +143,7 @@
   "outbounds 🇰🇷🇰🇷🇰🇷 vless 3",
   "outbounds 🇰🇷🇰🇷🇰🇷 trojan 4"
   ], 
-  "url": "https://www.gstatic.com/generate_204", 
+  "url": "https://www.gstatic.com\/generate_204", 
   "interval": "60s", 
   "tolerance": 33,
   "interrupt_exist_connections": false
@@ -172,7 +172,7 @@
   "outbounds 🇰🇷🇰🇷🇰🇷 vless 3",
   "outbounds 🇰🇷🇰🇷🇰🇷 trojan 4"
   ], 
-  "url": "https://www.gstatic.com/generate_204", 
+  "url": "https://www.gstatic.com\/generate_204", 
   "interval": "60s", 
   "tolerance": 33,
   "interrupt_exist_connections": false
@@ -189,7 +189,7 @@
   "outbounds 🇯🇵🇯🇵🇯🇵 vmess 3",
   "outbounds 🇰🇷🇰🇷🇰🇷 vmess 4"
   ], 
-  "url": "https://www.gstatic.com/generate_204", 
+  "url": "https://www.gstatic.com\/generate_204", 
   "interval": "60s", 
   "tolerance": 33,
   "interrupt_exist_connections": false
@@ -204,7 +204,7 @@
   "outbounds 🇯🇵🇯🇵🇯🇵 vless 2",
   "outbounds 🇰🇷🇰🇷🇰🇷 vless 3"
   ], 
-  "url": "https://www.gstatic.com/generate_204", 
+  "url": "https://www.gstatic.com\/generate_204", 
   "interval": "60s", 
   "tolerance": 33,
   "interrupt_exist_connections": false
@@ -221,7 +221,7 @@
   "outbounds 🇯🇵🇯🇵🇯🇵 trojan 3",
   "outbounds 🇰🇷🇰🇷🇰🇷 trojan 4"
   ], 
-  "url": "https://www.gstatic.com/generate_204", 
+  "url": "https://www.gstatic.com\/generate_204", 
   "interval": "60s", 
   "tolerance": 33,
   "interrupt_exist_connections": false
