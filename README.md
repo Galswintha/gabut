@@ -1,2 +1,0 @@
-# Gabut
-Mager Mode
