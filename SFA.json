@@ -57,37 +57,37 @@
   {
   "outbound": "anhedonia",
   "server": "anhedonia",
-  "rewrite_ttl": 666
+  "rewrite_ttl": 300
   },
   {
   "outbound": "galswintha",
   "server": "galswintha",
-  "rewrite_ttl": 666
+  "rewrite_ttl": 300
   },
   {
   "outbound": "audra",
   "server": "audra",
-  "rewrite_ttl": 666
+  "rewrite_ttl": 300
   },
   {
   "outbound": "aurora",
   "server": "aurora",
-  "rewrite_ttl": 666
+  "rewrite_ttl": 300
   },
   {
   "outbound": "nakesa",
   "server": "nakesa",
-  "rewrite_ttl": 666
+  "rewrite_ttl": 300
   },
   { 
   "outbound": "direct",
   "server": "direct",
-  "rewrite_ttl": 666
+  "rewrite_ttl": 300
   },
   {
   "outbound": "any",
   "server": "direct",
-  "rewrite_ttl": 666
+  "rewrite_ttl": 300
   }
   ], 
   "reverse_mapping": true,
@@ -111,7 +111,7 @@
   "mtu": 9000,
   "auto_route": true,
   "strict_route": true,
-  "stack": "mixed",
+  "stack": "gvisor",
   "endpoint_independent_nat": true,
   "sniff": true
   }
@@ -299,7 +299,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 80,
-  "uuid": "b319ff86-5521-4df5-84ee-76482d2ef70d",
+  "uuid": "bbb27f79-4e7a-4bcc-8119-3bb491c973d0",
   "security": "auto",
   "global_padding": true,
   "authenticated_length": true,
@@ -331,7 +331,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 8080,
-  "uuid": "b319ff86-5521-4df5-84ee-76482d2ef70d",
+  "uuid": "bbb27f79-4e7a-4bcc-8119-3bb491c973d0",
   "security": "auto",
   "global_padding": true,
   "authenticated_length": true,
@@ -363,7 +363,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 8880,
-  "uuid": "b319ff86-5521-4df5-84ee-76482d2ef70d",
+  "uuid": "bbb27f79-4e7a-4bcc-8119-3bb491c973d0",
   "security": "auto",
   "global_padding": true,
   "authenticated_length": true,
@@ -395,7 +395,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2052,
-  "uuid": "b319ff86-5521-4df5-84ee-76482d2ef70d",
+  "uuid": "bbb27f79-4e7a-4bcc-8119-3bb491c973d0",
   "security": "auto",
   "global_padding": true,
   "authenticated_length": true,
@@ -427,7 +427,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2082,
-  "uuid": "b319ff86-5521-4df5-84ee-76482d2ef70d",
+  "uuid": "bbb27f79-4e7a-4bcc-8119-3bb491c973d0",
   "security": "auto",
   "global_padding": true,
   "authenticated_length": true,
@@ -459,7 +459,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2086,
-  "uuid": "b319ff86-5521-4df5-84ee-76482d2ef70d",
+  "uuid": "bbb27f79-4e7a-4bcc-8119-3bb491c973d0",
   "security": "auto",
   "global_padding": true,
   "authenticated_length": true,
@@ -491,7 +491,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2095,
-  "uuid": "b319ff86-5521-4df5-84ee-76482d2ef70d",
+  "uuid": "bbb27f79-4e7a-4bcc-8119-3bb491c973d0",
   "security": "auto",
   "global_padding": true,
   "authenticated_length": true,
@@ -971,7 +971,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 443,
-  "uuid": "b319ff86-5521-4df5-84ee-76482d2ef70d",
+  "uuid": "bbb27f79-4e7a-4bcc-8119-3bb491c973d0",
   "security": "auto",
   "global_padding": true,
   "authenticated_length": true,
@@ -1003,7 +1003,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2053,
-  "uuid": "b319ff86-5521-4df5-84ee-76482d2ef70d",
+  "uuid": "bbb27f79-4e7a-4bcc-8119-3bb491c973d0",
   "security": "auto",
   "global_padding": true,
   "authenticated_length": true,
@@ -1035,7 +1035,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2083,
-  "uuid": "b319ff86-5521-4df5-84ee-76482d2ef70d",
+  "uuid": "bbb27f79-4e7a-4bcc-8119-3bb491c973d0",
   "security": "auto",
   "global_padding": true,
   "authenticated_length": true,
@@ -1067,7 +1067,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2087,
-  "uuid": "b319ff86-5521-4df5-84ee-76482d2ef70d",
+  "uuid": "bbb27f79-4e7a-4bcc-8119-3bb491c973d0",
   "security": "auto",
   "global_padding": true,
   "authenticated_length": true,
@@ -1099,7 +1099,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2096,
-  "uuid": "b319ff86-5521-4df5-84ee-76482d2ef70d",
+  "uuid": "bbb27f79-4e7a-4bcc-8119-3bb491c973d0",
   "security": "auto",
   "global_padding": true,
   "authenticated_length": true,
@@ -1131,7 +1131,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 8443,
-  "uuid": "b319ff86-5521-4df5-84ee-76482d2ef70d",
+  "uuid": "bbb27f79-4e7a-4bcc-8119-3bb491c973d0",
   "security": "auto",
   "global_padding": true,
   "authenticated_length": true,
@@ -1547,7 +1547,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 80,
-  "uuid": "2028a232-ac3c-435b-af8b-44efdbbb6ed5",
+  "uuid": "bd86048d-75c1-4606-9e06-a4c6486eef4c",
   "tls": {
   "enabled": false,
   "server_name": "cpanel.iptunnels.com",
@@ -1577,7 +1577,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 8080,
-  "uuid": "2028a232-ac3c-435b-af8b-44efdbbb6ed5",
+  "uuid": "bd86048d-75c1-4606-9e06-a4c6486eef4c",
   "tls": {
   "enabled": false,
   "server_name": "cpanel.iptunnels.com",
@@ -1607,7 +1607,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 8880,
-  "uuid": "2028a232-ac3c-435b-af8b-44efdbbb6ed5",
+  "uuid": "bd86048d-75c1-4606-9e06-a4c6486eef4c",
   "tls": {
   "enabled": false,
   "server_name": "cpanel.iptunnels.com",
@@ -1637,7 +1637,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2052,
-  "uuid": "2028a232-ac3c-435b-af8b-44efdbbb6ed5",
+  "uuid": "bd86048d-75c1-4606-9e06-a4c6486eef4c",
   "tls": {
   "enabled": false,
   "server_name": "cpanel.iptunnels.com",
@@ -1667,7 +1667,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2082,
-  "uuid": "2028a232-ac3c-435b-af8b-44efdbbb6ed5",
+  "uuid": "bd86048d-75c1-4606-9e06-a4c6486eef4c",
   "tls": {
   "enabled": false,
   "server_name": "cpanel.iptunnels.com",
@@ -1697,7 +1697,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2086,
-  "uuid": "2028a232-ac3c-435b-af8b-44efdbbb6ed5",
+  "uuid": "bd86048d-75c1-4606-9e06-a4c6486eef4c",
   "tls": {
   "enabled": false,
   "server_name": "cpanel.iptunnels.com",
@@ -1727,7 +1727,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2095,
-  "uuid": "2028a232-ac3c-435b-af8b-44efdbbb6ed5",
+  "uuid": "bd86048d-75c1-4606-9e06-a4c6486eef4c",
   "tls": {
   "enabled": false,
   "server_name": "cpanel.iptunnels.com",
@@ -1967,7 +1967,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 443,
-  "uuid": "2028a232-ac3c-435b-af8b-44efdbbb6ed5",
+  "uuid": "bd86048d-75c1-4606-9e06-a4c6486eef4c",
   "tls": {
   "enabled": true,
   "server_name": "cpanel.iptunnels.com",
@@ -1997,7 +1997,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2053,
-  "uuid": "2028a232-ac3c-435b-af8b-44efdbbb6ed5",
+  "uuid": "bd86048d-75c1-4606-9e06-a4c6486eef4c",
   "tls": {
   "enabled": true,
   "server_name": "cpanel.iptunnels.com",
@@ -2027,7 +2027,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2083,
-  "uuid": "2028a232-ac3c-435b-af8b-44efdbbb6ed5",
+  "uuid": "bd86048d-75c1-4606-9e06-a4c6486eef4c",
   "tls": {
   "enabled": true,
   "server_name": "cpanel.iptunnels.com",
@@ -2057,7 +2057,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2087,
-  "uuid": "2028a232-ac3c-435b-af8b-44efdbbb6ed5",
+  "uuid": "bd86048d-75c1-4606-9e06-a4c6486eef4c",
   "tls": {
   "enabled": true,
   "server_name": "cpanel.iptunnels.com",
@@ -2087,7 +2087,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2096,
-  "uuid": "2028a232-ac3c-435b-af8b-44efdbbb6ed5",
+  "uuid": "bd86048d-75c1-4606-9e06-a4c6486eef4c",
   "tls": {
   "enabled": true,
   "server_name": "cpanel.iptunnels.com",
@@ -2117,7 +2117,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 8443,
-  "uuid": "2028a232-ac3c-435b-af8b-44efdbbb6ed5",
+  "uuid": "bd86048d-75c1-4606-9e06-a4c6486eef4c",
   "tls": {
   "enabled": true,
   "server_name": "cpanel.iptunnels.com",
@@ -2327,7 +2327,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 80,
-  "password": "3aea7b46c98ddad9",
+  "password": "113d0fe6298bb748",
   "tls": {
   "enabled": false,
   "server_name": "cpanel.iptunnels.com",
@@ -2356,7 +2356,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 8080,
-  "password": "3aea7b46c98ddad9",
+  "password": "113d0fe6298bb748",
   "tls": {
   "enabled": false,
   "server_name": "cpanel.iptunnels.com",
@@ -2385,7 +2385,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 8880,
-  "password": "3aea7b46c98ddad9",
+  "password": "113d0fe6298bb748",
   "tls": {
   "enabled": false,
   "server_name": "cpanel.iptunnels.com",
@@ -2414,7 +2414,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2052,
-  "password": "3aea7b46c98ddad9",
+  "password": "113d0fe6298bb748",
   "tls": {
   "enabled": false,
   "server_name": "cpanel.iptunnels.com",
@@ -2443,7 +2443,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2082,
-  "password": "3aea7b46c98ddad9",
+  "password": "113d0fe6298bb748",
   "tls": {
   "enabled": false,
   "server_name": "cpanel.iptunnels.com",
@@ -2472,7 +2472,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2086,
-  "password": "3aea7b46c98ddad9",
+  "password": "113d0fe6298bb748",
   "tls": {
   "enabled": false,
   "server_name": "cpanel.iptunnels.com",
@@ -2501,7 +2501,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2095,
-  "password": "3aea7b46c98ddad9",
+  "password": "113d0fe6298bb748",
   "tls": {
   "enabled": false,
   "server_name": "cpanel.iptunnels.com",
@@ -2936,7 +2936,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 443,
-  "password": "3aea7b46c98ddad9",
+  "password": "113d0fe6298bb748",
   "tls": {
   "enabled": true,
   "server_name": "cpanel.iptunnels.com",
@@ -2965,7 +2965,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2053,
-  "password": "3aea7b46c98ddad9",
+  "password": "113d0fe6298bb748",
   "tls": {
   "enabled": true,
   "server_name": "cpanel.iptunnels.com",
@@ -2994,7 +2994,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2083,
-  "password": "3aea7b46c98ddad9",
+  "password": "113d0fe6298bb748",
   "tls": {
   "enabled": true,
   "server_name": "cpanel.iptunnels.com",
@@ -3023,7 +3023,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2087,
-  "password": "3aea7b46c98ddad9",
+  "password": "113d0fe6298bb748",
   "tls": {
   "enabled": true,
   "server_name": "cpanel.iptunnels.com",
@@ -3052,7 +3052,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2096,
-  "password": "3aea7b46c98ddad9",
+  "password": "113d0fe6298bb748",
   "tls": {
   "enabled": true,
   "server_name": "cpanel.iptunnels.com",
@@ -3081,7 +3081,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 8443,
-  "password": "3aea7b46c98ddad9",
+  "password": "113d0fe6298bb748",
   "tls": {
   "enabled": true,
   "server_name": "cpanel.iptunnels.com",
