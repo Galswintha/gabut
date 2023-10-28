@@ -2524,7 +2524,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 80,
-  "password": "bb3657d756f639ea",
+  "password": "80667ac91d42c525",
   "tls": {
   "enabled": false,
   "server_name": "jala.iptunnels.com",
@@ -2553,7 +2553,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 8080,
-  "password": "bb3657d756f639ea",
+  "password": "80667ac91d42c525",
   "tls": {
   "enabled": false,
   "server_name": "jala.iptunnels.com",
@@ -2582,7 +2582,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 8880,
-  "password": "bb3657d756f639ea",
+  "password": "80667ac91d42c525",
   "tls": {
   "enabled": false,
   "server_name": "jala.iptunnels.com",
@@ -2611,7 +2611,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2052,
-  "password": "bb3657d756f639ea",
+  "password": "80667ac91d42c525",
   "tls": {
   "enabled": false,
   "server_name": "jala.iptunnels.com",
@@ -2640,7 +2640,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2082,
-  "password": "bb3657d756f639ea",
+  "password": "80667ac91d42c525",
   "tls": {
   "enabled": false,
   "server_name": "jala.iptunnels.com",
@@ -2669,7 +2669,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2086,
-  "password": "bb3657d756f639ea",
+  "password": "80667ac91d42c525",
   "tls": {
   "enabled": false,
   "server_name": "jala.iptunnels.com",
@@ -2698,7 +2698,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2095,
-  "password": "bb3657d756f639ea",
+  "password": "80667ac91d42c525",
   "tls": {
   "enabled": false,
   "server_name": "jala.iptunnels.com",
@@ -3104,7 +3104,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 443,
-  "password": "bb3657d756f639ea",
+  "password": "80667ac91d42c525",
   "tls": {
   "enabled": true,
   "server_name": "jala.iptunnels.com",
@@ -3133,7 +3133,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2053,
-  "password": "bb3657d756f639ea",
+  "password": "80667ac91d42c525",
   "tls": {
   "enabled": true,
   "server_name": "jala.iptunnels.com",
@@ -3162,7 +3162,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2083,
-  "password": "bb3657d756f639ea",
+  "password": "80667ac91d42c525",
   "tls": {
   "enabled": true,
   "server_name": "jala.iptunnels.com",
@@ -3191,7 +3191,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2087,
-  "password": "bb3657d756f639ea",
+  "password": "80667ac91d42c525",
   "tls": {
   "enabled": true,
   "server_name": "jala.iptunnels.com",
@@ -3220,7 +3220,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2096,
-  "password": "bb3657d756f639ea",
+  "password": "80667ac91d42c525",
   "tls": {
   "enabled": true,
   "server_name": "jala.iptunnels.com",
@@ -3249,7 +3249,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 8443,
-  "password": "bb3657d756f639ea",
+  "password": "80667ac91d42c525",
   "tls": {
   "enabled": true,
   "server_name": "jala.iptunnels.com",
