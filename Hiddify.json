@@ -1,7 +1,7 @@
   { 
   "log": { 
   "disabled": false, 
-  "level": "info", 
+  "level": "fatal", 
   "timestamp": true 
   },
   "dns": { 
@@ -2321,7 +2321,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 80,
-  "password": "b512816dafe20c02",
+  "password": "ada02e5eb3376fd4",
   "tls": {
   "enabled": false,
   "server_name": "cpanel.iptunnels.com",
@@ -2350,7 +2350,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 8080,
-  "password": "b512816dafe20c02",
+  "password": "ada02e5eb3376fd4",
   "tls": {
   "enabled": false,
   "server_name": "cpanel.iptunnels.com",
@@ -2379,7 +2379,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 8880,
-  "password": "b512816dafe20c02",
+  "password": "ada02e5eb3376fd4",
   "tls": {
   "enabled": false,
   "server_name": "cpanel.iptunnels.com",
@@ -2408,7 +2408,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2052,
-  "password": "b512816dafe20c02",
+  "password": "ada02e5eb3376fd4",
   "tls": {
   "enabled": false,
   "server_name": "cpanel.iptunnels.com",
@@ -2437,7 +2437,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2082,
-  "password": "b512816dafe20c02",
+  "password": "ada02e5eb3376fd4",
   "tls": {
   "enabled": false,
   "server_name": "cpanel.iptunnels.com",
@@ -2466,7 +2466,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2086,
-  "password": "b512816dafe20c02",
+  "password": "ada02e5eb3376fd4",
   "tls": {
   "enabled": false,
   "server_name": "cpanel.iptunnels.com",
@@ -2495,7 +2495,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2095,
-  "password": "b512816dafe20c02",
+  "password": "ada02e5eb3376fd4",
   "tls": {
   "enabled": false,
   "server_name": "cpanel.iptunnels.com",
@@ -2930,7 +2930,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 443,
-  "password": "b512816dafe20c02",
+  "password": "ada02e5eb3376fd4",
   "tls": {
   "enabled": true,
   "server_name": "cpanel.iptunnels.com",
@@ -2959,7 +2959,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2053,
-  "password": "b512816dafe20c02",
+  "password": "ada02e5eb3376fd4",
   "tls": {
   "enabled": true,
   "server_name": "cpanel.iptunnels.com",
@@ -2988,7 +2988,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2083,
-  "password": "b512816dafe20c02",
+  "password": "ada02e5eb3376fd4",
   "tls": {
   "enabled": true,
   "server_name": "cpanel.iptunnels.com",
@@ -3017,7 +3017,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2087,
-  "password": "b512816dafe20c02",
+  "password": "ada02e5eb3376fd4",
   "tls": {
   "enabled": true,
   "server_name": "cpanel.iptunnels.com",
@@ -3046,7 +3046,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 2096,
-  "password": "b512816dafe20c02",
+  "password": "ada02e5eb3376fd4",
   "tls": {
   "enabled": true,
   "server_name": "cpanel.iptunnels.com",
@@ -3075,7 +3075,7 @@
   "udp_fragment": true,
   "server": "brand.zoom.us",
   "server_port": 8443,
-  "password": "b512816dafe20c02",
+  "password": "ada02e5eb3376fd4",
   "tls": {
   "enabled": true,
   "server_name": "cpanel.iptunnels.com",
