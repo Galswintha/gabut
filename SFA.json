@@ -1,7 +1,7 @@
   { 
   "log": { 
   "disabled": false, 
-  "level": "panic", 
+  "level": "info", 
   "timestamp": true 
   },
   "dns": { 
@@ -213,9 +213,9 @@
   "relay to vmess 🇹🇼🇹🇼🇹🇼 port:2096",
   "relay to vmess 🇹🇼🇹🇼🇹🇼 port:8443"
   ], 
-  "url": "https://www.gstatic.com/generate_204", 
+  "url": "http://cp.cloudflare.com/", 
   "interval": "66s", 
-  "tolerance": 5,
+  "tolerance": 33,
   "interrupt_exist_connections": false
   },
   {
@@ -249,9 +249,9 @@
   "relay to vless 🇨🇳🇨🇳🇨🇳 port:2096",
   "relay to vless 🇨🇳🇨🇳🇨🇳 port:8443"
   ], 
-  "url": "https://www.gstatic.com/generate_204", 
+  "url": "http://cp.cloudflare.com/", 
   "interval": "66s",  
-  "tolerance": 5,
+  "tolerance": 33,
   "interrupt_exist_connections": false
   },
   {
@@ -298,9 +298,9 @@
   "relay to trojan 🇹🇼🇹🇼🇹🇼 port:2096",
   "relay to trojan 🇹🇼🇹🇼🇹🇼 port:8443"
   ], 
-  "url": "https://www.gstatic.com/generate_204", 
+  "url": "http://cp.cloudflare.com/", 
   "interval": "66s",  
-  "tolerance": 5,
+  "tolerance": 33,
   "interrupt_exist_connections": false
   },
   {
@@ -326,9 +326,9 @@
   "relay to grpc 🇯🇵🇯🇵🇯🇵 port:2096",
   "relay to grpc 🇯🇵🇯🇵🇯🇵 port:8443"
   ], 
-  "url": "https://www.gstatic.com/generate_204", 
+  "url": "http://cp.cloudflare.com/", 
   "interval": "66s",  
-  "tolerance": 5,
+  "tolerance": 33,
   "interrupt_exist_connections": false
   },
   { 
