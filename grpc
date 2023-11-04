@@ -1,0 +1,1040 @@
+{ 
+"log": { 
+                "disabled": false, 
+                "level": "info", 
+                "timestamp": true 
+                },
+"dns": { 
+                "servers": [ 
+                { 
+                "tag": "system dns",
+                "address": "local",
+                "strategy": "",
+                "detour": ""
+                },
+                { 
+                "tag": "cloudflare tcp",
+                "address": "tcp://1.0.0.1",
+                "strategy": "",
+                "detour": ""
+                },
+                { 
+                "tag": "cloudflare https",
+                "address": "https://1.1.1.1/dns-query",
+                "strategy": "",
+                "detour": ""
+                },
+                { 
+                "tag": "cloudflare dns ipv6",
+                "address": "2606:4700:4700::1111",
+                "strategy": "",
+                "detour": ""
+                },
+                { 
+                "tag": "cloudflare doh",
+                "address": "https://cloudflare-dns.com/dns-query",
+                "address_resolver": "cloudflare tcp",
+                "strategy": "",
+                "detour": ""
+                },
+                { 
+                "tag": "cloudflare security",
+                "address": "https://security.cloudflare-dns.com/dns-query",
+                "address_resolver": "cloudflare tcp",
+                "strategy": "",
+                "detour": ""
+                }, 
+                { 
+                "tag": "google udp",
+                "address": "udp://8.8.4.4",
+                "strategy": "",
+                "detour": ""
+                },
+                { 
+                "tag": "google dns",
+                "address": "8.8.8.8",
+                "strategy": "",
+                "detour": ""
+                },
+                { 
+                "tag": "google http3",
+                "address": "h3://8.8.8.8/dns-query",
+                "strategy": "",
+                "detour": ""
+                },
+                { 
+                "tag": "google tls",
+                "address": "tls://dns.google",
+                "address_resolver": "cloudflare tcp",
+                "strategy": "",
+                "detour": ""
+                },
+                { 
+                "tag": "google dns ipv6",
+                "address": "2001:4860:4860::8888",
+                "strategy": "",
+                "detour": ""
+                },
+                { 
+                "tag": "google doh",
+                "address": "https://dns.google/dns-query",
+                "address_resolver": "cloudflare tcp",
+                "strategy": "",
+                "detour": ""
+                },
+                { 
+                "tag": "quad9 dns",
+                "address": "9.9.9.9",
+                "strategy": "",
+                "detour": ""
+                },
+                { 
+                "tag": "quad9 dns ipv6",
+                "address": "2620:fe::fe",
+                "strategy": "",
+                "detour": ""
+                },
+                { 
+                "tag": "quad9 doh",
+                "address": "https://dns.quad9.net/dns-query",
+                "address_resolver": "cloudflare tcp",
+                "strategy": "",
+                "detour": ""
+                },
+                { 
+                "tag": "adguard quic",
+                "address": "quic://dns.adguard.com",
+                "address_resolver": "cloudflare tcp",
+                "strategy": "",
+                "detour": ""
+                },
+                { 
+                "tag": "rcode dns",
+                "address": "rcode://success"
+                },
+                { 
+                "tag": "rcode blocked",
+                "address": "rcode://refused"
+}
+],
+"rules": [
+                { 
+                "inbound": [
+                "mixed-in"
+                ],
+                "ip_version": 4,
+                "ip_version": 6,
+                "query_type": [
+                "A",
+                "HTTPS",
+                32768
+                ],
+                "network": [
+                "any"
+                ],
+                "protocol": [
+                "any"
+                ],
+                "port": [
+                43,
+                53,
+                80,
+                443,
+                3478,
+                8080,
+                9440,
+                853,
+                5353,
+                5355,
+                8443,
+                554,
+                8000,
+                8880,
+                2052,
+                2082,
+                2086,
+                2095,
+                2053,
+                2083,
+                2087,
+                2096,
+                8081
+                ],
+                "source_ip_cidr": [
+                "10.0.0.0/24",
+                "192.168.0.1"
+                ],
+                "source_port": [
+                12345
+                ],
+                "source_port_range": [
+                "1000:2000",
+                ":3000",
+                "4000:"
+                ],
+                "port_range": [
+                "1000:2000",
+                ":3000",
+                "4000:"
+                ],
+                "clash_mode": "direct",
+                "invert": false,
+                "outbound": [
+                "direct",
+                "any",
+                "all",
+                "auto"
+                ],
+                "server": [
+                "all",
+                "auto",
+                "any"
+                ],
+                "disable_cache": false,
+                "rewrite_ttl": [
+                66,
+                77,
+                88,
+                99,
+                111,
+                222,
+                333,
+                444,
+                555,
+                666,
+                777,
+                888,
+                999
+                ],
+                "outbound": "system dns",
+                "server": "system dns",
+                "rewrite_ttl": 666
+                },
+                { 
+                "outbound": "cloudflare tcp",
+                "server": "cloudflare tcp",
+                "rewrite_ttl": 666
+                },
+                { 
+                "outbound": "cloudflare https",
+                "server": "cloudflare https",
+                "rewrite_ttl": 666
+                },
+                { 
+                "outbound": "cloudflare dns ipv6",
+                "server": "cloudflare dns ipv6",
+                "rewrite_ttl": 666
+                },
+                { 
+                "outbound": "cloudflare doh",
+                "server": "cloudflare doh",
+                "rewrite_ttl": 666
+                },
+                { 
+                "outbound": "cloudflare security",
+                "server": "cloudflare security",
+                "rewrite_ttl": 666
+                },
+                { 
+                "outbound": "google udp",
+                "server": "google udp",
+                "rewrite_ttl": 666
+                },
+                { 
+                "outbound": "google dns",
+                "server": "google dns",
+                "rewrite_ttl": 666
+                },
+                { 
+                "outbound": "google http3",
+                "server": "google http3",
+                "rewrite_ttl": 666
+                },
+                { 
+                "outbound": "google tls",
+                "server": "google tls",
+                "rewrite_ttl": 666
+                },
+                { 
+                "outbound": "google dns ipv6",
+                "server": "google dns ipv6",
+                "rewrite_ttl": 666
+                },
+                { 
+                "outbound": "google doh",
+                "server": "google doh",
+                "rewrite_ttl": 666
+                },
+                { 
+                "outbound": "quad9 dns",
+                "server": "quad9 dns",
+                "rewrite_ttl": 666
+                },
+                { 
+                "outbound": "quad9 dns ipv6",
+                "server": "quad9 dns ipv6",
+                "rewrite_ttl": 666
+                },
+                { 
+                "outbound": "quad9 doh",
+                "server": "quad9 doh",
+                "rewrite_ttl": 666
+                },
+                { 
+                "outbound": "adguard quic",
+                "server": "adguard quic",
+                "rewrite_ttl": 666
+                },
+                { 
+                "outbound": "rcode dns",
+                "server": "rcode dns",
+                "rewrite_ttl": 666
+                },
+                { 
+                "outbound": "rcode blocked",
+                "server": "rcode blocked",
+                "rewrite_ttl": 666
+                }
+                ], 
+                "reverse_mapping": true,
+                "strategy": "",
+                "independent_cache": false,
+                "disable_cache": false
+                }, 
+                "inbounds": [
+                { 
+                "type": "mixed",
+                "tag": "mixed-in",
+                "listen": "0.0.0.0",
+                "listen_port": 2087,
+                "sniff": true
+                },
+                { 
+                "type": "tun",
+                "tag": "tun-in",
+                "interface_name": "tun0",
+                "inet4_address": "172.19.0.1/30",
+                "inet6_address": "fdfe:dcba:9876::1/126",
+                "mtu": 9000,
+                "udp_timeout": 300,
+                "auto_route": true,
+                "strict_route": true,
+                "stack": "mixed",
+                "endpoint_independent_nat": true,
+                "sniff": true
+                }
+                ], 
+                "outbounds": [
+                { 
+                "type": "urltest",
+                "tag": "grpc",
+                "outbounds": [
+                "relay to grpc 🇸🇬🇸🇬🇸🇬 port:443",
+                "relay to grpc 🇸🇬🇸🇬🇸🇬 port:2053",
+                "relay to grpc 🇸🇬🇸🇬🇸🇬 port:2083",
+                "relay to grpc 🇸🇬🇸🇬🇸🇬 port:2087",
+                "relay to grpc 🇸🇬🇸🇬🇸🇬 port:2096",
+                "relay to grpc 🇸🇬🇸🇬🇸🇬 port:8443",
+                "relay to grpc 🇰🇷🇰🇷🇰🇷 port:443",
+                "relay to grpc 🇰🇷🇰🇷🇰🇷 port:2053",
+                "relay to grpc 🇰🇷🇰🇷🇰🇷 port:2083",
+                "relay to grpc 🇰🇷🇰🇷🇰🇷 port:2087",
+                "relay to grpc 🇰🇷🇰🇷🇰🇷 port:2096",
+                "relay to grpc 🇰🇷🇰🇷🇰🇷 port:8443",
+                "relay to grpc 🇯🇵🇯🇵🇯🇵 port:443",
+                "relay to grpc 🇯🇵🇯🇵🇯🇵 port:2053",
+                "relay to grpc 🇯🇵🇯🇵🇯🇵 port:2083",
+                "relay to grpc 🇯🇵🇯🇵🇯🇵 port:2087",
+                "relay to grpc 🇯🇵🇯🇵🇯🇵 port:2096",
+                "relay to grpc 🇯🇵🇯🇵🇯🇵 port:8443"
+                ], 
+                "url": "http://cp.cloudflare.com/", 
+                "interval": "66s",  
+                "tolerance": 33,
+                "interrupt_exist_connections": false
+                },
+                { 
+                "type": "vmess",
+                "tag": "relay to grpc 🇸🇬🇸🇬🇸🇬 port:443", 
+                "domain_strategy": "",
+                "server": "brand.zoom.us",
+                "server_port": 443,
+                "uuid": "e0e4f0ca-d830-48ae-9723-25218ac2f53d",
+                "security": "auto",
+                "alter_id": 0,
+                "global_padding": false,
+                "authenticated_length": true,
+                "tls": {
+                "enabled": true,
+                "server_name": "jala.iptunnels.com",
+                "insecure": true,
+                "utls": {
+                "enabled": true,
+                "fingerprint": ""
+                }
+                },
+                "packet_encoding": "",
+                "transport": {
+                "type": "grpc",
+                "service_name": "buy-vmess-grpc-pm-telegram-at-synricha",
+                "idle_timeout": "60s",
+                "ping_timeout": "60s",
+                "permit_without_stream": false
+                },
+                "multiplex": {
+                "enabled": false,
+                "protocol": "smux",
+                "max_streams": 32
+                }
+                },
+                { 
+                "type": "vmess",
+                "tag": "relay to grpc 🇸🇬🇸🇬🇸🇬 port:2053", 
+                "domain_strategy": "",
+                "server": "brand.zoom.us",
+                "server_port": 2053,
+                "uuid": "e0e4f0ca-d830-48ae-9723-25218ac2f53d",
+                "security": "auto",
+                "alter_id": 0,
+                "global_padding": false,
+                "authenticated_length": true,
+                "tls": {
+                "enabled": true,
+                "server_name": "jala.iptunnels.com",
+                "insecure": true,
+                "utls": {
+                "enabled": true,
+                "fingerprint": ""
+                }
+                },
+                "packet_encoding": "",
+                "transport": {
+                "type": "grpc",
+                "service_name": "buy-vmess-grpc-pm-telegram-at-synricha",
+                "idle_timeout": "60s",
+                "ping_timeout": "60s",
+                "permit_without_stream": false
+                },
+                "multiplex": {
+                "enabled": false,
+                "protocol": "smux",
+                "max_streams": 32
+                }
+                },
+                { 
+                "type": "vmess",
+                "tag": "relay to grpc 🇸🇬🇸🇬🇸🇬 port:2083", 
+                "domain_strategy": "",
+                "server": "brand.zoom.us",
+                "server_port": 2083,
+                "uuid": "e0e4f0ca-d830-48ae-9723-25218ac2f53d",
+                "security": "auto",
+                "alter_id": 0,
+                "global_padding": false,
+                "authenticated_length": true,
+                "tls": {
+                "enabled": true,
+                "server_name": "jala.iptunnels.com",
+                "insecure": true,
+                "utls": {
+                "enabled": true,
+                "fingerprint": ""
+                }
+                },
+                "packet_encoding": "",
+                "transport": {
+                "type": "grpc",
+                "service_name": "buy-vmess-grpc-pm-telegram-at-synricha",
+                "idle_timeout": "60s",
+                "ping_timeout": "60s",
+                "permit_without_stream": false
+                },
+                "multiplex": {
+                "enabled": false,
+                "protocol": "smux",
+                "max_streams": 32
+                }
+                },
+                { 
+                "type": "vmess",
+                "tag": "relay to grpc 🇸🇬🇸🇬🇸🇬 port:2087", 
+                "domain_strategy": "",
+                "server": "brand.zoom.us",
+                "server_port": 2087,
+                "uuid": "e0e4f0ca-d830-48ae-9723-25218ac2f53d",
+                "security": "auto",
+                "alter_id": 0,
+                "global_padding": false,
+                "authenticated_length": true,
+                "tls": {
+                "enabled": true,
+                "server_name": "jala.iptunnels.com",
+                "insecure": true,
+                "utls": {
+                "enabled": true,
+                "fingerprint": ""
+                }
+                },
+                "packet_encoding": "",
+                "transport": {
+                "type": "grpc",
+                "service_name": "buy-vmess-grpc-pm-telegram-at-synricha",
+                "idle_timeout": "60s",
+                "ping_timeout": "60s",
+                "permit_without_stream": false
+                },
+                "multiplex": {
+                "enabled": false,
+                "protocol": "smux",
+                "max_streams": 32
+                }
+                },
+                { 
+                "type": "vmess",
+                "tag": "relay to grpc 🇸🇬🇸🇬🇸🇬 port:2096", 
+                "domain_strategy": "",
+                "server": "brand.zoom.us",
+                "server_port": 2096,
+                "uuid": "e0e4f0ca-d830-48ae-9723-25218ac2f53d",
+                "security": "auto",
+                "alter_id": 0,
+                "global_padding": false,
+                "authenticated_length": true,
+                "tls": {
+                "enabled": true,
+                "server_name": "jala.iptunnels.com",
+                "insecure": true,
+                "utls": {
+                "enabled": true,
+                "fingerprint": ""
+                }
+                },
+                "packet_encoding": "",
+                "transport": {
+                "type": "grpc",
+                "service_name": "buy-vmess-grpc-pm-telegram-at-synricha",
+                "idle_timeout": "60s",
+                "ping_timeout": "60s",
+                "permit_without_stream": false
+                },
+                "multiplex": {
+                "enabled": false,
+                "protocol": "smux",
+                "max_streams": 32
+                }
+                },
+                { 
+                "type": "vmess",
+                "tag": "relay to grpc 🇸🇬🇸🇬🇸🇬 port:8443", 
+                "domain_strategy": "",
+                "server": "brand.zoom.us",
+                "server_port": 8443,
+                "uuid": "e0e4f0ca-d830-48ae-9723-25218ac2f53d",
+                "security": "auto",
+                "alter_id": 0,
+                "global_padding": false,
+                "authenticated_length": true,
+                "tls": {
+                "enabled": true,
+                "server_name": "jala.iptunnels.com",
+                "insecure": true,
+                "utls": {
+                "enabled": true,
+                "fingerprint": ""
+                }
+                },
+                "packet_encoding": "",
+                "transport": {
+                "type": "grpc",
+                "service_name": "buy-vmess-grpc-pm-telegram-at-synricha",
+                "idle_timeout": "60s",
+                "ping_timeout": "60s",
+                "permit_without_stream": false
+                },
+                "multiplex": {
+                "enabled": false,
+                "protocol": "smux",
+                "max_streams": 32
+                }
+                },
+                { 
+                "type": "vless",
+                "tag": "relay to grpc 🇰🇷🇰🇷🇰🇷 port:443", 
+                "domain_strategy": "",
+                "server": "brand.zoom.us",
+                "server_port": 443,
+                "uuid": "b1d1205c-76d8-46cf-9b8e-6c58e28228f3",
+                "flow": "",
+                "tls": {
+                "enabled": true,
+                "server_name": "jala.iptunnels.com",
+                "insecure": true,
+                "utls": {
+                "enabled": true,
+                "fingerprint": ""
+                }
+                },
+                "multiplex": {
+                "enabled": false,
+                "protocol": "smux",
+                "max_streams": 32
+                },
+                "packet_encoding": "xudp",
+                "transport": {
+                "type": "grpc",
+                "service_name": "buy-vless-grpc-pm-telegram-at-synricha",
+                "idle_timeout": "60s",
+                "ping_timeout": "60s",
+                "permit_without_stream": false
+                }
+                },
+                { 
+                "type": "vless",
+                "tag": "relay to grpc 🇰🇷🇰🇷🇰🇷 port:2053", 
+                "domain_strategy": "",
+                "server": "brand.zoom.us",
+                "server_port": 2053,
+                "uuid": "b1d1205c-76d8-46cf-9b8e-6c58e28228f3",
+                "flow": "",
+                "tls": {
+                "enabled": true,
+                "server_name": "jala.iptunnels.com",
+                "insecure": true,
+                "utls": {
+                "enabled": true,
+                "fingerprint": ""
+                }
+                },
+                "multiplex": {
+                "enabled": false,
+                "protocol": "smux",
+                "max_streams": 32
+                },
+                "packet_encoding": "xudp",
+                "transport": {
+                "type": "grpc",
+                "service_name": "buy-vless-grpc-pm-telegram-at-synricha",
+                "idle_timeout": "60s",
+                "ping_timeout": "60s",
+                "permit_without_stream": false
+                }
+                },
+                { 
+                "type": "vless",
+                "tag": "relay to grpc 🇰🇷🇰🇷🇰🇷 port:2083", 
+                "domain_strategy": "",
+                "server": "brand.zoom.us",
+                "server_port": 2083,
+                "uuid": "b1d1205c-76d8-46cf-9b8e-6c58e28228f3",
+                "flow": "",
+                "tls": {
+                "enabled": true,
+                "server_name": "jala.iptunnels.com",
+                "insecure": true,
+                "utls": {
+                "enabled": true,
+                "fingerprint": ""
+                }
+                },
+                "multiplex": {
+                "enabled": false,
+                "protocol": "smux",
+                "max_streams": 32
+                },
+                "packet_encoding": "xudp",
+                "transport": {
+                "type": "grpc",
+                "service_name": "buy-vless-grpc-pm-telegram-at-synricha",
+                "idle_timeout": "60s",
+                "ping_timeout": "60s",
+                "permit_without_stream": false
+                }
+                },
+                { 
+                "type": "vless",
+                "tag": "relay to grpc 🇰🇷🇰🇷🇰🇷 port:2087", 
+                "domain_strategy": "",
+                "server": "brand.zoom.us",
+                "server_port": 2087,
+                "uuid": "b1d1205c-76d8-46cf-9b8e-6c58e28228f3",
+                "flow": "",
+                "tls": {
+                "enabled": true,
+                "server_name": "jala.iptunnels.com",
+                "insecure": true,
+                "utls": {
+                "enabled": true,
+                "fingerprint": ""
+                }
+                },
+                "multiplex": {
+                "enabled": false,
+                "protocol": "smux",
+                "max_streams": 32
+                },
+                "packet_encoding": "xudp",
+                "transport": {
+                "type": "grpc",
+                "service_name": "buy-vless-grpc-pm-telegram-at-synricha",
+                "idle_timeout": "60s",
+                "ping_timeout": "60s",
+                "permit_without_stream": false
+                }
+                },
+                { 
+                "type": "vless",
+                "tag": "relay to grpc 🇰🇷🇰🇷🇰🇷 port:2096", 
+                "domain_strategy": "",
+                "server": "brand.zoom.us",
+                "server_port": 2096,
+                "uuid": "b1d1205c-76d8-46cf-9b8e-6c58e28228f3",
+                "flow": "",
+                "tls": {
+                "enabled": true,
+                "server_name": "jala.iptunnels.com",
+                "insecure": true,
+                "utls": {
+                "enabled": true,
+                "fingerprint": ""
+                }
+                },
+                "multiplex": {
+                "enabled": false,
+                "protocol": "smux",
+                "max_streams": 32
+                },
+                "packet_encoding": "xudp",
+                "transport": {
+                "type": "grpc",
+                "service_name": "buy-vless-grpc-pm-telegram-at-synricha",
+                "idle_timeout": "60s",
+                "ping_timeout": "60s",
+                "permit_without_stream": false
+                }
+                },
+                { 
+                "type": "vless",
+                "tag": "relay to grpc 🇰🇷🇰🇷🇰🇷 port:8443", 
+                "domain_strategy": "",
+                "server": "brand.zoom.us",
+                "server_port": 8443,
+                "uuid": "b1d1205c-76d8-46cf-9b8e-6c58e28228f3",
+                "flow": "",
+                "tls": {
+                "enabled": true,
+                "server_name": "jala.iptunnels.com",
+                "insecure": true,
+                "utls": {
+                "enabled": true,
+                "fingerprint": ""
+                }
+                },
+                "multiplex": {
+                "enabled": false,
+                "protocol": "smux",
+                "max_streams": 32
+                },
+                "packet_encoding": "xudp",
+                "transport": {
+                "type": "grpc",
+                "service_name": "buy-vless-grpc-pm-telegram-at-synricha",
+                "idle_timeout": "60s",
+                "ping_timeout": "60s",
+                "permit_without_stream": false
+                }
+                },
+                { 
+                "type": "trojan",
+                "tag": "relay to grpc 🇯🇵🇯🇵🇯🇵 port:443", 
+                "domain_strategy": "",
+                "server": "brand.zoom.us",
+                "server_port": 443,
+                "password": "cbb365d22c053656",
+                "tls": {
+                "enabled": true,
+                "server_name": "jala.iptunnels.com",
+                "insecure": true,
+                "utls": {
+                "enabled": true,
+                "fingerprint": ""
+                }
+                },
+                "transport": {
+                "type": "grpc",
+                "service_name": "buy-trojan-grpc-pm-telegram-at-synricha",
+                "idle_timeout": "60s",
+                "ping_timeout": "60s",
+                "permit_without_stream": false
+                },
+                "multiplex": {
+                "enabled": false,
+                "protocol": "smux",
+                "max_streams": 32
+                }
+                },
+                { 
+                "type": "trojan",
+                "tag": "relay to grpc 🇯🇵🇯🇵🇯🇵 port:2053", 
+                "domain_strategy": "",
+                "server": "brand.zoom.us",
+                "server_port": 2053,
+                "password": "cbb365d22c053656",
+                "tls": {
+                "enabled": true,
+                "server_name": "jala.iptunnels.com",
+                "insecure": true,
+                "utls": {
+                "enabled": true,
+                "fingerprint": ""
+                }
+                },
+                "transport": {
+                "type": "grpc",
+                "service_name": "buy-trojan-grpc-pm-telegram-at-synricha",
+                "idle_timeout": "60s",
+                "ping_timeout": "60s",
+                "permit_without_stream": false
+                },
+                "multiplex": {
+                "enabled": false,
+                "protocol": "smux",
+                "max_streams": 32
+                }
+                },
+                { 
+                "type": "trojan",
+                "tag": "relay to grpc 🇯🇵🇯🇵🇯🇵 port:2083", 
+                "domain_strategy": "",
+                "server": "brand.zoom.us",
+                "server_port": 2083,
+                "password": "cbb365d22c053656",
+                "tls": {
+                "enabled": true,
+                "server_name": "jala.iptunnels.com",
+                "insecure": true,
+                "utls": {
+                "enabled": true,
+                "fingerprint": ""
+                }
+                },
+                "transport": {
+                "type": "grpc",
+                "service_name": "buy-trojan-grpc-pm-telegram-at-synricha",
+                "idle_timeout": "60s",
+                "ping_timeout": "60s",
+                "permit_without_stream": false
+                },
+                "multiplex": {
+                "enabled": false,
+                "protocol": "smux",
+                "max_streams": 32
+                }
+                },
+                { 
+                "type": "trojan",
+                "tag": "relay to grpc 🇯🇵🇯🇵🇯🇵 port:2087", 
+                "domain_strategy": "",
+                "server": "brand.zoom.us",
+                "server_port": 2087,
+                "password": "cbb365d22c053656",
+                "tls": {
+                "enabled": true,
+                "server_name": "jala.iptunnels.com",
+                "insecure": true,
+                "utls": {
+                "enabled": true,
+                "fingerprint": ""
+                }
+                },
+                "transport": {
+                "type": "grpc",
+                "service_name": "buy-trojan-grpc-pm-telegram-at-synricha",
+                "idle_timeout": "60s",
+                "ping_timeout": "60s",
+                "permit_without_stream": false
+                },
+                "multiplex": {
+                "enabled": false,
+                "protocol": "smux",
+                "max_streams": 32
+                }
+                },
+                { 
+                "type": "trojan",
+                "tag": "relay to grpc 🇯🇵🇯🇵🇯🇵 port:2096", 
+                "domain_strategy": "",
+                "server": "brand.zoom.us",
+                "server_port": 2096,
+                "password": "cbb365d22c053656",
+                "tls": {
+                "enabled": true,
+                "server_name": "jala.iptunnels.com",
+                "insecure": true,
+                "utls": {
+                "enabled": true,
+                "fingerprint": ""
+                }
+                },
+                "transport": {
+                "type": "grpc",
+                "service_name": "buy-trojan-grpc-pm-telegram-at-synricha",
+                "idle_timeout": "60s",
+                "ping_timeout": "60s",
+                "permit_without_stream": false
+                },
+                "multiplex": {
+                "enabled": false,
+                "protocol": "smux",
+                "max_streams": 32
+                }
+                },
+                { 
+                "type": "trojan",
+                "tag": "relay to grpc 🇯🇵🇯🇵🇯🇵 port:8443", 
+                "domain_strategy": "",
+                "server": "brand.zoom.us",
+                "server_port": 8443,
+                "password": "cbb365d22c053656",
+                "tls": {
+                "enabled": true,
+                "server_name": "jala.iptunnels.com",
+                "insecure": true,
+                "utls": {
+                "enabled": true,
+                "fingerprint": ""
+                }
+                },
+                "transport": {
+                "type": "grpc",
+                "service_name": "buy-trojan-grpc-pm-telegram-at-synricha",
+                "idle_timeout": "60s",
+                "ping_timeout": "60s",
+                "permit_without_stream": false
+                },
+                "multiplex": {
+                "enabled": false,
+                "protocol": "smux",
+                "max_streams": 32
+                }
+                },
+                { 
+                "type": "direct",
+                "tag": "internal"
+                },
+                { 
+                "type": "direct",
+                "tag": "system"
+                },
+                { 
+                "type": "direct",
+                "tag": "local"
+                },
+                { 
+                "type": "direct",
+                "tag": "all"
+                },
+                { 
+                "type": "direct",
+                "tag": "any"
+                },
+                { 
+                "type": "dns",
+                "tag": "auto"
+}
+],
+"route": {
+                "rules": [
+                { 
+                "inbound": [
+                "mixed-in"
+                ],
+                "ip_version": 4,
+                "ip_version": 6,
+                "network": [
+                "any"
+                ],
+                "protocol": [
+                "any"
+                ],
+                "port": [
+                43,
+                53,
+                80,
+                443,
+                3478,
+                8080,
+                9440,
+                853,
+                5353,
+                5355,
+                8443,
+                554,
+                8000,
+                8880,
+                2052,
+                2082,
+                2086,
+                2095,
+                2053,
+                2083,
+                2087,
+                2096,
+                8081
+                ],
+                "source_ip_cidr": [
+                "10.0.0.0/24",
+                "192.168.0.1"
+                ],
+                "ip_cidr": [
+                "10.0.0.0/24",
+                "192.168.0.1"
+                ],
+                "source_port": [
+                       12345
+                ],
+                "source_port_range": [
+                "1000:2000",
+                ":3000",
+                "4000:"
+                ],
+                "port_range": [
+                "1000:2000",
+                ":3000",
+                "4000:"
+                ],
+                "network": "any",
+                "outbound": "any"
+                },
+                { 
+                "port": [
+                43,
+                53,
+                80,
+                3478,
+                8080,
+                9440,
+                853,
+                5353,
+                5355,
+                8443,
+                554,
+                8000,
+                8880,
+                2052,
+                2082,
+                2086,
+                2095,
+                2053,
+                2083,
+                2087,
+                2096,
+                8081
+                ],
+                "outbound": "any"
+}
+],                
+                "final": "",
+                "auto_detect_interface": true,
+                "override_android_vpn": true
+                }
+                }
