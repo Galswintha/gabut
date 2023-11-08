@@ -3694,7 +3694,7 @@
           "domain_strategy": "",
           "server": "brand.zoom.us",
           "server_port": 443,
-          "uuid": "b1d1205c-76d8-46cf-9b8e-6c58e28228f3",
+          "uuid": "e317e76b-4e11-4146-a4c5-7eeb2e04c167",
           "flow": "",
           "tls": {
           "enabled": true,
@@ -3725,7 +3725,7 @@
           "domain_strategy": "",
           "server": "brand.zoom.us",
           "server_port": 2053,
-          "uuid": "b1d1205c-76d8-46cf-9b8e-6c58e28228f3",
+          "uuid": "e317e76b-4e11-4146-a4c5-7eeb2e04c167",
           "flow": "",
           "tls": {
           "enabled": true,
@@ -3756,7 +3756,7 @@
           "domain_strategy": "",
           "server": "brand.zoom.us",
           "server_port": 2083,
-          "uuid": "b1d1205c-76d8-46cf-9b8e-6c58e28228f3",
+          "uuid": "e317e76b-4e11-4146-a4c5-7eeb2e04c167",
           "flow": "",
           "tls": {
           "enabled": true,
@@ -3787,7 +3787,7 @@
           "domain_strategy": "",
           "server": "brand.zoom.us",
           "server_port": 2087,
-          "uuid": "b1d1205c-76d8-46cf-9b8e-6c58e28228f3",
+          "uuid": "e317e76b-4e11-4146-a4c5-7eeb2e04c167",
           "flow": "",
           "tls": {
           "enabled": true,
@@ -3818,7 +3818,7 @@
           "domain_strategy": "",
           "server": "brand.zoom.us",
           "server_port": 2096,
-          "uuid": "b1d1205c-76d8-46cf-9b8e-6c58e28228f3",
+          "uuid": "e317e76b-4e11-4146-a4c5-7eeb2e04c167",
           "flow": "",
           "tls": {
           "enabled": true,
@@ -3849,7 +3849,7 @@
           "domain_strategy": "",
           "server": "brand.zoom.us",
           "server_port": 8443,
-          "uuid": "b1d1205c-76d8-46cf-9b8e-6c58e28228f3",
+          "uuid": "e317e76b-4e11-4146-a4c5-7eeb2e04c167",
           "flow": "",
           "tls": {
           "enabled": true,
