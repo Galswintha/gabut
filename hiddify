@@ -1,7 +1,7 @@
          {
 "LOG": { 
           "disabled": false, 
-          "level": "error", 
+          "level": "fatal", 
           "timestamp": true
           },
 
@@ -110,7 +110,7 @@
           ""
           ],
           "source_geoip": [
-           "private"
+           ""
           ],
           "server": [
           "cloudflare",
@@ -128,7 +128,7 @@
           "cloudflare security",
           "https://security.cloudflare-dns.com/dns-query"
           ],
-          "disable_cache": true,
+          "disable_cache": false,
           "rewrite_ttl": 666,
           "outbound": "dns",
           "server": "all",
@@ -137,7 +137,7 @@
           ],
           "reverse_mapping": true,
           "independent_cache": false,
-          "disable_cache": true,
+          "disable_cache": false,
           "strategy": "",
           "rules": []
           },
@@ -152,11 +152,11 @@
           "interface_name": "tun0",
           "inet4_address": "172.19.0.1/30",
           "inet6_address": "fdfe:dcba:9876::1/126",
-          "mtu": 9000,
+          "mtu": 1500,
           "udp_timeout": 300,
           "auto_route": true,
           "strict_route": true,
-          "stack": "mixed",
+          "stack": "gvisor",
           "endpoint_independent_nat": true,
           "sniff": true
           }
@@ -209,7 +209,7 @@
           ], 
           "url": "http://cp.cloudflare.com/", 
           "interval": "66s", 
-          "tolerance": 33,
+          "tolerance": 5,
           "interrupt_exist_connections": false
           },
           {
@@ -245,7 +245,7 @@
           ], 
           "url": "http://cp.cloudflare.com/", 
           "interval": "66s",  
-          "tolerance": 33,
+          "tolerance": 5,
           "interrupt_exist_connections": false
           },
           {
@@ -294,7 +294,7 @@
           ], 
           "url": "http://cp.cloudflare.com/", 
           "interval": "66s",  
-          "tolerance": 33,
+          "tolerance": 5,
           "interrupt_exist_connections": false
           },
           {
@@ -322,7 +322,7 @@
           ], 
           "url": "http://cp.cloudflare.com/", 
           "interval": "66s",  
-          "tolerance": 33,
+          "tolerance": 5,
           "interrupt_exist_connections": false
           },
           { 
@@ -559,7 +559,7 @@
           "udp_fragment": true,
           "server": "brand.zoom.us",
           "server_port": 80,
-          "uuid": "b884ea79-3e84-4916-8bf9-8bc7df45da2f",
+          "uuid": "00436b0a-7716-4a57-839a-fc6cfe9b156a",
           "security": "auto",
           "global_padding": true,
           "authenticated_length": true,
@@ -591,7 +591,7 @@
           "udp_fragment": true,
           "server": "brand.zoom.us",
           "server_port": 8080,
-          "uuid": "b884ea79-3e84-4916-8bf9-8bc7df45da2f",
+          "uuid": "00436b0a-7716-4a57-839a-fc6cfe9b156a",
           "security": "auto",
           "global_padding": true,
           "authenticated_length": true,
@@ -623,7 +623,7 @@
           "udp_fragment": true,
           "server": "brand.zoom.us",
           "server_port": 8880,
-          "uuid": "b884ea79-3e84-4916-8bf9-8bc7df45da2f",
+          "uuid": "00436b0a-7716-4a57-839a-fc6cfe9b156a",
           "security": "auto",
           "global_padding": true,
           "authenticated_length": true,
@@ -655,7 +655,7 @@
           "udp_fragment": true,
           "server": "brand.zoom.us",
           "server_port": 2052,
-          "uuid": "b884ea79-3e84-4916-8bf9-8bc7df45da2f",
+          "uuid": "00436b0a-7716-4a57-839a-fc6cfe9b156a",
           "security": "auto",
           "global_padding": true,
           "authenticated_length": true,
@@ -687,7 +687,7 @@
           "udp_fragment": true,
           "server": "brand.zoom.us",
           "server_port": 2082,
-          "uuid": "b884ea79-3e84-4916-8bf9-8bc7df45da2f",
+          "uuid": "00436b0a-7716-4a57-839a-fc6cfe9b156a",
           "security": "auto",
           "global_padding": true,
           "authenticated_length": true,
@@ -719,7 +719,7 @@
           "udp_fragment": true,
           "server": "brand.zoom.us",
           "server_port": 2086,
-          "uuid": "b884ea79-3e84-4916-8bf9-8bc7df45da2f",
+          "uuid": "00436b0a-7716-4a57-839a-fc6cfe9b156a",
           "security": "auto",
           "global_padding": true,
           "authenticated_length": true,
@@ -751,7 +751,7 @@
           "udp_fragment": true,
           "server": "brand.zoom.us",
           "server_port": 2095,
-          "uuid": "b884ea79-3e84-4916-8bf9-8bc7df45da2f",
+          "uuid": "00436b0a-7716-4a57-839a-fc6cfe9b156a",
           "security": "auto",
           "global_padding": true,
           "authenticated_length": true,
@@ -1199,7 +1199,7 @@
           "udp_fragment": true,
           "server": "brand.zoom.us",
           "server_port": 443,
-          "uuid": "b884ea79-3e84-4916-8bf9-8bc7df45da2f",
+          "uuid": "00436b0a-7716-4a57-839a-fc6cfe9b156a",
           "security": "auto",
           "global_padding": true,
           "authenticated_length": true,
@@ -1231,7 +1231,7 @@
           "udp_fragment": true,
           "server": "brand.zoom.us",
           "server_port": 2053,
-          "uuid": "b884ea79-3e84-4916-8bf9-8bc7df45da2f",
+          "uuid": "00436b0a-7716-4a57-839a-fc6cfe9b156a",
           "security": "auto",
           "global_padding": true,
           "authenticated_length": true,
@@ -1263,7 +1263,7 @@
           "udp_fragment": true,
           "server": "brand.zoom.us",
           "server_port": 2083,
-          "uuid": "b884ea79-3e84-4916-8bf9-8bc7df45da2f",
+          "uuid": "00436b0a-7716-4a57-839a-fc6cfe9b156a",
           "security": "auto",
           "global_padding": true,
           "authenticated_length": true,
@@ -1295,7 +1295,7 @@
           "udp_fragment": true,
           "server": "brand.zoom.us",
           "server_port": 2087,
-          "uuid": "b884ea79-3e84-4916-8bf9-8bc7df45da2f",
+          "uuid": "00436b0a-7716-4a57-839a-fc6cfe9b156a",
           "security": "auto",
           "global_padding": true,
           "authenticated_length": true,
@@ -1327,7 +1327,7 @@
           "udp_fragment": true,
           "server": "brand.zoom.us",
           "server_port": 2096,
-          "uuid": "b884ea79-3e84-4916-8bf9-8bc7df45da2f",
+          "uuid": "00436b0a-7716-4a57-839a-fc6cfe9b156a",
           "security": "auto",
           "global_padding": true,
           "authenticated_length": true,
@@ -1359,7 +1359,7 @@
           "udp_fragment": true,
           "server": "brand.zoom.us",
           "server_port": 8443,
-          "uuid": "b884ea79-3e84-4916-8bf9-8bc7df45da2f",
+          "uuid": "00436b0a-7716-4a57-839a-fc6cfe9b156a",
           "security": "auto",
           "global_padding": true,
           "authenticated_length": true,
