@@ -11,61 +11,240 @@
 
           "servers": [ 
           {
-          "tag": "system dns",
+          "tag": "system_dns",
           "address": "local",
           "strategy": "",
           "detour": "direct"
           },
           {
-          "tag": "cloudflare",
+          "tag": "cloudflare_ipv4_dns",
           "address": "1.0.0.1",
           "strategy": "",
-          "detour": "cloudflare"
+          "detour": "cloudflare_ipv4_dns"
           },
           { 
-          "tag": "cloudflare legacy",
+          "tag": "cloudflare_ipv4_legacy_dns",
           "address": "1.1.1.1",
           "strategy": "",
-          "detour": "cloudflare legacy"
+          "detour": "cloudflare_ipv4_legacy_dns"
           },
           {
-          "tag": "cloudflare tcp",
-          "address": "tcp://1.0.0.1",
+          "tag": "google_ipv4_dns",
+          "address": "8.8.8.8",
           "strategy": "",
-          "detour": "cloudflare tcp"
-          },
-          {
-          "tag": "cloudflare https",
-          "address": "https://1.1.1.1/dns-query",
-          "strategy": "",
-          "detour": "cloudflare https"
+          "detour": "google_ipv4_dns"
           },
           { 
-          "tag": "cloudflare dns ipv6",
+          "tag": "google_ipv4_legacy_dns",
+          "address": "8.4.4.8",
+          "strategy": "",
+          "detour": "google_ipv4_legacy_dns"
+          },
+          {
+          "tag": "quad9_ipv4_dns",
+          "address": "9.9.9.9",
+          "strategy": "",
+          "detour": "quad9_ipv4_dns"
+          },
+          { 
+          "tag": "quad9_ipv4_legacy_dns",
+          "address": "149.112.112.112",
+          "strategy": "",
+          "detour": "quad9_ipv4_legacy_dns"
+          },
+          {
+          "tag": "cisco_ipv4_dns",
+          "address": "208.67.222.222",
+          "strategy": "",
+          "detour": "cisco_ipv4_dns"
+          },
+          { 
+          "tag": "cisco_ipv4_legacy_dns",
+          "address": "208.67.220.220",
+          "strategy": "",
+          "detour": "cisco_ipv4_legacy_dns"
+          },
+          {
+          "tag": "unicom_ipv4_dns",
+          "address": "114.114.114.114",
+          "strategy": "",
+          "detour": "unicom_ipv4_dns"
+          },
+          { 
+          "tag": "unicom_ipv4_legacy_dns",
+          "address": "114.114.115.115",
+          "strategy": "",
+          "detour": "unicom_ipv4_legacy_dns"
+          },
+          {
+          "tag": "telecom_ipv4_dns",
+          "address": "119.29.29.29",
+          "strategy": "",
+          "detour": "telecom_ipv4_dns"
+          },
+          { 
+          "tag": "telecom_ipv4_legacy_dns",
+          "address": "180.76.76.76",
+          "strategy": "",
+          "detour": "telecom_ipv4_legacy_dns"
+          },
+          {
+          "tag": "mobile_ipv4_dns",
+          "address": "223.5.5.5",
+          "strategy": "",
+          "detour": "mobile_ipv4_dns"
+          },
+          { 
+          "tag": "mobile_ipv4_legacy_dns",
+          "address": "223.6.6.6",
+          "strategy": "",
+          "detour": "mobile_ipv4_legacy_dns"
+          },
+          { 
+          "tag": "cloudflare_ipv6_dns",
           "address": "2606:4700:4700::1111",
           "strategy": "",
-          "detour": "cloudflare dns ipv6"
+          "detour": "cloudflare_ipv6_dns"
           },
           { 
-          "tag": "cloudflare doh",
-          "address": "https://cloudflare-dns.com/dns-query",
-          "address_resolver": "cloudflare tcp",
+          "tag": "cloudflare_ipv6_legacy_dns",
+          "address": "2606:4700:4700::1001",
           "strategy": "",
-          "detour": "cloudflare doh"
+          "detour": "cloudflare_ipv6_legacy_dns"
           },
           {
-          "tag": "cloudflare security",
-          "address": "https://security.cloudflare-dns.com/dns-query",
-          "address_resolver": "cloudflare tcp",
+          "tag": "google_ipv6_dns",
+          "address": "2001:4860:4860::8888",
           "strategy": "",
-          "detour": "cloudflare security"
+          "detour": "google_ipv6_dns"
+          },
+          { 
+          "tag": "google_ipv6_legacy_dns",
+          "address": "2001:4860:4860::8844",
+          "strategy": "",
+          "detour": "google_ipv6_legacy_dns"
+          },
+          {
+          "tag": "quad9_ipv6_dns",
+          "address": "2620:fe97:fe97::9",
+          "strategy": "",
+          "detour": "quad9_ipv6_dns"
+          },
+          { 
+          "tag": "quad9_ipv6_legacy_dns",
+          "address": "2620:fe97:fe97::10",
+          "strategy": "",
+          "detour": "quad9_ipv6_legacy_dns"
+          },
+          {
+          "tag": "cisco_ipv6_dns",
+          "address": "2620:119:35::35",
+          "strategy": "",
+          "detour": "cisco_ipv6_dns"
+          },
+          { 
+          "tag": "cisco_ipv6_legacy_dns",
+          "address": "2620:119:53::53",
+          "strategy": "",
+          "detour": "cisco_ipv6_legacy_dns"
+          },
+          {
+          "tag": "unicom_ipv6_dns",
+          "address": "2400:da00::6666",
+          "strategy": "",
+          "detour": "unicom_ipv6_dns"
+          },
+          { 
+          "tag": "unicom_ipv6_legacy_dns",
+          "address": "2400:da00::6667",
+          "strategy": "",
+          "detour": "unicom_ipv6_legacy_dns"
+          },
+          {
+          "tag": "telecom_ipv6_dns",
+          "address": "2400:da00::8888",
+          "strategy": "",
+          "detour": "telecom_ipv6_dns"
+          },
+          { 
+          "tag": "telecom_ipv6_legacy_dns",
+          "address": "2400:da00::8889",
+          "strategy": "",
+          "detour": "telecom_ipv6_legacy_dns"
+          },
+          {
+          "tag": "mobile_ipv6_dns",
+          "address": "2400:da00::5555",
+          "strategy": "",
+          "detour": "mobile_ipv6_dns"
+          },
+          { 
+          "tag": "mobile_ipv6_legacy_dns",
+          "address": "2400:da00::6666",
+          "strategy": "",
+          "detour": "mobile_ipv6_legacy_dns"
+          },
+          {
+          "tag": "tcp_dns",
+          "address": "tcp://1.0.0.1",
+          "strategy": "",
+          "detour": "tcp_dns"
+          },
+          {
+          "tag": "udp_dns",
+          "address": "udp://8.8.4.4",
+          "address_resolver": "tcp_dns",
+          "strategy": "",
+          "detour": "udp_dns"
           }, 
           {
-          "tag": "blocked",
+          "tag": "https_dns",
+          "address": "https://1.1.1.1/dns-query",
+          "address_resolver": "tcp_dns",
+          "strategy": "",
+          "detour": "https_dns"
+          },
+          {
+          "tag": "http3_dns",
+          "address": "h3://8.8.8.8/dns-query",
+          "address_resolver": "tcp_dns",
+          "strategy": "",
+          "detour": "http3_dns"
+          }, 
+          {
+          "tag": "tls_dns",
+          "address": "tls://dns.google",
+          "address_resolver": "tcp_dns",
+          "strategy": "",
+          "detour": "tls_dns"
+          }, 
+          {
+          "tag": "quic_dns",
+          "address": "quic://dns.adguard.com",
+          "address_resolver": "tcp_dns",
+          "strategy": "",
+          "detour": "quic_dns"
+          }, 
+          {
+          "tag": "doh_dns",
+          "address": "https://cloudflare-dns.com/dns-query",
+          "address_resolver": "tcp_dns",
+          "strategy": "",
+          "detour": "doh_dns"
+          },
+          {
+          "tag": "security_dns",
+          "address": "https://security.cloudflare-dns.com/dns-query",
+          "address_resolver": "tcp_dns",
+          "strategy": "",
+          "detour": "security_dns"
+          }, 
+          {
+          "tag": "blocked_dns",
           "address": "rcode://success"
           },
           {
-          "tag": "refused",
+          "tag": "refused_dns",
           "address": "rcode://refused"
           }
           ],
@@ -74,63 +253,300 @@
         
           "rules": [
           {
+          "network": "tcp",
+          "server": "tcp://1.0.0.1",
+          "rewrite_ttl": 666
+          },
+          {
           "network": "udp",
-          "port": 443,
+          "server": "udp://8.4.4.8",
+          "rewrite_ttl": 666
+          },
+          {
+          "protocol": "dns",
+          "server": "local",
+          "rewrite_ttl": 666
+          },
+          {
+          "protocol": "tls",
+          "server": "tls://dns.google",
+          "rewrite_ttl": 666
+          },
+          {
+          "protocol": "quic",
+          "server": "quic://dns.adguard.com",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "cloudflare_ipv4_dns",
+          "server": "1.0.0.1",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "cloudflare_ipv4_legacy_dns",          
+          "server": "1.1.1.1",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "google_ipv4_dns",
+          "server": "8.8.8.8",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "google_ipv4_legacy_dns",
+          "server": "8.4.4.8",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "quad9_ipv4_dns",
+          "server": "9.9.9.9",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "quad9_ipv4_legacy_dns",    
+          "server": "149.112.112.112",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "cisco_ipv4_dns",
+          "server": "208.67.222.222",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "cisco_ipv4_legacy_dns",          
+          "server": "208.67.220.220",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "unicom_ipv4_dns",          
+          "server": "114.114.114.114",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "unicom_ipv4_legacy_dns",
+          "server": "114.114.115.115",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "telecom_ipv4_dns",
+          "server": "119.29.29.29",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "telecom_ipv4_legacy_dns",
+          "server": "180.76.76.76",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "mobile_ipv4_dns",
+          "server": "223.5.5.5",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "mobile_ipv4_legacy_dns",
+          "server": "223.6.6.6",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "cloudflare_ipv6_dns",
+          "server": "2606:4700:4700::1111",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "cloudflare_ipv6_legacy_dns",
+          "server": "2606:4700:4700::1001",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "google_ipv6_dns",
+          "server": "2001:4860:4860::8888",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "google_ipv6_legacy_dns",
+          "server": "2001:4860:4860::8844",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "quad9_ipv6_dns",
+          "server": "2620:fe97:fe97::9",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "quad9_ipv6_legacy_dns",          
+          "server": "2620:fe97:fe97::10",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "cisco_ipv6_dns",
+          "server": "2620:119:35::35",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "cisco_ipv6_legacy_dns",          
+          "server": "2620:119:53::53",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "unicom_ipv6_dns",
+          "server": "2400:da00::666",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "unicom_ipv6_legacy_dns",
+          "server": "2400:da00::6667",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "telecom_ipv6_dns",
+          "server": "2400:da00::8888",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "telecom_ipv6_legacy_dns",
+          "server": "2400:da00::8889",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "mobile_ipv6_dns",
+          "server": "2400:da00::5555",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "mobile_ipv6_legacy_dns",
+          "server": "2400:da00::666",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "tcp_dns",
+          "server": "tcp://1.0.0.1",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "udp_dns",
+          "server": "udp://8.8.4.4",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "https_dns",
+          "server": "https://1.1.1.1/dns-query",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "http3_dns",          
+          "server": "h3://8.8.8.8/dns-query",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "tls_dns", 
+          "server": "tls://dns.google",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "quic_dns",
+          "server": "quic://dns.adguard.com",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "doh_dns",
+          "server": "https://cloudflare-dns.com/dns-query",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "security_dns",
+          "server": "https://security.cloudflare-dns.com/dns-query",
+          "rewrite_ttl": 666
+          },
+          {
+          "outbound": "blocked_dns",
           "server": "rcode://success",
           "rewrite_ttl": 666
           },
           {
-          "outbound": "cloudflare", 
-          "server": "1.0.0.1", 
-          "rewrite_ttl": 666
-          },
-          {
-          "outbound": "cloudflare legacy",
-          "server": "1.1.1.1",
-          "rewrite_ttl": 666
-          },
-          {
-          "outbound": "cloudflare tcp",
-          "server": "tcp://1.0.0.1",
-          "rewrite_ttl": 666
-          },
-          {
-          "outbound": "cloudflare https",
-          "server": "https://1.1.1.1/dns-query",
-          "rewrite_ttl": 666
-          },
-          {
-          "outbound": "cloudflare dns ipv6",
-          "server": "2606:4700:4700::1111",
-          "rewrite_ttl": 666
-          },
-          {
-          "outbound": "cloudflare doh",
-          "server": "https://cloudflare-dns.com/dns-query",
-          "rewrite_ttl": 666
-          },
-          {
-          "outbound": "cloudflare security",
-          "server": "https://security.cloudflare-dns.com/dns-query",
+          "outbound": "refused_dns",
+          "server": "rcode://refused",
           "rewrite_ttl": 666
           },
           {
           "outbound": [
-          "cloudflare",
-          "cloudflare legacy",
-          "cloudflare tcp",
-          "cloudflare https",
-          "cloudflare dns ipv6",
-          "cloudflare doh",
-          "cloudflare security"
+          "system_dns",
+          "cloudflare_ipv4_dns",
+          "cloudflare_ipv4_legacy_dns",
+          "google_ipv4_dns",
+          "google_ipv4_legacy_dns",
+          "quad9_ipv4_dns",
+          "quad9_ipv4_legacy_dns",
+          "cisco_ipv4_dns",
+          "cisco_ipv4_legacy_dns",
+          "unicom_ipv4_dns",
+          "unicom_ipv4_legacy_dns",
+          "telecom_ipv4_dns",
+          "telecom_ipv4_legacy_dns",
+          "mobile_ipv4_dns",
+          "mobile_ipv4_legacy_dns",
+          "cloudflare_ipv6_dns",
+          "cloudflare_ipv6_legacy_dns",
+          "google_ipv6_dns",
+          "google_ipv6_legacy_dns",
+          "quad9_ipv6_dns",
+          "quad9_ipv6_legacy_dns",
+          "cisco_ipv6_dns",
+          "cisco_ipv6_legacy_dns",
+          "unicom_ipv6_dns",
+          "unicom_ipv6_legacy_dns",
+          "telecom_ipv6_dns",
+          "telecom_ipv6_legacy_dns",
+          "mobile_ipv6_dns",
+          "mobile_ipv6_legacy_dns",
+          "tcp_dns",
+          "udp_dns",
+          "https_dns",
+          "http3_dns",
+          "tls_dns",
+          "quic_dns",
+          "doh_dns",
+          "security_dns",
+          "blocked_dns",
+          "refused_dns"
           ],
           "server": "1.0.0.1",
           "server": "1.1.1.1",
-          "server": "tcp://1.0.0.1",
-          "server": "https://1.1.1.1/dns-query",
+          "server": "8.8.8.8",
+          "server": "8.4.4.8",
+          "server": "9.9.9.9",
+          "server": "149.112.112.112",
+          "server": "208.67.222.222",
+          "server": "208.67.220.220",
+          "server": "114.114.114.114",
+          "server": "114.114.115.115",
+          "server": "119.29.29.29",
+          "server": "180.76.76.76",
+          "server": "223.5.5.5",
+          "server": "223.6.6.6",
           "server": "2606:4700:4700::1111",
+          "server": "2606:4700:4700::1001",
+          "server": "2001:4860:4860::8888",
+          "server": "2001:4860:4860::8844",
+          "server": "2620:fe97:fe97::9",
+          "server": "2620:fe97:fe97::10",
+          "server": "2620:119:35::35",
+          "server": "2620:119:53::53",
+          "server": "2400:da00::6666",
+          "server": "2400:da00::6667",
+          "server": "2400:da00::8888",
+          "server": "2400:da00::8889",
+          "server": "2400:da00::5555",
+          "server": "2400:da00::6666",
+          "server": "tcp://1.0.0.1",
+          "server": "udp://8.8.4.4",
+          "server": "https://1.1.1.1/dns-query",
+          "server": "h3://8.8.8.8/dns-query",
+          "server": "tls://dns.google",
+          "server": "quic://dns.adguard.com",
           "server": "https://cloudflare-dns.com/dns-query",
           "server": "https://security.cloudflare-dns.com/dns-query",
+          "server": "rcode://success",
+          "server": "rcode://refused",
           "disable_cache": true,
           "rewrite_ttl": 666
           }
@@ -150,7 +566,7 @@
           "tag": "tun-in",
           "interface_name": "tun0",
           "inet4_address": "172.19.0.1/3",
-          "mtu": 13000,
+          "mtu": 3000,
           "udp_timeout": 300,
           "auto_route": true,
           "strict_route": true,
@@ -331,7 +747,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 80,
           "uuid": "d03d341a-f85f-477a-9282-2b9c954e4f75",
           "security": "auto",
@@ -363,7 +779,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 8080,
           "uuid": "d03d341a-f85f-477a-9282-2b9c954e4f75",
           "security": "auto",
@@ -395,7 +811,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 8880,
           "uuid": "d03d341a-f85f-477a-9282-2b9c954e4f75",
           "security": "auto",
@@ -427,7 +843,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2052,
           "uuid": "d03d341a-f85f-477a-9282-2b9c954e4f75",
           "security": "auto",
@@ -459,7 +875,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2082,
           "uuid": "d03d341a-f85f-477a-9282-2b9c954e4f75",
           "security": "auto",
@@ -491,7 +907,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2086,
           "uuid": "d03d341a-f85f-477a-9282-2b9c954e4f75",
           "security": "auto",
@@ -523,7 +939,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2095,
           "uuid": "d03d341a-f85f-477a-9282-2b9c954e4f75",
           "security": "auto",
@@ -555,7 +971,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 80,
           "uuid": "8d4f6f9a-377b-4251-a40e-da12abf2b0ff",
           "security": "auto",
@@ -587,7 +1003,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 8080,
           "uuid": "8d4f6f9a-377b-4251-a40e-da12abf2b0ff",
           "security": "auto",
@@ -619,7 +1035,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 8880,
           "uuid": "8d4f6f9a-377b-4251-a40e-da12abf2b0ff",
           "security": "auto",
@@ -651,7 +1067,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2052,
           "uuid": "8d4f6f9a-377b-4251-a40e-da12abf2b0ff",
           "security": "auto",
@@ -683,7 +1099,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2082,
           "uuid": "8d4f6f9a-377b-4251-a40e-da12abf2b0ff",
           "security": "auto",
@@ -715,7 +1131,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2086,
           "uuid": "8d4f6f9a-377b-4251-a40e-da12abf2b0ff",
           "security": "auto",
@@ -747,7 +1163,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2095,
           "uuid": "8d4f6f9a-377b-4251-a40e-da12abf2b0ff",
           "security": "auto",
@@ -779,7 +1195,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 80,
           "uuid": "0048d023-7ed2-4a9a-908f-71cb6c937283",
           "security": "auto",
@@ -811,7 +1227,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 8080,
           "uuid": "0048d023-7ed2-4a9a-908f-71cb6c937283",
           "security": "auto",
@@ -843,7 +1259,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 8880,
           "uuid": "0048d023-7ed2-4a9a-908f-71cb6c937283",
           "security": "auto",
@@ -875,7 +1291,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2052,
           "uuid": "0048d023-7ed2-4a9a-908f-71cb6c937283",
           "security": "auto",
@@ -907,7 +1323,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2082,
           "uuid": "0048d023-7ed2-4a9a-908f-71cb6c937283",
           "security": "auto",
@@ -939,7 +1355,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2086,
           "uuid": "0048d023-7ed2-4a9a-908f-71cb6c937283",
           "security": "auto",
@@ -971,7 +1387,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2095,
           "uuid": "0048d023-7ed2-4a9a-908f-71cb6c937283",
           "security": "auto",
@@ -1003,7 +1419,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 443,
           "uuid": "d03d341a-f85f-477a-9282-2b9c954e4f75",
           "security": "auto",
@@ -1035,7 +1451,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2053,
           "uuid": "d03d341a-f85f-477a-9282-2b9c954e4f75",
           "security": "auto",
@@ -1067,7 +1483,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2083,
           "uuid": "d03d341a-f85f-477a-9282-2b9c954e4f75",
           "security": "auto",
@@ -1099,7 +1515,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2087,
           "uuid": "d03d341a-f85f-477a-9282-2b9c954e4f75",
           "security": "auto",
@@ -1131,7 +1547,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2096,
           "uuid": "d03d341a-f85f-477a-9282-2b9c954e4f75",
           "security": "auto",
@@ -1163,7 +1579,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 8443,
           "uuid": "d03d341a-f85f-477a-9282-2b9c954e4f75",
           "security": "auto",
@@ -1195,7 +1611,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 443,
           "uuid": "8d4f6f9a-377b-4251-a40e-da12abf2b0ff",
           "security": "auto",
@@ -1227,7 +1643,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2053,
           "uuid": "8d4f6f9a-377b-4251-a40e-da12abf2b0ff",
           "security": "auto",
@@ -1259,7 +1675,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2083,
           "uuid": "8d4f6f9a-377b-4251-a40e-da12abf2b0ff",
           "security": "auto",
@@ -1291,7 +1707,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2087,
           "uuid": "8d4f6f9a-377b-4251-a40e-da12abf2b0ff",
           "security": "auto",
@@ -1323,7 +1739,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2096,
           "uuid": "8d4f6f9a-377b-4251-a40e-da12abf2b0ff",
           "security": "auto",
@@ -1355,7 +1771,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 8443,
           "uuid": "8d4f6f9a-377b-4251-a40e-da12abf2b0ff",
           "security": "auto",
@@ -1387,7 +1803,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 443,
           "uuid": "0048d023-7ed2-4a9a-908f-71cb6c937283",
           "security": "auto",
@@ -1419,7 +1835,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2053,
           "uuid": "0048d023-7ed2-4a9a-908f-71cb6c937283",
           "security": "auto",
@@ -1451,7 +1867,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2083,
           "uuid": "0048d023-7ed2-4a9a-908f-71cb6c937283",
           "security": "auto",
@@ -1483,7 +1899,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2087,
           "uuid": "0048d023-7ed2-4a9a-908f-71cb6c937283",
           "security": "auto",
@@ -1515,7 +1931,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2096,
           "uuid": "0048d023-7ed2-4a9a-908f-71cb6c937283",
           "security": "auto",
@@ -1547,7 +1963,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 8443,
           "uuid": "0048d023-7ed2-4a9a-908f-71cb6c937283",
           "security": "auto",
@@ -1579,7 +1995,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 80,
           "uuid": "f6685676-f9ee-4c73-9202-06d172f7a398",
           "tls": {
@@ -1609,7 +2025,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 8080,
           "uuid": "f6685676-f9ee-4c73-9202-06d172f7a398",
           "tls": {
@@ -1639,7 +2055,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 8880,
           "uuid": "f6685676-f9ee-4c73-9202-06d172f7a398",
           "tls": {
@@ -1669,7 +2085,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2052,
           "uuid": "f6685676-f9ee-4c73-9202-06d172f7a398",
           "tls": {
@@ -1699,7 +2115,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2082,
           "uuid": "f6685676-f9ee-4c73-9202-06d172f7a398",
           "tls": {
@@ -1723,13 +2139,13 @@
           },
           {
           "type": "vless",
-          "tag": "relay to vless 🇸🇬🇸🇬🇸🇬 port:2086", 
+          "tag": "relay to vless 🇸??🇸🇬🇸🇬 port:2086", 
           "domain_strategy": "",
           "detour": "direct",
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2086,
           "uuid": "f6685676-f9ee-4c73-9202-06d172f7a398",
           "tls": {
@@ -1759,7 +2175,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2095,
           "uuid": "f6685676-f9ee-4c73-9202-06d172f7a398",
           "tls": {
@@ -1789,7 +2205,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 80,
           "uuid": "d65c7f7c-c13c-4ae9-955d-2e81cef30813",
           "tls": {
@@ -1819,7 +2235,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 8080,
           "uuid": "d65c7f7c-c13c-4ae9-955d-2e81cef30813",
           "tls": {
@@ -1849,7 +2265,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 8880,
           "uuid": "d65c7f7c-c13c-4ae9-955d-2e81cef30813",
           "tls": {
@@ -1879,7 +2295,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2052,
           "uuid": "d65c7f7c-c13c-4ae9-955d-2e81cef30813",
           "tls": {
@@ -1909,7 +2325,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2082,
           "uuid": "d65c7f7c-c13c-4ae9-955d-2e81cef30813",
           "tls": {
@@ -1939,7 +2355,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2086,
           "uuid": "d65c7f7c-c13c-4ae9-955d-2e81cef30813",
           "tls": {
@@ -1969,7 +2385,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2095,
           "uuid": "d65c7f7c-c13c-4ae9-955d-2e81cef30813",
           "tls": {
@@ -1999,7 +2415,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 443,
           "uuid": "f6685676-f9ee-4c73-9202-06d172f7a398",
           "tls": {
@@ -2029,7 +2445,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2053,
           "uuid": "f6685676-f9ee-4c73-9202-06d172f7a398",
           "tls": {
@@ -2059,7 +2475,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2083,
           "uuid": "f6685676-f9ee-4c73-9202-06d172f7a398",
           "tls": {
@@ -2089,7 +2505,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2087,
           "uuid": "f6685676-f9ee-4c73-9202-06d172f7a398",
           "tls": {
@@ -2119,7 +2535,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2096,
           "uuid": "f6685676-f9ee-4c73-9202-06d172f7a398",
           "tls": {
@@ -2149,7 +2565,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 8443,
           "uuid": "f6685676-f9ee-4c73-9202-06d172f7a398",
           "tls": {
@@ -2179,7 +2595,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 443,
           "uuid": "d65c7f7c-c13c-4ae9-955d-2e81cef30813",
           "tls": {
@@ -2209,7 +2625,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2053,
           "uuid": "d65c7f7c-c13c-4ae9-955d-2e81cef30813",
           "tls": {
@@ -2239,7 +2655,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2083,
           "uuid": "d65c7f7c-c13c-4ae9-955d-2e81cef30813",
           "tls": {
@@ -2269,7 +2685,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2087,
           "uuid": "d65c7f7c-c13c-4ae9-955d-2e81cef30813",
           "tls": {
@@ -2299,7 +2715,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2096,
           "uuid": "d65c7f7c-c13c-4ae9-955d-2e81cef30813",
           "tls": {
@@ -2329,7 +2745,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 8443,
           "uuid": "d65c7f7c-c13c-4ae9-955d-2e81cef30813",
           "tls": {
@@ -2359,7 +2775,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 80,
           "password": "abf9171642373cfb",
           "tls": {
@@ -2388,7 +2804,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 8080,
           "password": "abf9171642373cfb",
           "tls": {
@@ -2417,7 +2833,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 8880,
           "password": "abf9171642373cfb",
           "tls": {
@@ -2446,7 +2862,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2052,
           "password": "abf9171642373cfb",
           "tls": {
@@ -2475,7 +2891,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2082,
           "password": "abf9171642373cfb",
           "tls": {
@@ -2504,7 +2920,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2086,
           "password": "abf9171642373cfb",
           "tls": {
@@ -2533,7 +2949,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2095,
           "password": "abf9171642373cfb",
           "tls": {
@@ -2562,7 +2978,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 80,
           "password": "51c4a15dde3edef6",
           "tls": {
@@ -2591,7 +3007,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 8080,
           "password": "51c4a15dde3edef6",
           "tls": {
@@ -2620,7 +3036,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 8880,
           "password": "51c4a15dde3edef6",
           "tls": {
@@ -2649,7 +3065,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2052,
           "password": "51c4a15dde3edef6",
           "tls": {
@@ -2678,7 +3094,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2082,
           "password": "51c4a15dde3edef6",
           "tls": {
@@ -2707,7 +3123,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2086,
           "password": "51c4a15dde3edef6",
           "tls": {
@@ -2736,7 +3152,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2095,
           "password": "51c4a15dde3edef6",
           "tls": {
@@ -2765,7 +3181,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 80,
           "password": "b36f52598107ce8e",
           "tls": {
@@ -2794,7 +3210,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 8080,
           "password": "b36f52598107ce8e",
           "tls": {
@@ -2823,7 +3239,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 8880,
           "password": "b36f52598107ce8e",
           "tls": {
@@ -2852,7 +3268,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2052,
           "password": "b36f52598107ce8e",
           "tls": {
@@ -2881,7 +3297,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2082,
           "password": "b36f52598107ce8e",
           "tls": {
@@ -2910,7 +3326,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2086,
           "password": "b36f52598107ce8e",
           "tls": {
@@ -2939,7 +3355,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2095,
           "password": "b36f52598107ce8e",
           "tls": {
@@ -2968,7 +3384,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 443,
           "password": "abf9171642373cfb",
           "tls": {
@@ -2997,7 +3413,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2053,
           "password": "abf9171642373cfb",
           "tls": {
@@ -3026,7 +3442,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2083,
           "password": "abf9171642373cfb",
           "tls": {
@@ -3055,7 +3471,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2087,
           "password": "abf9171642373cfb",
           "tls": {
@@ -3084,7 +3500,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2096,
           "password": "abf9171642373cfb",
           "tls": {
@@ -3113,7 +3529,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 8443,
           "password": "abf9171642373cfb",
           "tls": {
@@ -3142,7 +3558,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 443,
           "password": "51c4a15dde3edef6",
           "tls": {
@@ -3171,7 +3587,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2053,
           "password": "51c4a15dde3edef6",
           "tls": {
@@ -3200,7 +3616,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2083,
           "password": "51c4a15dde3edef6",
           "tls": {
@@ -3229,7 +3645,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2087,
           "password": "51c4a15dde3edef6",
           "tls": {
@@ -3258,7 +3674,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2096,
           "password": "51c4a15dde3edef6",
           "tls": {
@@ -3287,7 +3703,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 8443,
           "password": "51c4a15dde3edef6",
           "tls": {
@@ -3316,7 +3732,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 443,
           "password": "b36f52598107ce8e",
           "tls": {
@@ -3345,7 +3761,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2053,
           "password": "b36f52598107ce8e",
           "tls": {
@@ -3374,7 +3790,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2083,
           "password": "b36f52598107ce8e",
           "tls": {
@@ -3403,7 +3819,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2087,
           "password": "b36f52598107ce8e",
           "tls": {
@@ -3432,7 +3848,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2096,
           "password": "b36f52598107ce8e",
           "tls": {
@@ -3461,7 +3877,7 @@
           "tcp_fast_open": true,
           "tcp_multi_path": true,
           "udp_fragment": true,
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 8443,
           "password": "b36f52598107ce8e",
           "tls": {
@@ -3486,7 +3902,7 @@
           "type": "vmess",
           "tag": "relay to grpc 🇸🇬🇸🇬🇸🇬 port:443", 
           "domain_strategy": "",
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 443,
           "uuid": "ecd62490-9aab-4a81-915b-b858b4d0b639",
           "security": "auto",
@@ -3520,7 +3936,7 @@
           "type": "vmess",
           "tag": "relay to grpc 🇸🇬🇸🇬🇸🇬 port:2053", 
           "domain_strategy": "",
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2053,
           "uuid": "ecd62490-9aab-4a81-915b-b858b4d0b639",
           "security": "auto",
@@ -3554,7 +3970,7 @@
           "type": "vmess",
           "tag": "relay to grpc 🇸🇬🇸🇬🇸🇬 port:2083", 
           "domain_strategy": "",
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2083,
           "uuid": "ecd62490-9aab-4a81-915b-b858b4d0b639",
           "security": "auto",
@@ -3588,7 +4004,7 @@
           "type": "vmess",
           "tag": "relay to grpc 🇸🇬🇸🇬🇸🇬 port:2087", 
           "domain_strategy": "",
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2087,
           "uuid": "ecd62490-9aab-4a81-915b-b858b4d0b639",
           "security": "auto",
@@ -3622,7 +4038,7 @@
           "type": "vmess",
           "tag": "relay to grpc 🇸🇬🇸🇬🇸🇬 port:2096", 
           "domain_strategy": "",
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2096,
           "uuid": "ecd62490-9aab-4a81-915b-b858b4d0b639",
           "security": "auto",
@@ -3656,7 +4072,7 @@
           "type": "vmess",
           "tag": "relay to grpc 🇸🇬🇸🇬🇸🇬 port:8443", 
           "domain_strategy": "",
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 8443,
           "uuid": "ecd62490-9aab-4a81-915b-b858b4d0b639",
           "security": "auto",
@@ -3690,7 +4106,7 @@
           "type": "vless",
           "tag": "relay to grpc 🇰🇷🇰🇷🇰🇷 port:443", 
           "domain_strategy": "",
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 443,
           "uuid": "9c066d53-ab60-4b3d-8ae4-8f1f39b65c28",
           "flow": "",
@@ -3721,7 +4137,7 @@
           "type": "vless",
           "tag": "relay to grpc 🇰🇷🇰🇷🇰🇷 port:2053", 
           "domain_strategy": "",
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2053,
           "uuid": "9c066d53-ab60-4b3d-8ae4-8f1f39b65c28",
           "flow": "",
@@ -3752,7 +4168,7 @@
           "type": "vless",
           "tag": "relay to grpc 🇰🇷🇰🇷🇰🇷 port:2083", 
           "domain_strategy": "",
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2083,
           "uuid": "9c066d53-ab60-4b3d-8ae4-8f1f39b65c28",
           "flow": "",
@@ -3783,7 +4199,7 @@
           "type": "vless",
           "tag": "relay to grpc 🇰🇷🇰🇷🇰🇷 port:2087", 
           "domain_strategy": "",
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2087,
           "uuid": "9c066d53-ab60-4b3d-8ae4-8f1f39b65c28",
           "flow": "",
@@ -3814,7 +4230,7 @@
           "type": "vless",
           "tag": "relay to grpc 🇰🇷🇰🇷🇰🇷 port:2096", 
           "domain_strategy": "",
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2096,
           "uuid": "9c066d53-ab60-4b3d-8ae4-8f1f39b65c28",
           "flow": "",
@@ -3845,7 +4261,7 @@
           "type": "vless",
           "tag": "relay to grpc 🇰🇷🇰🇷🇰🇷 port:8443", 
           "domain_strategy": "",
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 8443,
           "uuid": "9c066d53-ab60-4b3d-8ae4-8f1f39b65c28",
           "flow": "",
@@ -3876,7 +4292,7 @@
           "type": "trojan",
           "tag": "relay to grpc 🇯🇵🇯🇵🇯🇵 port:443", 
           "domain_strategy": "",
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 443,
           "password": "50c6f3e0d24472dc",
           "tls": {
@@ -3905,7 +4321,7 @@
           "type": "trojan",
           "tag": "relay to grpc 🇯🇵🇯🇵🇯🇵 port:2053", 
           "domain_strategy": "",
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2053,
           "password": "50c6f3e0d24472dc",
           "tls": {
@@ -3934,7 +4350,7 @@
           "type": "trojan",
           "tag": "relay to grpc 🇯🇵🇯🇵🇯🇵 port:2083", 
           "domain_strategy": "",
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2083,
           "password": "50c6f3e0d24472dc",
           "tls": {
@@ -3963,7 +4379,7 @@
           "type": "trojan",
           "tag": "relay to grpc 🇯🇵🇯🇵🇯🇵 port:2087", 
           "domain_strategy": "",
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2087,
           "password": "50c6f3e0d24472dc",
           "tls": {
@@ -3992,7 +4408,7 @@
           "type": "trojan",
           "tag": "relay to grpc 🇯🇵🇯🇵🇯🇵 port:2096", 
           "domain_strategy": "",
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 2096,
           "password": "50c6f3e0d24472dc",
           "tls": {
@@ -4021,7 +4437,7 @@
           "type": "trojan",
           "tag": "relay to grpc 🇯🇵🇯🇵🇯🇵 port:8443", 
           "domain_strategy": "",
-          "server": "brand.zoom.us",
+          "server": "cdn.appsflyer.com",
           "server_port": 8443,
           "password": "50c6f3e0d24472dc",
           "tls": {
