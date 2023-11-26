@@ -1,156 +1,46 @@
              {
-"LOG": {
+             "log": {
              "level": "warn",
              "timestamp": true
              },
-
-
-
-"DNS": {
+             "dns": {
              "servers": [
              {
-             "tag": "dns-tcp",
-             "address": "tcp://1.0.0.1",
-             "address_resolver": "dns-direct"
-             },
-             {
-             "tag": "dns-udp",
-             "address": "udp://8.4.4.8",
-             "address_resolver": "dns-direct"
-             },
-             {
-             "tag": "dns-https",
-             "address": "https://1.1.1.1/dns-query",
-             "address_resolver": "dns-direct"
-             },
-             {
-             "tag": "dns-http3",
-             "address": "h3://8.8.8.8/dns-query",
-             "address_resolver": "dns-direct"
-             },
-             {
-             "tag": "dns-tls",
-             "address": "tls://dns.google",
-             "address_resolver": "dns-direct"
-             },
-             {
-             "tag": "dns-quic",
-             "address": "quic://dns.adguard.com",
-             "address_resolver": "dns-direct"
-             },
-             {
-             "tag": "dns-doh",
-             "address": "https://cloudflare-dns.com/dns-query",
-             "address_resolver": "dns-direct"
-             },
-             {
-             "tag": "dns-security",
-             "address": "https://security.cloudflare-dns.com/dns-query",
-             "address_resolver": "dns-direct"
-             },
-             {
-             "tag": "dns-cloudflare",
+             "tag": "dns_remote",
              "address": "1.1.1.1",
-             "address_resolver": "dns-direct"
+             "address_resolver": "dns_direct"
              },
              {
-             "tag": "dns-google",
-             "address": "8.8.8.8",
-             "address_resolver": "dns-direct"
-             },
-             {
-             "tag": "dns-quad9",
-             "address": "9.9.9.9",
-             "address_resolver": "dns-direct"
-             },
-             {
-             "tag": "dns-cisco",
-             "address": "208.67.222.222",
-             "address_resolver": "dns-direct"
-             },
-             {
-             "tag": "dns-unicom",
-             "address": "114.114.114.114",
-             "address_resolver": "dns-direct"
-             },
-             {
-             "tag": "dns-telecom",
-             "address": "119.29.29.29",
-             "address_resolver": "dns-direct"
-             },
-             {
-             "tag": "dns-mobile",
-             "address": "223.5.5.5",
-             "address_resolver": "dns-direct"
-             },
-             {
-             "tag": "dns-cloudflare-ipv6",
-             "address": "2606:4700:4700::1111",
-             "address_resolver": "dns-direct"
-             },
-             {
-             "tag": "dns-google-ipv6",
-             "address": "2001:4860:4860::8888",
-             "address_resolver": "dns-direct"
-             },
-             {
-             "tag": "dns-quad9-ipv6",
-             "address": "2620:fe97:fe97::9",
-             "address_resolver": "dns-direct"
-             },
-             {
-             "tag": "dns-cisco-ipv6",
-             "address": "2620:119:35::35",
-             "address_resolver": "dns-direct"
-             },
-             {
-             "tag": "dns-direct",
-             "address": "local",
-             "address_resolver": "dns-local",
+             "tag": "dns_direct",
+             "address": "tcp://1.0.0.1",
+             "address_resolver": "dns_local",
              "detour": "direct"
              },
              {
-             "tag": "dns-local",
+             "tag": "dns_local",
              "address": "local",
              "detour": "direct"
              },
              {
-             "tag": "dns-block",
+             "tag": "dns_block",
              "address": "rcode://success"
              }
              ],
              "rules": [
              {
-             "domain": "brand.zoom.us",
-             "server": "dns-direct"
+             "domain": [
+             "cpanel.iptunnels.com",
+             "jala.iptunnels.com"
+             ],
+             "server": "dns_direct"
              },
              {
-             "protocol": "tcp",
-             "server": "dns-tcp"
+             "geosite": "category-ads-all",
+             "server": "dns_block"
              },
              {
-             "protocol": "udp",
-             "server": "dns-udp"
-             },
-             {
-             "protocol": "dns",
-             "server": "dns-direct"
-             },
-             {
-             "protocol": "tls",
-             "server": "dns-tls"
-             },
-             {
-             "protocol": "https",
-             "server": "dns-https"
-             },
-             {
-             "protocol": "http3",
-             "server": "dns-http3"
-             },
-             {
-             "protocol": "quic",
-             "server": "dns-quic"
+             "geosite": "google@ads",
+             "server": "dns_block"
              }
              ],
              "independent_cache": true
@@ -170,15 +60,15 @@
              {
              "type": "mixed",
              "tag": "mixed-in",
-             "listen": "127.0.0.1",
-             "listen_port": 2334,
+             "listen": "::",
+             "listen_port": 10000,
              "sniff": true,
              "sniff_override_destination": true
              },
              {
              "type": "direct",
-             "tag": "dns-in",
-             "listen": "127.0.0.1",
+             "tag": "dns_in",
+             "listen": "::",
              "listen_port": 6450,
              "override_address": "1.1.1.1",
              "override_port": 53
@@ -190,265 +80,145 @@
 "OUTBOUNDS": [
              {
              "type": "selector",
-             "tag": "proxies",
+             "tag": "auto_select",
              "outbounds": [
-             "latency",
+             "list_available",
              "vmess",
              "vless",
              "trojan",
              "grpc",
-             "relay to vmess 🇸🇬🇸🇬🇸🇬 port:80",
-             "relay to vmess 🇸🇬🇸🇬🇸🇬 port:8080",
-             "relay to vmess 🇸🇬🇸🇬🇸🇬 port:8880",
-             "relay to vmess 🇸🇬🇸🇬🇸🇬 port:2052",
-             "relay to vmess 🇸🇬🇸🇬🇸🇬 port:2082",
-             "relay to vmess 🇸🇬🇸🇬🇸🇬 port:2086",
-             "relay to vmess 🇸🇬🇸🇬🇸🇬 port:2095",
-             "relay to vmess 🇰🇷🇰🇷🇰🇷 port:80",
-             "relay to vmess 🇰🇷🇰🇷🇰🇷 port:8080",
-             "relay to vmess 🇰🇷🇰🇷🇰🇷 port:8880",
-             "relay to vmess 🇰🇷🇰🇷🇰🇷 port:2052",
-             "relay to vmess 🇰🇷🇰🇷🇰🇷 port:2082",
-             "relay to vmess 🇰🇷🇰🇷🇰🇷 port:2086",
-             "relay to vmess 🇰🇷🇰🇷🇰🇷 port:2095",
-             "relay to vmess 🇯🇵🇯🇵🇯🇵 port:80",
-             "relay to vmess 🇯🇵🇯🇵🇯🇵 port:8080",
-             "relay to vmess 🇯🇵🇯🇵🇯🇵 port:8880",
-             "relay to vmess 🇯🇵🇯🇵🇯🇵 port:2052",
-             "relay to vmess 🇯🇵🇯🇵🇯🇵 port:2082",
-             "relay to vmess 🇯🇵🇯🇵🇯🇵 port:2086",
-             "relay to vmess 🇯🇵🇯🇵🇯🇵 port:2095",
-             "relay to vmess 🇨🇳🇨🇳🇨🇳 port:443",
-             "relay to vmess 🇨🇳🇨🇳🇨🇳 port:2053",
-             "relay to vmess 🇨🇳🇨🇳🇨🇳 port:2083",
-             "relay to vmess 🇨🇳🇨🇳🇨🇳 port:2087",
-             "relay to vmess 🇨🇳🇨🇳🇨🇳 port:2096",
-             "relay to vmess 🇨🇳🇨🇳🇨🇳 port:8443",
-             "relay to vmess 🇭🇰🇭🇰🇭🇰 port:443",
-             "relay to vmess 🇭🇰🇭🇰🇭🇰 port:2053",
-             "relay to vmess 🇭🇰🇭🇰🇭🇰 port:2083",
-             "relay to vmess 🇭🇰🇭🇰🇭🇰 port:2087",
-             "relay to vmess 🇭🇰🇭🇰🇭🇰 port:2096",
-             "relay to vmess 🇭🇰🇭🇰🇭🇰 port:8443",
-             "relay to vmess 🇹🇼🇹🇼🇹🇼 port:443",
-             "relay to vmess 🇹🇼🇹🇼🇹🇼 port:2053",
-             "relay to vmess 🇹🇼🇹🇼🇹🇼 port:2083",
-             "relay to vmess 🇹🇼🇹🇼🇹🇼 port:2087",
-             "relay to vmess 🇹🇼🇹🇼🇹🇼 port:2096",
-             "relay to vmess 🇹🇼🇹🇼🇹🇼 port:8443",
-             "relay to vless 🇸🇬🇸🇬🇸🇬 port:80",
-             "relay to vless 🇸🇬🇸🇬🇸🇬 port:8080",
-             "relay to vless 🇸🇬🇸🇬🇸🇬 port:8880",
-             "relay to vless 🇸🇬🇸🇬🇸🇬 port:2052",
-             "relay to vless 🇸🇬🇸🇬🇸🇬 port:2082",
-             "relay to vless 🇸🇬🇸🇬🇸🇬 port:2086",
-             "relay to vless 🇸🇬🇸🇬🇸🇬 port:2095",
-             "relay to vless 🇰🇷🇰🇷🇰🇷 port:80",
-             "relay to vless 🇰🇷🇰🇷🇰🇷 port:8080",
-             "relay to vless 🇰🇷🇰🇷🇰🇷 port:8880",
-             "relay to vless 🇰🇷🇰🇷🇰🇷 port:2052",
-             "relay to vless 🇰🇷🇰🇷🇰🇷 port:2082",
-             "relay to vless 🇰🇷🇰🇷🇰🇷 port:2086",
-             "relay to vless 🇰🇷🇰🇷🇰🇷 port:2095",
-             "relay to vless 🇨🇳🇨🇳🇨🇳 port:443",
-             "relay to vless 🇨🇳🇨🇳🇨🇳 port:2053",
-             "relay to vless 🇨🇳🇨🇳🇨🇳 port:2083",
-             "relay to vless 🇨🇳🇨🇳🇨🇳 port:2087",
-             "relay to vless 🇨🇳🇨🇳🇨🇳 port:2096",
-             "relay to vless 🇨🇳🇨🇳🇨🇳 port:8443",
-             "relay to vless 🇭🇰🇭🇰🇭🇰 port:443",
-             "relay to vless 🇭🇰🇭🇰🇭🇰 port:2053",
-             "relay to vless 🇭🇰🇭🇰🇭🇰 port:2083",
-             "relay to vless 🇭🇰🇭🇰🇭🇰 port:2087",
-             "relay to vless 🇭🇰🇭🇰🇭🇰 port:2096",
-             "relay to vless 🇭🇰🇭🇰🇭🇰 port:8443",
-             "relay to trojan 🇸🇬🇸🇬🇸🇬 port:80",
-             "relay to trojan 🇸🇬🇸🇬🇸🇬 port:8080",
-             "relay to trojan 🇸🇬🇸🇬🇸🇬 port:8880",
-             "relay to trojan 🇸🇬🇸🇬🇸🇬 port:2052",
-             "relay to trojan 🇸🇬🇸🇬🇸🇬 port:2082",
-             "relay to trojan 🇸🇬🇸🇬🇸🇬 port:2086",
-             "relay to trojan 🇸🇬🇸🇬🇸🇬 port:2095",
-             "relay to trojan 🇰🇷🇰🇷🇰🇷 port:80",
-             "relay to trojan 🇰🇷🇰🇷🇰🇷 port:8080",
-             "relay to trojan 🇰🇷🇰🇷🇰🇷 port:8880",
-             "relay to trojan 🇰🇷🇰🇷🇰🇷 port:2052",
-             "relay to trojan 🇰🇷🇰🇷🇰🇷 port:2082",
-             "relay to trojan 🇰🇷🇰🇷🇰🇷 port:2086",
-             "relay to trojan 🇰🇷🇰🇷🇰🇷 port:2095",
-             "relay to trojan 🇯🇵🇯🇵🇯🇵 port:80",
-             "relay to trojan 🇯🇵🇯🇵🇯🇵 port:8080",
-             "relay to trojan 🇯🇵🇯🇵🇯🇵 port:8880",
-             "relay to trojan 🇯🇵🇯🇵🇯🇵 port:2052",
-             "relay to trojan 🇯🇵🇯🇵🇯🇵 port:2082",
-             "relay to trojan 🇯🇵🇯🇵🇯🇵 port:2086",
-             "relay to trojan 🇯🇵🇯🇵🇯🇵 port:2095",
-             "relay to trojan 🇨🇳🇨🇳🇨🇳 port:443",
-             "relay to trojan 🇨🇳🇨🇳🇨🇳 port:2053",
-             "relay to trojan 🇨🇳🇨🇳🇨🇳 port:2083",
-             "relay to trojan 🇨🇳🇨🇳🇨🇳 port:2087",
-             "relay to trojan 🇨🇳🇨🇳🇨🇳 port:2096",
-             "relay to trojan 🇨🇳🇨🇳🇨🇳 port:8443",
-             "relay to trojan 🇭🇰🇭🇰🇭🇰 port:443",
-             "relay to trojan 🇭🇰🇭🇰🇭🇰 port:2053",
-             "relay to trojan 🇭🇰🇭🇰🇭🇰 port:2083",
-             "relay to trojan 🇭🇰🇭🇰🇭🇰 port:2087",
-             "relay to trojan 🇭🇰🇭🇰🇭🇰 port:2096",
-             "relay to trojan 🇭🇰🇭🇰🇭🇰 port:8443",
-             "relay to trojan 🇹🇼🇹🇼🇹🇼 port:443",
-             "relay to trojan 🇹🇼🇹🇼🇹🇼 port:2053",
-             "relay to trojan 🇹🇼🇹🇼🇹🇼 port:2083",
-             "relay to trojan 🇹🇼🇹🇼🇹🇼 port:2087",
-             "relay to trojan 🇹🇼🇹🇼🇹🇼 port:2096",
-             "relay to trojan 🇹🇼🇹🇼🇹🇼 port:8443",
-             "relay to grpc 🇸🇬🇸🇬🇸🇬 port:443",
-             "relay to grpc 🇸🇬🇸🇬🇸🇬 port:2053",
-             "relay to grpc 🇸🇬🇸🇬🇸🇬 port:2083",
-             "relay to grpc 🇸🇬🇸🇬🇸🇬 port:2087",
-             "relay to grpc 🇸🇬🇸🇬🇸🇬 port:2096",
-             "relay to grpc 🇸🇬🇸🇬🇸🇬 port:8443",
-             "relay to grpc 🇰🇷🇰🇷🇰🇷 port:443",
-             "relay to grpc 🇰🇷🇰🇷🇰🇷 port:2053",
-             "relay to grpc 🇰🇷🇰🇷🇰🇷 port:2083",
-             "relay to grpc 🇰🇷🇰🇷🇰🇷 port:2087",
-             "relay to grpc 🇰🇷🇰🇷🇰🇷 port:2096",
-             "relay to grpc 🇰🇷🇰🇷🇰🇷 port:8443",
-             "relay to grpc 🇯🇵🇯🇵🇯🇵 port:443",
-             "relay to grpc 🇯🇵🇯🇵🇯🇵 port:2053",
-             "relay to grpc 🇯🇵🇯🇵🇯🇵 port:2083",
-             "relay to grpc 🇯🇵🇯🇵🇯🇵 port:2087",
-             "relay to grpc 🇯🇵🇯🇵🇯🇵 port:2096",
-             "relay to grpc 🇯🇵🇯🇵🇯🇵 port:8443"
+             "cpanel",
+             "jalanet"
              ],
-             "default": "latency",
+             "default": "list_available",
              "interrupt_exist_connections": false
              },
              {
              "type": "urltest",
-             "tag": "latency",
+             "tag": "list_available",
              "outbounds": [
-             "relay to vmess 🇸🇬🇸🇬🇸🇬 port:80",
-             "relay to vmess 🇸🇬🇸🇬🇸🇬 port:8080",
-             "relay to vmess 🇸🇬🇸🇬🇸🇬 port:8880",
-             "relay to vmess 🇸🇬🇸🇬🇸🇬 port:2052",
-             "relay to vmess 🇸🇬🇸🇬🇸🇬 port:2082",
-             "relay to vmess 🇸🇬🇸🇬🇸🇬 port:2086",
-             "relay to vmess 🇸🇬🇸🇬🇸🇬 port:2095",
-             "relay to vmess 🇰🇷🇰🇷🇰🇷 port:80",
-             "relay to vmess 🇰🇷🇰🇷🇰🇷 port:8080",
-             "relay to vmess 🇰🇷🇰🇷🇰🇷 port:8880",
-             "relay to vmess 🇰🇷🇰🇷🇰🇷 port:2052",
-             "relay to vmess 🇰🇷🇰🇷🇰🇷 port:2082",
-             "relay to vmess 🇰🇷🇰🇷🇰🇷 port:2086",
-             "relay to vmess 🇰🇷🇰🇷🇰🇷 port:2095",
-             "relay to vmess 🇯🇵🇯🇵🇯🇵 port:80",
-             "relay to vmess 🇯🇵🇯🇵🇯🇵 port:8080",
-             "relay to vmess 🇯🇵🇯🇵🇯🇵 port:8880",
-             "relay to vmess 🇯🇵🇯🇵🇯🇵 port:2052",
-             "relay to vmess 🇯🇵🇯🇵🇯🇵 port:2082",
-             "relay to vmess 🇯🇵🇯🇵🇯🇵 port:2086",
-             "relay to vmess 🇯🇵🇯🇵🇯🇵 port:2095",
-             "relay to vmess 🇨🇳🇨🇳🇨🇳 port:443",
-             "relay to vmess 🇨🇳🇨🇳🇨🇳 port:2053",
-             "relay to vmess 🇨🇳🇨🇳🇨🇳 port:2083",
-             "relay to vmess 🇨🇳🇨🇳🇨🇳 port:2087",
-             "relay to vmess 🇨🇳🇨🇳🇨🇳 port:2096",
-             "relay to vmess 🇨🇳🇨🇳🇨🇳 port:8443",
-             "relay to vmess 🇭🇰🇭🇰🇭🇰 port:443",
-             "relay to vmess 🇭🇰🇭🇰🇭🇰 port:2053",
-             "relay to vmess 🇭🇰🇭🇰🇭🇰 port:2083",
-             "relay to vmess 🇭🇰🇭🇰🇭🇰 port:2087",
-             "relay to vmess 🇭🇰🇭🇰🇭🇰 port:2096",
-             "relay to vmess 🇭🇰🇭🇰🇭🇰 port:8443",
-             "relay to vmess 🇹🇼🇹🇼🇹🇼 port:443",
-             "relay to vmess 🇹🇼🇹🇼🇹🇼 port:2053",
-             "relay to vmess 🇹🇼🇹🇼🇹🇼 port:2083",
-             "relay to vmess 🇹🇼🇹🇼🇹🇼 port:2087",
-             "relay to vmess 🇹🇼🇹🇼🇹🇼 port:2096",
-             "relay to vmess 🇹🇼🇹🇼🇹🇼 port:8443",
-             "relay to vless 🇸🇬🇸🇬🇸🇬 port:80",
-             "relay to vless 🇸🇬🇸🇬🇸🇬 port:8080",
-             "relay to vless 🇸🇬🇸🇬🇸🇬 port:8880",
-             "relay to vless 🇸🇬🇸🇬🇸🇬 port:2052",
-             "relay to vless 🇸🇬🇸🇬🇸🇬 port:2082",
-             "relay to vless 🇸🇬🇸🇬🇸🇬 port:2086",
-             "relay to vless 🇸🇬🇸🇬🇸🇬 port:2095",
-             "relay to vless 🇰🇷🇰🇷🇰🇷 port:80",
-             "relay to vless 🇰🇷🇰🇷🇰🇷 port:8080",
-             "relay to vless 🇰🇷🇰🇷🇰🇷 port:8880",
-             "relay to vless 🇰🇷🇰🇷🇰🇷 port:2052",
-             "relay to vless 🇰🇷🇰🇷🇰🇷 port:2082",
-             "relay to vless 🇰🇷🇰🇷🇰🇷 port:2086",
-             "relay to vless 🇰🇷🇰🇷🇰🇷 port:2095",
-             "relay to vless 🇨🇳🇨🇳🇨🇳 port:443",
-             "relay to vless 🇨🇳🇨🇳🇨🇳 port:2053",
-             "relay to vless 🇨🇳🇨🇳🇨🇳 port:2083",
-             "relay to vless 🇨🇳🇨🇳🇨🇳 port:2087",
-             "relay to vless 🇨🇳🇨🇳🇨🇳 port:2096",
-             "relay to vless 🇨🇳🇨🇳🇨🇳 port:8443",
-             "relay to vless 🇭🇰🇭🇰🇭🇰 port:443",
-             "relay to vless 🇭🇰🇭🇰🇭🇰 port:2053",
-             "relay to vless 🇭🇰🇭🇰🇭🇰 port:2083",
-             "relay to vless 🇭🇰🇭🇰🇭🇰 port:2087",
-             "relay to vless 🇭🇰🇭🇰🇭🇰 port:2096",
-             "relay to vless 🇭🇰🇭🇰🇭🇰 port:8443",
-             "relay to trojan 🇸🇬🇸🇬🇸🇬 port:80",
-             "relay to trojan 🇸🇬🇸🇬🇸🇬 port:8080",
-             "relay to trojan 🇸🇬🇸🇬🇸🇬 port:8880",
-             "relay to trojan 🇸🇬🇸🇬🇸🇬 port:2052",
-             "relay to trojan 🇸🇬🇸🇬🇸🇬 port:2082",
-             "relay to trojan 🇸🇬🇸🇬🇸🇬 port:2086",
-             "relay to trojan 🇸🇬🇸🇬🇸🇬 port:2095",
-             "relay to trojan 🇰🇷🇰🇷🇰🇷 port:80",
-             "relay to trojan 🇰🇷🇰🇷🇰🇷 port:8080",
-             "relay to trojan 🇰🇷🇰🇷🇰🇷 port:8880",
-             "relay to trojan 🇰🇷🇰🇷🇰🇷 port:2052",
-             "relay to trojan 🇰🇷🇰🇷🇰🇷 port:2082",
-             "relay to trojan 🇰🇷🇰🇷🇰🇷 port:2086",
-             "relay to trojan 🇰🇷🇰🇷🇰🇷 port:2095",
-             "relay to trojan 🇯🇵🇯🇵🇯🇵 port:80",
-             "relay to trojan 🇯🇵🇯🇵🇯🇵 port:8080",
-             "relay to trojan 🇯🇵🇯🇵🇯🇵 port:8880",
-             "relay to trojan 🇯🇵🇯🇵🇯🇵 port:2052",
-             "relay to trojan 🇯🇵🇯🇵🇯🇵 port:2082",
-             "relay to trojan 🇯🇵🇯🇵🇯🇵 port:2086",
-             "relay to trojan 🇯🇵🇯🇵🇯🇵 port:2095",
-             "relay to trojan 🇨🇳🇨🇳🇨🇳 port:443",
-             "relay to trojan 🇨🇳🇨🇳🇨🇳 port:2053",
-             "relay to trojan 🇨🇳🇨🇳🇨🇳 port:2083",
-             "relay to trojan 🇨🇳🇨🇳🇨🇳 port:2087",
-             "relay to trojan 🇨🇳🇨🇳🇨🇳 port:2096",
-             "relay to trojan 🇨🇳🇨🇳🇨🇳 port:8443",
-             "relay to trojan 🇭🇰🇭🇰🇭🇰 port:443",
-             "relay to trojan 🇭🇰🇭🇰🇭🇰 port:2053",
-             "relay to trojan 🇭🇰🇭🇰🇭🇰 port:2083",
-             "relay to trojan 🇭🇰🇭🇰🇭🇰 port:2087",
-             "relay to trojan 🇭🇰🇭🇰🇭🇰 port:2096",
-             "relay to trojan 🇭🇰🇭🇰🇭🇰 port:8443",
-             "relay to trojan 🇹🇼🇹🇼🇹🇼 port:443",
-             "relay to trojan 🇹🇼🇹🇼🇹🇼 port:2053",
-             "relay to trojan 🇹🇼🇹🇼🇹🇼 port:2083",
-             "relay to trojan 🇹🇼🇹🇼🇹🇼 port:2087",
-             "relay to trojan 🇹🇼🇹🇼🇹🇼 port:2096",
-             "relay to trojan 🇹🇼🇹🇼🇹🇼 port:8443",
-             "relay to grpc 🇸🇬🇸🇬🇸🇬 port:443",
-             "relay to grpc 🇸🇬🇸🇬🇸🇬 port:2053",
-             "relay to grpc 🇸🇬🇸🇬🇸🇬 port:2083",
-             "relay to grpc 🇸🇬🇸🇬🇸🇬 port:2087",
-             "relay to grpc 🇸🇬🇸🇬🇸🇬 port:2096",
-             "relay to grpc 🇸🇬🇸🇬🇸🇬 port:8443",
-             "relay to grpc 🇰🇷🇰🇷🇰🇷 port:443",
-             "relay to grpc 🇰🇷🇰🇷🇰🇷 port:2053",
-             "relay to grpc 🇰🇷🇰🇷🇰🇷 port:2083",
-             "relay to grpc 🇰🇷🇰🇷🇰🇷 port:2087",
-             "relay to grpc 🇰🇷🇰🇷🇰🇷 port:2096",
-             "relay to grpc 🇰🇷🇰🇷🇰🇷 port:8443",
-             "relay to grpc 🇯🇵🇯🇵🇯🇵 port:443",
-             "relay to grpc 🇯🇵🇯🇵🇯🇵 port:2053",
-             "relay to grpc 🇯🇵🇯🇵🇯🇵 port:2083",
-             "relay to grpc 🇯🇵🇯🇵🇯🇵 port:2087",
-             "relay to grpc 🇯🇵🇯🇵🇯🇵 port:2096",
-             "relay to grpc 🇯🇵🇯🇵🇯🇵 port:8443"
+             "vmess 🇸🇬 port : 80",
+             "vmess 🇸🇬 port : 8080",
+             "vmess 🇸🇬 port : 8880",
+             "vmess 🇸🇬 port : 2052",
+             "vmess 🇸🇬 port : 2082",
+             "vmess 🇸🇬 port : 2086",
+             "vmess 🇸🇬 port : 2095",
+             "vmess 🇰🇷 port : 80",
+             "vmess 🇰🇷 port : 8080",
+             "vmess 🇰🇷 port : 8880",
+             "vmess 🇰🇷 port : 2052",
+             "vmess 🇰🇷 port : 2082",
+             "vmess 🇰🇷 port : 2086",
+             "vmess 🇰🇷 port : 2095",
+             "vmess 🇯🇵 port : 80",
+             "vmess 🇯🇵 port : 8080",
+             "vmess 🇯🇵 port : 8880",
+             "vmess 🇯🇵 port : 2052",
+             "vmess 🇯🇵 port : 2082",
+             "vmess 🇯🇵 port : 2086",
+             "vmess 🇯🇵 port : 2095",
+             "vmess 🇨🇳 port : 443",
+             "vmess 🇨🇳 port : 2053",
+             "vmess 🇨🇳 port : 2083",
+             "vmess 🇨🇳 port : 2087",
+             "vmess 🇨🇳 port : 2096",
+             "vmess 🇨🇳 port : 8443",
+             "vmess 🇭🇰 port : 443",
+             "vmess 🇭🇰 port : 2053",
+             "vmess 🇭🇰 port : 2083",
+             "vmess 🇭🇰 port : 2087",
+             "vmess 🇭🇰 port : 2096",
+             "vmess 🇭🇰 port : 8443",
+             "vmess 🇹🇼 port : 443",
+             "vmess 🇹🇼 port : 2053",
+             "vmess 🇹🇼 port : 2083",
+             "vmess 🇹🇼 port : 2087",
+             "vmess 🇹🇼 port : 2096",
+             "vmess 🇹🇼 port : 8443",
+             "vless 🇸🇬 port : 80",
+             "vless 🇸🇬 port : 8080",
+             "vless 🇸🇬 port : 8880",
+             "vless 🇸🇬 port : 2052",
+             "vless 🇸🇬 port : 2082",
+             "vless 🇸🇬 port : 2086",
+             "vless 🇸🇬 port : 2095",
+             "vless 🇰🇷 port : 80",
+             "vless 🇰🇷 port : 8080",
+             "vless 🇰🇷 port : 8880",
+             "vless 🇰🇷 port : 2052",
+             "vless 🇰🇷 port : 2082",
+             "vless 🇰🇷 port : 2086",
+             "vless 🇰🇷 port : 2095",
+             "vless 🇨🇳 port : 443",
+             "vless 🇨🇳 port : 2053",
+             "vless 🇨🇳 port : 2083",
+             "vless 🇨🇳 port : 2087",
+             "vless 🇨🇳 port : 2096",
+             "vless 🇨🇳 port : 8443",
+             "vless 🇭🇰 port : 443",
+             "vless 🇭🇰 port : 2053",
+             "vless 🇭🇰 port : 2083",
+             "vless 🇭🇰 port : 2087",
+             "vless 🇭🇰 port : 2096",
+             "vless 🇭🇰 port : 8443",
+             "trojan 🇸🇬 port : 80",
+             "trojan 🇸🇬 port : 8080",
+             "trojan 🇸🇬 port : 8880",
+             "trojan 🇸🇬 port : 2052",
+             "trojan 🇸🇬 port : 2082",
+             "trojan 🇸🇬 port : 2086",
+             "trojan 🇸🇬 port : 2095",
+             "trojan 🇰🇷 port : 80",
+             "trojan 🇰🇷 port : 8080",
+             "trojan 🇰🇷 port : 8880",
+             "trojan 🇰🇷 port : 2052",
+             "trojan 🇰🇷 port : 2082",
+             "trojan 🇰🇷 port : 2086",
+             "trojan 🇰🇷 port : 2095",
+             "trojan 🇯🇵 port : 80",
+             "trojan 🇯🇵 port : 8080",
+             "trojan 🇯🇵 port : 8880",
+             "trojan 🇯🇵 port : 2052",
+             "trojan 🇯🇵 port : 2082",
+             "trojan 🇯🇵 port : 2086",
+             "trojan 🇯🇵 port : 2095",
+             "trojan 🇨🇳 port : 443",
+             "trojan 🇨🇳 port : 2053",
+             "trojan 🇨🇳 port : 2083",
+             "trojan 🇨🇳 port : 2087",
+             "trojan 🇨🇳 port : 2096",
+             "trojan 🇨🇳 port : 8443",
+             "trojan 🇭🇰 port : 443",
+             "trojan 🇭🇰 port : 2053",
+             "trojan 🇭🇰 port : 2083",
+             "trojan 🇭🇰 port : 2087",
+             "trojan 🇭🇰 port : 2096",
+             "trojan 🇭🇰 port : 8443",
+             "trojan 🇹🇼 port : 443",
+             "trojan 🇹🇼 port : 2053",
+             "trojan 🇹🇼 port : 2083",
+             "trojan 🇹🇼 port : 2087",
+             "trojan 🇹🇼 port : 2096",
+             "trojan 🇹🇼 port : 8443",
+             "grpc 🇸🇬 port : 443",
+             "grpc 🇸🇬 port : 2053",
+             "grpc 🇸🇬 port : 2083",
+             "grpc 🇸🇬 port : 2087",
+             "grpc 🇸🇬 port : 2096",
+             "grpc 🇸🇬 port : 8443",
+             "grpc 🇰🇷 port : 443",
+             "grpc 🇰🇷 port : 2053",
+             "grpc 🇰🇷 port : 2083",
+             "grpc 🇰🇷 port : 2087",
+             "grpc 🇰🇷 port : 2096",
+             "grpc 🇰🇷 port : 8443",
+             "grpc 🇯🇵 port : 443",
+             "grpc 🇯🇵 port : 2053",
+             "grpc 🇯🇵 port : 2083",
+             "grpc 🇯🇵 port : 2087",
+             "grpc 🇯🇵 port : 2096",
+             "grpc 🇯🇵 port : 8443"
              ],
              "url": "http://cp.cloudflare.com/",
              "interval": "66s",
@@ -459,45 +229,45 @@
              "type": "urltest",
              "tag": "vmess",
              "outbounds": [
-             "relay to vmess 🇸🇬🇸🇬🇸🇬 port:80",
-             "relay to vmess 🇸🇬🇸🇬🇸🇬 port:8080",
-             "relay to vmess 🇸🇬🇸🇬🇸🇬 port:8880",
-             "relay to vmess 🇸🇬🇸🇬🇸🇬 port:2052",
-             "relay to vmess 🇸🇬🇸🇬🇸🇬 port:2082",
-             "relay to vmess 🇸🇬🇸🇬🇸🇬 port:2086",
-             "relay to vmess 🇸🇬🇸🇬🇸🇬 port:2095",
-             "relay to vmess 🇰🇷🇰🇷🇰🇷 port:80",
-             "relay to vmess 🇰🇷🇰🇷🇰🇷 port:8080",
-             "relay to vmess 🇰🇷🇰🇷🇰🇷 port:8880",
-             "relay to vmess 🇰🇷🇰🇷🇰🇷 port:2052",
-             "relay to vmess 🇰🇷🇰🇷🇰🇷 port:2082",
-             "relay to vmess 🇰🇷🇰🇷🇰🇷 port:2086",
-             "relay to vmess 🇰🇷🇰🇷🇰🇷 port:2095",
-             "relay to vmess 🇯🇵🇯🇵🇯🇵 port:80",
-             "relay to vmess 🇯🇵🇯🇵🇯🇵 port:8080",
-             "relay to vmess 🇯🇵🇯🇵🇯🇵 port:8880",
-             "relay to vmess 🇯🇵🇯🇵🇯🇵 port:2052",
-             "relay to vmess 🇯🇵🇯🇵🇯🇵 port:2082",
-             "relay to vmess 🇯🇵🇯🇵🇯🇵 port:2086",
-             "relay to vmess 🇯🇵🇯🇵🇯🇵 port:2095",
-             "relay to vmess 🇨🇳🇨🇳🇨🇳 port:443",
-             "relay to vmess 🇨🇳🇨🇳🇨🇳 port:2053",
-             "relay to vmess 🇨🇳🇨🇳🇨🇳 port:2083",
-             "relay to vmess 🇨🇳🇨🇳🇨🇳 port:2087",
-             "relay to vmess 🇨🇳🇨🇳🇨🇳 port:2096",
-             "relay to vmess 🇨🇳🇨🇳🇨🇳 port:8443",
-             "relay to vmess 🇭🇰🇭🇰🇭🇰 port:443",
-             "relay to vmess 🇭🇰🇭🇰🇭🇰 port:2053",
-             "relay to vmess 🇭🇰🇭🇰🇭🇰 port:2083",
-             "relay to vmess 🇭🇰🇭🇰🇭🇰 port:2087",
-             "relay to vmess 🇭🇰🇭🇰🇭🇰 port:2096",
-             "relay to vmess 🇭🇰🇭🇰🇭🇰 port:8443",
-             "relay to vmess 🇹🇼🇹🇼🇹🇼 port:443",
-             "relay to vmess 🇹🇼🇹🇼🇹🇼 port:2053",
-             "relay to vmess 🇹🇼🇹🇼🇹🇼 port:2083",
-             "relay to vmess 🇹🇼🇹🇼🇹🇼 port:2087",
-             "relay to vmess 🇹🇼🇹🇼🇹🇼 port:2096",
-             "relay to vmess 🇹🇼🇹🇼🇹🇼 port:8443"
+             "vmess 🇸🇬 port : 80",
+             "vmess 🇸🇬 port : 8080",
+             "vmess 🇸🇬 port : 8880",
+             "vmess 🇸🇬 port : 2052",
+             "vmess 🇸🇬 port : 2082",
+             "vmess 🇸🇬 port : 2086",
+             "vmess 🇸🇬 port : 2095",
+             "vmess 🇰🇷 port : 80",
+             "vmess 🇰🇷 port : 8080",
+             "vmess 🇰🇷 port : 8880",
+             "vmess 🇰🇷 port : 2052",
+             "vmess 🇰🇷 port : 2082",
+             "vmess 🇰🇷 port : 2086",
+             "vmess 🇰🇷 port : 2095",
+             "vmess 🇯🇵 port : 80",
+             "vmess 🇯🇵 port : 8080",
+             "vmess 🇯🇵 port : 8880",
+             "vmess 🇯🇵 port : 2052",
+             "vmess 🇯🇵 port : 2082",
+             "vmess 🇯🇵 port : 2086",
+             "vmess 🇯🇵 port : 2095",
+             "vmess 🇨🇳 port : 443",
+             "vmess 🇨🇳 port : 2053",
+             "vmess 🇨🇳 port : 2083",
+             "vmess 🇨🇳 port : 2087",
+             "vmess 🇨🇳 port : 2096",
+             "vmess 🇨🇳 port : 8443",
+             "vmess 🇭🇰 port : 443",
+             "vmess 🇭🇰 port : 2053",
+             "vmess 🇭🇰 port : 2083",
+             "vmess 🇭🇰 port : 2087",
+             "vmess 🇭🇰 port : 2096",
+             "vmess 🇭🇰 port : 8443",
+             "vmess 🇹🇼 port : 443",
+             "vmess 🇹🇼 port : 2053",
+             "vmess 🇹🇼 port : 2083",
+             "vmess 🇹🇼 port : 2087",
+             "vmess 🇹🇼 port : 2096",
+             "vmess 🇹🇼 port : 8443"
              ],
              "url": "http://cp.cloudflare.com/",
              "interval": "66s",
@@ -508,32 +278,32 @@
              "type": "urltest",
              "tag": "vless",
              "outbounds": [
-             "relay to vless 🇸🇬🇸🇬🇸🇬 port:80",
-             "relay to vless 🇸🇬🇸🇬🇸🇬 port:8080",
-             "relay to vless 🇸🇬🇸🇬🇸🇬 port:8880",
-             "relay to vless 🇸🇬🇸🇬🇸🇬 port:2052",
-             "relay to vless 🇸🇬🇸🇬🇸🇬 port:2082",
-             "relay to vless 🇸🇬🇸🇬🇸🇬 port:2086",
-             "relay to vless 🇸🇬🇸🇬🇸🇬 port:2095",
-             "relay to vless 🇰🇷🇰🇷🇰🇷 port:80",
-             "relay to vless 🇰🇷🇰🇷🇰🇷 port:8080",
-             "relay to vless 🇰🇷🇰🇷🇰🇷 port:8880",
-             "relay to vless 🇰🇷🇰🇷🇰🇷 port:2052",
-             "relay to vless 🇰🇷🇰🇷🇰🇷 port:2082",
-             "relay to vless 🇰🇷🇰🇷🇰🇷 port:2086",
-             "relay to vless 🇰🇷🇰🇷🇰🇷 port:2095",
-             "relay to vless 🇨🇳🇨🇳🇨🇳 port:443",
-             "relay to vless 🇨🇳🇨🇳🇨🇳 port:2053",
-             "relay to vless 🇨🇳🇨🇳🇨🇳 port:2083",
-             "relay to vless 🇨🇳🇨🇳🇨🇳 port:2087",
-             "relay to vless 🇨🇳🇨🇳🇨🇳 port:2096",
-             "relay to vless 🇨🇳🇨🇳🇨🇳 port:8443",
-             "relay to vless 🇭🇰🇭🇰🇭🇰 port:443",
-             "relay to vless 🇭🇰🇭🇰🇭🇰 port:2053",
-             "relay to vless 🇭🇰🇭🇰🇭🇰 port:2083",
-             "relay to vless 🇭🇰🇭🇰🇭🇰 port:2087",
-             "relay to vless 🇭🇰🇭🇰🇭🇰 port:2096",
-             "relay to vless 🇭🇰🇭🇰🇭🇰 port:8443"
+             "vless 🇸🇬 port : 80",
+             "vless 🇸🇬 port : 8080",
+             "vless 🇸🇬 port : 8880",
+             "vless 🇸🇬 port : 2052",
+             "vless 🇸🇬 port : 2082",
+             "vless 🇸🇬 port : 2086",
+             "vless 🇸🇬 port : 2095",
+             "vless 🇰🇷 port : 80",
+             "vless 🇰🇷 port : 8080",
+             "vless 🇰🇷 port : 8880",
+             "vless 🇰🇷 port : 2052",
+             "vless 🇰🇷 port : 2082",
+             "vless 🇰🇷 port : 2086",
+             "vless 🇰🇷 port : 2095",
+             "vless 🇨🇳 port : 443",
+             "vless 🇨🇳 port : 2053",
+             "vless 🇨🇳 port : 2083",
+             "vless 🇨🇳 port : 2087",
+             "vless 🇨🇳 port : 2096",
+             "vless 🇨🇳 port : 8443",
+             "vless 🇭🇰 port : 443",
+             "vless 🇭🇰 port : 2053",
+             "vless 🇭🇰 port : 2083",
+             "vless 🇭🇰 port : 2087",
+             "vless 🇭🇰 port : 2096",
+             "vless 🇭🇰 port : 8443"
              ],
              "url": "http://cp.cloudflare.com/",
              "interval": "66s",
@@ -544,45 +314,45 @@
              "type": "urltest",
              "tag": "trojan",
              "outbounds": [
-             "relay to trojan 🇸🇬🇸🇬🇸🇬 port:80",
-             "relay to trojan 🇸🇬🇸🇬🇸🇬 port:8080",
-             "relay to trojan 🇸🇬🇸🇬🇸🇬 port:8880",
-             "relay to trojan 🇸🇬🇸🇬🇸🇬 port:2052",
-             "relay to trojan 🇸🇬🇸🇬🇸🇬 port:2082",
-             "relay to trojan 🇸🇬🇸🇬🇸🇬 port:2086",
-             "relay to trojan 🇸🇬🇸🇬🇸🇬 port:2095",
-             "relay to trojan 🇰🇷🇰🇷🇰🇷 port:80",
-             "relay to trojan 🇰🇷🇰🇷🇰🇷 port:8080",
-             "relay to trojan 🇰🇷🇰🇷🇰🇷 port:8880",
-             "relay to trojan 🇰🇷🇰🇷🇰🇷 port:2052",
-             "relay to trojan 🇰🇷🇰🇷🇰🇷 port:2082",
-             "relay to trojan 🇰🇷🇰🇷🇰🇷 port:2086",
-             "relay to trojan 🇰🇷🇰🇷🇰🇷 port:2095",
-             "relay to trojan 🇯🇵🇯🇵🇯🇵 port:80",
-             "relay to trojan 🇯🇵🇯🇵🇯🇵 port:8080",
-             "relay to trojan 🇯🇵🇯🇵🇯🇵 port:8880",
-             "relay to trojan 🇯🇵🇯🇵🇯🇵 port:2052",
-             "relay to trojan 🇯🇵🇯🇵🇯🇵 port:2082",
-             "relay to trojan 🇯🇵🇯🇵🇯🇵 port:2086",
-             "relay to trojan 🇯🇵🇯🇵🇯🇵 port:2095",
-             "relay to trojan 🇨🇳🇨🇳🇨🇳 port:443",
-             "relay to trojan 🇨🇳🇨🇳🇨🇳 port:2053",
-             "relay to trojan 🇨🇳🇨🇳🇨🇳 port:2083",
-             "relay to trojan 🇨🇳🇨🇳🇨🇳 port:2087",
-             "relay to trojan 🇨🇳🇨🇳🇨🇳 port:2096",
-             "relay to trojan 🇨🇳🇨🇳🇨🇳 port:8443",
-             "relay to trojan 🇭🇰🇭🇰🇭🇰 port:443",
-             "relay to trojan 🇭🇰🇭🇰🇭🇰 port:2053",
-             "relay to trojan 🇭🇰🇭🇰🇭🇰 port:2083",
-             "relay to trojan 🇭🇰🇭🇰🇭🇰 port:2087",
-             "relay to trojan 🇭🇰🇭🇰🇭🇰 port:2096",
-             "relay to trojan 🇭🇰🇭🇰🇭🇰 port:8443",
-             "relay to trojan 🇹🇼🇹🇼🇹🇼 port:443",
-             "relay to trojan 🇹🇼🇹🇼🇹🇼 port:2053",
-             "relay to trojan 🇹🇼🇹🇼🇹🇼 port:2083",
-             "relay to trojan 🇹🇼🇹🇼🇹🇼 port:2087",
-             "relay to trojan 🇹🇼🇹🇼🇹🇼 port:2096",
-             "relay to trojan 🇹🇼🇹🇼🇹🇼 port:8443"
+             "trojan 🇸🇬 port : 80",
+             "trojan 🇸🇬 port : 8080",
+             "trojan 🇸🇬 port : 8880",
+             "trojan 🇸🇬 port : 2052",
+             "trojan 🇸🇬 port : 2082",
+             "trojan 🇸🇬 port : 2086",
+             "trojan 🇸🇬 port : 2095",
+             "trojan 🇰🇷 port : 80",
+             "trojan 🇰🇷 port : 8080",
+             "trojan 🇰🇷 port : 8880",
+             "trojan 🇰🇷 port : 2052",
+             "trojan 🇰🇷 port : 2082",
+             "trojan 🇰🇷 port : 2086",
+             "trojan 🇰🇷 port : 2095",
+             "trojan 🇯🇵 port : 80",
+             "trojan 🇯🇵 port : 8080",
+             "trojan 🇯🇵 port : 8880",
+             "trojan 🇯🇵 port : 2052",
+             "trojan 🇯🇵 port : 2082",
+             "trojan 🇯🇵 port : 2086",
+             "trojan 🇯🇵 port : 2095",
+             "trojan 🇨🇳 port : 443",
+             "trojan 🇨🇳 port : 2053",
+             "trojan 🇨🇳 port : 2083",
+             "trojan 🇨🇳 port : 2087",
+             "trojan 🇨🇳 port : 2096",
+             "trojan 🇨🇳 port : 8443",
+             "trojan 🇭🇰 port : 443",
+             "trojan 🇭🇰 port : 2053",
+             "trojan 🇭🇰 port : 2083",
+             "trojan 🇭🇰 port : 2087",
+             "trojan 🇭🇰 port : 2096",
+             "trojan 🇭🇰 port : 8443",
+             "trojan 🇹🇼 port : 443",
+             "trojan 🇹🇼 port : 2053",
+             "trojan 🇹🇼 port : 2083",
+             "trojan 🇹🇼 port : 2087",
+             "trojan 🇹🇼 port : 2096",
+             "trojan 🇹🇼 port : 8443"
              ],
              "url": "http://cp.cloudflare.com/",
              "interval": "66s",
@@ -593,24 +363,166 @@
              "type": "urltest",
              "tag": "grpc",
              "outbounds": [
-             "relay to grpc 🇸🇬🇸🇬🇸🇬 port:443",
-             "relay to grpc 🇸🇬🇸🇬🇸🇬 port:2053",
-             "relay to grpc 🇸🇬🇸🇬🇸🇬 port:2083",
-             "relay to grpc 🇸🇬🇸🇬🇸🇬 port:2087",
-             "relay to grpc 🇸🇬🇸🇬🇸🇬 port:2096",
-             "relay to grpc 🇸🇬🇸🇬🇸🇬 port:8443",
-             "relay to grpc 🇰🇷🇰🇷🇰🇷 port:443",
-             "relay to grpc 🇰🇷🇰🇷🇰🇷 port:2053",
-             "relay to grpc 🇰🇷🇰🇷🇰🇷 port:2083",
-             "relay to grpc 🇰🇷🇰🇷🇰🇷 port:2087",
-             "relay to grpc 🇰🇷🇰🇷🇰🇷 port:2096",
-             "relay to grpc 🇰🇷🇰🇷🇰🇷 port:8443",
-             "relay to grpc 🇯🇵🇯🇵🇯🇵 port:443",
-             "relay to grpc 🇯🇵🇯🇵🇯🇵 port:2053",
-             "relay to grpc 🇯🇵🇯🇵🇯🇵 port:2083",
-             "relay to grpc 🇯🇵🇯🇵🇯🇵 port:2087",
-             "relay to grpc 🇯🇵🇯🇵🇯🇵 port:2096",
-             "relay to grpc 🇯🇵🇯🇵🇯🇵 port:8443"
+             "grpc 🇸🇬 port : 443",
+             "grpc 🇸🇬 port : 2053",
+             "grpc 🇸🇬 port : 2083",
+             "grpc 🇸🇬 port : 2087",
+             "grpc 🇸🇬 port : 2096",
+             "grpc 🇸🇬 port : 8443",
+             "grpc 🇰🇷 port : 443",
+             "grpc 🇰🇷 port : 2053",
+             "grpc 🇰🇷 port : 2083",
+             "grpc 🇰🇷 port : 2087",
+             "grpc 🇰🇷 port : 2096",
+             "grpc 🇰🇷 port : 8443",
+             "grpc 🇯🇵 port : 443",
+             "grpc 🇯🇵 port : 2053",
+             "grpc 🇯🇵 port : 2083",
+             "grpc 🇯🇵 port : 2087",
+             "grpc 🇯🇵 port : 2096",
+             "grpc 🇯🇵 port : 8443"
+             ],
+             "url": "http://cp.cloudflare.com/",
+             "interval": "66s",
+             "tolerance": 0,
+             "interrupt_exist_connections": false
+             },
+             {
+             "type": "urltest",
+             "tag": "cpanel",
+             "outbounds": [
+             "vmess 🇸🇬 port : 80",
+             "vmess 🇸🇬 port : 8080",
+             "vmess 🇸🇬 port : 8880",
+             "vmess 🇸🇬 port : 2052",
+             "vmess 🇸🇬 port : 2082",
+             "vmess 🇸🇬 port : 2086",
+             "vmess 🇸🇬 port : 2095",
+             "vmess 🇨🇳 port : 443",
+             "vmess 🇨🇳 port : 2053",
+             "vmess 🇨🇳 port : 2083",
+             "vmess 🇨🇳 port : 2087",
+             "vmess 🇨🇳 port : 2096",
+             "vmess 🇨🇳 port : 8443",
+             "vless 🇸🇬 port : 80",
+             "vless 🇸🇬 port : 8080",
+             "vless 🇸🇬 port : 8880",
+             "vless 🇸🇬 port : 2052",
+             "vless 🇸🇬 port : 2082",
+             "vless 🇸🇬 port : 2086",
+             "vless 🇸🇬 port : 2095",
+             "vless 🇨🇳 port : 443",
+             "vless 🇨🇳 port : 2053",
+             "vless 🇨🇳 port : 2083",
+             "vless 🇨🇳 port : 2087",
+             "vless 🇨🇳 port : 2096",
+             "vless 🇨🇳 port : 8443",
+             "trojan 🇸🇬 port : 80",
+             "trojan 🇸🇬 port : 8080",
+             "trojan 🇸🇬 port : 8880",
+             "trojan 🇸🇬 port : 2052",
+             "trojan 🇸🇬 port : 2082",
+             "trojan 🇸🇬 port : 2086",
+             "trojan 🇸🇬 port : 2095",
+             "trojan 🇨🇳 port : 443",
+             "trojan 🇨🇳 port : 2053",
+             "trojan 🇨🇳 port : 2083",
+             "trojan 🇨🇳 port : 2087",
+             "trojan 🇨🇳 port : 2096",
+             "trojan 🇨🇳 port : 8443"
+             ],
+             "url": "http://cp.cloudflare.com/",
+             "interval": "66s",
+             "tolerance": 0,
+             "interrupt_exist_connections": false
+             },
+             {
+             "type": "urltest",
+             "tag": "jalanet",
+             "outbounds": [
+             "vmess 🇰🇷 port : 80",
+             "vmess 🇰🇷 port : 8080",
+             "vmess 🇰🇷 port : 8880",
+             "vmess 🇰🇷 port : 2052",
+             "vmess 🇰🇷 port : 2082",
+             "vmess 🇰🇷 port : 2086",
+             "vmess 🇰🇷 port : 2095",
+             "vmess 🇯🇵 port : 80",
+             "vmess 🇯🇵 port : 8080",
+             "vmess 🇯🇵 port : 8880",
+             "vmess 🇯🇵 port : 2052",
+             "vmess 🇯🇵 port : 2082",
+             "vmess 🇯🇵 port : 2086",
+             "vmess 🇯🇵 port : 2095",
+             "vmess 🇭🇰 port : 443",
+             "vmess 🇭🇰 port : 2053",
+             "vmess 🇭🇰 port : 2083",
+             "vmess 🇭🇰 port : 2087",
+             "vmess 🇭🇰 port : 2096",
+             "vmess 🇭🇰 port : 8443",
+             "vmess 🇹🇼 port : 443",
+             "vmess 🇹🇼 port : 2053",
+             "vmess 🇹🇼 port : 2083",
+             "vmess 🇹🇼 port : 2087",
+             "vmess 🇹🇼 port : 2096",
+             "vmess 🇹🇼 port : 8443",
+             "vless 🇰🇷 port : 80",
+             "vless 🇰🇷 port : 8080",
+             "vless 🇰🇷 port : 8880",
+             "vless 🇰🇷 port : 2052",
+             "vless 🇰🇷 port : 2082",
+             "vless 🇰🇷 port : 2086",
+             "vless 🇰🇷 port : 2095",
+             "vless 🇭🇰 port : 443",
+             "vless 🇭🇰 port : 2053",
+             "vless 🇭🇰 port : 2083",
+             "vless 🇭🇰 port : 2087",
+             "vless 🇭🇰 port : 2096",
+             "vless 🇭🇰 port : 8443",
+             "trojan 🇰🇷 port : 80",
+             "trojan 🇰🇷 port : 8080",
+             "trojan 🇰🇷 port : 8880",
+             "trojan 🇰🇷 port : 2052",
+             "trojan 🇰🇷 port : 2082",
+             "trojan 🇰🇷 port : 2086",
+             "trojan 🇰🇷 port : 2095",
+             "trojan 🇯🇵 port : 80",
+             "trojan 🇯🇵 port : 8080",
+             "trojan 🇯🇵 port : 8880",
+             "trojan 🇯🇵 port : 2052",
+             "trojan 🇯🇵 port : 2082",
+             "trojan 🇯🇵 port : 2086",
+             "trojan 🇯🇵 port : 2095",
+             "trojan 🇭🇰 port : 443",
+             "trojan 🇭🇰 port : 2053",
+             "trojan 🇭🇰 port : 2083",
+             "trojan 🇭🇰 port : 2087",
+             "trojan 🇭🇰 port : 2096",
+             "trojan 🇭🇰 port : 8443",
+             "trojan 🇹🇼 port : 443",
+             "trojan 🇹🇼 port : 2053",
+             "trojan 🇹🇼 port : 2083",
+             "trojan 🇹🇼 port : 2087",
+             "trojan 🇹🇼 port : 2096",
+             "trojan 🇹🇼 port : 8443",
+             "grpc 🇸🇬 port : 443",
+             "grpc 🇸🇬 port : 2053",
+             "grpc 🇸🇬 port : 2083",
+             "grpc 🇸🇬 port : 2087",
+             "grpc 🇸🇬 port : 2096",
+             "grpc 🇸🇬 port : 8443",
+             "grpc 🇰🇷 port : 443",
+             "grpc 🇰🇷 port : 2053",
+             "grpc 🇰🇷 port : 2083",
+             "grpc 🇰🇷 port : 2087",
+             "grpc 🇰🇷 port : 2096",
+             "grpc 🇰🇷 port : 8443",
+             "grpc 🇯🇵 port : 443",
+             "grpc 🇯🇵 port : 2053",
+             "grpc 🇯🇵 port : 2083",
+             "grpc 🇯🇵 port : 2087",
+             "grpc 🇯🇵 port : 2096",
+             "grpc 🇯🇵 port : 8443"
              ],
              "url": "http://cp.cloudflare.com/",
              "interval": "66s",
@@ -619,23 +531,27 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇸🇬🇸🇬🇸🇬 port:80",
+             "tag": "vmess 🇸🇬 port : 80",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 80,
-             "uuid": "d03d341a-f85f-477a-9282-2b9c954e4f75",
+             "uuid": "9af5fb88-9072-4346-a12c-e6c2b1c28f07",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -648,23 +564,27 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇸🇬🇸🇬🇸🇬 port:8080",
+             "tag": "vmess 🇸🇬 port : 8080",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 8080,
-             "uuid": "d03d341a-f85f-477a-9282-2b9c954e4f75",
+             "uuid": "9af5fb88-9072-4346-a12c-e6c2b1c28f07",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -677,23 +597,27 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇸🇬🇸🇬🇸🇬 port:8880",
+             "tag": "vmess 🇸🇬 port : 8880",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 8880,
-             "uuid": "d03d341a-f85f-477a-9282-2b9c954e4f75",
+             "uuid": "9af5fb88-9072-4346-a12c-e6c2b1c28f07",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -706,23 +630,27 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇸🇬🇸🇬🇸🇬 port:2052",
+             "tag": "vmess 🇸🇬 port : 2052",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2052,
-             "uuid": "d03d341a-f85f-477a-9282-2b9c954e4f75",
+             "uuid": "9af5fb88-9072-4346-a12c-e6c2b1c28f07",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -735,23 +663,27 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇸🇬🇸🇬🇸🇬 port:2082",
+             "tag": "vmess 🇸🇬 port : 2082",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2082,
-             "uuid": "d03d341a-f85f-477a-9282-2b9c954e4f75",
+             "uuid": "9af5fb88-9072-4346-a12c-e6c2b1c28f07",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -764,23 +696,27 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇸🇬🇸🇬🇸🇬 port:2086",
+             "tag": "vmess 🇸🇬 port : 2086",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2086,
-             "uuid": "d03d341a-f85f-477a-9282-2b9c954e4f75",
+             "uuid": "9af5fb88-9072-4346-a12c-e6c2b1c28f07",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -793,23 +729,27 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇸🇬🇸🇬🇸🇬 port:2095",
+             "tag": "vmess 🇸🇬 port : 2095",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2095,
-             "uuid": "d03d341a-f85f-477a-9282-2b9c954e4f75",
+             "uuid": "9af5fb88-9072-4346-a12c-e6c2b1c28f07",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -822,23 +762,27 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇰🇷🇰🇷🇰🇷 port:80",
+             "tag": "vmess 🇰🇷 port : 80",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 80,
-             "uuid": "5f8ea375-2d0d-4739-871a-bbe631dfc23a",
+             "uuid": "6aa67aef-4721-4dcb-920d-ec3fcf628447",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -851,23 +795,27 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇰🇷🇰🇷🇰🇷 port:8080",
+             "tag": "vmess 🇰🇷 port : 8080",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 8080,
-             "uuid": "5f8ea375-2d0d-4739-871a-bbe631dfc23a",
+             "uuid": "6aa67aef-4721-4dcb-920d-ec3fcf628447",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -880,23 +828,27 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇰🇷🇰🇷🇰🇷 port:8880",
+             "tag": "vmess 🇰🇷 port : 8880",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 8880,
-             "uuid": "5f8ea375-2d0d-4739-871a-bbe631dfc23a",
+             "uuid": "6aa67aef-4721-4dcb-920d-ec3fcf628447",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -909,23 +861,27 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇰🇷🇰🇷🇰🇷 port:2052",
+             "tag": "vmess 🇰🇷 port : 2052",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2052,
-             "uuid": "5f8ea375-2d0d-4739-871a-bbe631dfc23a",
+             "uuid": "6aa67aef-4721-4dcb-920d-ec3fcf628447",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -938,23 +894,27 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇰🇷🇰🇷🇰🇷 port:2082",
+             "tag": "vmess 🇰🇷 port : 2082",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2082,
-             "uuid": "5f8ea375-2d0d-4739-871a-bbe631dfc23a",
+             "uuid": "6aa67aef-4721-4dcb-920d-ec3fcf628447",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -967,23 +927,27 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇰🇷🇰🇷🇰🇷 port:2086",
+             "tag": "vmess 🇰🇷 port : 2086",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2086,
-             "uuid": "5f8ea375-2d0d-4739-871a-bbe631dfc23a",
+             "uuid": "6aa67aef-4721-4dcb-920d-ec3fcf628447",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -996,23 +960,27 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇰🇷🇰🇷🇰🇷 port:2095",
+             "tag": "vmess 🇰🇷 port : 2095",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2095,
-             "uuid": "5f8ea375-2d0d-4739-871a-bbe631dfc23a",
+             "uuid": "6aa67aef-4721-4dcb-920d-ec3fcf628447",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1025,23 +993,27 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇯🇵🇯🇵🇯🇵 port:80",
+             "tag": "vmess 🇯🇵 port : 80",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 80,
-             "uuid": "0048d023-7ed2-4a9a-908f-71cb6c937283",
+             "uuid": "3c0b41d5-7468-4a8c-a4a6-e271eb84dfe5",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1054,23 +1026,27 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇯🇵🇯🇵🇯🇵 port:8080",
+             "tag": "vmess 🇯🇵 port : 8080",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 8080,
-             "uuid": "0048d023-7ed2-4a9a-908f-71cb6c937283",
+             "uuid": "3c0b41d5-7468-4a8c-a4a6-e271eb84dfe5",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1083,23 +1059,27 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇯🇵🇯🇵🇯🇵 port:8880",
+             "tag": "vmess 🇯🇵 port : 8880",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 8880,
-             "uuid": "0048d023-7ed2-4a9a-908f-71cb6c937283",
+             "uuid": "3c0b41d5-7468-4a8c-a4a6-e271eb84dfe5",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1112,23 +1092,27 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇯🇵🇯🇵🇯🇵 port:2052",
+             "tag": "vmess 🇯🇵 port : 2052",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2052,
-             "uuid": "0048d023-7ed2-4a9a-908f-71cb6c937283",
+             "uuid": "3c0b41d5-7468-4a8c-a4a6-e271eb84dfe5",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1141,23 +1125,27 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇯🇵🇯🇵🇯🇵 port:2082",
+             "tag": "vmess 🇯🇵 port : 2082",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2082,
-             "uuid": "0048d023-7ed2-4a9a-908f-71cb6c937283",
+             "uuid": "3c0b41d5-7468-4a8c-a4a6-e271eb84dfe5",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1170,23 +1158,27 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇯🇵🇯🇵🇯🇵 port:2086",
+             "tag": "vmess 🇯🇵 port : 2086",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2086,
-             "uuid": "0048d023-7ed2-4a9a-908f-71cb6c937283",
+             "uuid": "3c0b41d5-7468-4a8c-a4a6-e271eb84dfe5",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1199,23 +1191,27 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇯🇵🇯🇵🇯🇵 port:2095",
+             "tag": "vmess 🇯🇵 port : 2095",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2095,
-             "uuid": "0048d023-7ed2-4a9a-908f-71cb6c937283",
+             "uuid": "3c0b41d5-7468-4a8c-a4a6-e271eb84dfe5",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1228,24 +1224,28 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇨🇳🇨🇳🇨🇳 port:443",
+             "tag": "vmess 🇨🇳 port : 443",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 443,
-             "uuid": "d03d341a-f85f-477a-9282-2b9c954e4f75",
+             "uuid": "9af5fb88-9072-4346-a12c-e6c2b1c28f07",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "enabled": true,
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1258,24 +1258,28 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇨🇳🇨🇳🇨🇳 port:2053",
+             "tag": "vmess 🇨🇳 port : 2053",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2053,
-             "uuid": "d03d341a-f85f-477a-9282-2b9c954e4f75",
+             "uuid": "9af5fb88-9072-4346-a12c-e6c2b1c28f07",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "enabled": true,
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1288,24 +1292,28 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇨🇳🇨🇳🇨🇳 port:2083",
+             "tag": "vmess 🇨🇳 port : 2083",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2083,
-             "uuid": "d03d341a-f85f-477a-9282-2b9c954e4f75",
+             "uuid": "9af5fb88-9072-4346-a12c-e6c2b1c28f07",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "enabled": true,
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1318,24 +1326,28 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇨🇳🇨🇳🇨🇳 port:2087",
+             "tag": "vmess 🇨🇳 port : 2087",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2087,
-             "uuid": "d03d341a-f85f-477a-9282-2b9c954e4f75",
+             "uuid": "9af5fb88-9072-4346-a12c-e6c2b1c28f07",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "enabled": true,
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1348,24 +1360,28 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇨🇳🇨🇳🇨🇳 port:2096",
+             "tag": "vmess 🇨🇳 port : 2096",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2096,
-             "uuid": "d03d341a-f85f-477a-9282-2b9c954e4f75",
+             "uuid": "9af5fb88-9072-4346-a12c-e6c2b1c28f07",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "enabled": true,
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1378,24 +1394,28 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇨🇳🇨🇳🇨🇳 port:8443",
+             "tag": "vmess 🇨🇳 port : 8443",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 8443,
-             "uuid": "d03d341a-f85f-477a-9282-2b9c954e4f75",
+             "uuid": "9af5fb88-9072-4346-a12c-e6c2b1c28f07",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "enabled": true,
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1408,24 +1428,28 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇭🇰🇭🇰🇭🇰 port:443",
+             "tag": "vmess 🇭🇰 port : 443",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 443,
-             "uuid": "5f8ea375-2d0d-4739-871a-bbe631dfc23a",
+             "uuid": "6aa67aef-4721-4dcb-920d-ec3fcf628447",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1438,24 +1462,28 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇭🇰🇭🇰🇭🇰 port:2053",
+             "tag": "vmess 🇭🇰 port : 2053",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2053,
-             "uuid": "5f8ea375-2d0d-4739-871a-bbe631dfc23a",
+             "uuid": "6aa67aef-4721-4dcb-920d-ec3fcf628447",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1468,24 +1496,28 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇭🇰🇭🇰🇭🇰 port:2083",
+             "tag": "vmess 🇭🇰 port : 2083",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2083,
-             "uuid": "5f8ea375-2d0d-4739-871a-bbe631dfc23a",
+             "uuid": "6aa67aef-4721-4dcb-920d-ec3fcf628447",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1498,24 +1530,28 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇭🇰🇭🇰🇭🇰 port:2087",
+             "tag": "vmess 🇭🇰 port : 2087",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2087,
-             "uuid": "5f8ea375-2d0d-4739-871a-bbe631dfc23a",
+             "uuid": "6aa67aef-4721-4dcb-920d-ec3fcf628447",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1528,24 +1564,28 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇭🇰🇭🇰🇭🇰 port:2096",
+             "tag": "vmess 🇭🇰 port : 2096",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2096,
-             "uuid": "5f8ea375-2d0d-4739-871a-bbe631dfc23a",
+             "uuid": "6aa67aef-4721-4dcb-920d-ec3fcf628447",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1558,24 +1598,28 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇭🇰🇭🇰🇭🇰 port:8443",
+             "tag": "vmess 🇭🇰 port : 8443",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 8443,
-             "uuid": "5f8ea375-2d0d-4739-871a-bbe631dfc23a",
+             "uuid": "6aa67aef-4721-4dcb-920d-ec3fcf628447",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1588,24 +1632,28 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇹🇼🇹🇼🇹🇼 port:443",
+             "tag": "vmess 🇹🇼 port : 443",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 443,
-             "uuid": "0048d023-7ed2-4a9a-908f-71cb6c937283",
+             "uuid": "3c0b41d5-7468-4a8c-a4a6-e271eb84dfe5",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1618,24 +1666,28 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇹🇼🇹🇼🇹🇼 port:2053",
+             "tag": "vmess 🇹🇼 port : 2053",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2053,
-             "uuid": "0048d023-7ed2-4a9a-908f-71cb6c937283",
+             "uuid": "3c0b41d5-7468-4a8c-a4a6-e271eb84dfe5",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1648,24 +1700,28 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇹🇼🇹🇼🇹🇼 port:2083",
+             "tag": "vmess 🇹🇼 port : 2083",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2083,
-             "uuid": "0048d023-7ed2-4a9a-908f-71cb6c937283",
+             "uuid": "3c0b41d5-7468-4a8c-a4a6-e271eb84dfe5",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1678,24 +1734,28 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇹🇼🇹🇼🇹🇼 port:2087",
+             "tag": "vmess 🇹🇼 port : 2087",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2087,
-             "uuid": "0048d023-7ed2-4a9a-908f-71cb6c937283",
+             "uuid": "3c0b41d5-7468-4a8c-a4a6-e271eb84dfe5",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1708,24 +1768,28 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇹🇼🇹🇼🇹🇼 port:2096",
+             "tag": "vmess 🇹🇼 port : 2096",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2096,
-             "uuid": "0048d023-7ed2-4a9a-908f-71cb6c937283",
+             "uuid": "3c0b41d5-7468-4a8c-a4a6-e271eb84dfe5",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1738,24 +1802,28 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to vmess 🇹🇼🇹🇼🇹🇼 port:8443",
+             "tag": "vmess 🇹🇼 port : 8443",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 8443,
-             "uuid": "0048d023-7ed2-4a9a-908f-71cb6c937283",
+             "uuid": "3c0b41d5-7468-4a8c-a4a6-e271eb84dfe5",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1768,20 +1836,24 @@
              },
              {
              "type": "vless",
-             "tag": "relay to vless 🇸🇬🇸🇬🇸🇬 port:80",
+             "tag": "vless 🇸🇬 port : 80",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 80,
-             "uuid": "3ae26337-edd1-40ae-90bc-215d69e47734",
+             "uuid": "e79cab89-bb59-4646-83da-d4c1984558d2",
              "tls": {
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1795,20 +1867,24 @@
              },
              {
              "type": "vless",
-             "tag": "relay to vless 🇸🇬🇸🇬🇸🇬 port:8080",
+             "tag": "vless 🇸🇬 port : 8080",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 8080,
-             "uuid": "3ae26337-edd1-40ae-90bc-215d69e47734",
+             "uuid": "e79cab89-bb59-4646-83da-d4c1984558d2",
              "tls": {
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1822,20 +1898,24 @@
              },
              {
              "type": "vless",
-             "tag": "relay to vless 🇸🇬🇸🇬🇸🇬 port:8880",
+             "tag": "vless 🇸🇬 port : 8880",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 8880,
-             "uuid": "3ae26337-edd1-40ae-90bc-215d69e47734",
+             "uuid": "e79cab89-bb59-4646-83da-d4c1984558d2",
              "tls": {
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1849,20 +1929,24 @@
              },
              {
              "type": "vless",
-             "tag": "relay to vless 🇸🇬🇸🇬🇸🇬 port:2052",
+             "tag": "vless 🇸🇬 port : 2052",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2052,
-             "uuid": "3ae26337-edd1-40ae-90bc-215d69e47734",
+             "uuid": "e79cab89-bb59-4646-83da-d4c1984558d2",
              "tls": {
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1876,20 +1960,24 @@
              },
              {
              "type": "vless",
-             "tag": "relay to vless 🇸🇬🇸🇬🇸🇬 port:2082",
+             "tag": "vless 🇸🇬 port : 2082",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2082,
-             "uuid": "3ae26337-edd1-40ae-90bc-215d69e47734",
+             "uuid": "e79cab89-bb59-4646-83da-d4c1984558d2",
              "tls": {
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1903,20 +1991,24 @@
              },
              {
              "type": "vless",
-             "tag": "relay to vless 🇸🇬🇸🇬🇸🇬 port:2086",
+             "tag": "vless 🇸🇬 port : 2086",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2086,
-             "uuid": "3ae26337-edd1-40ae-90bc-215d69e47734",
+             "uuid": "e79cab89-bb59-4646-83da-d4c1984558d2",
              "tls": {
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1930,20 +2022,24 @@
              },
              {
              "type": "vless",
-             "tag": "relay to vless 🇸🇬🇸🇬🇸🇬 port:2095",
+             "tag": "vless 🇸🇬 port : 2095",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2095,
-             "uuid": "3ae26337-edd1-40ae-90bc-215d69e47734",
+             "uuid": "e79cab89-bb59-4646-83da-d4c1984558d2",
              "tls": {
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1957,20 +2053,24 @@
              },
              {
              "type": "vless",
-             "tag": "relay to vless 🇰🇷🇰🇷🇰🇷 port:80",
+             "tag": "vless 🇰🇷 port : 80",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 80,
-             "uuid": "d65c7f7c-c13c-4ae9-955d-2e81cef30813",
+             "uuid": "8ded14db-c348-406f-822e-3e1bfcfc1ba0",
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -1984,20 +2084,24 @@
              },
              {
              "type": "vless",
-             "tag": "relay to vless 🇰🇷🇰🇷🇰🇷 port:8080",
+             "tag": "vless 🇰🇷 port : 8080",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 8080,
-             "uuid": "d65c7f7c-c13c-4ae9-955d-2e81cef30813",
+             "uuid": "8ded14db-c348-406f-822e-3e1bfcfc1ba0",
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2011,20 +2115,24 @@
              },
              {
              "type": "vless",
-             "tag": "relay to vless 🇰🇷🇰🇷🇰🇷 port:8880",
+             "tag": "vless 🇰🇷 port : 8880",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 8880,
-             "uuid": "d65c7f7c-c13c-4ae9-955d-2e81cef30813",
+             "uuid": "8ded14db-c348-406f-822e-3e1bfcfc1ba0",
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2038,20 +2146,24 @@
              },
              {
              "type": "vless",
-             "tag": "relay to vless 🇰🇷🇰🇷🇰🇷 port:2052",
+             "tag": "vless 🇰🇷 port : 2052",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2052,
-             "uuid": "d65c7f7c-c13c-4ae9-955d-2e81cef30813",
+             "uuid": "8ded14db-c348-406f-822e-3e1bfcfc1ba0",
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2065,20 +2177,24 @@
              },
              {
              "type": "vless",
-             "tag": "relay to vless 🇰🇷🇰🇷🇰🇷 port:2082",
+             "tag": "vless 🇰🇷 port : 2082",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2082,
-             "uuid": "d65c7f7c-c13c-4ae9-955d-2e81cef30813",
+             "uuid": "8ded14db-c348-406f-822e-3e1bfcfc1ba0",
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2092,20 +2208,24 @@
              },
              {
              "type": "vless",
-             "tag": "relay to vless 🇰🇷🇰🇷🇰🇷 port:2086",
+             "tag": "vless 🇰🇷 port : 2086",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2086,
-             "uuid": "d65c7f7c-c13c-4ae9-955d-2e81cef30813",
+             "uuid": "8ded14db-c348-406f-822e-3e1bfcfc1ba0",
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2119,20 +2239,24 @@
              },
              {
              "type": "vless",
-             "tag": "relay to vless 🇰🇷🇰🇷🇰🇷 port:2095",
+             "tag": "vless 🇰🇷 port : 2095",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2095,
-             "uuid": "d65c7f7c-c13c-4ae9-955d-2e81cef30813",
+             "uuid": "8ded14db-c348-406f-822e-3e1bfcfc1ba0",
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2146,21 +2270,25 @@
              },
              {
              "type": "vless",
-             "tag": "relay to vless 🇨🇳🇨🇳🇨🇳 port:443",
+             "tag": "vless 🇨🇳 port : 443",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 443,
-             "uuid": "3ae26337-edd1-40ae-90bc-215d69e47734",
+             "uuid": "e79cab89-bb59-4646-83da-d4c1984558d2",
              "tls": {
              "enabled": true,
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2174,21 +2302,25 @@
              },
              {
              "type": "vless",
-             "tag": "relay to vless 🇨🇳🇨🇳🇨🇳 port:2053",
+             "tag": "vless 🇨🇳 port : 2053",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2053,
-             "uuid": "3ae26337-edd1-40ae-90bc-215d69e47734",
+             "uuid": "e79cab89-bb59-4646-83da-d4c1984558d2",
              "tls": {
              "enabled": true,
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2202,21 +2334,25 @@
              },
              {
              "type": "vless",
-             "tag": "relay to vless 🇨🇳🇨🇳🇨🇳 port:2083",
+             "tag": "vless 🇨🇳 port : 2083",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2083,
-             "uuid": "3ae26337-edd1-40ae-90bc-215d69e47734",
+             "uuid": "e79cab89-bb59-4646-83da-d4c1984558d2",
              "tls": {
              "enabled": true,
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2230,21 +2366,25 @@
              },
              {
              "type": "vless",
-             "tag": "relay to vless 🇨🇳🇨🇳🇨🇳 port:2087",
+             "tag": "vless 🇨🇳 port : 2087",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2087,
-             "uuid": "3ae26337-edd1-40ae-90bc-215d69e47734",
+             "uuid": "e79cab89-bb59-4646-83da-d4c1984558d2",
              "tls": {
              "enabled": true,
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2258,21 +2398,25 @@
              },
              {
              "type": "vless",
-             "tag": "relay to vless 🇨🇳🇨🇳🇨🇳 port:2096",
+             "tag": "vless 🇨🇳 port : 2096",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2096,
-             "uuid": "3ae26337-edd1-40ae-90bc-215d69e47734",
+             "uuid": "e79cab89-bb59-4646-83da-d4c1984558d2",
              "tls": {
              "enabled": true,
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2286,21 +2430,25 @@
              },
              {
              "type": "vless",
-             "tag": "relay to vless 🇨🇳🇨🇳🇨🇳 port:8443",
+             "tag": "vless 🇨🇳 port : 8443",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 8443,
-             "uuid": "3ae26337-edd1-40ae-90bc-215d69e47734",
+             "uuid": "e79cab89-bb59-4646-83da-d4c1984558d2",
              "tls": {
              "enabled": true,
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2314,21 +2462,25 @@
              },
              {
              "type": "vless",
-             "tag": "relay to vless 🇭🇰🇭🇰🇭🇰 port:443",
+             "tag": "vless 🇭🇰 port : 443",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 443,
-             "uuid": "d65c7f7c-c13c-4ae9-955d-2e81cef30813",
+             "uuid": "8ded14db-c348-406f-822e-3e1bfcfc1ba0",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2342,21 +2494,25 @@
              },
              {
              "type": "vless",
-             "tag": "relay to vless 🇭🇰🇭🇰🇭🇰 port:2053",
+             "tag": "vless 🇭🇰 port : 2053",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2053,
-             "uuid": "d65c7f7c-c13c-4ae9-955d-2e81cef30813",
+             "uuid": "8ded14db-c348-406f-822e-3e1bfcfc1ba0",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2370,21 +2526,25 @@
              },
              {
              "type": "vless",
-             "tag": "relay to vless 🇭🇰🇭🇰🇭🇰 port:2083",
+             "tag": "vless 🇭🇰 port : 2083",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2083,
-             "uuid": "d65c7f7c-c13c-4ae9-955d-2e81cef30813",
+             "uuid": "8ded14db-c348-406f-822e-3e1bfcfc1ba0",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2398,21 +2558,25 @@
              },
              {
              "type": "vless",
-             "tag": "relay to vless 🇭🇰🇭🇰🇭🇰 port:2087",
+             "tag": "vless 🇭🇰 port : 2087",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2087,
-             "uuid": "d65c7f7c-c13c-4ae9-955d-2e81cef30813",
+             "uuid": "8ded14db-c348-406f-822e-3e1bfcfc1ba0",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2426,21 +2590,25 @@
              },
              {
              "type": "vless",
-             "tag": "relay to vless 🇭🇰🇭🇰🇭🇰 port:2096",
+             "tag": "vless 🇭🇰 port : 2096",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2096,
-             "uuid": "d65c7f7c-c13c-4ae9-955d-2e81cef30813",
+             "uuid": "8ded14db-c348-406f-822e-3e1bfcfc1ba0",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2454,21 +2622,25 @@
              },
              {
              "type": "vless",
-             "tag": "relay to vless 🇭🇰🇭🇰🇭🇰 port:8443",
+             "tag": "vless 🇭🇰 port : 8443",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 8443,
-             "uuid": "d65c7f7c-c13c-4ae9-955d-2e81cef30813",
+             "uuid": "8ded14db-c348-406f-822e-3e1bfcfc1ba0",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2482,20 +2654,24 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇸🇬🇸🇬🇸🇬 port:80",
+             "tag": "trojan 🇸🇬 port : 80",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 80,
-             "password": "abf9171642373cfb",
+             "password": "953b3f8c3ebeb6ae",
              "tls": {
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2508,20 +2684,24 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇸🇬🇸🇬🇸🇬 port:8080",
+             "tag": "trojan 🇸🇬 port : 8080",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 8080,
-             "password": "abf9171642373cfb",
+             "password": "953b3f8c3ebeb6ae",
              "tls": {
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2534,20 +2714,24 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇸🇬🇸🇬🇸🇬 port:8880",
+             "tag": "trojan 🇸🇬 port : 8880",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 8880,
-             "password": "abf9171642373cfb",
+             "password": "953b3f8c3ebeb6ae",
              "tls": {
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2560,20 +2744,24 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇸🇬🇸🇬🇸🇬 port:2052",
+             "tag": "trojan 🇸🇬 port : 2052",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2052,
-             "password": "abf9171642373cfb",
+             "password": "953b3f8c3ebeb6ae",
              "tls": {
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2586,20 +2774,24 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇸🇬🇸🇬🇸🇬 port:2082",
+             "tag": "trojan 🇸🇬 port : 2082",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2082,
-             "password": "abf9171642373cfb",
+             "password": "953b3f8c3ebeb6ae",
              "tls": {
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2612,20 +2804,24 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇸🇬🇸🇬🇸🇬 port:2086",
+             "tag": "trojan 🇸🇬 port : 2086",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2086,
-             "password": "abf9171642373cfb",
+             "password": "953b3f8c3ebeb6ae",
              "tls": {
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2638,20 +2834,24 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇸🇬🇸🇬🇸🇬 port:2095",
+             "tag": "trojan 🇸🇬 port : 2095",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2095,
-             "password": "abf9171642373cfb",
+             "password": "953b3f8c3ebeb6ae",
              "tls": {
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2664,20 +2864,24 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇰🇷🇰🇷🇰🇷 port:80",
+             "tag": "trojan 🇰🇷 port : 80",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 80,
-             "password": "51c4a15dde3edef6",
+             "password": "805cc330b9b55732",
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2690,20 +2894,24 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇰🇷🇰🇷🇰🇷 port:8080",
+             "tag": "trojan 🇰🇷 port : 8080",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 8080,
-             "password": "51c4a15dde3edef6",
+             "password": "805cc330b9b55732",
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2716,20 +2924,24 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇰🇷🇰🇷🇰🇷 port:8880",
+             "tag": "trojan 🇰🇷 port : 8880",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 8880,
-             "password": "51c4a15dde3edef6",
+             "password": "805cc330b9b55732",
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2742,20 +2954,24 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇰🇷🇰🇷🇰🇷 port:2052",
+             "tag": "trojan 🇰🇷 port : 2052",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2052,
-             "password": "51c4a15dde3edef6",
+             "password": "805cc330b9b55732",
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2768,20 +2984,24 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇰🇷🇰🇷🇰🇷 port:2082",
+             "tag": "trojan 🇰🇷 port : 2082",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2082,
-             "password": "51c4a15dde3edef6",
+             "password": "805cc330b9b55732",
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2794,20 +3014,24 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇰🇷🇰🇷🇰🇷 port:2086",
+             "tag": "trojan 🇰🇷 port : 2086",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2086,
-             "password": "51c4a15dde3edef6",
+             "password": "805cc330b9b55732",
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2820,20 +3044,24 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇰🇷🇰🇷🇰🇷 port:2095",
+             "tag": "trojan 🇰🇷 port : 2095",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2095,
-             "password": "51c4a15dde3edef6",
+             "password": "805cc330b9b55732",
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2846,20 +3074,24 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇯🇵🇯🇵🇯🇵 port:80",
+             "tag": "trojan 🇯🇵 port : 80",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 80,
-             "password": "b36f52598107ce8e",
+             "password": "a3ce5600687776d0",
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2872,20 +3104,24 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇯🇵🇯🇵🇯🇵 port:8080",
+             "tag": "trojan 🇯🇵 port : 8080",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 8080,
-             "password": "b36f52598107ce8e",
+             "password": "a3ce5600687776d0",
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2898,20 +3134,24 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇯🇵🇯🇵🇯🇵 port:8880",
+             "tag": "trojan 🇯🇵 port : 8880",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 8880,
-             "password": "b36f52598107ce8e",
+             "password": "a3ce5600687776d0",
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2924,20 +3164,24 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇯🇵🇯🇵🇯🇵 port:2052",
+             "tag": "trojan 🇯🇵 port : 2052",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2052,
-             "password": "b36f52598107ce8e",
+             "password": "a3ce5600687776d0",
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2950,20 +3194,24 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇯🇵🇯🇵🇯🇵 port:2082",
+             "tag": "trojan 🇯🇵 port : 2082",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2082,
-             "password": "b36f52598107ce8e",
+             "password": "a3ce5600687776d0",
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -2976,20 +3224,24 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇯🇵🇯🇵🇯🇵 port:2086",
+             "tag": "trojan 🇯🇵 port : 2086",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2086,
-             "password": "b36f52598107ce8e",
+             "password": "a3ce5600687776d0",
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3002,20 +3254,24 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇯🇵🇯🇵🇯🇵 port:2095",
+             "tag": "trojan 🇯🇵 port : 2095",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2095,
-             "password": "b36f52598107ce8e",
+             "password": "a3ce5600687776d0",
              "tls": {
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3028,21 +3284,25 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇨🇳🇨🇳🇨🇳 port:443",
+             "tag": "trojan 🇨🇳 port : 443",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 443,
-             "password": "abf9171642373cfb",
+             "password": "953b3f8c3ebeb6ae",
              "tls": {
              "enabled": true,
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3055,21 +3315,25 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇨🇳🇨🇳🇨🇳 port:2053",
+             "tag": "trojan 🇨🇳 port : 2053",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2053,
-             "password": "abf9171642373cfb",
+             "password": "953b3f8c3ebeb6ae",
              "tls": {
              "enabled": true,
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3082,21 +3346,25 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇨🇳🇨🇳🇨🇳 port:2083",
+             "tag": "trojan 🇨🇳 port : 2083",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2083,
-             "password": "abf9171642373cfb",
+             "password": "953b3f8c3ebeb6ae",
              "tls": {
              "enabled": true,
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3109,21 +3377,25 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇨🇳🇨🇳🇨🇳 port:2087",
+             "tag": "trojan 🇨🇳 port : 2087",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2087,
-             "password": "abf9171642373cfb",
+             "password": "953b3f8c3ebeb6ae",
              "tls": {
              "enabled": true,
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3136,21 +3408,25 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇨🇳🇨🇳🇨🇳 port:2096",
+             "tag": "trojan 🇨🇳 port : 2096",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2096,
-             "password": "abf9171642373cfb",
+             "password": "953b3f8c3ebeb6ae",
              "tls": {
              "enabled": true,
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3163,21 +3439,25 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇨🇳🇨🇳🇨🇳 port:8443",
+             "tag": "trojan 🇨🇳 port : 8443",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 8443,
-             "password": "abf9171642373cfb",
+             "password": "953b3f8c3ebeb6ae",
              "tls": {
              "enabled": true,
              "server_name": "cpanel.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3190,21 +3470,25 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇭🇰🇭🇰🇭🇰 port:443",
+             "tag": "trojan 🇭🇰 port : 443",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 443,
-             "password": "51c4a15dde3edef6",
+             "password": "805cc330b9b55732",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3217,21 +3501,25 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇭🇰🇭🇰🇭🇰 port:2053",
+             "tag": "trojan 🇭🇰 port : 2053",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2053,
-             "password": "51c4a15dde3edef6",
+             "password": "805cc330b9b55732",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3244,21 +3532,25 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇭🇰🇭🇰🇭🇰 port:2083",
+             "tag": "trojan 🇭🇰 port : 2083",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2083,
-             "password": "51c4a15dde3edef6",
+             "password": "805cc330b9b55732",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3271,21 +3563,25 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇭🇰🇭🇰🇭🇰 port:2087",
+             "tag": "trojan 🇭🇰 port : 2087",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2087,
-             "password": "51c4a15dde3edef6",
+             "password": "805cc330b9b55732",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3298,21 +3594,25 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇭🇰🇭🇰🇭🇰 port:2096",
+             "tag": "trojan 🇭🇰 port : 2096",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2096,
-             "password": "51c4a15dde3edef6",
+             "password": "805cc330b9b55732",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3325,21 +3625,25 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇭🇰🇭🇰🇭🇰 port:8443",
+             "tag": "trojan 🇭🇰 port : 8443",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 8443,
-             "password": "51c4a15dde3edef6",
+             "password": "805cc330b9b55732",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3352,21 +3656,25 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇹🇼🇹🇼🇹🇼 port:443",
+             "tag": "trojan 🇹🇼 port : 443",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 443,
-             "password": "b36f52598107ce8e",
+             "password": "a3ce5600687776d0",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3379,21 +3687,25 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇹🇼🇹🇼🇹🇼 port:2053",
+             "tag": "trojan 🇹🇼 port : 2053",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2053,
-             "password": "b36f52598107ce8e",
+             "password": "a3ce5600687776d0",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3406,21 +3718,25 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇹🇼🇹🇼🇹🇼 port:2083",
+             "tag": "trojan 🇹🇼 port : 2083",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2083,
-             "password": "b36f52598107ce8e",
+             "password": "a3ce5600687776d0",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3433,21 +3749,25 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇹🇼🇹🇼🇹🇼 port:2087",
+             "tag": "trojan 🇹🇼 port : 2087",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2087,
-             "password": "b36f52598107ce8e",
+             "password": "a3ce5600687776d0",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3460,21 +3780,25 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇹🇼🇹🇼🇹🇼 port:2096",
+             "tag": "trojan 🇹🇼 port : 2096",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 2096,
-             "password": "b36f52598107ce8e",
+             "password": "a3ce5600687776d0",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3487,21 +3811,25 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to trojan 🇹🇼🇹🇼🇹🇼 port:8443",
+             "tag": "trojan 🇹🇼 port : 8443",
              "detour": "direct",
              "tcp_fast_open": true,
              "tcp_multi_path": true,
              "udp_fragment": true,
-             "server": "brand.zoom.us",
+             "server": "104.18.2.2",
              "server_port": 8443,
-             "password": "b36f52598107ce8e",
+             "password": "a3ce5600687776d0",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
-             "insecure": true
+             "insecure": true,
+             "utls": {
+             "enabled": true,
+             "fingerprint": "randomized"
+             }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3514,10 +3842,10 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to grpc 🇸🇬🇸🇬🇸🇬 port:443",
-             "server": "brand.zoom.us",
+             "tag": "grpc 🇸🇬 port : 443",
+             "server": "104.18.2.2",
              "server_port": 443,
-             "uuid": "ecd62490-9aab-4a81-915b-b858b4d0b639",
+             "uuid": "676acf1d-8f33-4928-9d50-17b2ae206c93",
              "security": "auto",
              "authenticated_length": true,
              "tls": {
@@ -3525,11 +3853,12 @@
              "server_name": "jala.iptunnels.com",
              "insecure": true,
              "utls": {
-             "enabled": true
+             "enabled": true,
+             "fingerprint": "randomized"
              }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3541,10 +3870,10 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to grpc 🇸🇬🇸🇬🇸🇬 port:2053",
-             "server": "brand.zoom.us",
+             "tag": "grpc 🇸🇬 port : 2053",
+             "server": "104.18.2.2",
              "server_port": 2053,
-             "uuid": "ecd62490-9aab-4a81-915b-b858b4d0b639",
+             "uuid": "676acf1d-8f33-4928-9d50-17b2ae206c93",
              "security": "auto",
              "authenticated_length": true,
              "tls": {
@@ -3552,11 +3881,12 @@
              "server_name": "jala.iptunnels.com",
              "insecure": true,
              "utls": {
-             "enabled": true
+             "enabled": true,
+             "fingerprint": "randomized"
              }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3568,10 +3898,10 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to grpc 🇸🇬🇸🇬🇸🇬 port:2083",
-             "server": "brand.zoom.us",
+             "tag": "grpc 🇸🇬 port : 2083",
+             "server": "104.18.2.2",
              "server_port": 2083,
-             "uuid": "ecd62490-9aab-4a81-915b-b858b4d0b639",
+             "uuid": "676acf1d-8f33-4928-9d50-17b2ae206c93",
              "security": "auto",
              "authenticated_length": true,
              "tls": {
@@ -3579,11 +3909,12 @@
              "server_name": "jala.iptunnels.com",
              "insecure": true,
              "utls": {
-             "enabled": true
+             "enabled": true,
+             "fingerprint": "randomized"
              }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3595,10 +3926,10 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to grpc 🇸🇬🇸🇬🇸🇬 port:2087",
-             "server": "brand.zoom.us",
+             "tag": "grpc 🇸🇬 port : 2087",
+             "server": "104.18.2.2",
              "server_port": 2087,
-             "uuid": "ecd62490-9aab-4a81-915b-b858b4d0b639",
+             "uuid": "676acf1d-8f33-4928-9d50-17b2ae206c93",
              "security": "auto",
              "authenticated_length": true,
              "tls": {
@@ -3606,11 +3937,12 @@
              "server_name": "jala.iptunnels.com",
              "insecure": true,
              "utls": {
-             "enabled": true
+             "enabled": true,
+             "fingerprint": "randomized"
              }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3622,10 +3954,10 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to grpc 🇸🇬🇸🇬🇸🇬 port:2096",
-             "server": "brand.zoom.us",
+             "tag": "grpc 🇸🇬 port : 2096",
+             "server": "104.18.2.2",
              "server_port": 2096,
-             "uuid": "ecd62490-9aab-4a81-915b-b858b4d0b639",
+             "uuid": "676acf1d-8f33-4928-9d50-17b2ae206c93",
              "security": "auto",
              "authenticated_length": true,
              "tls": {
@@ -3633,11 +3965,12 @@
              "server_name": "jala.iptunnels.com",
              "insecure": true,
              "utls": {
-             "enabled": true
+             "enabled": true,
+             "fingerprint": "randomized"
              }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3649,10 +3982,10 @@
              },
              {
              "type": "vmess",
-             "tag": "relay to grpc 🇸🇬🇸🇬🇸🇬 port:8443",
-             "server": "brand.zoom.us",
+             "tag": "grpc 🇸🇬 port : 8443",
+             "server": "104.18.2.2",
              "server_port": 8443,
-             "uuid": "ecd62490-9aab-4a81-915b-b858b4d0b639",
+             "uuid": "676acf1d-8f33-4928-9d50-17b2ae206c93",
              "security": "auto",
              "authenticated_length": true,
              "tls": {
@@ -3660,11 +3993,12 @@
              "server_name": "jala.iptunnels.com",
              "insecure": true,
              "utls": {
-             "enabled": true
+             "enabled": true,
+             "fingerprint": "randomized"
              }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3676,20 +4010,21 @@
              },
              {
              "type": "vless",
-             "tag": "relay to grpc 🇰🇷🇰🇷🇰🇷 port:443",
-             "server": "brand.zoom.us",
+             "tag": "grpc 🇰🇷 port : 443",
+             "server": "104.18.2.2",
              "server_port": 443,
-             "uuid": "9c066d53-ab60-4b3d-8ae4-8f1f39b65c28",
+             "uuid": "d96f4850-a4d1-420b-9826-936a83f2bd0f",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
              "insecure": true,
              "utls": {
-             "enabled": true
+             "enabled": true,
+             "fingerprint": "randomized"
              }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3702,20 +4037,21 @@
              },
              {
              "type": "vless",
-             "tag": "relay to grpc 🇰🇷🇰🇷🇰🇷 port:2053",
-             "server": "brand.zoom.us",
+             "tag": "grpc 🇰🇷 port : 2053",
+             "server": "104.18.2.2",
              "server_port": 2053,
-             "uuid": "9c066d53-ab60-4b3d-8ae4-8f1f39b65c28",
+             "uuid": "d96f4850-a4d1-420b-9826-936a83f2bd0f",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
              "insecure": true,
              "utls": {
-             "enabled": true
+             "enabled": true,
+             "fingerprint": "randomized"
              }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3728,20 +4064,21 @@
              },
              {
              "type": "vless",
-             "tag": "relay to grpc 🇰🇷🇰🇷🇰🇷 port:2083",
-             "server": "brand.zoom.us",
+             "tag": "grpc 🇰🇷 port : 2083",
+             "server": "104.18.2.2",
              "server_port": 2083,
-             "uuid": "9c066d53-ab60-4b3d-8ae4-8f1f39b65c28",
+             "uuid": "d96f4850-a4d1-420b-9826-936a83f2bd0f",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
              "insecure": true,
              "utls": {
-             "enabled": true
+             "enabled": true,
+             "fingerprint": "randomized"
              }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3754,20 +4091,21 @@
              },
              {
              "type": "vless",
-             "tag": "relay to grpc 🇰🇷🇰🇷🇰🇷 port:2087",
-             "server": "brand.zoom.us",
+             "tag": "grpc 🇰🇷 port : 2087",
+             "server": "104.18.2.2",
              "server_port": 2087,
-             "uuid": "9c066d53-ab60-4b3d-8ae4-8f1f39b65c28",
+             "uuid": "d96f4850-a4d1-420b-9826-936a83f2bd0f",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
              "insecure": true,
              "utls": {
-             "enabled": true
+             "enabled": true,
+             "fingerprint": "randomized"
              }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3780,20 +4118,21 @@
              },
              {
              "type": "vless",
-             "tag": "relay to grpc 🇰🇷🇰🇷🇰🇷 port:2096",
-             "server": "brand.zoom.us",
+             "tag": "grpc 🇰🇷 port : 2096",
+             "server": "104.18.2.2",
              "server_port": 2096,
-             "uuid": "9c066d53-ab60-4b3d-8ae4-8f1f39b65c28",
+             "uuid": "d96f4850-a4d1-420b-9826-936a83f2bd0f",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
              "insecure": true,
              "utls": {
-             "enabled": true
+             "enabled": true,
+             "fingerprint": "randomized"
              }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3806,20 +4145,21 @@
              },
              {
              "type": "vless",
-             "tag": "relay to grpc 🇰🇷🇰🇷🇰🇷 port:8443",
-             "server": "brand.zoom.us",
+             "tag": "grpc 🇰🇷 port : 8443",
+             "server": "104.18.2.2",
              "server_port": 8443,
-             "uuid": "9c066d53-ab60-4b3d-8ae4-8f1f39b65c28",
+             "uuid": "d96f4850-a4d1-420b-9826-936a83f2bd0f",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
              "insecure": true,
              "utls": {
-             "enabled": true
+             "enabled": true,
+             "fingerprint": "randomized"
              }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3832,8 +4172,8 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to grpc 🇯🇵🇯🇵🇯🇵 port:443",
-             "server": "brand.zoom.us",
+             "tag": "grpc 🇯🇵 port : 443",
+             "server": "104.18.2.2",
              "server_port": 443,
              "password": "50c6f3e0d24472dc",
              "tls": {
@@ -3841,11 +4181,12 @@
              "server_name": "jala.iptunnels.com",
              "insecure": true,
              "utls": {
-             "enabled": true
+             "enabled": true,
+             "fingerprint": "randomized"
              }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3857,8 +4198,8 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to grpc 🇯🇵🇯🇵🇯🇵 port:2053",
-             "server": "brand.zoom.us",
+             "tag": "grpc 🇯🇵 port : 2053",
+             "server": "104.18.2.2",
              "server_port": 2053,
              "password": "50c6f3e0d24472dc",
              "tls": {
@@ -3866,11 +4207,12 @@
              "server_name": "jala.iptunnels.com",
              "insecure": true,
              "utls": {
-             "enabled": true
+             "enabled": true,
+             "fingerprint": "randomized"
              }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3882,8 +4224,8 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to grpc 🇯🇵🇯🇵🇯🇵 port:2083",
-             "server": "brand.zoom.us",
+             "tag": "grpc 🇯🇵 port : 2083",
+             "server": "104.18.2.2",
              "server_port": 2083,
              "password": "50c6f3e0d24472dc",
              "tls": {
@@ -3891,11 +4233,12 @@
              "server_name": "jala.iptunnels.com",
              "insecure": true,
              "utls": {
-             "enabled": true
+             "enabled": true,
+             "fingerprint": "randomized"
              }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3907,8 +4250,8 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to grpc 🇯🇵🇯🇵🇯🇵 port:2087",
-             "server": "brand.zoom.us",
+             "tag": "grpc 🇯🇵 port : 2087",
+             "server": "104.18.2.2",
              "server_port": 2087,
              "password": "50c6f3e0d24472dc",
              "tls": {
@@ -3916,11 +4259,12 @@
              "server_name": "jala.iptunnels.com",
              "insecure": true,
              "utls": {
-             "enabled": true
+             "enabled": true,
+             "fingerprint": "randomized"
              }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3932,8 +4276,8 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to grpc 🇯🇵🇯🇵🇯🇵 port:2096",
-             "server": "brand.zoom.us",
+             "tag": "grpc 🇯🇵 port : 2096",
+             "server": "104.18.2.2",
              "server_port": 2096,
              "password": "50c6f3e0d24472dc",
              "tls": {
@@ -3941,11 +4285,12 @@
              "server_name": "jala.iptunnels.com",
              "insecure": true,
              "utls": {
-             "enabled": true
+             "enabled": true,
+             "fingerprint": "randomized"
              }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3957,8 +4302,8 @@
              },
              {
              "type": "trojan",
-             "tag": "relay to grpc 🇯🇵🇯🇵🇯🇵 port:8443",
-             "server": "brand.zoom.us",
+             "tag": "grpc 🇯🇵 port : 8443",
+             "server": "104.18.2.2",
              "server_port": 8443,
              "password": "50c6f3e0d24472dc",
              "tls": {
@@ -3966,11 +4311,12 @@
              "server_name": "jala.iptunnels.com",
              "insecure": true,
              "utls": {
-             "enabled": true
+             "enabled": true,
+             "fingerprint": "randomized"
              }
              },
              "multiplex": {
-             "protocol": "smux",
+             "protocol": "h2mux",
              "max_streams": 32
              },
              "transport": {
@@ -3982,7 +4328,7 @@
              },
              {
              "type": "dns",
-             "tag": "dns-out"
+             "tag": "dns_out"
              },
              {
              "type": "direct",
@@ -4009,12 +4355,12 @@
              },
              "rules": [
              {
-             "inbound": "dns-in",
-             "outbound": "dns-out"
+             "inbound": "dns_in",
+             "outbound": "dns_out"
              },
              {
              "port": 53,
-             "outbound": "dns-out"
+             "outbound": "dns_out"
              },
              {
              "clash_mode": "Direct",
@@ -4022,7 +4368,7 @@
              },
              {
              "clash_mode": "Global",
-             "outbound": "proxies"
+             "outbound": "list_available"
              }
              ],
              "auto_detect_interface": true,
@@ -4030,7 +4376,7 @@
              },
              "experimental": {
              "clash_api": {
-             "external_controller": "127.0.0.1:6756",
+             "external_controller": "127.0.0.1:9090",
              "store_selected": true,
              "cache_file": "clash.db"
              }
