@@ -12,13 +12,13 @@
              },
              {
              "tag": "dns_direct",
-             "address": "tcp://1.0.0.1",
+             "address": "1.1.1.1",
              "address_resolver": "dns_local",
              "detour": "direct"
              },
              {
              "tag": "dns_local",
-             "address": "local",
+             "address": "1.1.1.1",
              "detour": "direct"
              },
              {
@@ -32,6 +32,10 @@
              "cpanel.iptunnels.com",
              "jala.iptunnels.com"
              ],
+             "server": "dns_direct"
+             },
+             {
+             "outbound": "any",
              "server": "dns_direct"
              },
              {
@@ -49,8 +53,8 @@
              {
              "type": "tun",
              "tag": "tun-in",
-             "mtu": 9000,
-             "inet4_address": "172.19.0.1/28",
+             "mtu": 18000,
+             "inet4_address": "172.19.0.1/3",
              "auto_route": true,
              "strict_route": true,
              "endpoint_independent_nat": true,
@@ -91,6 +95,96 @@
              "jalanet"
              ],
              "default": "list_available",
+             "interrupt_exist_connections": false
+             },
+             {
+             "type": "selector",
+             "tag": "vmess_select",
+             "outbounds": [
+             "list_available",
+             "vmess",
+             "vless",
+             "trojan",
+             "grpc",
+             "cpanel",
+             "jalanet"
+             ],
+             "default": "vmess",
+             "interrupt_exist_connections": false
+             },
+             {
+             "type": "selector",
+             "tag": "vless_select",
+             "outbounds": [
+             "list_available",
+             "vmess",
+             "vless",
+             "trojan",
+             "grpc",
+             "cpanel",
+             "jalanet"
+             ],
+             "default": "vless",
+             "interrupt_exist_connections": false
+             },
+             {
+             "type": "selector",
+             "tag": "trojan_select",
+             "outbounds": [
+             "list_available",
+             "vmess",
+             "vless",
+             "trojan",
+             "grpc",
+             "cpanel",
+             "jalanet"
+             ],
+             "default": "trojan",
+             "interrupt_exist_connections": false
+             },
+             {
+             "type": "selector",
+             "tag": "grpc_select",
+             "outbounds": [
+             "list_available",
+             "vmess",
+             "vless",
+             "trojan",
+             "grpc",
+             "cpanel",
+             "jalanet"
+             ],
+             "default": "grpc",
+             "interrupt_exist_connections": false
+             },
+             {
+             "type": "selector",
+             "tag": "cpanel_select",
+             "outbounds": [
+             "list_available",
+             "vmess",
+             "vless",
+             "trojan",
+             "grpc",
+             "cpanel",
+             "jalanet"
+             ],
+             "default": "cpanel",
+             "interrupt_exist_connections": false
+             },
+             {
+             "type": "selector",
+             "tag": "jalanet_select",
+             "outbounds": [
+             "list_available",
+             "vmess",
+             "vless",
+             "trojan",
+             "grpc",
+             "cpanel",
+             "jalanet"
+             ],
+             "default": "jalanet",
              "interrupt_exist_connections": false
              },
              {
@@ -538,7 +632,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 80,
-             "uuid": "9af5fb88-9072-4346-a12c-e6c2b1c28f07",
+             "uuid": "92fad8e1-7577-42db-ae2b-1a25cdd50c14",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
@@ -551,6 +645,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -571,7 +666,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 8080,
-             "uuid": "9af5fb88-9072-4346-a12c-e6c2b1c28f07",
+             "uuid": "92fad8e1-7577-42db-ae2b-1a25cdd50c14",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
@@ -584,6 +679,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -604,7 +700,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 8880,
-             "uuid": "9af5fb88-9072-4346-a12c-e6c2b1c28f07",
+             "uuid": "92fad8e1-7577-42db-ae2b-1a25cdd50c14",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
@@ -617,6 +713,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -637,7 +734,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2052,
-             "uuid": "9af5fb88-9072-4346-a12c-e6c2b1c28f07",
+             "uuid": "92fad8e1-7577-42db-ae2b-1a25cdd50c14",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
@@ -650,6 +747,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -670,7 +768,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2082,
-             "uuid": "9af5fb88-9072-4346-a12c-e6c2b1c28f07",
+             "uuid": "92fad8e1-7577-42db-ae2b-1a25cdd50c14",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
@@ -683,6 +781,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -703,7 +802,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2086,
-             "uuid": "9af5fb88-9072-4346-a12c-e6c2b1c28f07",
+             "uuid": "92fad8e1-7577-42db-ae2b-1a25cdd50c14",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
@@ -716,6 +815,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -736,7 +836,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2095,
-             "uuid": "9af5fb88-9072-4346-a12c-e6c2b1c28f07",
+             "uuid": "92fad8e1-7577-42db-ae2b-1a25cdd50c14",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
@@ -749,6 +849,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -769,7 +870,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 80,
-             "uuid": "6aa67aef-4721-4dcb-920d-ec3fcf628447",
+             "uuid": "597389b8-6333-4ae2-8b10-97f1eb337694",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
@@ -782,6 +883,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -802,7 +904,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 8080,
-             "uuid": "6aa67aef-4721-4dcb-920d-ec3fcf628447",
+             "uuid": "597389b8-6333-4ae2-8b10-97f1eb337694",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
@@ -815,6 +917,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -835,7 +938,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 8880,
-             "uuid": "6aa67aef-4721-4dcb-920d-ec3fcf628447",
+             "uuid": "597389b8-6333-4ae2-8b10-97f1eb337694",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
@@ -848,6 +951,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -868,7 +972,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2052,
-             "uuid": "6aa67aef-4721-4dcb-920d-ec3fcf628447",
+             "uuid": "597389b8-6333-4ae2-8b10-97f1eb337694",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
@@ -881,6 +985,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -901,7 +1006,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2082,
-             "uuid": "6aa67aef-4721-4dcb-920d-ec3fcf628447",
+             "uuid": "597389b8-6333-4ae2-8b10-97f1eb337694",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
@@ -914,6 +1019,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -934,7 +1040,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2086,
-             "uuid": "6aa67aef-4721-4dcb-920d-ec3fcf628447",
+             "uuid": "597389b8-6333-4ae2-8b10-97f1eb337694",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
@@ -947,6 +1053,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -967,7 +1074,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2095,
-             "uuid": "6aa67aef-4721-4dcb-920d-ec3fcf628447",
+             "uuid": "597389b8-6333-4ae2-8b10-97f1eb337694",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
@@ -980,6 +1087,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -1013,6 +1121,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -1046,6 +1155,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -1079,6 +1189,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -1112,6 +1223,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -1145,6 +1257,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -1178,6 +1291,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -1211,6 +1325,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -1231,7 +1346,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 443,
-             "uuid": "9af5fb88-9072-4346-a12c-e6c2b1c28f07",
+             "uuid": "92fad8e1-7577-42db-ae2b-1a25cdd50c14",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
@@ -1245,6 +1360,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -1265,7 +1381,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2053,
-             "uuid": "9af5fb88-9072-4346-a12c-e6c2b1c28f07",
+             "uuid": "92fad8e1-7577-42db-ae2b-1a25cdd50c14",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
@@ -1279,6 +1395,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -1299,7 +1416,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2083,
-             "uuid": "9af5fb88-9072-4346-a12c-e6c2b1c28f07",
+             "uuid": "92fad8e1-7577-42db-ae2b-1a25cdd50c14",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
@@ -1313,6 +1430,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -1333,7 +1451,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2087,
-             "uuid": "9af5fb88-9072-4346-a12c-e6c2b1c28f07",
+             "uuid": "92fad8e1-7577-42db-ae2b-1a25cdd50c14",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
@@ -1347,6 +1465,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -1367,7 +1486,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2096,
-             "uuid": "9af5fb88-9072-4346-a12c-e6c2b1c28f07",
+             "uuid": "92fad8e1-7577-42db-ae2b-1a25cdd50c14",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
@@ -1381,6 +1500,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -1401,7 +1521,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 8443,
-             "uuid": "9af5fb88-9072-4346-a12c-e6c2b1c28f07",
+             "uuid": "92fad8e1-7577-42db-ae2b-1a25cdd50c14",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
@@ -1415,6 +1535,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -1435,7 +1556,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 443,
-             "uuid": "6aa67aef-4721-4dcb-920d-ec3fcf628447",
+             "uuid": "597389b8-6333-4ae2-8b10-97f1eb337694",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
@@ -1449,6 +1570,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -1469,7 +1591,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2053,
-             "uuid": "6aa67aef-4721-4dcb-920d-ec3fcf628447",
+             "uuid": "597389b8-6333-4ae2-8b10-97f1eb337694",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
@@ -1483,6 +1605,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -1503,7 +1626,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2083,
-             "uuid": "6aa67aef-4721-4dcb-920d-ec3fcf628447",
+             "uuid": "597389b8-6333-4ae2-8b10-97f1eb337694",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
@@ -1517,6 +1640,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -1537,7 +1661,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2087,
-             "uuid": "6aa67aef-4721-4dcb-920d-ec3fcf628447",
+             "uuid": "597389b8-6333-4ae2-8b10-97f1eb337694",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
@@ -1551,6 +1675,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -1571,7 +1696,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2096,
-             "uuid": "6aa67aef-4721-4dcb-920d-ec3fcf628447",
+             "uuid": "597389b8-6333-4ae2-8b10-97f1eb337694",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
@@ -1585,6 +1710,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -1605,7 +1731,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 8443,
-             "uuid": "6aa67aef-4721-4dcb-920d-ec3fcf628447",
+             "uuid": "597389b8-6333-4ae2-8b10-97f1eb337694",
              "security": "auto",
              "global_padding": true,
              "authenticated_length": true,
@@ -1619,6 +1745,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -1653,6 +1780,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -1687,6 +1815,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -1721,6 +1850,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -1755,6 +1885,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -1789,6 +1920,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -1823,6 +1955,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -1843,7 +1976,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 80,
-             "uuid": "e79cab89-bb59-4646-83da-d4c1984558d2",
+             "uuid": "b70a5347-a7b1-42e0-9bb4-1c1451717872",
              "tls": {
              "server_name": "cpanel.iptunnels.com",
              "insecure": true,
@@ -1853,6 +1986,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -1874,7 +2008,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 8080,
-             "uuid": "e79cab89-bb59-4646-83da-d4c1984558d2",
+             "uuid": "b70a5347-a7b1-42e0-9bb4-1c1451717872",
              "tls": {
              "server_name": "cpanel.iptunnels.com",
              "insecure": true,
@@ -1884,6 +2018,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -1905,7 +2040,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 8880,
-             "uuid": "e79cab89-bb59-4646-83da-d4c1984558d2",
+             "uuid": "b70a5347-a7b1-42e0-9bb4-1c1451717872",
              "tls": {
              "server_name": "cpanel.iptunnels.com",
              "insecure": true,
@@ -1915,6 +2050,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -1936,7 +2072,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2052,
-             "uuid": "e79cab89-bb59-4646-83da-d4c1984558d2",
+             "uuid": "b70a5347-a7b1-42e0-9bb4-1c1451717872",
              "tls": {
              "server_name": "cpanel.iptunnels.com",
              "insecure": true,
@@ -1946,6 +2082,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -1967,7 +2104,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2082,
-             "uuid": "e79cab89-bb59-4646-83da-d4c1984558d2",
+             "uuid": "b70a5347-a7b1-42e0-9bb4-1c1451717872",
              "tls": {
              "server_name": "cpanel.iptunnels.com",
              "insecure": true,
@@ -1977,6 +2114,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -1998,7 +2136,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2086,
-             "uuid": "e79cab89-bb59-4646-83da-d4c1984558d2",
+             "uuid": "b70a5347-a7b1-42e0-9bb4-1c1451717872",
              "tls": {
              "server_name": "cpanel.iptunnels.com",
              "insecure": true,
@@ -2008,6 +2146,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2029,7 +2168,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2095,
-             "uuid": "e79cab89-bb59-4646-83da-d4c1984558d2",
+             "uuid": "b70a5347-a7b1-42e0-9bb4-1c1451717872",
              "tls": {
              "server_name": "cpanel.iptunnels.com",
              "insecure": true,
@@ -2039,6 +2178,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2060,7 +2200,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 80,
-             "uuid": "8ded14db-c348-406f-822e-3e1bfcfc1ba0",
+             "uuid": "3c9124db-754a-4898-9986-787008f234b9",
              "tls": {
              "server_name": "jala.iptunnels.com",
              "insecure": true,
@@ -2070,6 +2210,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2091,7 +2232,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 8080,
-             "uuid": "8ded14db-c348-406f-822e-3e1bfcfc1ba0",
+             "uuid": "3c9124db-754a-4898-9986-787008f234b9",
              "tls": {
              "server_name": "jala.iptunnels.com",
              "insecure": true,
@@ -2101,6 +2242,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2122,7 +2264,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 8880,
-             "uuid": "8ded14db-c348-406f-822e-3e1bfcfc1ba0",
+             "uuid": "3c9124db-754a-4898-9986-787008f234b9",
              "tls": {
              "server_name": "jala.iptunnels.com",
              "insecure": true,
@@ -2132,6 +2274,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2153,7 +2296,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2052,
-             "uuid": "8ded14db-c348-406f-822e-3e1bfcfc1ba0",
+             "uuid": "3c9124db-754a-4898-9986-787008f234b9",
              "tls": {
              "server_name": "jala.iptunnels.com",
              "insecure": true,
@@ -2163,6 +2306,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2184,7 +2328,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2082,
-             "uuid": "8ded14db-c348-406f-822e-3e1bfcfc1ba0",
+             "uuid": "3c9124db-754a-4898-9986-787008f234b9",
              "tls": {
              "server_name": "jala.iptunnels.com",
              "insecure": true,
@@ -2194,6 +2338,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2215,7 +2360,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2086,
-             "uuid": "8ded14db-c348-406f-822e-3e1bfcfc1ba0",
+             "uuid": "3c9124db-754a-4898-9986-787008f234b9",
              "tls": {
              "server_name": "jala.iptunnels.com",
              "insecure": true,
@@ -2225,6 +2370,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2246,7 +2392,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2095,
-             "uuid": "8ded14db-c348-406f-822e-3e1bfcfc1ba0",
+             "uuid": "3c9124db-754a-4898-9986-787008f234b9",
              "tls": {
              "server_name": "jala.iptunnels.com",
              "insecure": true,
@@ -2256,6 +2402,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2277,7 +2424,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 443,
-             "uuid": "e79cab89-bb59-4646-83da-d4c1984558d2",
+             "uuid": "b70a5347-a7b1-42e0-9bb4-1c1451717872",
              "tls": {
              "enabled": true,
              "server_name": "cpanel.iptunnels.com",
@@ -2288,6 +2435,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2309,7 +2457,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2053,
-             "uuid": "e79cab89-bb59-4646-83da-d4c1984558d2",
+             "uuid": "b70a5347-a7b1-42e0-9bb4-1c1451717872",
              "tls": {
              "enabled": true,
              "server_name": "cpanel.iptunnels.com",
@@ -2320,6 +2468,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2341,7 +2490,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2083,
-             "uuid": "e79cab89-bb59-4646-83da-d4c1984558d2",
+             "uuid": "b70a5347-a7b1-42e0-9bb4-1c1451717872",
              "tls": {
              "enabled": true,
              "server_name": "cpanel.iptunnels.com",
@@ -2352,6 +2501,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2373,7 +2523,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2087,
-             "uuid": "e79cab89-bb59-4646-83da-d4c1984558d2",
+             "uuid": "b70a5347-a7b1-42e0-9bb4-1c1451717872",
              "tls": {
              "enabled": true,
              "server_name": "cpanel.iptunnels.com",
@@ -2384,6 +2534,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2405,7 +2556,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2096,
-             "uuid": "e79cab89-bb59-4646-83da-d4c1984558d2",
+             "uuid": "b70a5347-a7b1-42e0-9bb4-1c1451717872",
              "tls": {
              "enabled": true,
              "server_name": "cpanel.iptunnels.com",
@@ -2416,6 +2567,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2437,7 +2589,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 8443,
-             "uuid": "e79cab89-bb59-4646-83da-d4c1984558d2",
+             "uuid": "b70a5347-a7b1-42e0-9bb4-1c1451717872",
              "tls": {
              "enabled": true,
              "server_name": "cpanel.iptunnels.com",
@@ -2448,6 +2600,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2469,7 +2622,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 443,
-             "uuid": "8ded14db-c348-406f-822e-3e1bfcfc1ba0",
+             "uuid": "3c9124db-754a-4898-9986-787008f234b9",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
@@ -2480,6 +2633,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2501,7 +2655,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2053,
-             "uuid": "8ded14db-c348-406f-822e-3e1bfcfc1ba0",
+             "uuid": "3c9124db-754a-4898-9986-787008f234b9",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
@@ -2512,6 +2666,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2533,7 +2688,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2083,
-             "uuid": "8ded14db-c348-406f-822e-3e1bfcfc1ba0",
+             "uuid": "3c9124db-754a-4898-9986-787008f234b9",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
@@ -2544,6 +2699,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2565,7 +2721,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2087,
-             "uuid": "8ded14db-c348-406f-822e-3e1bfcfc1ba0",
+             "uuid": "3c9124db-754a-4898-9986-787008f234b9",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
@@ -2576,6 +2732,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2597,7 +2754,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2096,
-             "uuid": "8ded14db-c348-406f-822e-3e1bfcfc1ba0",
+             "uuid": "3c9124db-754a-4898-9986-787008f234b9",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
@@ -2608,6 +2765,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2629,7 +2787,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 8443,
-             "uuid": "8ded14db-c348-406f-822e-3e1bfcfc1ba0",
+             "uuid": "3c9124db-754a-4898-9986-787008f234b9",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
@@ -2640,6 +2798,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2661,7 +2820,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 80,
-             "password": "953b3f8c3ebeb6ae",
+             "password": "87beefc56e943eb7",
              "tls": {
              "server_name": "cpanel.iptunnels.com",
              "insecure": true,
@@ -2671,6 +2830,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2691,7 +2851,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 8080,
-             "password": "953b3f8c3ebeb6ae",
+             "password": "87beefc56e943eb7",
              "tls": {
              "server_name": "cpanel.iptunnels.com",
              "insecure": true,
@@ -2701,6 +2861,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2721,7 +2882,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 8880,
-             "password": "953b3f8c3ebeb6ae",
+             "password": "87beefc56e943eb7",
              "tls": {
              "server_name": "cpanel.iptunnels.com",
              "insecure": true,
@@ -2731,6 +2892,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2751,7 +2913,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2052,
-             "password": "953b3f8c3ebeb6ae",
+             "password": "87beefc56e943eb7",
              "tls": {
              "server_name": "cpanel.iptunnels.com",
              "insecure": true,
@@ -2761,6 +2923,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2781,7 +2944,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2082,
-             "password": "953b3f8c3ebeb6ae",
+             "password": "87beefc56e943eb7",
              "tls": {
              "server_name": "cpanel.iptunnels.com",
              "insecure": true,
@@ -2791,6 +2954,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2811,7 +2975,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2086,
-             "password": "953b3f8c3ebeb6ae",
+             "password": "87beefc56e943eb7",
              "tls": {
              "server_name": "cpanel.iptunnels.com",
              "insecure": true,
@@ -2821,6 +2985,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2841,7 +3006,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2095,
-             "password": "953b3f8c3ebeb6ae",
+             "password": "87beefc56e943eb7",
              "tls": {
              "server_name": "cpanel.iptunnels.com",
              "insecure": true,
@@ -2851,6 +3016,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2871,7 +3037,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 80,
-             "password": "805cc330b9b55732",
+             "password": "eade33d3d01119a3",
              "tls": {
              "server_name": "jala.iptunnels.com",
              "insecure": true,
@@ -2881,6 +3047,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2901,7 +3068,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 8080,
-             "password": "805cc330b9b55732",
+             "password": "eade33d3d01119a3",
              "tls": {
              "server_name": "jala.iptunnels.com",
              "insecure": true,
@@ -2911,6 +3078,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2931,7 +3099,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 8880,
-             "password": "805cc330b9b55732",
+             "password": "eade33d3d01119a3",
              "tls": {
              "server_name": "jala.iptunnels.com",
              "insecure": true,
@@ -2941,6 +3109,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2961,7 +3130,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2052,
-             "password": "805cc330b9b55732",
+             "password": "eade33d3d01119a3",
              "tls": {
              "server_name": "jala.iptunnels.com",
              "insecure": true,
@@ -2971,6 +3140,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -2991,7 +3161,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2082,
-             "password": "805cc330b9b55732",
+             "password": "eade33d3d01119a3",
              "tls": {
              "server_name": "jala.iptunnels.com",
              "insecure": true,
@@ -3001,6 +3171,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3021,7 +3192,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2086,
-             "password": "805cc330b9b55732",
+             "password": "eade33d3d01119a3",
              "tls": {
              "server_name": "jala.iptunnels.com",
              "insecure": true,
@@ -3031,6 +3202,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3051,7 +3223,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2095,
-             "password": "805cc330b9b55732",
+             "password": "eade33d3d01119a3",
              "tls": {
              "server_name": "jala.iptunnels.com",
              "insecure": true,
@@ -3061,6 +3233,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3091,6 +3264,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3121,6 +3295,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3151,6 +3326,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3181,6 +3357,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3211,6 +3388,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3241,6 +3419,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3271,6 +3450,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3291,7 +3471,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 443,
-             "password": "953b3f8c3ebeb6ae",
+             "password": "87beefc56e943eb7",
              "tls": {
              "enabled": true,
              "server_name": "cpanel.iptunnels.com",
@@ -3302,6 +3482,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3322,7 +3503,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2053,
-             "password": "953b3f8c3ebeb6ae",
+             "password": "87beefc56e943eb7",
              "tls": {
              "enabled": true,
              "server_name": "cpanel.iptunnels.com",
@@ -3333,6 +3514,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3353,7 +3535,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2083,
-             "password": "953b3f8c3ebeb6ae",
+             "password": "87beefc56e943eb7",
              "tls": {
              "enabled": true,
              "server_name": "cpanel.iptunnels.com",
@@ -3364,6 +3546,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3384,7 +3567,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2087,
-             "password": "953b3f8c3ebeb6ae",
+             "password": "87beefc56e943eb7",
              "tls": {
              "enabled": true,
              "server_name": "cpanel.iptunnels.com",
@@ -3395,6 +3578,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3415,7 +3599,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2096,
-             "password": "953b3f8c3ebeb6ae",
+             "password": "87beefc56e943eb7",
              "tls": {
              "enabled": true,
              "server_name": "cpanel.iptunnels.com",
@@ -3426,6 +3610,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3446,7 +3631,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 8443,
-             "password": "953b3f8c3ebeb6ae",
+             "password": "87beefc56e943eb7",
              "tls": {
              "enabled": true,
              "server_name": "cpanel.iptunnels.com",
@@ -3457,6 +3642,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3477,7 +3663,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 443,
-             "password": "805cc330b9b55732",
+             "password": "eade33d3d01119a3",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
@@ -3488,6 +3674,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3508,7 +3695,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2053,
-             "password": "805cc330b9b55732",
+             "password": "eade33d3d01119a3",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
@@ -3519,6 +3706,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3539,7 +3727,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2083,
-             "password": "805cc330b9b55732",
+             "password": "eade33d3d01119a3",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
@@ -3550,6 +3738,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3570,7 +3759,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2087,
-             "password": "805cc330b9b55732",
+             "password": "eade33d3d01119a3",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
@@ -3581,6 +3770,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3601,7 +3791,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 2096,
-             "password": "805cc330b9b55732",
+             "password": "eade33d3d01119a3",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
@@ -3612,6 +3802,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3632,7 +3823,7 @@
              "udp_fragment": true,
              "server": "104.18.2.2",
              "server_port": 8443,
-             "password": "805cc330b9b55732",
+             "password": "eade33d3d01119a3",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
@@ -3643,6 +3834,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3674,6 +3866,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3705,6 +3898,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3736,6 +3930,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3767,6 +3962,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3798,6 +3994,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3829,6 +4026,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3858,6 +4056,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3886,6 +4085,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3914,6 +4114,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3942,6 +4143,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3970,6 +4172,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -3998,6 +4201,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -4024,6 +4228,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -4051,6 +4256,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -4078,6 +4284,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -4105,6 +4312,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -4132,6 +4340,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -4159,6 +4368,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -4175,7 +4385,7 @@
              "tag": "grpc 🇯🇵 port : 443",
              "server": "104.18.2.2",
              "server_port": 443,
-             "password": "50c6f3e0d24472dc",
+             "password": "7627432f56f72202",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
@@ -4186,6 +4396,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -4201,7 +4412,7 @@
              "tag": "grpc 🇯🇵 port : 2053",
              "server": "104.18.2.2",
              "server_port": 2053,
-             "password": "50c6f3e0d24472dc",
+             "password": "7627432f56f72202",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
@@ -4212,6 +4423,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -4227,7 +4439,7 @@
              "tag": "grpc 🇯🇵 port : 2083",
              "server": "104.18.2.2",
              "server_port": 2083,
-             "password": "50c6f3e0d24472dc",
+             "password": "7627432f56f72202",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
@@ -4238,6 +4450,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -4253,7 +4466,7 @@
              "tag": "grpc 🇯🇵 port : 2087",
              "server": "104.18.2.2",
              "server_port": 2087,
-             "password": "50c6f3e0d24472dc",
+             "password": "7627432f56f72202",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
@@ -4264,6 +4477,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -4279,7 +4493,7 @@
              "tag": "grpc 🇯🇵 port : 2096",
              "server": "104.18.2.2",
              "server_port": 2096,
-             "password": "50c6f3e0d24472dc",
+             "password": "7627432f56f72202",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
@@ -4290,6 +4504,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -4305,7 +4520,7 @@
              "tag": "grpc 🇯🇵 port : 8443",
              "server": "104.18.2.2",
              "server_port": 8443,
-             "password": "50c6f3e0d24472dc",
+             "password": "7627432f56f72202",
              "tls": {
              "enabled": true,
              "server_name": "jala.iptunnels.com",
@@ -4316,6 +4531,7 @@
              }
              },
              "multiplex": {
+             "enabled": false,
              "protocol": "h2mux",
              "max_streams": 32
              },
@@ -4355,6 +4571,14 @@
              },
              "rules": [
              {
+             "geosite": "category-ads-all",
+             "outbound": "block"
+             },
+             {
+             "geosite": "google@ads",
+             "outbound": "block"
+             },
+             {
              "inbound": "dns_in",
              "outbound": "dns_out"
              },
@@ -4376,7 +4600,7 @@
              },
              "experimental": {
              "clash_api": {
-             "external_controller": "127.0.0.1:9090",
+             "external_controller": "127.0.0.1:6756",
              "store_selected": true,
              "cache_file": "clash.db"
              }
