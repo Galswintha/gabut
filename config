@@ -2879,7 +2879,7 @@
             "tag": "trojan 🇸🇬 port : 80",
             "server": "104.18.2.2",
             "server_port": 80,
-            "password": "066c9ec6c1dd076f",
+            "password": "55a3d70a2b254ba4",
             "tls": {
                 "enabled": false,
                 "server_name": "cpanel.iptunnels.com",
@@ -2913,7 +2913,7 @@
             "tag": "trojan 🇸🇬 port : 8080",
             "server": "104.18.2.2",
             "server_port": 8080,
-            "password": "066c9ec6c1dd076f",
+            "password": "55a3d70a2b254ba4",
             "tls": {
                 "enabled": false,
                 "server_name": "cpanel.iptunnels.com",
@@ -2947,7 +2947,7 @@
             "tag": "trojan 🇸🇬 port : 8880",
             "server": "104.18.2.2",
             "server_port": 8880,
-            "password": "066c9ec6c1dd076f",
+            "password": "55a3d70a2b254ba4",
             "tls": {
                 "enabled": false,
                 "server_name": "cpanel.iptunnels.com",
@@ -2981,7 +2981,7 @@
             "tag": "trojan 🇸🇬 port : 2052",
             "server": "104.18.2.2",
             "server_port": 2052,
-            "password": "066c9ec6c1dd076f",
+            "password": "55a3d70a2b254ba4",
             "tls": {
                 "enabled": false,
                 "server_name": "cpanel.iptunnels.com",
@@ -3015,7 +3015,7 @@
             "tag": "trojan 🇸🇬 port : 2082",
             "server": "104.18.2.2",
             "server_port": 2082,
-            "password": "066c9ec6c1dd076f",
+            "password": "55a3d70a2b254ba4",
             "tls": {
                 "enabled": false,
                 "server_name": "cpanel.iptunnels.com",
@@ -3049,7 +3049,7 @@
             "tag": "trojan 🇸🇬 port : 2086",
             "server": "104.18.2.2",
             "server_port": 2086,
-            "password": "066c9ec6c1dd076f",
+            "password": "55a3d70a2b254ba4",
             "tls": {
                 "enabled": false,
                 "server_name": "cpanel.iptunnels.com",
@@ -3083,7 +3083,7 @@
             "tag": "trojan 🇸🇬 port : 2095",
             "server": "104.18.2.2",
             "server_port": 2095,
-            "password": "066c9ec6c1dd076f",
+            "password": "55a3d70a2b254ba4",
             "tls": {
                 "enabled": false,
                 "server_name": "cpanel.iptunnels.com",
@@ -3593,7 +3593,7 @@
             "tag": "trojan 🇨🇳 port : 443",
             "server": "104.18.2.2",
             "server_port": 443,
-            "password": "066c9ec6c1dd076f",
+            "password": "55a3d70a2b254ba4",
             "tls": {
                 "enabled": true,
                 "server_name": "cpanel.iptunnels.com",
@@ -3627,7 +3627,7 @@
             "tag": "trojan 🇨🇳 port : 2053",
             "server": "104.18.2.2",
             "server_port": 2053,
-            "password": "066c9ec6c1dd076f",
+            "password": "55a3d70a2b254ba4",
             "tls": {
                 "enabled": true,
                 "server_name": "cpanel.iptunnels.com",
@@ -3661,7 +3661,7 @@
             "tag": "trojan 🇨🇳 port : 2083",
             "server": "104.18.2.2",
             "server_port": 2083,
-            "password": "066c9ec6c1dd076f",
+            "password": "55a3d70a2b254ba4",
             "tls": {
                 "enabled": true,
                 "server_name": "cpanel.iptunnels.com",
@@ -3695,7 +3695,7 @@
             "tag": "trojan 🇨🇳 port : 2087",
             "server": "104.18.2.2",
             "server_port": 2087,
-            "password": "066c9ec6c1dd076f",
+            "password": "55a3d70a2b254ba4",
             "tls": {
                 "enabled": true,
                 "server_name": "cpanel.iptunnels.com",
@@ -3729,7 +3729,7 @@
             "tag": "trojan 🇨🇳 port : 2096",
             "server": "104.18.2.2",
             "server_port": 2096,
-            "password": "066c9ec6c1dd076f",
+            "password": "55a3d70a2b254ba4",
             "tls": {
                 "enabled": true,
                 "server_name": "cpanel.iptunnels.com",
@@ -3763,7 +3763,7 @@
             "tag": "trojan 🇨🇳 port : 8443",
             "server": "104.18.2.2",
             "server_port": 8443,
-            "password": "066c9ec6c1dd076f",
+            "password": "55a3d70a2b254ba4",
             "tls": {
                 "enabled": true,
                 "server_name": "cpanel.iptunnels.com",
