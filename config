@@ -11,76 +11,56 @@
                 "address": "1.0.0.1"
             },
             {
+                "tag": "dns_local",
+                "address": "local"
+            },
+            {
                 "tag": "dns_refused",
                 "address": "rcode://refused"
             }
         ],
         "rules": [
             {
-                "network": "tcp",
-                "protocol": "ospf",
-                "port": 2604,
-                "server": "dns_cloudflare",
-                "disable_cache": true,
+                "inbound": "any",
+                "server": "dns_local",
+                "disable_cache": false,
                 "rewrite_ttl": 333
             },
             {
-                "network": "udp",
-                "protocol": "teredo",
-                "port": 3544,
-                "server": "dns_cloudflare",
-                "disable_cache": true,
-                "rewrite_ttl": 333
-            },
-            {
-                "protocol": [
-                    "dash",
-                    "rtp",
-                    "rtcp",
-                    "rtsp",
-                    "srtp"
-                ],
-                "server": "dns_cloudflare",
-                "disable_cache": true,
-                "rewrite_ttl": 333
-            },
-            {
-                "network": "tcp",
-                "port": 53,
-                "server": "dns_refused",
-                "disable_cache": true,
-                "rewrite_ttl": 333
-            },
-            {
-                "protocol": [
-                    "doh",
-                    "doq",
-                    "dot",
-                    "quic",
-                    "stun"
-                ],
-                "server": "dns_refused",
-                "disable_cache": true,
-                "rewrite_ttl": 333
-            },
-            {
-                "protocol": "dns",
+                "outbound": "any",
                 "server": "dns_cloudflare",
                 "disable_cache": false,
                 "rewrite_ttl": 333
             }
         ],
         "final": "dns_cloudflare",
-        "disable_cache": true,
-        "disable_expire": true,
+        "disable_cache": false,
+        "disable_expire": false,
         "independent_cache": true,
         "reverse_mapping": true
     },
     "inbounds": [
         {
+            "type": "direct",
+            "tag": "dns_in",
+            "detour": "tun_in",
+            "listen": "::",
+            "override_address": "1.0.0.1",
+            "sniff": true,
+            "sniff_override_destination": true
+        },
+        {
+            "type": "mixed",
+            "tag": "mixed_in",
+            "detour": "tun_in",
+            "listen": "::",
+            "sniff": true,
+            "sniff_override_destination": true
+        },
+        {
             "type": "tun",
             "tag": "tun_in",
-            "mtu": 30000,
+            "mtu": 60000,
             "inet4_address": "172.19.0.1/3",
             "auto_route": true,
             "strict_route": true,
@@ -92,7 +72,7 @@
     "outbounds": [
         {
             "type": "selector",
-            "tag": "outbound_type",
+            "tag": "outbound_select",
             "outbounds": [
                 "auto_select",
                 "block",
@@ -107,7 +87,7 @@
         },
         {
             "type": "selector",
-            "tag": "category_gaming",
+            "tag": "gaming",
             "outbounds": [
                 "auto_select",
                 "block",
@@ -122,7 +102,7 @@
         },
         {
             "type": "selector",
-            "tag": "category_social",
+            "tag": "social_media",
             "outbounds": [
                 "auto_select",
                 "block",
@@ -137,7 +117,7 @@
         },
         {
             "type": "selector",
-            "tag": "category_adult",
+            "tag": "adult_content",
             "outbounds": [
                 "auto_select",
                 "block",
@@ -152,7 +132,7 @@
         },
         {
             "type": "selector",
-            "tag": "category_advertisement",
+            "tag": "advertisement",
             "outbounds": [
                 "auto_select",
                 "block",
@@ -167,7 +147,7 @@
         },
         {
             "type": "selector",
-            "tag": "category_packages",
+            "tag": "packages",
             "outbounds": [
                 "auto_select",
                 "block",
@@ -192,7 +172,7 @@
                 "mix_vless",
                 "mix_vmess"
             ],
-            "default": "block",
+            "default": "auto_select",
             "interrupt_exist_connections": true
         },
         {
@@ -207,7 +187,7 @@
                 "mix_vless",
                 "mix_vmess"
             ],
-            "default": "block",
+            "default": "auto_select",
             "interrupt_exist_connections": true
         },
         {
@@ -222,7 +202,7 @@
                 "mix_vless",
                 "mix_vmess"
             ],
-            "default": "block",
+            "default": "auto_select",
             "interrupt_exist_connections": true
         },
         {
@@ -237,7 +217,7 @@
                 "mix_vless",
                 "mix_vmess"
             ],
-            "default": "block",
+            "default": "auto_select",
             "interrupt_exist_connections": true
         },
         {
@@ -562,7 +542,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -599,7 +579,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -636,7 +616,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -673,7 +653,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -710,7 +690,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -747,7 +727,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -784,7 +764,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -805,7 +785,7 @@
             "tag": "vmess 🇰🇷 port : 80",
             "server": "104.18.2.2",
             "server_port": 80,
-            "uuid": "ff1b0988-95ac-46f3-89e1-d843bb575022",
+            "uuid": "2d8ad55b-26f5-4835-8456-3328d7c3bf0b",
             "security": "auto",
             "global_padding": true,
             "authenticated_length": true,
@@ -821,7 +801,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -842,7 +822,7 @@
             "tag": "vmess 🇰🇷 port : 8080",
             "server": "104.18.2.2",
             "server_port": 8080,
-            "uuid": "ff1b0988-95ac-46f3-89e1-d843bb575022",
+            "uuid": "2d8ad55b-26f5-4835-8456-3328d7c3bf0b",
             "security": "auto",
             "global_padding": true,
             "authenticated_length": true,
@@ -858,7 +838,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -879,7 +859,7 @@
             "tag": "vmess 🇰🇷 port : 8880",
             "server": "104.18.2.2",
             "server_port": 8880,
-            "uuid": "ff1b0988-95ac-46f3-89e1-d843bb575022",
+            "uuid": "2d8ad55b-26f5-4835-8456-3328d7c3bf0b",
             "security": "auto",
             "global_padding": true,
             "authenticated_length": true,
@@ -895,7 +875,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -916,7 +896,7 @@
             "tag": "vmess 🇰🇷 port : 2052",
             "server": "104.18.2.2",
             "server_port": 2052,
-            "uuid": "ff1b0988-95ac-46f3-89e1-d843bb575022",
+            "uuid": "2d8ad55b-26f5-4835-8456-3328d7c3bf0b",
             "security": "auto",
             "global_padding": true,
             "authenticated_length": true,
@@ -932,7 +912,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -953,7 +933,7 @@
             "tag": "vmess 🇰🇷 port : 2082",
             "server": "104.18.2.2",
             "server_port": 2082,
-            "uuid": "ff1b0988-95ac-46f3-89e1-d843bb575022",
+            "uuid": "2d8ad55b-26f5-4835-8456-3328d7c3bf0b",
             "security": "auto",
             "global_padding": true,
             "authenticated_length": true,
@@ -969,7 +949,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -990,7 +970,7 @@
             "tag": "vmess 🇰🇷 port : 2086",
             "server": "104.18.2.2",
             "server_port": 2086,
-            "uuid": "ff1b0988-95ac-46f3-89e1-d843bb575022",
+            "uuid": "2d8ad55b-26f5-4835-8456-3328d7c3bf0b",
             "security": "auto",
             "global_padding": true,
             "authenticated_length": true,
@@ -1006,7 +986,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -1027,7 +1007,7 @@
             "tag": "vmess 🇰🇷 port : 2095",
             "server": "104.18.2.2",
             "server_port": 2095,
-            "uuid": "ff1b0988-95ac-46f3-89e1-d843bb575022",
+            "uuid": "2d8ad55b-26f5-4835-8456-3328d7c3bf0b",
             "security": "auto",
             "global_padding": true,
             "authenticated_length": true,
@@ -1043,7 +1023,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -1080,7 +1060,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -1117,7 +1097,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -1154,7 +1134,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -1191,7 +1171,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -1228,7 +1208,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -1265,7 +1245,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -1302,7 +1282,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -1339,7 +1319,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -1376,7 +1356,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -1413,7 +1393,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -1450,7 +1430,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -1487,7 +1467,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -1524,7 +1504,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -1545,7 +1525,7 @@
             "tag": "vmess 🇭🇰 port : 443",
             "server": "104.18.2.2",
             "server_port": 443,
-            "uuid": "ff1b0988-95ac-46f3-89e1-d843bb575022",
+            "uuid": "2d8ad55b-26f5-4835-8456-3328d7c3bf0b",
             "security": "auto",
             "global_padding": true,
             "authenticated_length": true,
@@ -1561,7 +1541,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -1582,7 +1562,7 @@
             "tag": "vmess 🇭🇰 port : 2053",
             "server": "104.18.2.2",
             "server_port": 2053,
-            "uuid": "ff1b0988-95ac-46f3-89e1-d843bb575022",
+            "uuid": "2d8ad55b-26f5-4835-8456-3328d7c3bf0b",
             "security": "auto",
             "global_padding": true,
             "authenticated_length": true,
@@ -1598,7 +1578,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -1619,7 +1599,7 @@
             "tag": "vmess 🇭🇰 port : 2083",
             "server": "104.18.2.2",
             "server_port": 2083,
-            "uuid": "ff1b0988-95ac-46f3-89e1-d843bb575022",
+            "uuid": "2d8ad55b-26f5-4835-8456-3328d7c3bf0b",
             "security": "auto",
             "global_padding": true,
             "authenticated_length": true,
@@ -1635,7 +1615,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -1656,7 +1636,7 @@
             "tag": "vmess 🇭🇰 port : 2087",
             "server": "104.18.2.2",
             "server_port": 2087,
-            "uuid": "ff1b0988-95ac-46f3-89e1-d843bb575022",
+            "uuid": "2d8ad55b-26f5-4835-8456-3328d7c3bf0b",
             "security": "auto",
             "global_padding": true,
             "authenticated_length": true,
@@ -1672,7 +1652,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -1693,7 +1673,7 @@
             "tag": "vmess 🇭🇰 port : 2096",
             "server": "104.18.2.2",
             "server_port": 2096,
-            "uuid": "ff1b0988-95ac-46f3-89e1-d843bb575022",
+            "uuid": "2d8ad55b-26f5-4835-8456-3328d7c3bf0b",
             "security": "auto",
             "global_padding": true,
             "authenticated_length": true,
@@ -1709,7 +1689,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -1730,7 +1710,7 @@
             "tag": "vmess 🇭🇰 port : 8443",
             "server": "104.18.2.2",
             "server_port": 8443,
-            "uuid": "ff1b0988-95ac-46f3-89e1-d843bb575022",
+            "uuid": "2d8ad55b-26f5-4835-8456-3328d7c3bf0b",
             "security": "auto",
             "global_padding": true,
             "authenticated_length": true,
@@ -1746,7 +1726,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -1783,7 +1763,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -1820,7 +1800,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -1857,7 +1837,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -1894,7 +1874,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -1931,7 +1911,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -1968,7 +1948,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -1989,7 +1969,7 @@
             "tag": "vless 🇸🇬 port : 80",
             "server": "104.18.2.2",
             "server_port": 80,
-            "uuid": "99e70622-713d-49c7-9720-b7bf1c40931d",
+            "uuid": "42db5f7e-ba61-4954-886c-ff323e3ad0e6",
             "tls": {
                 "enabled": false,
                 "server_name": "cpanel.iptunnels.com",
@@ -2002,7 +1982,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -2024,7 +2004,7 @@
             "tag": "vless 🇸🇬 port : 8080",
             "server": "104.18.2.2",
             "server_port": 8080,
-            "uuid": "99e70622-713d-49c7-9720-b7bf1c40931d",
+            "uuid": "42db5f7e-ba61-4954-886c-ff323e3ad0e6",
             "tls": {
                 "enabled": false,
                 "server_name": "cpanel.iptunnels.com",
@@ -2037,7 +2017,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -2059,7 +2039,7 @@
             "tag": "vless 🇸🇬 port : 8880",
             "server": "104.18.2.2",
             "server_port": 8880,
-            "uuid": "99e70622-713d-49c7-9720-b7bf1c40931d",
+            "uuid": "42db5f7e-ba61-4954-886c-ff323e3ad0e6",
             "tls": {
                 "enabled": false,
                 "server_name": "cpanel.iptunnels.com",
@@ -2072,7 +2052,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -2094,7 +2074,7 @@
             "tag": "vless 🇸🇬 port : 2052",
             "server": "104.18.2.2",
             "server_port": 2052,
-            "uuid": "99e70622-713d-49c7-9720-b7bf1c40931d",
+            "uuid": "42db5f7e-ba61-4954-886c-ff323e3ad0e6",
             "tls": {
                 "enabled": false,
                 "server_name": "cpanel.iptunnels.com",
@@ -2107,7 +2087,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -2129,7 +2109,7 @@
             "tag": "vless 🇸🇬 port : 2082",
             "server": "104.18.2.2",
             "server_port": 2082,
-            "uuid": "99e70622-713d-49c7-9720-b7bf1c40931d",
+            "uuid": "42db5f7e-ba61-4954-886c-ff323e3ad0e6",
             "tls": {
                 "enabled": false,
                 "server_name": "cpanel.iptunnels.com",
@@ -2142,7 +2122,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -2164,7 +2144,7 @@
             "tag": "vless 🇸🇬 port : 2086",
             "server": "104.18.2.2",
             "server_port": 2086,
-            "uuid": "99e70622-713d-49c7-9720-b7bf1c40931d",
+            "uuid": "42db5f7e-ba61-4954-886c-ff323e3ad0e6",
             "tls": {
                 "enabled": false,
                 "server_name": "cpanel.iptunnels.com",
@@ -2177,7 +2157,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -2199,7 +2179,7 @@
             "tag": "vless 🇸🇬 port : 2095",
             "server": "104.18.2.2",
             "server_port": 2095,
-            "uuid": "99e70622-713d-49c7-9720-b7bf1c40931d",
+            "uuid": "42db5f7e-ba61-4954-886c-ff323e3ad0e6",
             "tls": {
                 "enabled": false,
                 "server_name": "cpanel.iptunnels.com",
@@ -2212,7 +2192,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -2234,7 +2214,7 @@
             "tag": "vless 🇰🇷 port : 80",
             "server": "104.18.2.2",
             "server_port": 80,
-            "uuid": "993580c9-a861-4940-a4e9-cb3f07d31c69",
+            "uuid": "e9f65734-2dda-4f86-8780-0b6174caefcb",
             "tls": {
                 "enabled": false,
                 "server_name": "jala.iptunnels.com",
@@ -2247,7 +2227,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -2269,7 +2249,7 @@
             "tag": "vless 🇰🇷 port : 8080",
             "server": "104.18.2.2",
             "server_port": 8080,
-            "uuid": "993580c9-a861-4940-a4e9-cb3f07d31c69",
+            "uuid": "e9f65734-2dda-4f86-8780-0b6174caefcb",
             "tls": {
                 "enabled": false,
                 "server_name": "jala.iptunnels.com",
@@ -2282,7 +2262,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -2304,7 +2284,7 @@
             "tag": "vless 🇰🇷 port : 8880",
             "server": "104.18.2.2",
             "server_port": 8880,
-            "uuid": "993580c9-a861-4940-a4e9-cb3f07d31c69",
+            "uuid": "e9f65734-2dda-4f86-8780-0b6174caefcb",
             "tls": {
                 "enabled": false,
                 "server_name": "jala.iptunnels.com",
@@ -2317,7 +2297,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -2339,7 +2319,7 @@
             "tag": "vless 🇰🇷 port : 2052",
             "server": "104.18.2.2",
             "server_port": 2052,
-            "uuid": "993580c9-a861-4940-a4e9-cb3f07d31c69",
+            "uuid": "e9f65734-2dda-4f86-8780-0b6174caefcb",
             "tls": {
                 "enabled": false,
                 "server_name": "jala.iptunnels.com",
@@ -2352,7 +2332,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -2374,7 +2354,7 @@
             "tag": "vless 🇰🇷 port : 2082",
             "server": "104.18.2.2",
             "server_port": 2082,
-            "uuid": "993580c9-a861-4940-a4e9-cb3f07d31c69",
+            "uuid": "e9f65734-2dda-4f86-8780-0b6174caefcb",
             "tls": {
                 "enabled": false,
                 "server_name": "jala.iptunnels.com",
@@ -2387,7 +2367,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -2409,7 +2389,7 @@
             "tag": "vless 🇰🇷 port : 2086",
             "server": "104.18.2.2",
             "server_port": 2086,
-            "uuid": "993580c9-a861-4940-a4e9-cb3f07d31c69",
+            "uuid": "e9f65734-2dda-4f86-8780-0b6174caefcb",
             "tls": {
                 "enabled": false,
                 "server_name": "jala.iptunnels.com",
@@ -2422,7 +2402,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -2444,7 +2424,7 @@
             "tag": "vless 🇰🇷 port : 2095",
             "server": "104.18.2.2",
             "server_port": 2095,
-            "uuid": "993580c9-a861-4940-a4e9-cb3f07d31c69",
+            "uuid": "e9f65734-2dda-4f86-8780-0b6174caefcb",
             "tls": {
                 "enabled": false,
                 "server_name": "jala.iptunnels.com",
@@ -2457,7 +2437,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -2479,7 +2459,7 @@
             "tag": "vless 🇨🇳 port : 443",
             "server": "104.18.2.2",
             "server_port": 443,
-            "uuid": "99e70622-713d-49c7-9720-b7bf1c40931d",
+            "uuid": "42db5f7e-ba61-4954-886c-ff323e3ad0e6",
             "tls": {
                 "enabled": true,
                 "server_name": "cpanel.iptunnels.com",
@@ -2492,7 +2472,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -2514,7 +2494,7 @@
             "tag": "vless 🇨🇳 port : 2053",
             "server": "104.18.2.2",
             "server_port": 2053,
-            "uuid": "99e70622-713d-49c7-9720-b7bf1c40931d",
+            "uuid": "42db5f7e-ba61-4954-886c-ff323e3ad0e6",
             "tls": {
                 "enabled": true,
                 "server_name": "cpanel.iptunnels.com",
@@ -2527,7 +2507,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -2549,7 +2529,7 @@
             "tag": "vless 🇨🇳 port : 2083",
             "server": "104.18.2.2",
             "server_port": 2083,
-            "uuid": "99e70622-713d-49c7-9720-b7bf1c40931d",
+            "uuid": "42db5f7e-ba61-4954-886c-ff323e3ad0e6",
             "tls": {
                 "enabled": true,
                 "server_name": "cpanel.iptunnels.com",
@@ -2562,7 +2542,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -2584,7 +2564,7 @@
             "tag": "vless 🇨🇳 port : 2087",
             "server": "104.18.2.2",
             "server_port": 2087,
-            "uuid": "99e70622-713d-49c7-9720-b7bf1c40931d",
+            "uuid": "42db5f7e-ba61-4954-886c-ff323e3ad0e6",
             "tls": {
                 "enabled": true,
                 "server_name": "cpanel.iptunnels.com",
@@ -2597,7 +2577,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -2619,7 +2599,7 @@
             "tag": "vless 🇨🇳 port : 2096",
             "server": "104.18.2.2",
             "server_port": 2096,
-            "uuid": "99e70622-713d-49c7-9720-b7bf1c40931d",
+            "uuid": "42db5f7e-ba61-4954-886c-ff323e3ad0e6",
             "tls": {
                 "enabled": true,
                 "server_name": "cpanel.iptunnels.com",
@@ -2632,7 +2612,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -2654,7 +2634,7 @@
             "tag": "vless 🇨🇳 port : 8443",
             "server": "104.18.2.2",
             "server_port": 8443,
-            "uuid": "99e70622-713d-49c7-9720-b7bf1c40931d",
+            "uuid": "42db5f7e-ba61-4954-886c-ff323e3ad0e6",
             "tls": {
                 "enabled": true,
                 "server_name": "cpanel.iptunnels.com",
@@ -2667,7 +2647,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -2689,7 +2669,7 @@
             "tag": "vless 🇭🇰 port : 443",
             "server": "104.18.2.2",
             "server_port": 443,
-            "uuid": "993580c9-a861-4940-a4e9-cb3f07d31c69",
+            "uuid": "e9f65734-2dda-4f86-8780-0b6174caefcb",
             "tls": {
                 "enabled": true,
                 "server_name": "jala.iptunnels.com",
@@ -2702,7 +2682,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -2724,7 +2704,7 @@
             "tag": "vless 🇭🇰 port : 2053",
             "server": "104.18.2.2",
             "server_port": 2053,
-            "uuid": "993580c9-a861-4940-a4e9-cb3f07d31c69",
+            "uuid": "e9f65734-2dda-4f86-8780-0b6174caefcb",
             "tls": {
                 "enabled": true,
                 "server_name": "jala.iptunnels.com",
@@ -2737,7 +2717,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -2759,7 +2739,7 @@
             "tag": "vless 🇭🇰 port : 2083",
             "server": "104.18.2.2",
             "server_port": 2083,
-            "uuid": "993580c9-a861-4940-a4e9-cb3f07d31c69",
+            "uuid": "e9f65734-2dda-4f86-8780-0b6174caefcb",
             "tls": {
                 "enabled": true,
                 "server_name": "jala.iptunnels.com",
@@ -2772,7 +2752,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -2794,7 +2774,7 @@
             "tag": "vless 🇭🇰 port : 2087",
             "server": "104.18.2.2",
             "server_port": 2087,
-            "uuid": "993580c9-a861-4940-a4e9-cb3f07d31c69",
+            "uuid": "e9f65734-2dda-4f86-8780-0b6174caefcb",
             "tls": {
                 "enabled": true,
                 "server_name": "jala.iptunnels.com",
@@ -2807,7 +2787,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -2829,7 +2809,7 @@
             "tag": "vless 🇭🇰 port : 2096",
             "server": "104.18.2.2",
             "server_port": 2096,
-            "uuid": "993580c9-a861-4940-a4e9-cb3f07d31c69",
+            "uuid": "e9f65734-2dda-4f86-8780-0b6174caefcb",
             "tls": {
                 "enabled": true,
                 "server_name": "jala.iptunnels.com",
@@ -2842,7 +2822,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -2864,7 +2844,7 @@
             "tag": "vless 🇭🇰 port : 8443",
             "server": "104.18.2.2",
             "server_port": 8443,
-            "uuid": "993580c9-a861-4940-a4e9-cb3f07d31c69",
+            "uuid": "e9f65734-2dda-4f86-8780-0b6174caefcb",
             "tls": {
                 "enabled": true,
                 "server_name": "jala.iptunnels.com",
@@ -2877,7 +2857,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -2912,7 +2892,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -2946,7 +2926,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -2980,7 +2960,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -3014,7 +2994,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -3048,7 +3028,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -3082,7 +3062,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -3116,7 +3096,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -3150,7 +3130,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -3184,7 +3164,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -3218,7 +3198,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -3252,7 +3232,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -3286,7 +3266,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -3320,7 +3300,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -3354,7 +3334,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -3388,7 +3368,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -3422,7 +3402,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -3456,7 +3436,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -3490,7 +3470,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -3524,7 +3504,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -3558,7 +3538,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -3592,7 +3572,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -3626,7 +3606,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -3660,7 +3640,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -3694,7 +3674,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -3728,7 +3708,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -3762,7 +3742,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -3796,7 +3776,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -3830,7 +3810,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -3864,7 +3844,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -3898,7 +3878,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -3932,7 +3912,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -3966,7 +3946,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -4000,7 +3980,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -4034,7 +4014,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -4068,7 +4048,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -4102,7 +4082,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -4136,7 +4116,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -4170,7 +4150,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -4204,7 +4184,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -4240,7 +4220,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -4276,7 +4256,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -4312,7 +4292,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -4348,7 +4328,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -4384,7 +4364,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -4420,7 +4400,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -4454,7 +4434,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -4489,7 +4469,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -4524,7 +4504,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -4559,7 +4539,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -4594,7 +4574,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -4629,7 +4609,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -4664,7 +4644,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -4698,7 +4678,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -4732,7 +4712,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -4766,7 +4746,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -4800,7 +4780,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -4834,7 +4814,7 @@
             "multiplex": {
                 "enabled": false,
                 "protocol": "smux",
-                "min_streams": 1,
+                "max_streams": 4,
                 "padding": true,
                 "brutal": {
                     "enabled": true,
@@ -4978,7 +4958,7 @@
                     "geosite-category-enhance-gaming.srs",
                     "geosite-category-games.srs"
                 ],
-                "outbound": "category_gaming"
+                "outbound": "gaming"
             },
             {
                 "rule_set": [
@@ -4990,35 +4970,33 @@
                     "geosite-category-forums.srs",
                     "geosite-category-media.srs"
                 ],
-                "outbound": "category_social"
+                "outbound": "social_media"
             },
             {
                 "rule_set": [
                     "geosite-category-porn.srs"
                 ],
-                "outbound": "category_adult"
+                "outbound": "adult_content"
             },
             {
                 "rule_set": [
                     "geosite-category-ads-all.srs",
                     "geosite-category-ads.srs"
                 ],
-                "outbound": "category_advertisement"
+                "outbound": "advertisement"
             },
             {
                 "package_name": [
                     "com.termux"
                 ],
-                "outbound": "category_packages"
+                "outbound": "packages"
             },
             {
-                "network": "udp",
                 "protocol": "dns",
-                "port": 53,
                 "outbound": "dns_out"
             },
             {
-                "inbound": "tun_in",
+                "inbound": "any",
                 "outbound": "auto_select"
             },
             {
