@@ -1,70 +1,80 @@
 {
     "log": {
         "disabled": false,
-        "level": "error",
+        "level": "warning",
         "timestamp": true
     },
     "dns": {
         "servers": [
             {
-                "tag": "dns_cloudflare",
-                "address": "1.0.0.1"
+                "tag": "dns_primary",
+                "address": "1.1.1.1"
             },
             {
-                "tag": "dns_local",
-                "address": "local"
+                "tag": "dns_fakeip",
+                "address": "fakeip"
             },
             {
-                "tag": "dns_refused",
+                "tag": "rcode_refused",
                 "address": "rcode://refused"
             }
         ],
         "rules": [
             {
-                "inbound": "any",
-                "server": "dns_local",
-                "disable_cache": false,
-                "rewrite_ttl": 333
+                "query_type": [
+                    "A",
+                    "AAAA"
+                ],
+                "server": "dns_fakeip"
             },
             {
-                "outbound": "any",
-                "server": "dns_cloudflare",
-                "disable_cache": false,
-                "rewrite_ttl": 333
+                "query_type": [
+                    "HTTPS"
+                ],
+                "server": "dns_primary"
+            },
+            {
+                "rule_set": [
+                    "geosite-category-ads.srs",
+                    "geosite-category-ads-all.srs",
+                    "geosite-google-ads.srs"
+                ],
+                "server": "dns_fakeip"
+            },
+            {
+                "clash_mode": "Direct",
+                "server": "dns_fakeip"
+            },
+            {
+                "clash_mode": "Global",
+                "server": "dns_fakeip"
+            },
+            {
+                "clash_mode": "Rule",
+                "server": "dns_fakeip"
             }
         ],
-        "final": "dns_cloudflare",
-        "disable_cache": false,
-        "disable_expire": false,
+        "disable_cache": true,
         "independent_cache": true,
-        "reverse_mapping": true
+        "reverse_mapping": true,
+        "fakeip": {
+            "enabled": true,
+            "inet4_range": "198.18.0.0/15",
+            "inet6_range": "fc00::/8"
+        }
     },
     "inbounds": [
         {
-            "type": "direct",
-            "tag": "dns_in",
-            "detour": "tun_in",
-            "listen": "::",
-            "override_address": "1.0.0.1",
-            "sniff": true,
-            "sniff_override_destination": true
-        },
-        {
-            "type": "mixed",
-            "tag": "mixed_in",
-            "detour": "tun_in",
-            "listen": "::",
-            "sniff": true,
-            "sniff_override_destination": true
-        },
-        {
             "type": "tun",
             "tag": "tun_in",
-            "mtu": 60000,
-            "inet4_address": "172.19.0.1/3",
+            "stack": "",
+            "udp_timeout": 300,
+            "inet4_address": "172.19.0.1/30",
+            "mtu": 9707,
+            "gso": true,
+            "endpoint_independent_nat": false,
             "auto_route": true,
             "strict_route": true,
-            "endpoint_independent_nat": true,
             "sniff": true,
             "sniff_override_destination": true
         }
@@ -76,4152 +86,54 @@
             "outbounds": [
                 "auto_select",
                 "block",
-                "direct",
-                "mix_grpc",
-                "mix_trojan",
-                "mix_vless",
-                "mix_vmess"
+                "direct"
             ],
             "default": "auto_select",
-            "interrupt_exist_connections": true
-        },
-        {
-            "type": "selector",
-            "tag": "gaming",
-            "outbounds": [
-                "auto_select",
-                "block",
-                "direct",
-                "mix_grpc",
-                "mix_trojan",
-                "mix_vless",
-                "mix_vmess"
-            ],
-            "default": "auto_select",
-            "interrupt_exist_connections": true
-        },
-        {
-            "type": "selector",
-            "tag": "social_media",
-            "outbounds": [
-                "auto_select",
-                "block",
-                "direct",
-                "mix_grpc",
-                "mix_trojan",
-                "mix_vless",
-                "mix_vmess"
-            ],
-            "default": "auto_select",
-            "interrupt_exist_connections": true
-        },
-        {
-            "type": "selector",
-            "tag": "adult_content",
-            "outbounds": [
-                "auto_select",
-                "block",
-                "direct",
-                "mix_grpc",
-                "mix_trojan",
-                "mix_vless",
-                "mix_vmess"
-            ],
-            "default": "block",
-            "interrupt_exist_connections": true
-        },
-        {
-            "type": "selector",
-            "tag": "advertisement",
-            "outbounds": [
-                "auto_select",
-                "block",
-                "direct",
-                "mix_grpc",
-                "mix_trojan",
-                "mix_vless",
-                "mix_vmess"
-            ],
-            "default": "block",
-            "interrupt_exist_connections": true
-        },
-        {
-            "type": "selector",
-            "tag": "packages",
-            "outbounds": [
-                "auto_select",
-                "block",
-                "direct",
-                "mix_grpc",
-                "mix_trojan",
-                "mix_vless",
-                "mix_vmess"
-            ],
-            "default": "auto_select",
-            "interrupt_exist_connections": true
-        },
-        {
-            "type": "selector",
-            "tag": "mix_vmess_select",
-            "outbounds": [
-                "auto_select",
-                "block",
-                "direct",
-                "mix_grpc",
-                "mix_trojan",
-                "mix_vless",
-                "mix_vmess"
-            ],
-            "default": "auto_select",
-            "interrupt_exist_connections": true
-        },
-        {
-            "type": "selector",
-            "tag": "mix_vless_select",
-            "outbounds": [
-                "auto_select",
-                "block",
-                "direct",
-                "mix_grpc",
-                "mix_trojan",
-                "mix_vless",
-                "mix_vmess"
-            ],
-            "default": "auto_select",
-            "interrupt_exist_connections": true
-        },
-        {
-            "type": "selector",
-            "tag": "mix_trojan_select",
-            "outbounds": [
-                "auto_select",
-                "block",
-                "direct",
-                "mix_grpc",
-                "mix_trojan",
-                "mix_vless",
-                "mix_vmess"
-            ],
-            "default": "auto_select",
-            "interrupt_exist_connections": true
-        },
-        {
-            "type": "selector",
-            "tag": "mix_grpc_select",
-            "outbounds": [
-                "auto_select",
-                "block",
-                "direct",
-                "mix_grpc",
-                "mix_trojan",
-                "mix_vless",
-                "mix_vmess"
-            ],
-            "default": "auto_select",
-            "interrupt_exist_connections": true
+            "interrupt_exist_connections": false
         },
         {
             "type": "urltest",
             "tag": "auto_select",
             "outbounds": [
-                "direct",
-                "block",
-                "grpc 🇸🇬 port : 443",
-                "grpc 🇸🇬 port : 2053",
-                "grpc 🇸🇬 port : 2083",
-                "grpc 🇸🇬 port : 2087",
-                "grpc 🇸🇬 port : 2096",
-                "grpc 🇸🇬 port : 8443",
-                "grpc 🇰🇷 port : 443",
-                "grpc 🇰🇷 port : 2053",
-                "grpc 🇰🇷 port : 2083",
-                "grpc 🇰🇷 port : 2087",
-                "grpc 🇰🇷 port : 2096",
-                "grpc 🇰🇷 port : 8443",
-                "grpc 🇯🇵 port : 443",
-                "grpc 🇯🇵 port : 2053",
-                "grpc 🇯🇵 port : 2083",
-                "grpc 🇯🇵 port : 2087",
-                "grpc 🇯🇵 port : 2096",
-                "grpc 🇯🇵 port : 8443",
-                "trojan 🇸🇬 port : 80",
-                "trojan 🇸🇬 port : 8080",
-                "trojan 🇸🇬 port : 8880",
-                "trojan 🇸🇬 port : 2052",
-                "trojan 🇸🇬 port : 2082",
-                "trojan 🇸🇬 port : 2086",
-                "trojan 🇸🇬 port : 2095",
-                "trojan 🇰🇷 port : 80",
-                "trojan 🇰🇷 port : 8080",
-                "trojan 🇰🇷 port : 8880",
-                "trojan 🇰🇷 port : 2052",
-                "trojan 🇰🇷 port : 2082",
-                "trojan 🇰🇷 port : 2086",
-                "trojan 🇰🇷 port : 2095",
-                "trojan 🇯🇵 port : 80",
-                "trojan 🇯🇵 port : 8080",
-                "trojan 🇯🇵 port : 8880",
-                "trojan 🇯🇵 port : 2052",
-                "trojan 🇯🇵 port : 2082",
-                "trojan 🇯🇵 port : 2086",
-                "trojan 🇯🇵 port : 2095",
-                "trojan 🇨🇳 port : 443",
-                "trojan 🇨🇳 port : 2053",
-                "trojan 🇨🇳 port : 2083",
-                "trojan 🇨🇳 port : 2087",
-                "trojan 🇨🇳 port : 2096",
-                "trojan 🇨🇳 port : 8443",
-                "trojan 🇭🇰 port : 443",
-                "trojan 🇭🇰 port : 2053",
-                "trojan 🇭🇰 port : 2083",
-                "trojan 🇭🇰 port : 2087",
-                "trojan 🇭🇰 port : 2096",
-                "trojan 🇭🇰 port : 8443",
-                "trojan 🇹🇼 port : 443",
-                "trojan 🇹🇼 port : 2053",
-                "trojan 🇹🇼 port : 2083",
-                "trojan 🇹🇼 port : 2087",
-                "trojan 🇹🇼 port : 2096",
-                "trojan 🇹🇼 port : 8443",
-                "vless 🇸🇬 port : 80",
-                "vless 🇸🇬 port : 8080",
-                "vless 🇸🇬 port : 8880",
-                "vless 🇸🇬 port : 2052",
-                "vless 🇸🇬 port : 2082",
-                "vless 🇸🇬 port : 2086",
-                "vless 🇸🇬 port : 2095",
-                "vless 🇰🇷 port : 80",
-                "vless 🇰🇷 port : 8080",
-                "vless 🇰🇷 port : 8880",
-                "vless 🇰🇷 port : 2052",
-                "vless 🇰🇷 port : 2082",
-                "vless 🇰🇷 port : 2086",
-                "vless 🇰🇷 port : 2095",
-                "vless 🇨🇳 port : 443",
-                "vless 🇨🇳 port : 2053",
-                "vless 🇨🇳 port : 2083",
-                "vless 🇨🇳 port : 2087",
-                "vless 🇨🇳 port : 2096",
-                "vless 🇨🇳 port : 8443",
-                "vless 🇭🇰 port : 443",
-                "vless 🇭🇰 port : 2053",
-                "vless 🇭🇰 port : 2083",
-                "vless 🇭🇰 port : 2087",
-                "vless 🇭🇰 port : 2096",
-                "vless 🇭🇰 port : 8443",
-                "vmess 🇸🇬 port : 80",
-                "vmess 🇸🇬 port : 8080",
-                "vmess 🇸🇬 port : 8880",
-                "vmess 🇸🇬 port : 2052",
-                "vmess 🇸🇬 port : 2082",
-                "vmess 🇸🇬 port : 2086",
-                "vmess 🇸🇬 port : 2095",
-                "vmess 🇰🇷 port : 80",
-                "vmess 🇰🇷 port : 8080",
-                "vmess 🇰🇷 port : 8880",
-                "vmess 🇰🇷 port : 2052",
-                "vmess 🇰🇷 port : 2082",
-                "vmess 🇰🇷 port : 2086",
-                "vmess 🇰🇷 port : 2095",
-                "vmess 🇯🇵 port : 80",
-                "vmess 🇯🇵 port : 8080",
-                "vmess 🇯🇵 port : 8880",
-                "vmess 🇯🇵 port : 2052",
-                "vmess 🇯🇵 port : 2082",
-                "vmess 🇯🇵 port : 2086",
-                "vmess 🇯🇵 port : 2095",
-                "vmess 🇨🇳 port : 443",
-                "vmess 🇨🇳 port : 2053",
-                "vmess 🇨🇳 port : 2083",
-                "vmess 🇨🇳 port : 2087",
-                "vmess 🇨🇳 port : 2096",
-                "vmess 🇨🇳 port : 8443",
-                "vmess 🇭🇰 port : 443",
-                "vmess 🇭🇰 port : 2053",
-                "vmess 🇭🇰 port : 2083",
-                "vmess 🇭🇰 port : 2087",
-                "vmess 🇭🇰 port : 2096",
-                "vmess 🇭🇰 port : 8443",
-                "vmess 🇹🇼 port : 443",
-                "vmess 🇹🇼 port : 2053",
-                "vmess 🇹🇼 port : 2083",
-                "vmess 🇹🇼 port : 2087",
-                "vmess 🇹🇼 port : 2096",
-                "vmess 🇹🇼 port : 8443"
+                "trojan_grpc 🇸🇬🇸🇬 port : 443",
+                "vless_grpc 🇰🇷🇰🇷 port : 443",
+                "vmess_grpc 🇯🇵🇯🇵🇯🇵 port : 443",
+                "trojan_websocket 🇸🇬🇸🇬 port : 80",
+                "trojan_websocket 🇰🇷🇰🇷 port : 80",
+                "trojan_websocket 🇯🇵🇯🇵 port : 80",
+                "vless_websocket 🇸🇬🇸🇬 port : 80",
+                "vless_websocket 🇰🇷🇰🇷 port : 80",
+                "vmess_websocket 🇸🇬🇸🇬 port : 80",
+                "vmess_websocket 🇰🇷🇰🇷 port : 80",
+                "vmess_websocket 🇯🇵🇯🇵 port : 80"
             ],
             "url": "http://cp.cloudflare.com/",
-            "interval": "240s",
-            "tolerance": 0,
+            "interval": "60s",
+            "tolerance": 13,
             "idle_timeout": "30m",
-            "interrupt_exist_connections": true
+            "interrupt_exist_connections": false
         },
         {
-            "type": "urltest",
-            "tag": "mix_grpc",
-            "outbounds": [
-                "grpc 🇸🇬 port : 443",
-                "grpc 🇸🇬 port : 2053",
-                "grpc 🇸🇬 port : 2083",
-                "grpc 🇸🇬 port : 2087",
-                "grpc 🇸🇬 port : 2096",
-                "grpc 🇸🇬 port : 8443",
-                "grpc 🇰🇷 port : 443",
-                "grpc 🇰🇷 port : 2053",
-                "grpc 🇰🇷 port : 2083",
-                "grpc 🇰🇷 port : 2087",
-                "grpc 🇰🇷 port : 2096",
-                "grpc 🇰🇷 port : 8443",
-                "grpc 🇯🇵 port : 443",
-                "grpc 🇯🇵 port : 2053",
-                "grpc 🇯🇵 port : 2083",
-                "grpc 🇯🇵 port : 2087",
-                "grpc 🇯🇵 port : 2096",
-                "grpc 🇯🇵 port : 8443"
-            ],
-            "url": "http://cp.cloudflare.com/",
-            "interval": "240s",
-            "tolerance": 0,
-            "idle_timeout": "30m",
-            "interrupt_exist_connections": true
-        },
-        {
-            "type": "urltest",
-            "tag": "mix_trojan",
-            "outbounds": [
-                "trojan 🇸🇬 port : 80",
-                "trojan 🇸🇬 port : 8080",
-                "trojan 🇸🇬 port : 8880",
-                "trojan 🇸🇬 port : 2052",
-                "trojan 🇸🇬 port : 2082",
-                "trojan 🇸🇬 port : 2086",
-                "trojan 🇸🇬 port : 2095",
-                "trojan 🇰🇷 port : 80",
-                "trojan 🇰🇷 port : 8080",
-                "trojan 🇰🇷 port : 8880",
-                "trojan 🇰🇷 port : 2052",
-                "trojan 🇰🇷 port : 2082",
-                "trojan 🇰🇷 port : 2086",
-                "trojan 🇰🇷 port : 2095",
-                "trojan 🇯🇵 port : 80",
-                "trojan 🇯🇵 port : 8080",
-                "trojan 🇯🇵 port : 8880",
-                "trojan 🇯🇵 port : 2052",
-                "trojan 🇯🇵 port : 2082",
-                "trojan 🇯🇵 port : 2086",
-                "trojan 🇯🇵 port : 2095",
-                "trojan 🇨🇳 port : 443",
-                "trojan 🇨🇳 port : 2053",
-                "trojan 🇨🇳 port : 2083",
-                "trojan 🇨🇳 port : 2087",
-                "trojan 🇨🇳 port : 2096",
-                "trojan 🇨🇳 port : 8443",
-                "trojan 🇭🇰 port : 443",
-                "trojan 🇭🇰 port : 2053",
-                "trojan 🇭🇰 port : 2083",
-                "trojan 🇭🇰 port : 2087",
-                "trojan 🇭🇰 port : 2096",
-                "trojan 🇭🇰 port : 8443",
-                "trojan 🇹🇼 port : 443",
-                "trojan 🇹🇼 port : 2053",
-                "trojan 🇹🇼 port : 2083",
-                "trojan 🇹🇼 port : 2087",
-                "trojan 🇹🇼 port : 2096",
-                "trojan 🇹🇼 port : 8443"
-            ],
-            "url": "http://cp.cloudflare.com/",
-            "interval": "240s",
-            "tolerance": 0,
-            "idle_timeout": "30m",
-            "interrupt_exist_connections": true
-        },
-        {
-            "type": "urltest",
-            "tag": "mix_vless",
-            "outbounds": [
-                "vless 🇸🇬 port : 80",
-                "vless 🇸🇬 port : 8080",
-                "vless 🇸🇬 port : 8880",
-                "vless 🇸🇬 port : 2052",
-                "vless 🇸🇬 port : 2082",
-                "vless 🇸🇬 port : 2086",
-                "vless 🇸🇬 port : 2095",
-                "vless 🇰🇷 port : 80",
-                "vless 🇰🇷 port : 8080",
-                "vless 🇰🇷 port : 8880",
-                "vless 🇰🇷 port : 2052",
-                "vless 🇰🇷 port : 2082",
-                "vless 🇰🇷 port : 2086",
-                "vless 🇰🇷 port : 2095",
-                "vless 🇨🇳 port : 443",
-                "vless 🇨🇳 port : 2053",
-                "vless 🇨🇳 port : 2083",
-                "vless 🇨🇳 port : 2087",
-                "vless 🇨🇳 port : 2096",
-                "vless 🇨🇳 port : 8443",
-                "vless 🇭🇰 port : 443",
-                "vless 🇭🇰 port : 2053",
-                "vless 🇭🇰 port : 2083",
-                "vless 🇭🇰 port : 2087",
-                "vless 🇭🇰 port : 2096",
-                "vless 🇭🇰 port : 8443"
-            ],
-            "url": "http://cp.cloudflare.com/",
-            "interval": "240s",
-            "tolerance": 0,
-            "idle_timeout": "30m",
-            "interrupt_exist_connections": true
-        },
-        {
-            "type": "urltest",
-            "tag": "mix_vmess",
-            "outbounds": [
-                "vmess 🇸🇬 port : 80",
-                "vmess 🇸🇬 port : 8080",
-                "vmess 🇸🇬 port : 8880",
-                "vmess 🇸🇬 port : 2052",
-                "vmess 🇸🇬 port : 2082",
-                "vmess 🇸🇬 port : 2086",
-                "vmess 🇸🇬 port : 2095",
-                "vmess 🇰🇷 port : 80",
-                "vmess 🇰🇷 port : 8080",
-                "vmess 🇰🇷 port : 8880",
-                "vmess 🇰🇷 port : 2052",
-                "vmess 🇰🇷 port : 2082",
-                "vmess 🇰🇷 port : 2086",
-                "vmess 🇰🇷 port : 2095",
-                "vmess 🇯🇵 port : 80",
-                "vmess 🇯🇵 port : 8080",
-                "vmess 🇯🇵 port : 8880",
-                "vmess 🇯🇵 port : 2052",
-                "vmess 🇯🇵 port : 2082",
-                "vmess 🇯🇵 port : 2086",
-                "vmess 🇯🇵 port : 2095",
-                "vmess 🇨🇳 port : 443",
-                "vmess 🇨🇳 port : 2053",
-                "vmess 🇨🇳 port : 2083",
-                "vmess 🇨🇳 port : 2087",
-                "vmess 🇨🇳 port : 2096",
-                "vmess 🇨🇳 port : 8443",
-                "vmess 🇭🇰 port : 443",
-                "vmess 🇭🇰 port : 2053",
-                "vmess 🇭🇰 port : 2083",
-                "vmess 🇭🇰 port : 2087",
-                "vmess 🇭🇰 port : 2096",
-                "vmess 🇭🇰 port : 8443",
-                "vmess 🇹🇼 port : 443",
-                "vmess 🇹🇼 port : 2053",
-                "vmess 🇹🇼 port : 2083",
-                "vmess 🇹🇼 port : 2087",
-                "vmess 🇹🇼 port : 2096",
-                "vmess 🇹🇼 port : 8443"
-            ],
-            "url": "http://cp.cloudflare.com/",
-            "interval": "240s",
-            "tolerance": 0,
-            "idle_timeout": "30m",
-            "interrupt_exist_connections": true
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇸🇬 port : 80",
-            "server": "104.18.2.2",
-            "server_port": 80,
-            "uuid": "60a0e862-949d-4aac-a51e-bad444c414ea",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": false,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇸🇬 port : 8080",
-            "server": "104.18.2.2",
-            "server_port": 8080,
-            "uuid": "60a0e862-949d-4aac-a51e-bad444c414ea",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": false,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇸🇬 port : 8880",
-            "server": "104.18.2.2",
-            "server_port": 8880,
-            "uuid": "60a0e862-949d-4aac-a51e-bad444c414ea",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": false,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇸🇬 port : 2052",
-            "server": "104.18.2.2",
-            "server_port": 2052,
-            "uuid": "60a0e862-949d-4aac-a51e-bad444c414ea",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": false,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇸🇬 port : 2082",
-            "server": "104.18.2.2",
-            "server_port": 2082,
-            "uuid": "60a0e862-949d-4aac-a51e-bad444c414ea",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": false,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇸🇬 port : 2086",
-            "server": "104.18.2.2",
-            "server_port": 2086,
-            "uuid": "60a0e862-949d-4aac-a51e-bad444c414ea",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": false,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇸🇬 port : 2095",
-            "server": "104.18.2.2",
-            "server_port": 2095,
-            "uuid": "60a0e862-949d-4aac-a51e-bad444c414ea",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": false,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇰🇷 port : 80",
-            "server": "104.18.2.2",
-            "server_port": 80,
-            "uuid": "2d8ad55b-26f5-4835-8456-3328d7c3bf0b",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇰🇷 port : 8080",
-            "server": "104.18.2.2",
-            "server_port": 8080,
-            "uuid": "2d8ad55b-26f5-4835-8456-3328d7c3bf0b",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇰🇷 port : 8880",
-            "server": "104.18.2.2",
-            "server_port": 8880,
-            "uuid": "2d8ad55b-26f5-4835-8456-3328d7c3bf0b",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇰🇷 port : 2052",
-            "server": "104.18.2.2",
-            "server_port": 2052,
-            "uuid": "2d8ad55b-26f5-4835-8456-3328d7c3bf0b",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇰🇷 port : 2082",
-            "server": "104.18.2.2",
-            "server_port": 2082,
-            "uuid": "2d8ad55b-26f5-4835-8456-3328d7c3bf0b",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇰🇷 port : 2086",
-            "server": "104.18.2.2",
-            "server_port": 2086,
-            "uuid": "2d8ad55b-26f5-4835-8456-3328d7c3bf0b",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇰🇷 port : 2095",
-            "server": "104.18.2.2",
-            "server_port": 2095,
-            "uuid": "2d8ad55b-26f5-4835-8456-3328d7c3bf0b",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇯🇵 port : 80",
-            "server": "104.18.2.2",
-            "server_port": 80,
-            "uuid": "33070146-1971-4b2d-ad9a-4f60ec700402",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇯🇵 port : 8080",
-            "server": "104.18.2.2",
-            "server_port": 8080,
-            "uuid": "33070146-1971-4b2d-ad9a-4f60ec700402",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇯🇵 port : 8880",
-            "server": "104.18.2.2",
-            "server_port": 8880,
-            "uuid": "33070146-1971-4b2d-ad9a-4f60ec700402",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇯🇵 port : 2052",
-            "server": "104.18.2.2",
-            "server_port": 2052,
-            "uuid": "33070146-1971-4b2d-ad9a-4f60ec700402",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇯🇵 port : 2082",
-            "server": "104.18.2.2",
-            "server_port": 2082,
-            "uuid": "33070146-1971-4b2d-ad9a-4f60ec700402",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇯🇵 port : 2086",
-            "server": "104.18.2.2",
-            "server_port": 2086,
-            "uuid": "33070146-1971-4b2d-ad9a-4f60ec700402",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇯🇵 port : 2095",
-            "server": "104.18.2.2",
-            "server_port": 2095,
-            "uuid": "33070146-1971-4b2d-ad9a-4f60ec700402",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇨🇳 port : 443",
-            "server": "104.18.2.2",
+            "type": "trojan",
+            "tag": "trojan_grpc 🇸🇬🇸🇬 port : 443",
+            "fallback_delay": "300ms",
+            "server": "104.18.225.52",
             "server_port": 443,
-            "uuid": "60a0e862-949d-4aac-a51e-bad444c414ea",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": true,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇨🇳 port : 2053",
-            "server": "104.18.2.2",
-            "server_port": 2053,
-            "uuid": "60a0e862-949d-4aac-a51e-bad444c414ea",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": true,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇨🇳 port : 2083",
-            "server": "104.18.2.2",
-            "server_port": 2083,
-            "uuid": "60a0e862-949d-4aac-a51e-bad444c414ea",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": true,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇨🇳 port : 2087",
-            "server": "104.18.2.2",
-            "server_port": 2087,
-            "uuid": "60a0e862-949d-4aac-a51e-bad444c414ea",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": true,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇨🇳 port : 2096",
-            "server": "104.18.2.2",
-            "server_port": 2096,
-            "uuid": "60a0e862-949d-4aac-a51e-bad444c414ea",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": true,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇨🇳 port : 8443",
-            "server": "104.18.2.2",
-            "server_port": 8443,
-            "uuid": "60a0e862-949d-4aac-a51e-bad444c414ea",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": true,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇭🇰 port : 443",
-            "server": "104.18.2.2",
-            "server_port": 443,
-            "uuid": "2d8ad55b-26f5-4835-8456-3328d7c3bf0b",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
+            "password": "6500b0cf3b860f5b",
             "tls": {
                 "enabled": true,
                 "server_name": "jala.iptunnels.com",
                 "insecure": true,
                 "utls": {
                     "enabled": true,
-                    "fingerprint": "randomized"
+                    "fingerprint": "chrome_pq"
                 }
             },
             "multiplex": {
                 "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇭🇰 port : 2053",
-            "server": "104.18.2.2",
-            "server_port": 2053,
-            "uuid": "2d8ad55b-26f5-4835-8456-3328d7c3bf0b",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇭🇰 port : 2083",
-            "server": "104.18.2.2",
-            "server_port": 2083,
-            "uuid": "2d8ad55b-26f5-4835-8456-3328d7c3bf0b",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇭🇰 port : 2087",
-            "server": "104.18.2.2",
-            "server_port": 2087,
-            "uuid": "2d8ad55b-26f5-4835-8456-3328d7c3bf0b",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇭🇰 port : 2096",
-            "server": "104.18.2.2",
-            "server_port": 2096,
-            "uuid": "2d8ad55b-26f5-4835-8456-3328d7c3bf0b",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇭🇰 port : 8443",
-            "server": "104.18.2.2",
-            "server_port": 8443,
-            "uuid": "2d8ad55b-26f5-4835-8456-3328d7c3bf0b",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇹🇼 port : 443",
-            "server": "104.18.2.2",
-            "server_port": 443,
-            "uuid": "33070146-1971-4b2d-ad9a-4f60ec700402",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇹🇼 port : 2053",
-            "server": "104.18.2.2",
-            "server_port": 2053,
-            "uuid": "33070146-1971-4b2d-ad9a-4f60ec700402",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇹🇼 port : 2083",
-            "server": "104.18.2.2",
-            "server_port": 2083,
-            "uuid": "33070146-1971-4b2d-ad9a-4f60ec700402",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇹🇼 port : 2087",
-            "server": "104.18.2.2",
-            "server_port": 2087,
-            "uuid": "33070146-1971-4b2d-ad9a-4f60ec700402",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇹🇼 port : 2096",
-            "server": "104.18.2.2",
-            "server_port": 2096,
-            "uuid": "33070146-1971-4b2d-ad9a-4f60ec700402",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess 🇹🇼 port : 8443",
-            "server": "104.18.2.2",
-            "server_port": 8443,
-            "uuid": "33070146-1971-4b2d-ad9a-4f60ec700402",
-            "security": "auto",
-            "global_padding": true,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vless",
-            "tag": "vless 🇸🇬 port : 80",
-            "server": "104.18.2.2",
-            "server_port": 80,
-            "uuid": "42db5f7e-ba61-4954-886c-ff323e3ad0e6",
-            "tls": {
-                "enabled": false,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vless-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "vless",
-            "tag": "vless 🇸🇬 port : 8080",
-            "server": "104.18.2.2",
-            "server_port": 8080,
-            "uuid": "42db5f7e-ba61-4954-886c-ff323e3ad0e6",
-            "tls": {
-                "enabled": false,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vless-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "vless",
-            "tag": "vless 🇸🇬 port : 8880",
-            "server": "104.18.2.2",
-            "server_port": 8880,
-            "uuid": "42db5f7e-ba61-4954-886c-ff323e3ad0e6",
-            "tls": {
-                "enabled": false,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vless-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "vless",
-            "tag": "vless 🇸🇬 port : 2052",
-            "server": "104.18.2.2",
-            "server_port": 2052,
-            "uuid": "42db5f7e-ba61-4954-886c-ff323e3ad0e6",
-            "tls": {
-                "enabled": false,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vless-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "vless",
-            "tag": "vless 🇸🇬 port : 2082",
-            "server": "104.18.2.2",
-            "server_port": 2082,
-            "uuid": "42db5f7e-ba61-4954-886c-ff323e3ad0e6",
-            "tls": {
-                "enabled": false,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vless-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "vless",
-            "tag": "vless 🇸🇬 port : 2086",
-            "server": "104.18.2.2",
-            "server_port": 2086,
-            "uuid": "42db5f7e-ba61-4954-886c-ff323e3ad0e6",
-            "tls": {
-                "enabled": false,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vless-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "vless",
-            "tag": "vless 🇸🇬 port : 2095",
-            "server": "104.18.2.2",
-            "server_port": 2095,
-            "uuid": "42db5f7e-ba61-4954-886c-ff323e3ad0e6",
-            "tls": {
-                "enabled": false,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vless-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "vless",
-            "tag": "vless 🇰🇷 port : 80",
-            "server": "104.18.2.2",
-            "server_port": 80,
-            "uuid": "e9f65734-2dda-4f86-8780-0b6174caefcb",
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vless-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "vless",
-            "tag": "vless 🇰🇷 port : 8080",
-            "server": "104.18.2.2",
-            "server_port": 8080,
-            "uuid": "e9f65734-2dda-4f86-8780-0b6174caefcb",
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vless-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "vless",
-            "tag": "vless 🇰🇷 port : 8880",
-            "server": "104.18.2.2",
-            "server_port": 8880,
-            "uuid": "e9f65734-2dda-4f86-8780-0b6174caefcb",
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vless-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "vless",
-            "tag": "vless 🇰🇷 port : 2052",
-            "server": "104.18.2.2",
-            "server_port": 2052,
-            "uuid": "e9f65734-2dda-4f86-8780-0b6174caefcb",
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vless-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "vless",
-            "tag": "vless 🇰🇷 port : 2082",
-            "server": "104.18.2.2",
-            "server_port": 2082,
-            "uuid": "e9f65734-2dda-4f86-8780-0b6174caefcb",
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vless-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "vless",
-            "tag": "vless 🇰🇷 port : 2086",
-            "server": "104.18.2.2",
-            "server_port": 2086,
-            "uuid": "e9f65734-2dda-4f86-8780-0b6174caefcb",
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vless-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "vless",
-            "tag": "vless 🇰🇷 port : 2095",
-            "server": "104.18.2.2",
-            "server_port": 2095,
-            "uuid": "e9f65734-2dda-4f86-8780-0b6174caefcb",
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vless-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "vless",
-            "tag": "vless 🇨🇳 port : 443",
-            "server": "104.18.2.2",
-            "server_port": 443,
-            "uuid": "42db5f7e-ba61-4954-886c-ff323e3ad0e6",
-            "tls": {
-                "enabled": true,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vless-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "vless",
-            "tag": "vless 🇨🇳 port : 2053",
-            "server": "104.18.2.2",
-            "server_port": 2053,
-            "uuid": "42db5f7e-ba61-4954-886c-ff323e3ad0e6",
-            "tls": {
-                "enabled": true,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vless-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "vless",
-            "tag": "vless 🇨🇳 port : 2083",
-            "server": "104.18.2.2",
-            "server_port": 2083,
-            "uuid": "42db5f7e-ba61-4954-886c-ff323e3ad0e6",
-            "tls": {
-                "enabled": true,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vless-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "vless",
-            "tag": "vless 🇨🇳 port : 2087",
-            "server": "104.18.2.2",
-            "server_port": 2087,
-            "uuid": "42db5f7e-ba61-4954-886c-ff323e3ad0e6",
-            "tls": {
-                "enabled": true,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vless-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "vless",
-            "tag": "vless 🇨🇳 port : 2096",
-            "server": "104.18.2.2",
-            "server_port": 2096,
-            "uuid": "42db5f7e-ba61-4954-886c-ff323e3ad0e6",
-            "tls": {
-                "enabled": true,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vless-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "vless",
-            "tag": "vless 🇨🇳 port : 8443",
-            "server": "104.18.2.2",
-            "server_port": 8443,
-            "uuid": "42db5f7e-ba61-4954-886c-ff323e3ad0e6",
-            "tls": {
-                "enabled": true,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vless-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "vless",
-            "tag": "vless 🇭🇰 port : 443",
-            "server": "104.18.2.2",
-            "server_port": 443,
-            "uuid": "e9f65734-2dda-4f86-8780-0b6174caefcb",
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vless-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "vless",
-            "tag": "vless 🇭🇰 port : 2053",
-            "server": "104.18.2.2",
-            "server_port": 2053,
-            "uuid": "e9f65734-2dda-4f86-8780-0b6174caefcb",
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vless-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "vless",
-            "tag": "vless 🇭🇰 port : 2083",
-            "server": "104.18.2.2",
-            "server_port": 2083,
-            "uuid": "e9f65734-2dda-4f86-8780-0b6174caefcb",
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vless-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "vless",
-            "tag": "vless 🇭🇰 port : 2087",
-            "server": "104.18.2.2",
-            "server_port": 2087,
-            "uuid": "e9f65734-2dda-4f86-8780-0b6174caefcb",
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vless-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "vless",
-            "tag": "vless 🇭🇰 port : 2096",
-            "server": "104.18.2.2",
-            "server_port": 2096,
-            "uuid": "e9f65734-2dda-4f86-8780-0b6174caefcb",
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vless-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "vless",
-            "tag": "vless 🇭🇰 port : 8443",
-            "server": "104.18.2.2",
-            "server_port": 8443,
-            "uuid": "e9f65734-2dda-4f86-8780-0b6174caefcb",
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-vless-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇸🇬 port : 80",
-            "server": "104.18.2.2",
-            "server_port": 80,
-            "password": "55a3d70a2b254ba4",
-            "tls": {
-                "enabled": false,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇸🇬 port : 8080",
-            "server": "104.18.2.2",
-            "server_port": 8080,
-            "password": "55a3d70a2b254ba4",
-            "tls": {
-                "enabled": false,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇸🇬 port : 8880",
-            "server": "104.18.2.2",
-            "server_port": 8880,
-            "password": "55a3d70a2b254ba4",
-            "tls": {
-                "enabled": false,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇸🇬 port : 2052",
-            "server": "104.18.2.2",
-            "server_port": 2052,
-            "password": "55a3d70a2b254ba4",
-            "tls": {
-                "enabled": false,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇸🇬 port : 2082",
-            "server": "104.18.2.2",
-            "server_port": 2082,
-            "password": "55a3d70a2b254ba4",
-            "tls": {
-                "enabled": false,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇸🇬 port : 2086",
-            "server": "104.18.2.2",
-            "server_port": 2086,
-            "password": "55a3d70a2b254ba4",
-            "tls": {
-                "enabled": false,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇸🇬 port : 2095",
-            "server": "104.18.2.2",
-            "server_port": 2095,
-            "password": "55a3d70a2b254ba4",
-            "tls": {
-                "enabled": false,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇰🇷 port : 80",
-            "server": "104.18.2.2",
-            "server_port": 80,
-            "password": "31272add075003c6",
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇰🇷 port : 8080",
-            "server": "104.18.2.2",
-            "server_port": 8080,
-            "password": "31272add075003c6",
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇰🇷 port : 8880",
-            "server": "104.18.2.2",
-            "server_port": 8880,
-            "password": "31272add075003c6",
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇰🇷 port : 2052",
-            "server": "104.18.2.2",
-            "server_port": 2052,
-            "password": "31272add075003c6",
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇰🇷 port : 2082",
-            "server": "104.18.2.2",
-            "server_port": 2082,
-            "password": "31272add075003c6",
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇰🇷 port : 2086",
-            "server": "104.18.2.2",
-            "server_port": 2086,
-            "password": "31272add075003c6",
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇰🇷 port : 2095",
-            "server": "104.18.2.2",
-            "server_port": 2095,
-            "password": "31272add075003c6",
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇯🇵 port : 80",
-            "server": "104.18.2.2",
-            "server_port": 80,
-            "password": "21eb8b5ba3be45fb",
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇯🇵 port : 8080",
-            "server": "104.18.2.2",
-            "server_port": 8080,
-            "password": "21eb8b5ba3be45fb",
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇯🇵 port : 8880",
-            "server": "104.18.2.2",
-            "server_port": 8880,
-            "password": "21eb8b5ba3be45fb",
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇯🇵 port : 2052",
-            "server": "104.18.2.2",
-            "server_port": 2052,
-            "password": "21eb8b5ba3be45fb",
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇯🇵 port : 2082",
-            "server": "104.18.2.2",
-            "server_port": 2082,
-            "password": "21eb8b5ba3be45fb",
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇯🇵 port : 2086",
-            "server": "104.18.2.2",
-            "server_port": 2086,
-            "password": "21eb8b5ba3be45fb",
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇯🇵 port : 2095",
-            "server": "104.18.2.2",
-            "server_port": 2095,
-            "password": "21eb8b5ba3be45fb",
-            "tls": {
-                "enabled": false,
-                "server_name": "jala.iptunnels.com",
-                "insecure": false,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇨🇳 port : 443",
-            "server": "104.18.2.2",
-            "server_port": 443,
-            "password": "55a3d70a2b254ba4",
-            "tls": {
-                "enabled": true,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇨🇳 port : 2053",
-            "server": "104.18.2.2",
-            "server_port": 2053,
-            "password": "55a3d70a2b254ba4",
-            "tls": {
-                "enabled": true,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇨🇳 port : 2083",
-            "server": "104.18.2.2",
-            "server_port": 2083,
-            "password": "55a3d70a2b254ba4",
-            "tls": {
-                "enabled": true,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇨🇳 port : 2087",
-            "server": "104.18.2.2",
-            "server_port": 2087,
-            "password": "55a3d70a2b254ba4",
-            "tls": {
-                "enabled": true,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇨🇳 port : 2096",
-            "server": "104.18.2.2",
-            "server_port": 2096,
-            "password": "55a3d70a2b254ba4",
-            "tls": {
-                "enabled": true,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇨🇳 port : 8443",
-            "server": "104.18.2.2",
-            "server_port": 8443,
-            "password": "55a3d70a2b254ba4",
-            "tls": {
-                "enabled": true,
-                "server_name": "cpanel.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "cpanel.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇭🇰 port : 443",
-            "server": "104.18.2.2",
-            "server_port": 443,
-            "password": "31272add075003c6",
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇭🇰 port : 2053",
-            "server": "104.18.2.2",
-            "server_port": 2053,
-            "password": "31272add075003c6",
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇭🇰 port : 2083",
-            "server": "104.18.2.2",
-            "server_port": 2083,
-            "password": "31272add075003c6",
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇭🇰 port : 2087",
-            "server": "104.18.2.2",
-            "server_port": 2087,
-            "password": "31272add075003c6",
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇭🇰 port : 2096",
-            "server": "104.18.2.2",
-            "server_port": 2096,
-            "password": "31272add075003c6",
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇭🇰 port : 8443",
-            "server": "104.18.2.2",
-            "server_port": 8443,
-            "password": "31272add075003c6",
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇹🇼 port : 443",
-            "server": "104.18.2.2",
-            "server_port": 443,
-            "password": "21eb8b5ba3be45fb",
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇹🇼 port : 2053",
-            "server": "104.18.2.2",
-            "server_port": 2053,
-            "password": "21eb8b5ba3be45fb",
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇹🇼 port : 2083",
-            "server": "104.18.2.2",
-            "server_port": 2083,
-            "password": "21eb8b5ba3be45fb",
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇹🇼 port : 2087",
-            "server": "104.18.2.2",
-            "server_port": 2087,
-            "password": "21eb8b5ba3be45fb",
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇹🇼 port : 2096",
-            "server": "104.18.2.2",
-            "server_port": 2096,
-            "password": "21eb8b5ba3be45fb",
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "trojan",
-            "tag": "trojan 🇹🇼 port : 8443",
-            "server": "104.18.2.2",
-            "server_port": 8443,
-            "password": "21eb8b5ba3be45fb",
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
-                "headers": {
-                    "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "grpc 🇸🇬 port : 443",
-            "server": "104.18.2.2",
-            "server_port": 443,
-            "uuid": "c03ee5ce-940b-4160-abdf-825a4079bb67",
-            "security": "auto",
-            "authenticated_length": true,
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
+                "protocol": "h2mux",
+                "max_streams": 32,
+                "padding": false,
                 "brutal": {
                     "enabled": true,
                     "up_mbps": 20,
@@ -4230,187 +142,7 @@
             },
             "transport": {
                 "type": "grpc",
-                "service_name": "buy-vmess-grpc-pm-telegram-at-synricha",
-                "idle_timeout": "15s",
-                "ping_timeout": "15s",
-                "permit_without_stream": true
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "grpc 🇸🇬 port : 2053",
-            "server": "104.18.2.2",
-            "server_port": 2053,
-            "uuid": "c03ee5ce-940b-4160-abdf-825a4079bb67",
-            "security": "auto",
-            "authenticated_length": true,
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "grpc",
-                "service_name": "buy-vmess-grpc-pm-telegram-at-synricha",
-                "idle_timeout": "15s",
-                "ping_timeout": "15s",
-                "permit_without_stream": true
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "grpc 🇸🇬 port : 2083",
-            "server": "104.18.2.2",
-            "server_port": 2083,
-            "uuid": "c03ee5ce-940b-4160-abdf-825a4079bb67",
-            "security": "auto",
-            "authenticated_length": true,
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "grpc",
-                "service_name": "buy-vmess-grpc-pm-telegram-at-synricha",
-                "idle_timeout": "15s",
-                "ping_timeout": "15s",
-                "permit_without_stream": true
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "grpc 🇸🇬 port : 2087",
-            "server": "104.18.2.2",
-            "server_port": 2087,
-            "uuid": "c03ee5ce-940b-4160-abdf-825a4079bb67",
-            "security": "auto",
-            "authenticated_length": true,
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "grpc",
-                "service_name": "buy-vmess-grpc-pm-telegram-at-synricha",
-                "idle_timeout": "15s",
-                "ping_timeout": "15s",
-                "permit_without_stream": true
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "grpc 🇸🇬 port : 2096",
-            "server": "104.18.2.2",
-            "server_port": 2096,
-            "uuid": "c03ee5ce-940b-4160-abdf-825a4079bb67",
-            "security": "auto",
-            "authenticated_length": true,
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "grpc",
-                "service_name": "buy-vmess-grpc-pm-telegram-at-synricha",
-                "idle_timeout": "15s",
-                "ping_timeout": "15s",
-                "permit_without_stream": true
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "grpc 🇸🇬 port : 8443",
-            "server": "104.18.2.2",
-            "server_port": 8443,
-            "uuid": "c03ee5ce-940b-4160-abdf-825a4079bb67",
-            "security": "auto",
-            "authenticated_length": true,
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "grpc",
-                "service_name": "buy-vmess-grpc-pm-telegram-at-synricha",
+                "service_name": "buy-trojan-grpc-pm-telegram-at-synricha",
                 "idle_timeout": "15s",
                 "ping_timeout": "15s",
                 "permit_without_stream": true
@@ -4418,24 +150,25 @@
         },
         {
             "type": "vless",
-            "tag": "grpc 🇰🇷 port : 443",
-            "server": "104.18.2.2",
+            "tag": "vless_grpc 🇰🇷🇰🇷 port : 443",
+            "fallback_delay": "300ms",
+            "server": "104.18.225.52",
             "server_port": 443,
-            "uuid": "69dc2853-21f4-4180-afbd-01bff45916e7",
+            "uuid": "ef4605e2-c0f9-4c62-acee-0200b5593cdd",
             "tls": {
                 "enabled": true,
                 "server_name": "jala.iptunnels.com",
                 "insecure": true,
                 "utls": {
                     "enabled": true,
-                    "fingerprint": "randomized"
+                    "fingerprint": "chrome_pq"
                 }
             },
             "multiplex": {
                 "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
+                "protocol": "h2mux",
+                "max_streams": 32,
+                "padding": false,
                 "brutal": {
                     "enabled": true,
                     "up_mbps": 20,
@@ -4452,200 +185,28 @@
             "packet_encoding": "xudp"
         },
         {
-            "type": "vless",
-            "tag": "grpc 🇰🇷 port : 2053",
-            "server": "104.18.2.2",
-            "server_port": 2053,
-            "uuid": "69dc2853-21f4-4180-afbd-01bff45916e7",
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "grpc",
-                "service_name": "buy-vless-grpc-pm-telegram-at-synricha",
-                "idle_timeout": "15s",
-                "ping_timeout": "15s",
-                "permit_without_stream": true
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "vless",
-            "tag": "grpc 🇰🇷 port : 2083",
-            "server": "104.18.2.2",
-            "server_port": 2083,
-            "uuid": "69dc2853-21f4-4180-afbd-01bff45916e7",
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "grpc",
-                "service_name": "buy-vless-grpc-pm-telegram-at-synricha",
-                "idle_timeout": "15s",
-                "ping_timeout": "15s",
-                "permit_without_stream": true
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "vless",
-            "tag": "grpc 🇰🇷 port : 2087",
-            "server": "104.18.2.2",
-            "server_port": 2087,
-            "uuid": "69dc2853-21f4-4180-afbd-01bff45916e7",
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "grpc",
-                "service_name": "buy-vless-grpc-pm-telegram-at-synricha",
-                "idle_timeout": "15s",
-                "ping_timeout": "15s",
-                "permit_without_stream": true
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "vless",
-            "tag": "grpc 🇰🇷 port : 2096",
-            "server": "104.18.2.2",
-            "server_port": 2096,
-            "uuid": "69dc2853-21f4-4180-afbd-01bff45916e7",
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "grpc",
-                "service_name": "buy-vless-grpc-pm-telegram-at-synricha",
-                "idle_timeout": "15s",
-                "ping_timeout": "15s",
-                "permit_without_stream": true
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "vless",
-            "tag": "grpc 🇰🇷 port : 8443",
-            "server": "104.18.2.2",
-            "server_port": 8443,
-            "uuid": "69dc2853-21f4-4180-afbd-01bff45916e7",
-            "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
-                "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
-                "brutal": {
-                    "enabled": true,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "grpc",
-                "service_name": "buy-vless-grpc-pm-telegram-at-synricha",
-                "idle_timeout": "15s",
-                "ping_timeout": "15s",
-                "permit_without_stream": true
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "trojan",
-            "tag": "grpc 🇯🇵 port : 443",
-            "server": "104.18.2.2",
+            "type": "vmess",
+            "tag": "vmess_grpc 🇯🇵🇯🇵🇯🇵 port : 443",
+            "fallback_delay": "300ms",
+            "server": "104.18.225.52",
             "server_port": 443,
-            "password": "09121bdda4b38583",
+            "uuid": "70b017d5-5246-46bb-a04d-33f23763ceac",
+            "security": "auto",
+            "authenticated_length": true,
             "tls": {
                 "enabled": true,
                 "server_name": "jala.iptunnels.com",
                 "insecure": true,
                 "utls": {
                     "enabled": true,
-                    "fingerprint": "randomized"
+                    "fingerprint": "chrome_pq"
                 }
             },
             "multiplex": {
                 "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
+                "protocol": "h2mux",
+                "max_streams": 32,
+                "padding": false,
                 "brutal": {
                     "enabled": true,
                     "up_mbps": 20,
@@ -4654,7 +215,7 @@
             },
             "transport": {
                 "type": "grpc",
-                "service_name": "buy-trojan-grpc-pm-telegram-at-synricha",
+                "service_name": "buy-vmess-grpc-pm-telegram-at-synricha",
                 "idle_timeout": "15s",
                 "ping_timeout": "15s",
                 "permit_without_stream": true
@@ -4662,24 +223,25 @@
         },
         {
             "type": "trojan",
-            "tag": "grpc 🇯🇵 port : 2053",
-            "server": "104.18.2.2",
-            "server_port": 2053,
-            "password": "09121bdda4b38583",
+            "tag": "trojan_websocket 🇸🇬🇸🇬 port : 80",
+            "fallback_delay": "300ms",
+            "server": "104.18.225.52",
+            "server_port": 80,
+            "password": "aacd44923a80e4c9",
             "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
+                "enabled": false,
+                "server_name": "cpanel.iptunnels.com",
+                "insecure": false,
                 "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
+                    "enabled": false,
+                    "fingerprint": "chrome_padding_psk_shuffle"
                 }
             },
             "multiplex": {
                 "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
+                "protocol": "h2mux",
+                "max_streams": 32,
+                "padding": false,
                 "brutal": {
                     "enabled": true,
                     "up_mbps": 20,
@@ -4687,33 +249,34 @@
                 }
             },
             "transport": {
-                "type": "grpc",
-                "service_name": "buy-trojan-grpc-pm-telegram-at-synricha",
-                "idle_timeout": "15s",
-                "ping_timeout": "15s",
-                "permit_without_stream": true
+                "type": "ws",
+                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
+                "headers": {
+                    "Host": "cpanel.iptunnels.com"
+                }
             }
         },
         {
             "type": "trojan",
-            "tag": "grpc 🇯🇵 port : 2083",
-            "server": "104.18.2.2",
-            "server_port": 2083,
-            "password": "09121bdda4b38583",
+            "tag": "trojan_websocket 🇰🇷🇰🇷 port : 80",
+            "fallback_delay": "300ms",
+            "server": "104.18.225.52",
+            "server_port": 80,
+            "password": "f6bb833d582b8d86",
             "tls": {
-                "enabled": true,
+                "enabled": false,
                 "server_name": "jala.iptunnels.com",
-                "insecure": true,
+                "insecure": false,
                 "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
+                    "enabled": false,
+                    "fingerprint": "chrome_padding_psk_shuffle"
                 }
             },
             "multiplex": {
                 "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
+                "protocol": "h2mux",
+                "max_streams": 32,
+                "padding": false,
                 "brutal": {
                     "enabled": true,
                     "up_mbps": 20,
@@ -4721,33 +284,34 @@
                 }
             },
             "transport": {
-                "type": "grpc",
-                "service_name": "buy-trojan-grpc-pm-telegram-at-synricha",
-                "idle_timeout": "15s",
-                "ping_timeout": "15s",
-                "permit_without_stream": true
+                "type": "ws",
+                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
+                "headers": {
+                    "Host": "jala.iptunnels.com"
+                }
             }
         },
         {
             "type": "trojan",
-            "tag": "grpc 🇯🇵 port : 2087",
-            "server": "104.18.2.2",
-            "server_port": 2087,
-            "password": "09121bdda4b38583",
+            "tag": "trojan_websocket 🇯🇵🇯🇵 port : 80",
+            "fallback_delay": "300ms",
+            "server": "104.18.225.52",
+            "server_port": 80,
+            "password": "1499a062fbc54608",
             "tls": {
-                "enabled": true,
+                "enabled": false,
                 "server_name": "jala.iptunnels.com",
-                "insecure": true,
+                "insecure": false,
                 "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
+                    "enabled": false,
+                    "fingerprint": "chrome_padding_psk_shuffle"
                 }
             },
             "multiplex": {
                 "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
+                "protocol": "h2mux",
+                "max_streams": 32,
+                "padding": false,
                 "brutal": {
                     "enabled": true,
                     "up_mbps": 20,
@@ -4755,33 +319,34 @@
                 }
             },
             "transport": {
-                "type": "grpc",
-                "service_name": "buy-trojan-grpc-pm-telegram-at-synricha",
-                "idle_timeout": "15s",
-                "ping_timeout": "15s",
-                "permit_without_stream": true
+                "type": "ws",
+                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
+                "headers": {
+                    "Host": "jala.iptunnels.com"
+                }
             }
         },
         {
-            "type": "trojan",
-            "tag": "grpc 🇯🇵 port : 2096",
-            "server": "104.18.2.2",
-            "server_port": 2096,
-            "password": "09121bdda4b38583",
+            "type": "vless",
+            "tag": "vless_websocket 🇸🇬🇸🇬 port : 80",
+            "fallback_delay": "300ms",
+            "server": "104.18.225.52",
+            "server_port": 80,
+            "uuid": "bcf06166-df68-4d3d-b631-8138b4673aad",
             "tls": {
-                "enabled": true,
-                "server_name": "jala.iptunnels.com",
-                "insecure": true,
+                "enabled": false,
+                "server_name": "cpanel.iptunnels.com",
+                "insecure": false,
                 "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
+                    "enabled": false,
+                    "fingerprint": "chrome_padding_psk_shuffle"
                 }
             },
             "multiplex": {
                 "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
+                "protocol": "h2mux",
+                "max_streams": 32,
+                "padding": false,
                 "brutal": {
                     "enabled": true,
                     "up_mbps": 20,
@@ -4789,33 +354,112 @@
                 }
             },
             "transport": {
-                "type": "grpc",
-                "service_name": "buy-trojan-grpc-pm-telegram-at-synricha",
-                "idle_timeout": "15s",
-                "ping_timeout": "15s",
-                "permit_without_stream": true
+                "type": "ws",
+                "path": "/buy-vless-ws-pm-telegram-at-synricha",
+                "headers": {
+                    "Host": "cpanel.iptunnels.com"
+                }
+            },
+            "packet_encoding": "xudp"
+        },
+        {
+            "type": "vless",
+            "tag": "vless_websocket 🇰🇷🇰🇷 port : 80",
+            "fallback_delay": "300ms",
+            "server": "104.18.225.52",
+            "server_port": 80,
+            "uuid": "b7d8f368-225e-41c4-958e-60e05eb70e0d",
+            "tls": {
+                "enabled": false,
+                "server_name": "jala.iptunnels.com",
+                "insecure": false,
+                "utls": {
+                    "enabled": false,
+                    "fingerprint": "chrome_padding_psk_shuffle"
+                }
+            },
+            "multiplex": {
+                "enabled": false,
+                "protocol": "h2mux",
+                "max_streams": 32,
+                "padding": false,
+                "brutal": {
+                    "enabled": true,
+                    "up_mbps": 20,
+                    "down_mbps": 100
+                }
+            },
+            "transport": {
+                "type": "ws",
+                "path": "/buy-vless-ws-pm-telegram-at-synricha",
+                "headers": {
+                    "Host": "jala.iptunnels.com"
+                }
+            },
+            "packet_encoding": "xudp"
+        },
+        {
+            "type": "vmess",
+            "tag": "vmess_websocket 🇸🇬🇸🇬 port : 80",
+            "fallback_delay": "300ms",
+            "server": "104.18.225.52",
+            "server_port": 80,
+            "uuid": "a5f2f8f2-20ba-4a63-9aff-39af255ee37d",
+            "security": "auto",
+            "global_padding": false,
+            "authenticated_length": true,
+            "tls": {
+                "enabled": false,
+                "server_name": "cpanel.iptunnels.com",
+                "insecure": false,
+                "utls": {
+                    "enabled": false,
+                    "fingerprint": "chrome_padding_psk_shuffle"
+                }
+            },
+            "multiplex": {
+                "enabled": false,
+                "protocol": "h2mux",
+                "max_streams": 32,
+                "padding": false,
+                "brutal": {
+                    "enabled": true,
+                    "up_mbps": 20,
+                    "down_mbps": 100
+                }
+            },
+            "transport": {
+                "type": "ws",
+                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
+                "headers": {
+                    "Host": "cpanel.iptunnels.com"
+                }
             }
         },
         {
-            "type": "trojan",
-            "tag": "grpc 🇯🇵 port : 8443",
-            "server": "104.18.2.2",
-            "server_port": 8443,
-            "password": "09121bdda4b38583",
+            "type": "vmess",
+            "tag": "vmess_websocket 🇰🇷🇰🇷 port : 80",
+            "fallback_delay": "300ms",
+            "server": "104.18.225.52",
+            "server_port": 80,
+            "uuid": "699c0ce9-b9b5-4cbe-b81b-d3344938023e",
+            "security": "auto",
+            "global_padding": false,
+            "authenticated_length": true,
             "tls": {
-                "enabled": true,
+                "enabled": false,
                 "server_name": "jala.iptunnels.com",
-                "insecure": true,
+                "insecure": false,
                 "utls": {
-                    "enabled": true,
-                    "fingerprint": "randomized"
+                    "enabled": false,
+                    "fingerprint": "chrome_padding_psk_shuffle"
                 }
             },
             "multiplex": {
                 "enabled": false,
-                "protocol": "smux",
-                "max_streams": 4,
-                "padding": true,
+                "protocol": "h2mux",
+                "max_streams": 32,
+                "padding": false,
                 "brutal": {
                     "enabled": true,
                     "up_mbps": 20,
@@ -4823,11 +467,49 @@
                 }
             },
             "transport": {
-                "type": "grpc",
-                "service_name": "buy-trojan-grpc-pm-telegram-at-synricha",
-                "idle_timeout": "15s",
-                "ping_timeout": "15s",
-                "permit_without_stream": true
+                "type": "ws",
+                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
+                "headers": {
+                    "Host": "jala.iptunnels.com"
+                }
+            }
+        },
+        {
+            "type": "vmess",
+            "tag": "vmess_websocket 🇯🇵🇯🇵 port : 80",
+            "fallback_delay": "300ms",
+            "server": "104.18.225.52",
+            "server_port": 80,
+            "uuid": "5495a5d0-3e01-4de4-9c19-d3b346557072",
+            "security": "auto",
+            "global_padding": false,
+            "authenticated_length": true,
+            "tls": {
+                "enabled": false,
+                "server_name": "jala.iptunnels.com",
+                "insecure": false,
+                "utls": {
+                    "enabled": false,
+                    "fingerprint": "chrome_padding_psk_shuffle"
+                }
+            },
+            "multiplex": {
+                "enabled": false,
+                "protocol": "h2mux",
+                "max_streams": 32,
+                "padding": false,
+                "brutal": {
+                    "enabled": true,
+                    "up_mbps": 20,
+                    "down_mbps": 100
+                }
+            },
+            "transport": {
+                "type": "ws",
+                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
+                "headers": {
+                    "Host": "jala.iptunnels.com"
+                }
             }
         },
         {
@@ -4839,101 +521,25 @@
             "tag": "direct"
         },
         {
-            "type": "direct",
-            "tag": "bypass"
-        },
-        {
             "type": "block",
             "tag": "block"
         }
     ],
     "route": {
         "geoip": {
-            "path": "geo-assets/sagernet-sing-geoip-geoip.db"
+            "path": "geo-assets/geoip.db"
         },
         "geosite": {
-            "path": "geo-assets/sagernet-sing-geosite-geosite.db"
+            "path": "geo-assets/geosite.db"
         },
         "rule_set": [
             {
-                "tag": "geosite-category-enhance-gaming.srs",
+                "tag": "geosite-category-ads.srs",
                 "type": "remote",
                 "format": "binary",
-                "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-enhance-gaming.srs",
+                "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-ads.srs",
                 "download_detour": "auto_select",
-                "update_interval": "6d"
-            },
-            {
-                "tag": "geosite-category-games.srs",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-games.srs",
-                "download_detour": "auto_select",
-                "update_interval": "6d"
-            },
-            {
-                "tag": "geosite-category-ecommerce.srs",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-ecommerce.srs",
-                "download_detour": "auto_select",
-                "update_interval": "6d"
-            },
-            {
-                "tag": "geosite-category-social-media-!cn.srs",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-social-media-!cn.srs",
-                "download_detour": "auto_select",
-                "update_interval": "6d"
-            },
-            {
-                "tag": "geosite-category-social-media-cn.srs",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-social-media-cn.srs",
-                "download_detour": "auto_select",
-                "update_interval": "6d"
-            },
-            {
-                "tag": "geosite-category-communication.srs",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-communication.srs",
-                "download_detour": "auto_select",
-                "update_interval": "6d"
-            },
-            {
-                "tag": "geosite-category-entertainment.srs",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-entertainment.srs",
-                "download_detour": "auto_select",
-                "update_interval": "6d"
-            },
-            {
-                "tag": "geosite-category-forums.srs",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-forums.srs",
-                "download_detour": "auto_select",
-                "update_interval": "6d"
-            },
-            {
-                "tag": "geosite-category-media.srs",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-media.srs",
-                "download_detour": "auto_select",
-                "update_interval": "6d"
-            },
-            {
-                "tag": "geosite-category-porn.srs",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-porn.srs",
-                "download_detour": "auto_select",
-                "update_interval": "6d"
+                "update_interval": "1d"
             },
             {
                 "tag": "geosite-category-ads-all.srs",
@@ -4941,78 +547,32 @@
                 "format": "binary",
                 "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-ads-all.srs",
                 "download_detour": "auto_select",
-                "update_interval": "6d"
+                "update_interval": "1d"
             },
             {
-                "tag": "geosite-category-ads.srs",
+                "tag": "geosite-google-ads.srs",
                 "type": "remote",
                 "format": "binary",
-                "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-ads.srs",
+                "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-google-ads.srs",
                 "download_detour": "auto_select",
-                "update_interval": "6d"
+                "update_interval": "1d"
             }
         ],
         "rules": [
             {
                 "rule_set": [
-                    "geosite-category-enhance-gaming.srs",
-                    "geosite-category-games.srs"
-                ],
-                "outbound": "gaming"
-            },
-            {
-                "rule_set": [
-                    "geosite-category-ecommerce.srs",
-                    "geosite-category-social-media-!cn.srs",
-                    "geosite-category-social-media-cn.srs",
-                    "geosite-category-communication.srs",
-                    "geosite-category-entertainment.srs",
-                    "geosite-category-forums.srs",
-                    "geosite-category-media.srs"
-                ],
-                "outbound": "social_media"
-            },
-            {
-                "rule_set": [
-                    "geosite-category-porn.srs"
-                ],
-                "outbound": "adult_content"
-            },
-            {
-                "rule_set": [
+                    "geosite-category-ads.srs",
                     "geosite-category-ads-all.srs",
-                    "geosite-category-ads.srs"
+                    "geosite-google-ads.srs"
                 ],
-                "outbound": "advertisement"
-            },
-            {
-                "package_name": [
-                    "com.termux"
-                ],
-                "outbound": "packages"
+                "outbound": "block"
             },
             {
                 "protocol": "dns",
                 "outbound": "dns_out"
-            },
-            {
-                "inbound": "any",
-                "outbound": "auto_select"
-            },
-            {
-                "clash_mode": "Rule",
-                "outbound": "auto_select"
-            },
-            {
-                "clash_mode": "Direct",
-                "outbound": "direct"
-            },
-            {
-                "clash_mode": "Global",
-                "outbound": "block"
             }
         ],
-        "final": "auto_select",
+        "final": "outbound_select",
         "override_android_vpn": true,
         "auto_detect_interface": true
     },
@@ -5024,7 +584,7 @@
             "enabled": true,
             "path": "cache.db",
             "cache_id": "anhedonia",
-            "store_fakeip": true
+            "store_fakeip": false
         }
     }
 }
