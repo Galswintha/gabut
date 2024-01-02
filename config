@@ -8,11 +8,11 @@
         "servers": [
             {
                 "tag": "dns_primary",
-                "address": "1.0.0.1"
+                "address": "1.1.1.1"
             },
             {
                 "tag": "dns_secondary",
-                "address": "1.1.1.1"
+                "address": "1.0.0.1"
             },
             {
                 "tag": "dns_fakeip",
@@ -29,33 +29,41 @@
         ],
         "rules": [
             {
-                "query_type": [
-                    "A",
-                    "AAAA"
+                "inbound": [
+                    "tun_in"
                 ],
-                "server": "dns_fakeip"
+                "outbound": [
+                    "dns_out"
+                ],
+                "protocol": [
+                    ""
+                ],
+                "query_type": [
+                    "ANY"
+                ],
+                "server": "dns_fakeip",
+                "disable_cache": false
             },
             {
-                "inbound": "any",
-                "server": "dns_fakeip"
-            },
-            {
-                "outbound": "any",
-                "server": "dns_fakeip"
-            },
-            {
-                "outbound": "outbound_select",
-                "server": "dns_fakeip"
-            },
-            {
-                "outbound": "auto_select",
-                "server": "dns_fakeip"
-            },
-            {
-                "outbound": "dns_out",
-                "server": "dns_fakeip"
+                "network": [
+                    "tcp",
+                    "udp"
+                ],
+                "protocol": [
+                    "quic",
+                    "stun"
+                ],
+                "rule_set": [
+                    "geosite-category-ads.srs",
+                    "geosite-category-ads-all.srs",
+                    "geosite-google-ads.srs"
+                ],
+                "server": "rcode_refused",
+                "outbound": "block",
+                "disable_cache": true
             }
         ],
+        "disable_cache": false,
         "independent_cache": true,
         "fakeip": {
             "enabled": true,
@@ -67,6 +75,8 @@
         {
             "type": "tun",
             "tag": "tun_in",
+            "stack": "mixed",
+            "gso": true,
             "inet4_address": "172.19.0.1/30",
             "inet6_address": "fdfe:dcba:9876::1/126",
             "auto_route": true,
@@ -77,7 +87,7 @@
     "outbounds": [
         {
             "type": "selector",
-            "tag": "outbound_select",
+            "tag": "nodes_selector",
             "outbounds": [
                 "auto_select",
                 "block",
@@ -90,30 +100,32 @@
             "type": "urltest",
             "tag": "auto_select",
             "outbounds": [
-                "trojan_grpc 🇸🇬🇸🇬 port : 443",
-                "vless_grpc 🇰🇷🇰🇷 port : 443",
-                "vmess_grpc 🇯🇵🇯🇵🇯🇵 port : 443",
-                "trojan_websocket 🇸🇬🇸🇬 port : 80",
-                "trojan_websocket 🇰🇷🇰🇷 port : 80",
-                "trojan_websocket 🇯🇵🇯🇵 port : 80",
-                "vless_websocket 🇸🇬🇸🇬 port : 80",
-                "vless_websocket 🇰🇷🇰🇷 port : 80",
-                "vmess_websocket 🇸🇬🇸🇬 port : 80",
-                "vmess_websocket 🇰🇷🇰🇷 port : 80",
-                "vmess_websocket 🇯🇵🇯🇵 port : 80"
+                "trojan_grpc 🇸🇬🇸🇬🇸🇬",
+                "vless_grpc 🇰🇷🇰🇷🇰🇷",
+                "vmess_grpc 🇯🇵🇯🇵🇯🇵",
+                "trojan_websocket 🇸🇬🇸🇬🇸🇬",
+                "trojan_websocket 🇰🇷🇰🇷🇰🇷",
+                "trojan_websocket 🇯🇵🇯🇵🇯🇵",
+                "vless_websocket 🇸🇬🇸🇬🇸🇬",
+                "vless_websocket 🇰🇷🇰🇷🇰🇷",
+                "vmess_websocket 🇸🇬🇸🇬🇸🇬",
+                "vmess_websocket 🇰🇷🇰🇷🇰🇷",
+                "vmess_websocket 🇯🇵🇯🇵🇯🇵"
             ],
             "url": "http://cp.cloudflare.com/",
-            "interval": "60s",
-            "tolerance": 13,
+            "interval": "66s",
+            "tolerance": 33,
             "idle_timeout": "30m",
             "interrupt_exist_connections": false
         },
         {
             "type": "trojan",
-            "tag": "trojan_grpc 🇸🇬🇸🇬 port : 443",
+            "tag": "trojan_grpc 🇸🇬🇸🇬🇸🇬",
+            "udp_fragment": true,
+            "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 443,
-            "password": "ec746e844ffbbee5",
+            "password": "9df2e5c5ae8bd659",
             "tls": {
                 "enabled": true,
                 "server_name": "jala.iptunnels.com",
@@ -144,10 +156,12 @@
         },
         {
             "type": "vless",
-            "tag": "vless_grpc 🇰🇷🇰🇷 port : 443",
+            "tag": "vless_grpc 🇰🇷🇰🇷🇰🇷",
+            "udp_fragment": true,
+            "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 443,
-            "uuid": "ef4605e2-c0f9-4c62-acee-0200b5593cdd",
+            "uuid": "38ffc685-8462-4efe-b926-d0b9f0ea26e6",
             "tls": {
                 "enabled": true,
                 "server_name": "jala.iptunnels.com",
@@ -179,10 +193,12 @@
         },
         {
             "type": "vmess",
-            "tag": "vmess_grpc 🇯🇵🇯🇵🇯🇵 port : 443",
+            "tag": "vmess_grpc 🇯🇵🇯🇵🇯🇵",
+            "udp_fragment": true,
+            "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 443,
-            "uuid": "70b017d5-5246-46bb-a04d-33f23763ceac",
+            "uuid": "33386557-9f50-4932-ac32-9cc9dd9beef8",
             "security": "auto",
             "authenticated_length": true,
             "tls": {
@@ -215,10 +231,12 @@
         },
         {
             "type": "trojan",
-            "tag": "trojan_websocket 🇸🇬🇸🇬 port : 80",
+            "tag": "trojan_websocket 🇸🇬🇸🇬🇸🇬",
+            "udp_fragment": true,
+            "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 80,
-            "password": "3025a6b51dc907d4",
+            "password": "45cd8c1ad3c758e0",
             "tls": {
                 "enabled": false,
                 "server_name": "cpanel.iptunnels.com",
@@ -249,10 +267,12 @@
         },
         {
             "type": "trojan",
-            "tag": "trojan_websocket 🇰🇷🇰🇷 port : 80",
+            "tag": "trojan_websocket 🇰🇷🇰🇷🇰🇷",
+            "udp_fragment": true,
+            "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 80,
-            "password": "05636115228e0ec6",
+            "password": "b7da7097ab389a36",
             "tls": {
                 "enabled": false,
                 "server_name": "jala.iptunnels.com",
@@ -283,10 +303,12 @@
         },
         {
             "type": "trojan",
-            "tag": "trojan_websocket 🇯🇵🇯🇵 port : 80",
+            "tag": "trojan_websocket 🇯🇵🇯🇵🇯🇵",
+            "udp_fragment": true,
+            "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 80,
-            "password": "1e4b47dfb66608b1",
+            "password": "bae670fd62160237",
             "tls": {
                 "enabled": false,
                 "server_name": "jala.iptunnels.com",
@@ -317,10 +339,12 @@
         },
         {
             "type": "vless",
-            "tag": "vless_websocket 🇸🇬🇸🇬 port : 80",
+            "tag": "vless_websocket 🇸🇬🇸🇬🇸🇬",
+            "udp_fragment": true,
+            "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 80,
-            "uuid": "370d9233-7b4b-4dd6-8f28-f63f03afac5c",
+            "uuid": "fbd1224a-3667-48fb-9eab-f7450e205437",
             "tls": {
                 "enabled": false,
                 "server_name": "cpanel.iptunnels.com",
@@ -352,10 +376,12 @@
         },
         {
             "type": "vless",
-            "tag": "vless_websocket 🇰🇷🇰🇷 port : 80",
+            "tag": "vless_websocket 🇰🇷🇰🇷🇰🇷",
+            "udp_fragment": true,
+            "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 80,
-            "uuid": "b7d8f368-225e-41c4-958e-60e05eb70e0d",
+            "uuid": "f313d68b-ead5-4b9f-a858-3a4e78d41be8",
             "tls": {
                 "enabled": false,
                 "server_name": "jala.iptunnels.com",
@@ -387,10 +413,12 @@
         },
         {
             "type": "vmess",
-            "tag": "vmess_websocket 🇸🇬🇸🇬 port : 80",
+            "tag": "vmess_websocket 🇸🇬🇸🇬🇸🇬",
+            "udp_fragment": true,
+            "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 80,
-            "uuid": "0989047d-97fc-43c0-b93f-4ed49d165e59",
+            "uuid": "0bd4f80f-bd5f-42a3-9139-3c5b6acc0324",
             "security": "auto",
             "global_padding": false,
             "authenticated_length": true,
@@ -424,10 +452,12 @@
         },
         {
             "type": "vmess",
-            "tag": "vmess_websocket 🇰🇷🇰🇷 port : 80",
+            "tag": "vmess_websocket 🇰🇷🇰🇷🇰🇷",
+            "udp_fragment": true,
+            "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 80,
-            "uuid": "b9b9044c-adad-4f14-9799-339c4a6f8bec",
+            "uuid": "c1767f80-15c5-4b8e-9428-17b624c422c4",
             "security": "auto",
             "global_padding": false,
             "authenticated_length": true,
@@ -461,10 +491,12 @@
         },
         {
             "type": "vmess",
-            "tag": "vmess_websocket 🇯🇵🇯🇵 port : 80",
+            "tag": "vmess_websocket 🇯🇵🇯🇵🇯🇵",
+            "udp_fragment": true,
+            "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 80,
-            "uuid": "038b3950-f5c9-4cc4-989e-00295799c4ab",
+            "uuid": "65970bfa-21a6-476c-8efb-9d8ee78688c5",
             "security": "auto",
             "global_padding": false,
             "authenticated_length": true,
@@ -544,6 +576,14 @@
         ],
         "rules": [
             {
+                "network": [
+                    "tcp",
+                    "udp"
+                ],
+                "protocol": [
+                    "quic",
+                    "stun"
+                ],
                 "rule_set": [
                     "geosite-category-ads.srs",
                     "geosite-category-ads-all.srs",
@@ -552,8 +592,8 @@
                 "outbound": "block"
             },
             {
-                "protocol": [
-                    "dns"
+                "port": [
+                    53
                 ],
                 "outbound": "dns_out"
             }
