@@ -1,6 +1,6 @@
-trojan://55564188ebb5e3d8@104.18.225.52:80?path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&fragment=&security=tls&host=cpanel.iptunnels.com&type=ws&sni=cpanel.iptunnels.com#trojan_01
-trojan://a818d78e79db37b4@104.18.225.52:80?path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&fragment=&security=tls&host=jala.iptunnels.com&type=ws&sni=jala.iptunnels.com#trojan_02
-trojan://688b6ad3f6818c7a@104.18.225.52:80?path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&fragment=&security=tls&host=jala.iptunnels.com&type=ws&sni=jala.iptunnels.com#trojan_03
+trojan://55564188ebb5e3d8@104.18.225.52:443?path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&fragment=&security=tls&host=cpanel.iptunnels.com&type=ws&sni=cpanel.iptunnels.com#trojan_01
+trojan://a818d78e79db37b4@104.18.225.52:443?path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&fragment=&security=tls&host=jala.iptunnels.com&type=ws&sni=jala.iptunnels.com#trojan_02
+trojan://688b6ad3f6818c7a@104.18.225.52:443?path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&fragment=&security=tls&host=jala.iptunnels.com&type=ws&sni=jala.iptunnels.com#trojan_03
 vless://859040fb-73df-431c-b66b-37c4d439e2d3@104.18.225.52:80?path=%2Fbuy-vless-ws-pm-telegram-at-synricha&fragment=&security=none&encryption=none&host=cpanel.iptunnels.com&type=ws#vless_01
 vless://3e5933d7-ddc8-4f0d-9abf-b9b74a0f6368@104.18.225.52:80?path=%2Fbuy-vless-ws-pm-telegram-at-synricha&fragment=&security=none&encryption=none&host=jala.iptunnels.com&type=ws#vless_02
 vmess://eyJhZGQiOiIxMDQuMTguMjI1LjUyIiwiYWlkIjoiMCIsImFscG4iOiIiLCJmcCI6IiIsImZyYWdtZW50IjoiIiwiZnJhZ21lbnRfdjEiOiIiLCJob3N0IjoiY3BhbmVsLmlwdHVubmVscy5jb20iLCJpZCI6Ijg4ODg4MmRkLThjYjUtNDZjYi1hZGMwLTc1MmU0Yzg2ZmEwYyIsIm5ldCI6IndzIiwicGF0aCI6Ii9idXktdm1lc3Mtd3MtcG0tdGVsZWdyYW0tYXQtc3lucmljaGEiLCJwb3J0IjoiODAiLCJwcyI6InZtZXNzXzAxIiwic2N5IjoiYXV0byIsInNuaSI6IiIsInRscyI6IiIsInR5cGUiOiIiLCJ2IjoiMiJ9
