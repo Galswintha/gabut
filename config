@@ -1,5 +1,490 @@
-trojan://7536ce1bdbbd5c23@104.18.225.52:443?path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&fragment=&security=tls&host=cpanel.iptunnels.com&type=ws&sni=cpanel.iptunnels.com#trojan_01
-trojan://fc32e92c54eeb19a@104.18.225.52:443?path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&fragment=&security=tls&host=jala.iptunnels.com&type=ws&sni=jala.iptunnels.com#trojan_02
-trojan://05d4c0d2c94f8f43@104.18.225.52:443?path=%2Fbuy-trojan-ws-pm-telegram-at-synricha&fragment=&security=tls&host=jala.iptunnels.com&type=ws&sni=jala.iptunnels.com#trojan_03
-vless://5fbf91f2-9d10-411c-8872-a87b84df0a6a@104.18.225.52:80?path=%2Fbuy-vless-ws-pm-telegram-at-synricha&fragment=&security=none&encryption=none&host=cpanel.iptunnels.com&type=ws#vless_01
-vless://f042fc45-0a2e-429e-b15f-7cb3f61b98dc@104.18.225.52:80?path=%2Fbuy-vless-ws-pm-telegram-at-synricha&fragment=&security=none&encryption=none&host=jala.iptunnels.com&type=ws#vless_02
+{
+    "log": {
+        "disabled": false,
+        "level": "error",
+        "timestamp": true
+    },
+    "dns": {
+        "servers": [
+            {
+                "tag": "dns_primary",
+                "address": "1.0.0.1"
+            },
+            {
+                "tag": "dns_fakeip",
+                "address": "fakeip"
+            },
+            {
+                "tag": "rcode_refused",
+                "address": "rcode://refused"
+            }
+        ],
+        "rules": [
+            {
+                "protocol": [
+                    "dns"
+                ],
+                "port": [
+                    53
+                ],
+                "server": "dns_fakeip",
+                "outbound": "dns_out",
+                "disable_cache": true
+            },
+            {
+                "protocol": [
+                    "doh",
+                    "doq",
+                    "dot",
+                    "stun",
+                    "quic"
+                ],
+                "server": "dns_fakeip",
+                "outbound": "block",
+                "disable_cache": true
+            },
+            {
+                "query_type": [
+                    "A",
+                    "AAAA"
+                ],
+                "server": "dns_fakeip",
+                "outbound": "block",
+                "disable_cache": true
+            }
+        ],
+        "fakeip": {
+            "enabled": true,
+            "inet4_range": "198.18.0.0/15",
+            "inet6_range": "fc00::/18"
+        },
+        "disable_cache": true,
+        "independent_cache": true
+    },
+    "inbounds": [
+        {
+            "type": "tun",
+            "tag": "tun_in",
+            "stack": "mixed",
+            "gso": true,
+            "inet4_address": "172.19.0.1/30",
+            "inet6_address": "fdfe:dcba:9876::1/126",
+            "auto_route": true,
+            "sniff": true,
+            "sniff_override_destination": true
+        }
+    ],
+    "outbounds": [
+        {
+            "type": "selector",
+            "tag": "nodes_selector",
+            "outbounds": [
+                "auto_select",
+                "block"
+            ],
+            "default": "auto_select",
+            "interrupt_exist_connections": false
+        },
+        {
+            "type": "urltest",
+            "tag": "auto_select",
+            "outbounds": [
+                "trojan_grpc 🇸🇬🇸🇬🇸🇬",
+                "vless_grpc 🇰🇷🇰🇷🇰🇷",
+                "vmess_grpc 🇯🇵🇯🇵🇯🇵",
+                "trojan_websocket 🇰🇷🇰🇷🇰🇷",
+                "trojan_websocket 🇯🇵🇯🇵🇯🇵",
+                "vless_websocket 🇰🇷🇰🇷🇰🇷",
+                "vmess_websocket 🇰🇷🇰🇷🇰🇷",
+                "vmess_websocket 🇯🇵🇯🇵🇯🇵"
+            ],
+            "url": "http://cp.cloudflare.com/",
+            "interval": "66s",
+            "tolerance": 13,
+            "idle_timeout": "45m",
+            "interrupt_exist_connections": false
+        },
+        {
+            "type": "trojan",
+            "tag": "trojan_grpc 🇸🇬🇸🇬🇸🇬",
+            "udp_fragment": true,
+            "fallback_delay": "300ms",
+            "server": "104.18.225.52",
+            "server_port": 443,
+            "password": "442a04b5f8559919",
+            "tls": {
+                "enabled": true,
+                "server_name": "jala.iptunnels.com",
+                "insecure": true,
+                "utls": {
+                    "enabled": true,
+                    "fingerprint": "chrome_pq"
+                }
+            },
+            "multiplex": {
+                "enabled": false,
+                "protocol": "h2mux",
+                "max_streams": 32,
+                "padding": false,
+                "brutal": {
+                    "enabled": false,
+                    "up_mbps": 20,
+                    "down_mbps": 100
+                }
+            },
+            "transport": {
+                "type": "grpc",
+                "service_name": "buy-trojan-grpc-pm-telegram-at-synricha",
+                "idle_timeout": "15s",
+                "ping_timeout": "15s",
+                "permit_without_stream": true
+            }
+        },
+        {
+            "type": "vless",
+            "tag": "vless_grpc 🇰🇷🇰🇷🇰🇷",
+            "udp_fragment": true,
+            "fallback_delay": "300ms",
+            "server": "104.18.225.52",
+            "server_port": 443,
+            "uuid": "bfbce38a-8a4b-4b2a-9726-6d5501586690",
+            "tls": {
+                "enabled": true,
+                "server_name": "jala.iptunnels.com",
+                "insecure": true,
+                "utls": {
+                    "enabled": true,
+                    "fingerprint": "chrome_pq"
+                }
+            },
+            "multiplex": {
+                "enabled": false,
+                "protocol": "h2mux",
+                "max_streams": 32,
+                "padding": false,
+                "brutal": {
+                    "enabled": false,
+                    "up_mbps": 20,
+                    "down_mbps": 100
+                }
+            },
+            "transport": {
+                "type": "grpc",
+                "service_name": "buy-vless-grpc-pm-telegram-at-synricha",
+                "idle_timeout": "15s",
+                "ping_timeout": "15s",
+                "permit_without_stream": true
+            },
+            "packet_encoding": "xudp"
+        },
+        {
+            "type": "vmess",
+            "tag": "vmess_grpc 🇯🇵🇯🇵🇯🇵",
+            "udp_fragment": true,
+            "fallback_delay": "300ms",
+            "server": "104.18.225.52",
+            "server_port": 443,
+            "uuid": "1787febf-6443-4f43-b0ac-82195df33829",
+            "security": "auto",
+            "authenticated_length": true,
+            "tls": {
+                "enabled": true,
+                "server_name": "jala.iptunnels.com",
+                "insecure": true,
+                "utls": {
+                    "enabled": true,
+                    "fingerprint": "chrome_pq"
+                }
+            },
+            "multiplex": {
+                "enabled": false,
+                "protocol": "h2mux",
+                "max_streams": 32,
+                "padding": false,
+                "brutal": {
+                    "enabled": false,
+                    "up_mbps": 20,
+                    "down_mbps": 100
+                }
+            },
+            "transport": {
+                "type": "grpc",
+                "service_name": "buy-vmess-grpc-pm-telegram-at-synricha",
+                "idle_timeout": "15s",
+                "ping_timeout": "15s",
+                "permit_without_stream": true
+            }
+        },
+        {
+            "type": "trojan",
+            "tag": "trojan_websocket 🇰🇷🇰🇷🇰🇷",
+            "udp_fragment": true,
+            "fallback_delay": "300ms",
+            "server": "104.18.225.52",
+            "server_port": 80,
+            "password": "ef07eaf7bde2f6b3",
+            "tls": {
+                "enabled": false,
+                "server_name": "jala.iptunnels.com",
+                "insecure": false,
+                "utls": {
+                    "enabled": false,
+                    "fingerprint": "chrome_padding_psk_shuffle"
+                }
+            },
+            "multiplex": {
+                "enabled": false,
+                "protocol": "h2mux",
+                "max_streams": 32,
+                "padding": false,
+                "brutal": {
+                    "enabled": false,
+                    "up_mbps": 20,
+                    "down_mbps": 100
+                }
+            },
+            "transport": {
+                "type": "ws",
+                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
+                "headers": {
+                    "Host": "jala.iptunnels.com"
+                }
+            }
+        },
+        {
+            "type": "trojan",
+            "tag": "trojan_websocket 🇯🇵🇯🇵🇯🇵",
+            "udp_fragment": true,
+            "fallback_delay": "300ms",
+            "server": "104.18.225.52",
+            "server_port": 80,
+            "password": "8618f6d20494a5b9",
+            "tls": {
+                "enabled": false,
+                "server_name": "jala.iptunnels.com",
+                "insecure": false,
+                "utls": {
+                    "enabled": false,
+                    "fingerprint": "chrome_padding_psk_shuffle"
+                }
+            },
+            "multiplex": {
+                "enabled": false,
+                "protocol": "h2mux",
+                "max_streams": 32,
+                "padding": false,
+                "brutal": {
+                    "enabled": false,
+                    "up_mbps": 20,
+                    "down_mbps": 100
+                }
+            },
+            "transport": {
+                "type": "ws",
+                "path": "/buy-trojan-ws-pm-telegram-at-synricha",
+                "headers": {
+                    "Host": "jala.iptunnels.com"
+                }
+            }
+        },
+        {
+            "type": "vless",
+            "tag": "vless_websocket 🇰🇷🇰🇷🇰🇷",
+            "udp_fragment": true,
+            "fallback_delay": "300ms",
+            "server": "104.18.225.52",
+            "server_port": 80,
+            "uuid": "1fd6962c-aca1-4c00-9a2d-9a7ed2d4783d",
+            "tls": {
+                "enabled": false,
+                "server_name": "jala.iptunnels.com",
+                "insecure": false,
+                "utls": {
+                    "enabled": false,
+                    "fingerprint": "chrome_padding_psk_shuffle"
+                }
+            },
+            "multiplex": {
+                "enabled": false,
+                "protocol": "h2mux",
+                "max_streams": 32,
+                "padding": false,
+                "brutal": {
+                    "enabled": false,
+                    "up_mbps": 20,
+                    "down_mbps": 100
+                }
+            },
+            "transport": {
+                "type": "ws",
+                "path": "/buy-vless-ws-pm-telegram-at-synricha",
+                "headers": {
+                    "Host": "jala.iptunnels.com"
+                }
+            },
+            "packet_encoding": "xudp"
+        },
+        {
+            "type": "vmess",
+            "tag": "vmess_websocket 🇰🇷🇰🇷🇰🇷",
+            "udp_fragment": true,
+            "fallback_delay": "300ms",
+            "server": "104.18.225.52",
+            "server_port": 80,
+            "uuid": "0832fb71-58f8-44a8-ad09-2f7662f9295d",
+            "security": "auto",
+            "global_padding": false,
+            "authenticated_length": true,
+            "tls": {
+                "enabled": false,
+                "server_name": "jala.iptunnels.com",
+                "insecure": false,
+                "utls": {
+                    "enabled": false,
+                    "fingerprint": "chrome_padding_psk_shuffle"
+                }
+            },
+            "multiplex": {
+                "enabled": false,
+                "protocol": "h2mux",
+                "max_streams": 32,
+                "padding": false,
+                "brutal": {
+                    "enabled": false,
+                    "up_mbps": 20,
+                    "down_mbps": 100
+                }
+            },
+            "transport": {
+                "type": "ws",
+                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
+                "headers": {
+                    "Host": "jala.iptunnels.com"
+                }
+            }
+        },
+        {
+            "type": "vmess",
+            "tag": "vmess_websocket 🇯🇵🇯🇵🇯🇵",
+            "udp_fragment": true,
+            "fallback_delay": "300ms",
+            "server": "104.18.225.52",
+            "server_port": 80,
+            "uuid": "e60f79c3-c7a7-4f40-b521-bbb295ffb539",
+            "security": "auto",
+            "global_padding": false,
+            "authenticated_length": true,
+            "tls": {
+                "enabled": false,
+                "server_name": "jala.iptunnels.com",
+                "insecure": false,
+                "utls": {
+                    "enabled": false,
+                    "fingerprint": "chrome_padding_psk_shuffle"
+                }
+            },
+            "multiplex": {
+                "enabled": false,
+                "protocol": "h2mux",
+                "max_streams": 32,
+                "padding": false,
+                "brutal": {
+                    "enabled": false,
+                    "up_mbps": 20,
+                    "down_mbps": 100
+                }
+            },
+            "transport": {
+                "type": "ws",
+                "path": "/buy-vmess-ws-pm-telegram-at-synricha",
+                "headers": {
+                    "Host": "jala.iptunnels.com"
+                }
+            }
+        },
+        {
+            "type": "dns",
+            "tag": "dns_out"
+        },
+        {
+            "type": "block",
+            "tag": "block"
+        }
+    ],
+    "route": {
+        "geoip": {
+            "path": "geo-assets/geoip.db"
+        },
+        "geosite": {
+            "path": "geo-assets/geosite.db"
+        },
+        "rule_set": [
+            {
+                "tag": "geosite-category-ads.srs",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-ads.srs",
+                "download_detour": "auto_select",
+                "update_interval": "3d"
+            },
+            {
+                "tag": "geosite-category-ads-all.srs",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-ads-all.srs",
+                "download_detour": "auto_select",
+                "update_interval": "3d"
+            },
+            {
+                "tag": "geosite-google-ads.srs",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-google-ads.srs",
+                "download_detour": "auto_select",
+                "update_interval": "3d"
+            }
+        ],
+        "rules": [
+            {
+                "rule_set": [
+                    "geosite-category-ads.srs",
+                    "geosite-category-ads-all.srs",
+                    "geosite-google-ads.srs"
+                ],
+                "outbound": "block"
+            },
+            {
+                "protocol": [
+                    "doh",
+                    "doq",
+                    "dot",
+                    "stun",
+                    "quic"
+                ],
+                "outbound": "block"
+            },
+            {
+                "protocol": [
+                    "dns"
+                ],
+                "port": [
+                    53
+                ],
+                "outbound": "dns_out"
+            }
+        ],
+        "override_android_vpn": true,
+        "auto_detect_interface": true
+    },
+    "experimental": {
+        "clash_api": {
+            "external_controller": "0.0.0.0:9090"
+        },
+        "cache_file": {
+            "enabled": true,
+            "path": "cache.db",
+            "cache_id": "anhedonia",
+            "store_fakeip": true
+        }
+    }
+}
