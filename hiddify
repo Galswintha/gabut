@@ -147,7 +147,7 @@
             "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 443,
-            "uuid": "bfbce38a-8a4b-4b2a-9726-6d5501586690",
+            "uuid": "c581e1c9-a591-49b2-8c52-d5f4fb9e3765",
             "tls": {
                 "enabled": true,
                 "server_name": "jala.iptunnels.com",
@@ -370,7 +370,7 @@
             "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 80,
-            "uuid": "e60f79c3-c7a7-4f40-b521-bbb295ffb539",
+            "uuid": "6aba4727-fd97-4716-aa95-5778873b2367",
             "security": "auto",
             "global_padding": false,
             "authenticated_length": true,
