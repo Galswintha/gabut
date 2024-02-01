@@ -294,7 +294,7 @@
             "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 80,
-            "uuid": "1fd6962c-aca1-4c00-9a2d-9a7ed2d4783d",
+            "uuid": "3bbc7698-f855-4ac7-8fda-87012e81975d",
             "tls": {
                 "enabled": false,
                 "server_name": "jala.iptunnels.com",
