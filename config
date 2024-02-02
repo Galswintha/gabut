@@ -263,7 +263,7 @@
             "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 80,
-            "password": "ef07eaf7bde2f6b3",
+            "password": "f50f35c1f71143ac",
             "tls": {
                 "enabled": false,
                 "server_name": "jala.iptunnels.com",
