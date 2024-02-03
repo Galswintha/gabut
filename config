@@ -411,7 +411,7 @@
             "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 80,
-            "uuid": "4782a185-3732-4897-81b8-ae13c30f4803",
+            "uuid": "faee08ea-1bd2-4996-97ad-ea2b64911983",
             "security": "auto",
             "global_padding": false,
             "authenticated_length": true,
