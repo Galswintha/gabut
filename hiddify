@@ -21,36 +21,9 @@
         ],
         "rules": [
             {
-                "protocol": [
-                    "dns"
-                ],
-                "port": [
-                    53
-                ],
-                "server": "dns_fakeip",
-                "outbound": "dns_out",
-                "disable_cache": true
-            },
-            {
-                "protocol": [
-                    "doh",
-                    "doq",
-                    "dot",
-                    "stun",
-                    "quic"
-                ],
-                "server": "dns_fakeip",
-                "outbound": "block",
-                "disable_cache": true
-            },
-            {
-                "query_type": [
-                    "A",
-                    "AAAA"
-                ],
-                "server": "dns_fakeip",
-                "outbound": "block",
-                "disable_cache": true
+        "domain": "cp.cloudflare.com",
+        "server": "dns_fakeip",
+        "rewrite_ttl": 3000
             }
         ],
         "fakeip": {
@@ -72,6 +45,22 @@
             "auto_route": true,
             "sniff": true,
             "sniff_override_destination": true
+        },
+        {
+            "type": "mixed",
+            "tag": "mixed_in",
+            "listen": "127.0.0.1",
+            "listen_port": 2334,
+            "sniff": true,
+            "sniff_override_destination": true
+        },
+        {
+            "type": "direct",
+            "tag": "dns_in",
+            "listen": "127.0.0.1",
+            "listen_port": 6450,
+            "override_address": "1.1.1.1",
+            "override_port": 53
         }
     ],
     "outbounds": [
@@ -80,6 +69,10 @@
             "tag": "nodes_selector",
             "outbounds": [
                 "auto_select",
+                "iptunnels",
+                "racevpn",
+                "sshs8",
+                "direct",
                 "block"
             ],
             "default": "auto_select",
@@ -89,36 +82,93 @@
             "type": "urltest",
             "tag": "auto_select",
             "outbounds": [
-                "trojan_grpc 🇸🇬🇸🇬🇸🇬",
-                "vless_grpc 🇰🇷🇰🇷🇰🇷",
-                "vmess_grpc 🇯🇵🇯🇵🇯🇵",
-                "trojan_websocket 🇰🇷🇰🇷🇰🇷",
-                "trojan_websocket 🇯🇵🇯🇵🇯🇵",
-                "vless_websocket 🇰🇷🇰🇷🇰🇷",
-                "vmess_websocket 🇰🇷🇰🇷🇰🇷",
-                "vmess_websocket 🇯🇵🇯🇵🇯🇵"
+                "iptunnels_trojan_grpc 🇮🇩🇮🇩",
+                "iptunnels_vless_grpc 🇮🇩🇮🇩",
+                "iptunnels_vmess_grpc 🇮🇩🇮🇩",
+                "iptunnels_trojan 🇮🇩🇮🇩",
+                "iptunnels_trojan 🇮🇩🇮🇩🇮🇩",
+                "iptunnels_vless 🇮🇩🇮🇩",
+                "iptunnels_vmess 🇮🇩🇮🇩",
+                "iptunnels_vmess 🇮🇩🇮🇩🇮🇩",
+                "racevpn_vless 🇸🇬",
+                "racevpn_vless 🇸🇬🇸🇬",
+                "racevpn_vmess 🇸🇬",
+                "racevpn_vmess 🇸🇬🇸🇬",
+                "sshs8_trojan 🇸🇬",
+                "sshs8_trojan 🇸🇬🇸🇬",
+                "sshs8_trojan 🇸🇬🇸🇬🇸🇬",
+                "sshs8_trojan 🇸🇬🇸🇬🇸🇬🇸🇬"
             ],
             "url": "http://cp.cloudflare.com/",
             "interval": "66s",
-            "tolerance": 13,
+            "tolerance": 6,
+            "idle_timeout": "45m",
+            "interrupt_exist_connections": false
+        },
+        {
+            "type": "urltest",
+            "tag": "iptunnels",
+            "outbounds": [
+                "iptunnels_trojan_grpc 🇮🇩🇮🇩",
+                "iptunnels_vless_grpc 🇮🇩🇮🇩",
+                "iptunnels_vmess_grpc 🇮🇩🇮🇩",
+                "iptunnels_trojan 🇮🇩🇮🇩",
+                "iptunnels_trojan 🇮🇩🇮🇩🇮🇩",
+                "iptunnels_vless 🇮🇩🇮🇩",
+                "iptunnels_vmess 🇮🇩🇮🇩",
+                "iptunnels_vmess 🇮🇩🇮🇩🇮🇩"
+            ],
+            "url": "http://cp.cloudflare.com/",
+            "interval": "66s",
+            "tolerance": 6,
+            "idle_timeout": "45m",
+            "interrupt_exist_connections": false
+        },
+        {
+            "type": "urltest",
+            "tag": "racevpn",
+            "outbounds": [
+                "racevpn_vless 🇸🇬",
+                "racevpn_vless 🇸🇬🇸🇬",
+                "racevpn_vmess 🇸🇬",
+                "racevpn_vmess 🇸🇬🇸🇬"
+            ],
+            "url": "http://cp.cloudflare.com/",
+            "interval": "66s",
+            "tolerance": 6,
+            "idle_timeout": "45m",
+            "interrupt_exist_connections": false
+        },
+        {
+            "type": "urltest",
+            "tag": "sshs8",
+            "outbounds": [
+                "sshs8_trojan 🇸🇬",
+                "sshs8_trojan 🇸🇬🇸🇬",
+                "sshs8_trojan 🇸🇬🇸🇬🇸🇬",
+                "sshs8_trojan 🇸🇬🇸🇬🇸🇬🇸🇬"
+            ],
+            "url": "http://cp.cloudflare.com/",
+            "interval": "66s",
+            "tolerance": 6,
             "idle_timeout": "45m",
             "interrupt_exist_connections": false
         },
         {
             "type": "trojan",
-            "tag": "trojan_grpc 🇸🇬🇸🇬🇸🇬",
+            "tag": "iptunnels_trojan_grpc 🇮🇩🇮🇩",
             "udp_fragment": true,
             "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 443,
-            "password": "442a04b5f8559919",
+            "password": "00aa05f219ff93e8",
             "tls": {
                 "enabled": true,
                 "server_name": "jala.iptunnels.com",
                 "insecure": true,
                 "utls": {
                     "enabled": true,
-                    "fingerprint": "chrome_pq"
+                    "fingerprint": ""
                 }
             },
             "multiplex": {
@@ -142,19 +192,19 @@
         },
         {
             "type": "vless",
-            "tag": "vless_grpc 🇰🇷🇰🇷🇰🇷",
+            "tag": "iptunnels_vless_grpc 🇮🇩🇮🇩",
             "udp_fragment": true,
             "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 443,
-            "uuid": "c581e1c9-a591-49b2-8c52-d5f4fb9e3765",
+            "uuid": "69945e6e-c910-45ee-8d68-c82138cba290",
             "tls": {
                 "enabled": true,
                 "server_name": "jala.iptunnels.com",
                 "insecure": true,
                 "utls": {
                     "enabled": true,
-                    "fingerprint": "chrome_pq"
+                    "fingerprint": ""
                 }
             },
             "multiplex": {
@@ -179,12 +229,12 @@
         },
         {
             "type": "vmess",
-            "tag": "vmess_grpc 🇯🇵🇯🇵🇯🇵",
+            "tag": "iptunnels_vmess_grpc 🇮🇩🇮🇩",
             "udp_fragment": true,
             "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 443,
-            "uuid": "1787febf-6443-4f43-b0ac-82195df33829",
+            "uuid": "5b1f3495-c165-4c0e-ad4e-b9dee76a54ea",
             "security": "auto",
             "authenticated_length": true,
             "tls": {
@@ -193,7 +243,7 @@
                 "insecure": true,
                 "utls": {
                     "enabled": true,
-                    "fingerprint": "chrome_pq"
+                    "fingerprint": ""
                 }
             },
             "multiplex": {
@@ -217,19 +267,19 @@
         },
         {
             "type": "trojan",
-            "tag": "trojan_websocket 🇰🇷🇰🇷🇰🇷",
+            "tag": "iptunnels_trojan 🇮🇩🇮🇩",
             "udp_fragment": true,
             "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 80,
-            "password": "ef07eaf7bde2f6b3",
+            "password": "9c899eae2aedcd4b",
             "tls": {
                 "enabled": false,
                 "server_name": "jala.iptunnels.com",
-                "insecure": false,
+                "insecure": true,
                 "utls": {
-                    "enabled": false,
-                    "fingerprint": "chrome_padding_psk_shuffle"
+                    "enabled": true,
+                    "fingerprint": ""
                 }
             },
             "multiplex": {
@@ -253,19 +303,19 @@
         },
         {
             "type": "trojan",
-            "tag": "trojan_websocket 🇯🇵🇯🇵🇯🇵",
+            "tag": "iptunnels_trojan 🇮🇩🇮🇩🇮🇩",
             "udp_fragment": true,
             "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 80,
-            "password": "8618f6d20494a5b9",
+            "password": "cf6e6213274d5238",
             "tls": {
                 "enabled": false,
                 "server_name": "jala.iptunnels.com",
-                "insecure": false,
+                "insecure": true,
                 "utls": {
-                    "enabled": false,
-                    "fingerprint": "chrome_padding_psk_shuffle"
+                    "enabled": true,
+                    "fingerprint": ""
                 }
             },
             "multiplex": {
@@ -289,19 +339,19 @@
         },
         {
             "type": "vless",
-            "tag": "vless_websocket 🇰🇷🇰🇷🇰🇷",
+            "tag": "iptunnels_vless 🇮🇩🇮🇩",
             "udp_fragment": true,
             "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 80,
-            "uuid": "3bbc7698-f855-4ac7-8fda-87012e81975d",
+            "uuid": "c97a9995-329f-465b-b583-b9d509e9b2b1",
             "tls": {
                 "enabled": false,
                 "server_name": "jala.iptunnels.com",
-                "insecure": false,
+                "insecure": true,
                 "utls": {
-                    "enabled": false,
-                    "fingerprint": "chrome_padding_psk_shuffle"
+                    "enabled": true,
+                    "fingerprint": ""
                 }
             },
             "multiplex": {
@@ -326,22 +376,22 @@
         },
         {
             "type": "vmess",
-            "tag": "vmess_websocket 🇰🇷🇰🇷🇰🇷",
+            "tag": "iptunnels_vmess 🇮🇩🇮🇩",
             "udp_fragment": true,
             "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 80,
-            "uuid": "0832fb71-58f8-44a8-ad09-2f7662f9295d",
+            "uuid": "07e4add5-21a0-4708-a046-21bbaaeab0f3",
             "security": "auto",
-            "global_padding": false,
+            "global_padding": true,
             "authenticated_length": true,
             "tls": {
                 "enabled": false,
                 "server_name": "jala.iptunnels.com",
-                "insecure": false,
+                "insecure": true,
                 "utls": {
-                    "enabled": false,
-                    "fingerprint": "chrome_padding_psk_shuffle"
+                    "enabled": true,
+                    "fingerprint": ""
                 }
             },
             "multiplex": {
@@ -365,22 +415,22 @@
         },
         {
             "type": "vmess",
-            "tag": "vmess_websocket 🇯🇵🇯🇵🇯🇵",
+            "tag": "iptunnels_vmess 🇮🇩🇮🇩🇮🇩",
             "udp_fragment": true,
             "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 80,
-            "uuid": "6aba4727-fd97-4716-aa95-5778873b2367",
+            "uuid": "4afadc90-5b81-4966-a6bc-6e288742f0e0",
             "security": "auto",
-            "global_padding": false,
+            "global_padding": true,
             "authenticated_length": true,
             "tls": {
                 "enabled": false,
                 "server_name": "jala.iptunnels.com",
-                "insecure": false,
+                "insecure": true,
                 "utls": {
-                    "enabled": false,
-                    "fingerprint": "chrome_padding_psk_shuffle"
+                    "enabled": true,
+                    "fingerprint": ""
                 }
             },
             "multiplex": {
@@ -403,8 +453,308 @@
             }
         },
         {
+            "type": "vless",
+            "tag": "racevpn_vless 🇸🇬",
+            "udp_fragment": true,
+            "fallback_delay": "300ms",
+            "server": "104.18.225.52",
+            "server_port": 443,
+            "uuid": "3d3e46c3-b72a-45b1-952a-0ef516db29ea",
+            "tls": {
+                "enabled": true,
+                "server_name": "sg-full.privateip.net",
+                "insecure": true,
+                "utls": {
+                    "enabled": true,
+                    "fingerprint": ""
+                }
+            },
+            "multiplex": {
+                "enabled": false,
+                "protocol": "h2mux",
+                "max_streams": 32,
+                "padding": false,
+                "brutal": {
+                    "enabled": false,
+                    "up_mbps": 20,
+                    "down_mbps": 100
+                }
+            },
+            "transport": {
+                "type": "ws",
+                "path": "/VLESS",
+                "headers": {
+                    "Host": "sg-full.privateip.net"
+                }
+            },
+            "packet_encoding": "xudp"
+        },
+        {
+            "type": "vless",
+            "tag": "racevpn_vless 🇸🇬🇸🇬",
+            "udp_fragment": true,
+            "fallback_delay": "300ms",
+            "server": "104.18.225.52",
+            "server_port": 443,
+            "uuid": "7f0e6ad9-d7b4-43cd-9603-40dd2fd9cfe2",
+            "tls": {
+                "enabled": true,
+                "server_name": "sg2-full.privateip.net",
+                "insecure": true,
+                "utls": {
+                    "enabled": true,
+                    "fingerprint": ""
+                }
+            },
+            "multiplex": {
+                "enabled": false,
+                "protocol": "h2mux",
+                "max_streams": 32,
+                "padding": false,
+                "brutal": {
+                    "enabled": false,
+                    "up_mbps": 20,
+                    "down_mbps": 100
+                }
+            },
+            "transport": {
+                "type": "ws",
+                "path": "/VLESS",
+                "headers": {
+                    "Host": "sg2-full.privateip.net"
+                }
+            },
+            "packet_encoding": "xudp"
+        },
+        {
+            "type": "vmess",
+            "tag": "racevpn_vmess 🇸🇬",
+            "udp_fragment": true,
+            "fallback_delay": "300ms",
+            "server": "104.18.225.52",
+            "server_port": 443,
+            "uuid": "3d3e46c3-b72a-45b1-952a-0ef516db29ea",
+            "security": "auto",
+            "global_padding": true,
+            "authenticated_length": true,
+            "tls": {
+                "enabled": true,
+                "server_name": "sg-full.privateip.net",
+                "insecure": true,
+                "utls": {
+                    "enabled": true,
+                    "fingerprint": ""
+                }
+            },
+            "multiplex": {
+                "enabled": false,
+                "protocol": "h2mux",
+                "max_streams": 32,
+                "padding": false,
+                "brutal": {
+                    "enabled": false,
+                    "up_mbps": 20,
+                    "down_mbps": 100
+                }
+            },
+            "transport": {
+                "type": "ws",
+                "path": "/RACEVPN",
+                "headers": {
+                    "Host": "sg-full.privateip.net"
+                }
+            }
+        },
+        {
+            "type": "vmess",
+            "tag": "racevpn_vmess 🇸🇬🇸🇬",
+            "udp_fragment": true,
+            "fallback_delay": "300ms",
+            "server": "104.18.225.52",
+            "server_port": 443,
+            "uuid": "7f0e6ad9-d7b4-43cd-9603-40dd2fd9cfe2",
+            "security": "auto",
+            "global_padding": true,
+            "authenticated_length": true,
+            "tls": {
+                "enabled": true,
+                "server_name": "sg2-full.privateip.net",
+                "insecure": true,
+                "utls": {
+                    "enabled": true,
+                    "fingerprint": ""
+                }
+            },
+            "multiplex": {
+                "enabled": false,
+                "protocol": "h2mux",
+                "max_streams": 32,
+                "padding": false,
+                "brutal": {
+                    "enabled": false,
+                    "up_mbps": 20,
+                    "down_mbps": 100
+                }
+            },
+            "transport": {
+                "type": "ws",
+                "path": "/RACEVPN",
+                "headers": {
+                    "Host": "sg2-full.privateip.net"
+                }
+            }
+        },
+        {
+            "type": "trojan",
+            "tag": "sshs8_trojan 🇸🇬",
+            "udp_fragment": true,
+            "fallback_delay": "300ms",
+            "server": "104.18.225.52",
+            "server_port": 2087,
+            "password": "u8763257974",
+            "tls": {
+                "enabled": true,
+                "server_name": "si4co.09vpn.com",
+                "insecure": true,
+                "utls": {
+                    "enabled": true,
+                    "fingerprint": ""
+                }
+            },
+            "multiplex": {
+                "enabled": false,
+                "protocol": "h2mux",
+                "max_streams": 32,
+                "padding": false,
+                "brutal": {
+                    "enabled": false,
+                    "up_mbps": 20,
+                    "down_mbps": 100
+                }
+            },
+            "transport": {
+                "type": "ws",
+                "path": "/trojango",
+                "headers": {
+                    "Host": "si4co.09vpn.com"
+                }
+            }
+        },
+        {
+            "type": "trojan",
+            "tag": "sshs8_trojan 🇸🇬🇸🇬",
+            "udp_fragment": true,
+            "fallback_delay": "300ms",
+            "server": "104.18.225.52",
+            "server_port": 2087,
+            "password": "u9840179771",
+            "tls": {
+                "enabled": true,
+                "server_name": "si5ultara.09vpn.com",
+                "insecure": true,
+                "utls": {
+                    "enabled": true,
+                    "fingerprint": ""
+                }
+            },
+            "multiplex": {
+                "enabled": false,
+                "protocol": "h2mux",
+                "max_streams": 32,
+                "padding": false,
+                "brutal": {
+                    "enabled": false,
+                    "up_mbps": 20,
+                    "down_mbps": 100
+                }
+            },
+            "transport": {
+                "type": "ws",
+                "path": "/trojango",
+                "headers": {
+                    "Host": "si5ultara.09vpn.com"
+                }
+            }
+        },
+        {
+            "type": "trojan",
+            "tag": "sshs8_trojan 🇸🇬🇸🇬🇸🇬",
+            "udp_fragment": true,
+            "fallback_delay": "300ms",
+            "server": "104.18.225.52",
+            "server_port": 2087,
+            "password": "u194101592",
+            "tls": {
+                "enabled": true,
+                "server_name": "4si1.09vpn.com",
+                "insecure": true,
+                "utls": {
+                    "enabled": true,
+                    "fingerprint": ""
+                }
+            },
+            "multiplex": {
+                "enabled": false,
+                "protocol": "h2mux",
+                "max_streams": 32,
+                "padding": false,
+                "brutal": {
+                    "enabled": false,
+                    "up_mbps": 20,
+                    "down_mbps": 100
+                }
+            },
+            "transport": {
+                "type": "ws",
+                "path": "/trojango",
+                "headers": {
+                    "Host": "4si1.09vpn.com"
+                }
+            }
+        },
+        {
+            "type": "trojan",
+            "tag": "sshs8_trojan 🇸🇬🇸🇬🇸🇬🇸🇬",
+            "udp_fragment": true,
+            "fallback_delay": "300ms",
+            "server": "104.18.225.52",
+            "server_port": 2087,
+            "password": "u6675072928",
+            "tls": {
+                "enabled": true,
+                "server_name": "4si2.09vpn.com",
+                "insecure": true,
+                "utls": {
+                    "enabled": true,
+                    "fingerprint": ""
+                }
+            },
+            "multiplex": {
+                "enabled": false,
+                "protocol": "h2mux",
+                "max_streams": 32,
+                "padding": false,
+                "brutal": {
+                    "enabled": false,
+                    "up_mbps": 20,
+                    "down_mbps": 100
+                }
+            },
+            "transport": {
+                "type": "ws",
+                "path": "/trojango",
+                "headers": {
+                    "Host": "4si2.09vpn.com"
+                }
+            }
+        },
+        {
             "type": "dns",
             "tag": "dns_out"
+        },
+        {
+            "type": "direct",
+            "tag": "direct"
         },
         {
             "type": "block",
