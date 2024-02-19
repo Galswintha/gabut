@@ -21,36 +21,30 @@
         ],
         "rules": [
             {
-                "protocol": [
-                    "dns"
+                "query_type": [
+                    "ANY"
                 ],
-                "port": [
-                    53
-                ],
-                "server": "dns_fakeip",
-                "outbound": "dns_out",
-                "disable_cache": true
+                "server": "dns_fakeip"
             },
             {
                 "protocol": [
-                    "doh",
-                    "doq",
-                    "dot",
                     "stun",
                     "quic"
                 ],
-                "server": "dns_fakeip",
-                "outbound": "block",
-                "disable_cache": true
+                "server": "rcode_refused"
             },
             {
-                "query_type": [
-                    "A",
-                    "AAAA"
+                "rule_set": [
+                    "geosite-category-ads.srs",
+                    "geosite-category-ads-all.srs",
+                    "geosite-google-ads.srs"
                 ],
+                "server": "rcode_refused"
+            },
+            {
+                "domain": "cp.cloudflare.com",
                 "server": "dns_fakeip",
-                "outbound": "block",
-                "disable_cache": true
+                "rewrite_ttl": 3000
             }
         ],
         "fakeip": {
@@ -72,48 +66,28 @@
             "auto_route": true,
             "sniff": true,
             "sniff_override_destination": true
+        },
+        {
+            "type": "mixed",
+            "tag": "mixed_in",
+            "listen": "127.0.0.1",
+            "listen_port": 2334,
+            "sniff": true,
+            "sniff_override_destination": true
+        },
+        {
+            "type": "direct",
+            "tag": "dns_in",
+            "listen": "127.0.0.1",
+            "listen_port": 6450,
+            "override_address": "fakeip",
+            "override_port": 53
         }
     ],
     "outbounds": [
         {
-            "type": "selector",
-            "tag": "nodes_selector",
-            "outbounds": [
-                "auto_select",
-                "iptunnels",
-                "racevpn",
-                "direct",
-                "block"
-            ],
-            "default": "auto_select",
-            "interrupt_exist_connections": false
-        },
-        {
             "type": "urltest",
             "tag": "auto_select",
-            "outbounds": [
-                "iptunnels_trojan_grpc 🇮🇩🇮🇩",
-                "iptunnels_vless_grpc 🇮🇩🇮🇩",
-                "iptunnels_vmess_grpc 🇮🇩🇮🇩",
-                "iptunnels_trojan 🇮🇩🇮🇩",
-                "iptunnels_trojan 🇮🇩🇮🇩🇮🇩",
-                "iptunnels_vless 🇮🇩🇮🇩",
-                "iptunnels_vmess 🇮🇩🇮🇩",
-                "iptunnels_vmess 🇮🇩🇮🇩🇮🇩",
-                "racevpn_vless 🇸🇬",
-                "racevpn_vless 🇸🇬🇸🇬",
-                "racevpn_vmess 🇸🇬",
-                "racevpn_vmess 🇸🇬🇸🇬"
-            ],
-            "url": "http://cp.cloudflare.com/",
-            "interval": "66s",
-            "tolerance": 13,
-            "idle_timeout": "45m",
-            "interrupt_exist_connections": false
-        },
-        {
-            "type": "urltest",
-            "tag": "iptunnels",
             "outbounds": [
                 "iptunnels_trojan_grpc 🇮🇩🇮🇩",
                 "iptunnels_vless_grpc 🇮🇩🇮🇩",
@@ -126,22 +100,7 @@
             ],
             "url": "http://cp.cloudflare.com/",
             "interval": "66s",
-            "tolerance": 13,
-            "idle_timeout": "45m",
-            "interrupt_exist_connections": false
-        },
-        {
-            "type": "urltest",
-            "tag": "racevpn",
-            "outbounds": [
-                "racevpn_vless 🇸🇬",
-                "racevpn_vless 🇸🇬🇸🇬",
-                "racevpn_vmess 🇸🇬",
-                "racevpn_vmess 🇸🇬🇸🇬"
-            ],
-            "url": "http://cp.cloudflare.com/",
-            "interval": "66s",
-            "tolerance": 13,
+            "tolerance": 6,
             "idle_timeout": "45m",
             "interrupt_exist_connections": false
         },
@@ -152,23 +111,23 @@
             "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 443,
-            "password": "00aa05f219ff93e8",
+            "password": "5b8976c7ed006292",
             "tls": {
                 "enabled": true,
                 "server_name": "jala.iptunnels.com",
                 "insecure": true,
                 "utls": {
                     "enabled": true,
-                    "fingerprint": "chrome_pq"
+                    "fingerprint": ""
                 }
             },
             "multiplex": {
                 "enabled": false,
                 "protocol": "h2mux",
                 "max_streams": 32,
-                "padding": false,
+                "padding": true,
                 "brutal": {
-                    "enabled": false,
+                    "enabled": true,
                     "up_mbps": 20,
                     "down_mbps": 100
                 }
@@ -188,23 +147,23 @@
             "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 443,
-            "uuid": "c581e1c9-a591-49b2-8c52-d5f4fb9e3765",
+            "uuid": "a64aea8b-d3ad-4b98-9cae-267fc12f15cf",
             "tls": {
                 "enabled": true,
                 "server_name": "jala.iptunnels.com",
                 "insecure": true,
                 "utls": {
                     "enabled": true,
-                    "fingerprint": "chrome_pq"
+                    "fingerprint": ""
                 }
             },
             "multiplex": {
                 "enabled": false,
                 "protocol": "h2mux",
                 "max_streams": 32,
-                "padding": false,
+                "padding": true,
                 "brutal": {
-                    "enabled": false,
+                    "enabled": true,
                     "up_mbps": 20,
                     "down_mbps": 100
                 }
@@ -225,7 +184,7 @@
             "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 443,
-            "uuid": "5b1f3495-c165-4c0e-ad4e-b9dee76a54ea",
+            "uuid": "2d761264-71e4-4f9d-adbd-b05e2c2c8695",
             "security": "auto",
             "authenticated_length": true,
             "tls": {
@@ -234,16 +193,16 @@
                 "insecure": true,
                 "utls": {
                     "enabled": true,
-                    "fingerprint": "chrome_pq"
+                    "fingerprint": ""
                 }
             },
             "multiplex": {
                 "enabled": false,
                 "protocol": "h2mux",
                 "max_streams": 32,
-                "padding": false,
+                "padding": true,
                 "brutal": {
-                    "enabled": false,
+                    "enabled": true,
                     "up_mbps": 20,
                     "down_mbps": 100
                 }
@@ -263,23 +222,23 @@
             "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 80,
-            "password": "16de5712772b6626",
+            "password": "474033ca79ae5cde",
             "tls": {
                 "enabled": false,
                 "server_name": "jala.iptunnels.com",
-                "insecure": false,
+                "insecure": true,
                 "utls": {
-                    "enabled": false,
-                    "fingerprint": "chrome_padding_psk_shuffle"
+                    "enabled": true,
+                    "fingerprint": ""
                 }
             },
             "multiplex": {
                 "enabled": false,
                 "protocol": "h2mux",
                 "max_streams": 32,
-                "padding": false,
+                "padding": true,
                 "brutal": {
-                    "enabled": false,
+                    "enabled": true,
                     "up_mbps": 20,
                     "down_mbps": 100
                 }
@@ -299,23 +258,23 @@
             "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 80,
-            "password": "a8fe0431d7a16107",
+            "password": "2c3de53065019d1b",
             "tls": {
                 "enabled": false,
                 "server_name": "jala.iptunnels.com",
-                "insecure": false,
+                "insecure": true,
                 "utls": {
-                    "enabled": false,
-                    "fingerprint": "chrome_padding_psk_shuffle"
+                    "enabled": true,
+                    "fingerprint": ""
                 }
             },
             "multiplex": {
                 "enabled": false,
                 "protocol": "h2mux",
                 "max_streams": 32,
-                "padding": false,
+                "padding": true,
                 "brutal": {
-                    "enabled": false,
+                    "enabled": true,
                     "up_mbps": 20,
                     "down_mbps": 100
                 }
@@ -335,23 +294,23 @@
             "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 80,
-            "uuid": "039a4def-e2ac-4fe8-af9a-234392221620",
+            "uuid": "9a4e188c-4b01-4438-b83d-69768f4854d5",
             "tls": {
                 "enabled": false,
                 "server_name": "jala.iptunnels.com",
-                "insecure": false,
+                "insecure": true,
                 "utls": {
-                    "enabled": false,
-                    "fingerprint": "chrome_padding_psk_shuffle"
+                    "enabled": true,
+                    "fingerprint": ""
                 }
             },
             "multiplex": {
                 "enabled": false,
                 "protocol": "h2mux",
                 "max_streams": 32,
-                "padding": false,
+                "padding": true,
                 "brutal": {
-                    "enabled": false,
+                    "enabled": true,
                     "up_mbps": 20,
                     "down_mbps": 100
                 }
@@ -372,26 +331,26 @@
             "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 80,
-            "uuid": "88c543ab-d1c6-4575-9499-27374bb3cc29",
+            "uuid": "ddd2a305-e711-4bd3-bc99-3bc2cce4385e",
             "security": "auto",
-            "global_padding": false,
+            "global_padding": true,
             "authenticated_length": true,
             "tls": {
                 "enabled": false,
                 "server_name": "jala.iptunnels.com",
-                "insecure": false,
+                "insecure": true,
                 "utls": {
-                    "enabled": false,
-                    "fingerprint": "chrome_padding_psk_shuffle"
+                    "enabled": true,
+                    "fingerprint": ""
                 }
             },
             "multiplex": {
                 "enabled": false,
                 "protocol": "h2mux",
                 "max_streams": 32,
-                "padding": false,
+                "padding": true,
                 "brutal": {
-                    "enabled": false,
+                    "enabled": true,
                     "up_mbps": 20,
                     "down_mbps": 100
                 }
@@ -411,26 +370,26 @@
             "fallback_delay": "300ms",
             "server": "104.18.225.52",
             "server_port": 80,
-            "uuid": "9c1ad1f6-94cf-48cf-9971-50f542195929",
+            "uuid": "456d762e-3958-4049-aaef-3050492c7726",
             "security": "auto",
-            "global_padding": false,
+            "global_padding": true,
             "authenticated_length": true,
             "tls": {
                 "enabled": false,
                 "server_name": "jala.iptunnels.com",
-                "insecure": false,
+                "insecure": true,
                 "utls": {
-                    "enabled": false,
-                    "fingerprint": "chrome_padding_psk_shuffle"
+                    "enabled": true,
+                    "fingerprint": ""
                 }
             },
             "multiplex": {
                 "enabled": false,
                 "protocol": "h2mux",
                 "max_streams": 32,
-                "padding": false,
+                "padding": true,
                 "brutal": {
-                    "enabled": false,
+                    "enabled": true,
                     "up_mbps": 20,
                     "down_mbps": 100
                 }
@@ -440,158 +399,6 @@
                 "path": "/buy-vmess-ws-pm-telegram-at-synricha",
                 "headers": {
                     "Host": "jala.iptunnels.com"
-                }
-            }
-        },
-        {
-            "type": "vless",
-            "tag": "racevpn_vless 🇸🇬",
-            "udp_fragment": true,
-            "fallback_delay": "300ms",
-            "server": "104.18.225.52",
-            "server_port": 443,
-            "uuid": "3d3e46c3-b72a-45b1-952a-0ef516db29ea",
-            "tls": {
-                "enabled": true,
-                "server_name": "sg-full.privateip.net",
-                "insecure": true,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "chrome_padding_psk_shuffle"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "h2mux",
-                "max_streams": 32,
-                "padding": false,
-                "brutal": {
-                    "enabled": false,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/VLESS",
-                "headers": {
-                    "Host": "sg-full.privateip.net"
-                }
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "vless",
-            "tag": "racevpn_vless 🇸🇬🇸🇬",
-            "udp_fragment": true,
-            "fallback_delay": "300ms",
-            "server": "104.18.225.52",
-            "server_port": 443,
-            "uuid": "7f0e6ad9-d7b4-43cd-9603-40dd2fd9cfe2",
-            "tls": {
-                "enabled": true,
-                "server_name": "sg2-full.privateip.net",
-                "insecure": true,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "chrome_padding_psk_shuffle"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "h2mux",
-                "max_streams": 32,
-                "padding": false,
-                "brutal": {
-                    "enabled": false,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/VLESS",
-                "headers": {
-                    "Host": "sg2-full.privateip.net"
-                }
-            },
-            "packet_encoding": "xudp"
-        },
-        {
-            "type": "vmess",
-            "tag": "racevpn_vmess 🇸🇬",
-            "udp_fragment": true,
-            "fallback_delay": "300ms",
-            "server": "104.18.225.52",
-            "server_port": 443,
-            "uuid": "3d3e46c3-b72a-45b1-952a-0ef516db29ea",
-            "security": "auto",
-            "global_padding": false,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": true,
-                "server_name": "sg-full.privateip.net",
-                "insecure": true,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "chrome_padding_psk_shuffle"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "h2mux",
-                "max_streams": 32,
-                "padding": false,
-                "brutal": {
-                    "enabled": false,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/RACEVPN",
-                "headers": {
-                    "Host": "sg-full.privateip.net"
-                }
-            }
-        },
-        {
-            "type": "vmess",
-            "tag": "racevpn_vmess 🇸🇬🇸🇬",
-            "udp_fragment": true,
-            "fallback_delay": "300ms",
-            "server": "104.18.225.52",
-            "server_port": 443,
-            "uuid": "840777a6-5c57-4c95-b000-65cb83918043",
-            "security": "auto",
-            "global_padding": false,
-            "authenticated_length": true,
-            "tls": {
-                "enabled": true,
-                "server_name": "sg2-full.privateip.net",
-                "insecure": true,
-                "utls": {
-                    "enabled": false,
-                    "fingerprint": "chrome_padding_psk_shuffle"
-                }
-            },
-            "multiplex": {
-                "enabled": false,
-                "protocol": "h2mux",
-                "max_streams": 32,
-                "padding": false,
-                "brutal": {
-                    "enabled": false,
-                    "up_mbps": 20,
-                    "down_mbps": 100
-                }
-            },
-            "transport": {
-                "type": "ws",
-                "path": "/RACEVPN",
-                "headers": {
-                    "Host": "sg2-full.privateip.net"
                 }
             }
         },
@@ -652,9 +459,6 @@
             },
             {
                 "protocol": [
-                    "doh",
-                    "doq",
-                    "dot",
                     "stun",
                     "quic"
                 ],
@@ -664,6 +468,9 @@
                 "protocol": [
                     "dns"
                 ],
+                "outbound": "dns_out"
+            },
+            {
                 "port": [
                     53
                 ],
